@@ -1,7 +1,7 @@
-## Compute > Cloud Functions > 코드 Template 가이드
-이 문서는 NHN Cloud Functions 함수의 코드 작성시 제공되는 Template 코드에 대해 설명합니다.
+## Compute > Cloud Functions > 코드 템플릿 가이드
+이 문서는 NHN Cloud Functions 함수의 코드 작성 시 제공되는 템플릿 코드에 대해 설명합니다.
 
-## Template 코드 목록
+## 템플릿 코드 목록
 | 언어     | 파일명            | Entry Point         |
 |----------|-----------------|--------------------|
 | NodeJS   | hello.js        | hello              |
@@ -23,13 +23,13 @@ module.exports = async (context) => {
 ```
 ### Package
 `package.json`
-- 해당 파일을 작성하여 의존성을 관리합니다.
+- 이 파일을 작성하여 의존성을 관리합니다.
 
 ### Entry Point
 - `hello`
-    - NodeJs의 Entry Point는 `파일명`입니다.
+    - NodeJS의 Entry Point는 `파일명`입니다.
 
-#### 두개의 함수를 사용하는 경우 Entry Point 지정
+#### 두 개의 함수를 사용하는 경우 Entry Point 지정
 ``` js
 module.exports.entry1 = async (context) => {
     return {
@@ -45,7 +45,7 @@ module.exports.entry2 = async (context) => {
     };
 }
 ```
-- 위 예시의 코드의 Entry Point
+- 위 예시 코드의 Entry Point
     - `파일명.entry1`
     - `파일명.entry2`
 
@@ -68,7 +68,7 @@ def main():
 
 ### Package
 `requirements.txt`
-- 해당 파일을 작성하여 의존성을 관리합니다.
+- 이 파일을 작성하여 의존성을 관리합니다.
 
 ### Entry Point
 - `user.main`
@@ -102,7 +102,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 
 ### Package
 `go.mod`
-- 해당 파일을 작성하여 의존성을 관리합니다.
+- 이 파일을 작성하여 의존성을 관리합니다.
 
 ### Entry Point
 - `Handler`
@@ -127,11 +127,11 @@ public class HelloWorld{
 
 ### Package
 `pom.xml`
-- 해당 파일을 작성하여 의존성을 관리합니다.
+- 이 파일을 작성하여 의존성을 관리합니다.
 
 ### Entry Point
 - `example.HelloWorld`
-    - Java의 Entry Point는 `package명.함수명`입니다.
+    - Java의 Entry Point는 `패키지명.클래스명`입니다.
 
 ## Ruby
 `parse.rb`
@@ -153,11 +153,11 @@ end
 
 ### Package
 `Gemfile`
-- 해당 파일을 작성하여 의존성을 관리합니다.
+- 이 파일을 작성하여 의존성을 관리합니다.
 
 ### Entry Point
 - `handler`
-    - ruby의 Entry Point는 `함수명`입니다.
+    - Ruby의 Entry Point는 `함수명`입니다.
 
 ## .NET
 `func.cs`
@@ -168,7 +168,7 @@ using CsvHelper;
 using System.Globalization;
 using Nhn.DotNetCore.Api;
 
-public class NhnFunction 
+public class NhnFunction
 {
     public string Execute(NhnContext context)
     {
@@ -176,7 +176,7 @@ public class NhnFunction
         try
         {
             context.Logger.WriteInfo("Starting..... ");
-            
+
             // CsvHelper 예제: CSV 읽기
             var csvData = "Name,Age\nJohn,30\nJane,25";
             using (var reader = new StringReader(csvData))
@@ -199,7 +199,7 @@ public class NhnFunction
 
 ### Package
 `nuget.txt`
-- 해당 파일을 작성하여 의존성을 관리합니다.
+- 이 파일을 작성하여 의존성을 관리합니다.
 
 ### Entry Point
 - `func`
