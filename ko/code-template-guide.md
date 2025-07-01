@@ -50,7 +50,7 @@ module.exports.entry2 = async (context) => {
     - `파일명.entry2`
 
 > [참고]<br>
-> 현재 ES Modules 사용은 불가능합니다. CommonJS 방식만 사용 가능합니다.
+> 현재 ES Modules 사용은 지원하지 않습니다. CommonJS 방식만 사용 가능합니다.
 > <br>(ES Modules 추후 지원 예정)
 
 ## Python
