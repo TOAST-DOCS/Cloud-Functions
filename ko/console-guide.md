@@ -60,8 +60,11 @@
     </tr>
 </table>
 
-> **[(Pool Manager) 동시 실행 설정]**
-> ![console-guide-05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-05.png)
+> **[참고]** <br>
+> **(Pool Manager) 동시 실행 설정**
+
+
+![console-guide-05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-05.png)
 
 <br>
 
@@ -70,12 +73,11 @@
 
 <br>
 
-![console-guide-04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-04.png)
-
-
-
 
 #### 코드 작성
+
+![console-guide-04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-04.png)
+
 <table class="it">
     <tr>
         <th>분류</th>

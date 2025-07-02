@@ -51,4 +51,4 @@
 - HTTP Trigger
     - 기본 제공(GET, POST 지원)
 - Timer Trigger
-    - cron 형태로 추가 가능
+    - cron 표현식 형태로 추가할 수 있습니다.
