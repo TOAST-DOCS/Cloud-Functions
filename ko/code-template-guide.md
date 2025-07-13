@@ -1,5 +1,6 @@
 ## Compute > Cloud Functions > 코드 템플릿 가이드
 이 문서는 NHN Cloud Functions 함수의 코드 작성 시 제공되는 템플릿 코드에 대해 설명합니다.
+- 각 언어마다 `Hello World` 함수를 작성하는 방법을 알아봅니다.
 
 ## 템플릿 코드 목록
 | 언어     | 파일명            | Entry Point         |
@@ -74,6 +75,12 @@ def main():
 `requirements.txt`
 - 이 파일을 작성하여 의존성을 관리합니다.
 
+예시
+```txt
+pyyaml
+```
+
+
 ### Entry Point
 - `user.main`
     - Python의 Entry Point는 `파일명.함수명`입니다.
@@ -116,6 +123,13 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 ### Package
 `go.mod`
 - 이 파일을 작성하여 의존성을 관리합니다.
+
+예시
+```mod
+module example.com/ncf
+
+require github.com/brianvoe/gofakeit/v6 v6.28.0
+```
 
 ### Entry Point
 - `Handler`
@@ -206,6 +220,9 @@ public class HelloWorld{
     - Java의 Entry Point는 `패키지명.클래스명`입니다.
     - 메서드는 `public ResponseEntity<?> call(RequestEntity req)`로 지정해야 합니다.
 
+> **[참고]**<br>
+> Java의 경우 Template 구조 그대로 사용하여 사용자 함수를 작성하는 것을 권장합니다.
+
 ## Ruby
 `parse.rb`
 ```ruby
@@ -227,6 +244,20 @@ end
 ### Package
 `Gemfile`
 - 이 파일을 작성하여 의존성을 관리합니다.
+
+예시
+```Gemfile
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+
+gem "nokogiri", ">= 1.12.5"
+```
+
+>**[참고]**<br>
+> Gemfile.lock 파일은 `bundle install`을 실행하여 생성됩니다.
 
 ### Entry Point
 - `handler`
@@ -273,6 +304,11 @@ public class NhnFunction
 ### Package
 `nuget.txt`
 - 이 파일을 작성하여 의존성을 관리합니다.
+
+예시
+```txt
+CsvHelper
+```
 
 ### Entry Point
 - `func`
