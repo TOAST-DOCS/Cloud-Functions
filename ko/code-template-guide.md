@@ -221,7 +221,8 @@ public class HelloWorld{
     - 메서드는 `public ResponseEntity<?> call(RequestEntity req)`로 지정해야 합니다.
 
 > **[참고]**<br>
-> Java의 경우 Template 구조 그대로 사용하여 사용자 함수를 작성하는 것을 권장합니다.
+> Java의 경우 Template 구조 `src/main/java` 그대로 사용하여 사용자 함수를 작성하는 것을 권장합니다.
+> <br>마찬가지로 Template `pom.xml`을 사용하여 의존성을 추가해주세요.
 
 ## Ruby
 `parse.rb`
