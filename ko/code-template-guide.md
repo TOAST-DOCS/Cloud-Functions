@@ -3,14 +3,14 @@
 - 각 언어마다 `Hello World` 함수를 작성하는 방법을 알아봅니다.
 
 ## 템플릿 코드 목록
-| 언어     | 파일명            | Entry Point         |
-|----------|-----------------|--------------------|
-| NodeJS   | hello.js        | hello              |
-| Python   | user.py         | user.main          |
-| Go       | functions.go    | Handler            |
-| Java     | HelloWorld.java | example.HelloWorld |
-| Ruby     | parse.rb        | handler            |
-| .NET     | func.cs         | func               |
+| 언어     | 버전       | 파일명            | Entry Point         |
+|----------|------------|-------------------|-------------------|
+| NodeJS   | 20.16.0, 22.5.0 | hello.js        | hello              |
+| Python   | 3.11       | user.py         | user.main          |
+| Go       | 1.22, 1.23 | functions.go    | Handler            |
+| Java     | 17, 21     | HelloWorld.java | example.HelloWorld |
+| Ruby     | 2.6.1      | parse.rb        | handler            |
+| .NET     | 7          | func.cs         | func               |
 
 ## NodeJS
 `hello.js`
@@ -50,7 +50,7 @@ module.exports.entry2 = async (context) => {
     - `파일명.entry1`
     - `파일명.entry2`
 
-> [참고]<br>
+> **[참고]**<br>
 > 현재 ES Modules 사용은 지원하지 않습니다. CommonJS 방식만 사용 가능합니다.
 > <br>(ES Modules 추후 지원 예정)
 
@@ -85,7 +85,7 @@ pyyaml
 - `user.main`
     - Python의 Entry Point는 `파일명.함수명`입니다.
 
-> [참고]<br>
+> **[참고]**<br>
 > 현재 아래 특징이 있는 복잡한 Package는 지원하지 않습니다. <br> 예시) numpy, pandas
 > 1. C/C++/Rust 확장 모듈 필수
 > 2. 시스템 라이브러리 의존성
@@ -124,12 +124,23 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 `go.mod`
 - 이 파일을 작성하여 의존성을 관리합니다.
 
+생성 방법
+```bash
+go mod init example.com/myfunction
+go get github.com/brianvoe/gofakeit/v6
+```
+
 예시
 ```mod
 module example.com/ncf
 
+go 1.22
+
 require github.com/brianvoe/gofakeit/v6 v6.28.0
 ```
+
+> **[참고]**<br>
+> Go 1.22 또는 1.23 버전을 사용합니다.
 
 ### Entry Point
 - `Handler`
@@ -257,8 +268,9 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 gem "nokogiri", ">= 1.12.5"
 ```
 
->**[참고]**<br>
+> **[참고]**<br>
 > Gemfile.lock 파일은 `bundle install`을 실행하여 생성됩니다.
+> <br> Bundler 버전은 1.17.3 이상(1.x 계열)
 
 ### Entry Point
 - `handler`
