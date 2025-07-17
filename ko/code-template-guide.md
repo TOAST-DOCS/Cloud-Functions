@@ -1,6 +1,6 @@
 ## Compute > Cloud Functions > 코드 템플릿 가이드
 이 문서는 NHN Cloud Functions 함수의 코드 작성 시 제공되는 템플릿 코드에 대해 설명합니다.
-- 각 언어마다 `Hello World` 함수를 작성하는 방법을 알아봅니다.
+- 각 언어별로 `Hello World` 함수를 작성하는 방법을 알아봅니다.
 
 ## 템플릿 코드 목록
 | 언어     | 버전       | 파일명            | Entry Point         |
