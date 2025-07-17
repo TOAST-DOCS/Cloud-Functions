@@ -22,6 +22,28 @@ module.exports = async (context) => {
     };
 }
 ```
+### POST 예시
+``` js
+module.exports = async (context) => {
+    try {
+        // JSON 형태의 request body 가져오기
+        const requestBody = JSON.parse(context.request.body);
+
+        const name = requestBody.name || 'World';
+
+        return {
+            status: 200,
+            body: `Hello, ${name}!`
+        };
+    } catch (error) {
+        return {
+            status: 400,
+            body: `Error: ${error.message}`
+        };
+    }
+}
+```
+
 ### Package
 `package.json`
 - 이 파일을 작성하여 의존성을 관리합니다.
@@ -69,6 +91,23 @@ document = """
 
 def main():
     return yaml.dump(yaml.safe_load(document))
+```
+
+### POST 예시
+``` python
+import json
+from flask import request
+
+def main():
+    try:
+        # JSON 형태의 request body 가져오기
+        request_body = request.get_json()
+
+        name = request_body.get('name', 'World')
+
+        return f"Hello, {name}!"
+    except Exception as e:
+        return f"Error: {str(e)}"
 ```
 
 ### Package
@@ -120,6 +159,48 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
+### POST 예시
+```go
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+	"io"
+	"net/http"
+)
+
+type RequestBody struct {
+	Name string `json:"name"`
+}
+
+func Handler(w http.ResponseWriter, r *http.Request) {
+	// request body 읽기
+	body, err := io.ReadAll(r.Body)
+	if err != nil {
+		http.Error(w, fmt.Sprintf("Error reading body: %v", err), http.StatusBadRequest)
+		return
+	}
+	defer r.Body.Close()
+
+	var requestBody RequestBody
+	err = json.Unmarshal(body, &requestBody)
+	if err != nil {
+		http.Error(w, fmt.Sprintf("Error parsing JSON: %v", err), http.StatusBadRequest)
+		return
+	}
+
+	name := requestBody.Name
+	if name == "" {
+		name = "World"
+	}
+
+	response := fmt.Sprintf("Hello, %s!", name)
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte(response))
+}
+```
+
 ### Package
 `go.mod`
 - 이 파일을 작성하여 의존성을 관리합니다.
@@ -158,6 +239,33 @@ public class HelloWorld{
 
 	public ResponseEntity<?> call(RequestEntity req) {
 		return ResponseEntity.ok("Hello World!");
+	}
+
+}
+```
+
+### POST 예시
+```java
+package example;
+
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
+import java.util.Map;
+
+public class HelloWorld{
+
+	public ResponseEntity<?> call(RequestEntity<Map<String, Object>> req) {
+		try {
+			Map<String, Object> requestBody = req.getBody();
+
+			String name = requestBody != null && requestBody.containsKey("name")
+				? requestBody.get("name").toString()
+				: "World";
+
+			return ResponseEntity.ok("Hello, " + name + "!");
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().body("Error: " + e.getMessage());
+		}
 	}
 
 }
@@ -253,6 +361,29 @@ def handler(context)
 end
 ```
 
+### POST 예시
+```ruby
+# frozen_string_literal: true
+
+require 'json'
+
+def handler(context)
+  begin
+    # JSON 형태의 request body 가져오기
+    request_body = JSON.parse(context.request.body.read)
+
+    name = request_body['name'] || 'World'
+
+    response = "Hello, #{name}!"
+    Rack::Response.new([response]).finish
+  rescue JSON::ParserError => e
+    Rack::Response.new(["Error: Invalid JSON - #{e.message}"], 400).finish
+  rescue => e
+    Rack::Response.new(["Error: #{e.message}"], 500).finish
+  end
+end
+```
+
 ### Package
 `Gemfile`
 - 이 파일을 작성하여 의존성을 관리합니다.
@@ -314,6 +445,40 @@ public class NhnFunction
 }
 ```
 
+### POST 예시
+```cs
+using System;
+using System.IO;
+using Newtonsoft.Json.Linq;
+using Nhn.DotNetCore.Api;
+
+public class NhnFunction
+{
+    public string Execute(NhnContext context)
+    {
+        try
+        {
+            // JSON 형태의 request body 가져오기
+            string requestBodyString = new StreamReader(context.Request.Body).ReadToEnd();
+
+            JObject requestBody = JObject.Parse(requestBodyString);
+
+            string name = requestBody["name"]?.ToString() ?? "World";
+
+            return $"Hello, {name}!";
+        }
+        catch (Newtonsoft.Json.JsonException ex)
+        {
+            return $"Error: Invalid JSON - {ex.Message}";
+        }
+        catch (Exception ex)
+        {
+            return $"Error: {ex.Message}";
+        }
+    }
+}
+```
+
 ### Package
 `nuget.txt`
 - 이 파일을 작성하여 의존성을 관리합니다.
@@ -321,7 +486,14 @@ public class NhnFunction
 예시
 ```txt
 CsvHelper
+
+Newtonsoft.Json:9.0.1
 ```
+
+> **[참고]**<br>
+> `nuget.txt` Package 추가 시에는 실제 사용하는 Package만 추가해야 합니다.<br>
+> 예를 들어 POST 예시에서는 `Newtonsoft.Json`만 추가합니다.<br>
+> 의존성 추가 시 타입 충돌이 발생할 수 있으므로 가능한 한 .NET 기본 라이브러리를 사용하는 것을 권장합니다.
 
 ### Entry Point
 - `func`
