@@ -125,7 +125,7 @@ pyyaml
     - Python의 Entry Point는 `파일명.함수명`입니다.
 
 > **[참고]**<br>
-> 현재 아래 특징이 있는 복잡한 Package는 지원하지 않습니다. <br> 예시) numpy, pandas
+> 현재 아래 특징이 있는 복잡한 Package는 지원하지 않습니다. <br> 예: numpy, pandas
 > 1. C/C++/Rust 확장 모듈 필수
 > 2. 시스템 라이브러리 의존성
 > 3. 복잡한 초기화 과정
