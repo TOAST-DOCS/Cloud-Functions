@@ -493,7 +493,7 @@ Newtonsoft.Json:9.0.1
 > **[참고]**<br>
 > `nuget.txt` Package 추가 시에는 실제 사용하는 Package만 추가해야 합니다.<br>
 > 예를 들어 POST 예시에서는 `Newtonsoft.Json`만 추가합니다.<br>
-> 의존성 추가 시 타입 충돌이 발생할 수 있으므로 가능한 한 .NET 기본 라이브러리를 사용하는 것을 권장합니다.
+> 의존성 추가 시 타입 충돌이 발생할 수 있으므로 가능한 .NET 기본 라이브러리를 사용하는 것을 권장합니다.
 
 ### Entry Point
 - `func`
