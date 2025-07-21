@@ -29,7 +29,7 @@
 ![overview-01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/overview-01.png)
 #### New Deployment
 - 함수를 생성하면 바로 인스턴스가 생성되어 일정량의 리소스를 계속 사용합니다.
-- 빠른 응답 대기를 위해 인스턴스가 유지됩니다.
+- 빠른 응답을 위해 인스턴스 생성을 유지합니다.
 - 함수 수행 요청량이 많고 빠른 응답이 필요한 경우 사용합니다.
 ![overview-02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/overview-02.png)
 
