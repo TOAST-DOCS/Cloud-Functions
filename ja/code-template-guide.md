@@ -1,8 +1,8 @@
-## Compute > Cloud Functions > 코드 템플릿 가이드
-이 문서는 NHN Cloud Functions 함수의 코드 작성 시 제공되는 템플릿 코드에 대해 설명합니다.
+## Compute > Cloud Functions > コードテンプレートガイド
+この文書では、NHN Cloud Functions関数のコード作成時に提供されるテンプレートコードについて説明します。
 
-## 템플릿 코드 목록
-| 언어     | 파일명            | Entry Point         |
+## テンプレートコードリスト
+| 言語   | ファイル名          | Entry Point         |
 |----------|-----------------|--------------------|
 | NodeJS   | hello.js        | hello              |
 | Python   | user.py         | user.main          |
@@ -23,13 +23,13 @@ module.exports = async (context) => {
 ```
 ### Package
 `package.json`
-- 이 파일을 작성하여 의존성을 관리합니다.
+- このファイルを作成して依存関係を管理します。
 
 ### Entry Point
 - `hello`
-    - NodeJS의 Entry Point는 `파일명`입니다.
+    - NodeJSのEntry Pointは`ファイル名`です。
 
-#### 두 개의 함수를 사용하는 경우 Entry Point 지정
+#### 2つの関数を使用する場合のEntry Point指定
 ``` js
 module.exports.entry1 = async (context) => {
     return {
@@ -45,13 +45,13 @@ module.exports.entry2 = async (context) => {
     };
 }
 ```
-- 위 예시 코드의 Entry Point
-    - `파일명.entry1`
-    - `파일명.entry2`
+- 上記の例コードのEntry Point
+    - `ファイル名.entry1`
+    - `ファイル名.entry2`
 
-> [참고]<br>
-> 현재 ES Modules 사용은 지원하지 않습니다. CommonJS 방식만 사용 가능합니다.
-> <br>(ES Modules 추후 지원 예정)
+> [参考]<br>
+> 現在ES Modulesの使用はサポートされていません。CommonJS方式のみ使用可能です。
+> <br>(ES Modulesは今後サポート予定)
 
 ## Python
 `user.py`
@@ -72,20 +72,20 @@ def main():
 
 ### Package
 `requirements.txt`
-- 이 파일을 작성하여 의존성을 관리합니다.
+- このファイルを作成して依存関係を管理します。
 
 ### Entry Point
 - `user.main`
-    - Python의 Entry Point는 `파일명.함수명`입니다.
+    - PythonのEntry Pointは`ファイル名。関数名`です。
 
-> [참고]<br>
-> 현재 아래 특징이 있는 복잡한 Package는 지원하지 않습니다.
-> 1. C/C++/Rust 확장 모듈 필수
-> 2. 시스템 라이브러리 의존성
-> 3. 복잡한 초기화 과정
-> 4. 소스 디렉토리 검사 수행
-> 5. 다중 서브패키지 구조
-> 6. 런타임 환경 검증
+> [参考]<br>
+> 現在のところ、以下の特徴を持つ複雑なPackageはサポートしません。
+> 1. C/C++/Rust拡張モジュール必須
+> 2. システムライブラリ依存関係
+> 3. 複雑な初期化プロセス
+> 4. ソースディレクトリ検査実行
+> 5. 複数のサブパッケージ構造
+> 6. ランタイム環境の検証
 
 ## Go
 `functions.go`
@@ -115,11 +115,11 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 
 ### Package
 `go.mod`
-- 이 파일을 작성하여 의존성을 관리합니다.
+- このファイルを作成して依存関係を管理します。
 
 ### Entry Point
 - `Handler`
-    - Go의 Entry Point는 `함수명`입니다.
+    - GoのEntry Pointは`関数名`です。
 
 ## Java
 `HelloWorld.java`
@@ -199,12 +199,12 @@ public class HelloWorld{
 
 </project>
 ```
-- 이 파일을 작성하여 의존성을 관리합니다.
+- このファイルを作成して依存関係を管理します。
 
 ### Entry Point
 - `example.HelloWorld`
-    - Java의 Entry Point는 `패키지명.클래스명`입니다.
-    - 메서드는 `public ResponseEntity<?> call(RequestEntity req)`로 지정해야 합니다.
+    - JavaのEntry Pointは`パッケージ名。クラス名`です。
+    - メソッドは`public ResponseEntity<?> call(RequestEntity req)`と指定する必要があります。
 
 ## Ruby
 `parse.rb`
@@ -226,11 +226,11 @@ end
 
 ### Package
 `Gemfile`
-- 이 파일을 작성하여 의존성을 관리합니다.
+- このファイルを作成して依存関係を管理します。
 
 ### Entry Point
 - `handler`
-    - Ruby의 Entry Point는 `함수명`입니다.
+    - RubyのEntry Pointは`関数名`です。
 
 ## .NET
 `func.cs`
@@ -250,7 +250,7 @@ public class NhnFunction
         {
             context.Logger.WriteInfo("Starting..... ");
 
-            // CsvHelper 예제: CSV 읽기
+            // CsvHelper例: CSV読み取り
             var csvData = "Name,Age\nJohn,30\nJane,25";
             using (var reader = new StringReader(csvData))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
@@ -272,8 +272,8 @@ public class NhnFunction
 
 ### Package
 `nuget.txt`
-- 이 파일을 작성하여 의존성을 관리합니다.
+- このファイルを作成して依存関係を管理します。
 
 ### Entry Point
 - `func`
-    - .NET의 Entry Point는 `파일명`입니다.
+    - .NETのEntry Pointは`ファイル名`です。
