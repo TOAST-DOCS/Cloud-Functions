@@ -1,186 +1,217 @@
-## Compute > Cloud Functions > 콘솔 사용 가이드
-이 문서는 NHN Cloud Functions 콘솔에서 함수를 생성하고 관리하는 방법을 설명합니다.
+## Compute > Cloud Functions > Console User Guide
+This document describes how to create and manage functions in NHN Cloud Functions console.
 
-## 함수 관리
-함수를 생성, 수정, 삭제, 복사할 수 있습니다.
+## Manage functions
+You can create, edit, delete, and copy functions.
 
-### 함수 생성
-함수 설정을 하고 코드를 작성한 뒤 생성 버튼을 클릭하면 코드가 빌드되고 함수가 생성됩니다.
+### Create functions
+After setting up the function and writing the code, click the Create button to build the code and create the function.
 
-![console-guide-03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-03.png)
-#### 함수 설정
+![console-guide-07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-07.png)
+![console-guide-08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-08.png)
+
+#### Function settings
 <table class="it">
     <tr>
-        <th>분류</th>
-        <th>항목</th>
-        <th>설명</th>
+        <th>Category</th>
+        <th>No.</th>
+        <th>Item</th>
+        <th>Description</th>
     </tr>
     <tr>
-        <td rowspan="2">기본 정보</td>
-        <td>이름</td>
-        <td>함수의 이름<br> 중복된 함수 이름은 허용하지 않습니다.<br> 함수 엔드포인트 URL로 사용됩니다.</td>
+        <td rowspan="2">Basic Information</td>
+        <td>1.</td>
+        <td>Name</td>
+        <td>Name of the function<br> Duplicate function names are not allowed.<br> Used as the function endpoint URL.</td>
     </tr>
     <tr>
-        <td>설명</td>
-        <td>함수의 설명, 최대 250자</td>
+        <td>2.</td>
+        <td>Description</td>
+        <td>Description of the function, up to 250 characters</td>
     </tr>
     <tr>
-        <td rowspan="7">함수 설정</td>
-        <td>엔드포인트 URL</td>
-        <td>함수 호출 HTTP Endpoint URL<br>함수 이름 입력 시 자동으로 변경됩니다.</td>
+        <td rowspan="7">Function settings</td>
+        <td>3.</td>
+        <td>Endpoint URL</td>
+        <td>Function call HTTP endpoint URL<br>It changes automatically as you enter the function name.</td>
     </tr>
     <tr>
-        <td>유형</td>
+        <td>4.</td>
+        <td>Type</td>
         <td>Pool Manager<br> New Deployment</td>
     </tr>
     <tr>
-        <td>리소스</td>
-        <td>함수 동작 환경 리소스 선택<br>Pool Manager 유형일 경우 지정된 리소스만 선택 가능<br>New Deployment 유형일 경우 커스텀 리소스 입력 가능</td>
+        <td>5.</td>
+        <td>Resource</td>
+        <td>Select function behavior environment resources<br>If it’s Pool Manager type, only the specified resources can be selected<br>New Deployment type allows you to enter custom resources</td>
     </tr>
     <tr>
-        <td>실행 제한 시간</td>
-        <td>함수 실행 시간을 지정(Time out). 함수가 실행되고 지정된 시간을 초과하면 함수는 강제 중단되고 오류로 응답</td>
+        <td>6.</td>
+        <td>Execution timeout</td>
+        <td>Specify how long the function will run (Time out). If the function runs and exceeds the specified time, the function is forced to abort and responds with an error</td>
     </tr>
     <tr>
-        <td>(Pool Manager) 동시 실행 설정</td>
-        <td>함수의 동시 실행 수 지정. 동시에 함수 호출이 되는 경우 호출 횟수만큼 인스턴스가 동시에 실행되며, 최대 인스턴스는 제한됩니다.</td>
+        <td>7.</td>
+        <td>(Pool Manager) Concurrent execution settings</td>
+        <td>Specify the number of concurrent executions of the function. When concurrent function calls occur, instances are executed concurrently as many times as the number of calls, and the maximum number of instances is limited.</td>
     </tr>
     <tr>
-        <td>(New Deployment) 최소 인스턴스 수</td>
-        <td>최소한으로 유지할 인스턴스 수 지정.</td>
+        <td>8.</td>
+        <td>(New Deployment) Minimum number of instances</td>
+        <td>Specify the minimum number of instances to retain.</td>
     </tr>
     <tr>
-        <td>(New Deployment) 최대 인스턴스 수</td>
-        <td>자동으로 확장 가능한 최대 인스턴스 수 지정.</td>
+        <td>9.</td>
+        <td>(New Deployment) Maximum number of instances</td>
+        <td>Specify the maximum number of instances that can scale up automatically.</td>
     </tr>
     <tr>
-        <td>로그 설정</td>
-        <td>로그 서비스 연동</td>
-        <td>Log & Crash Search 서비스를 사용하여 연동할 것인지 선택<br>함수의 로그는 Log & Crash Search 서비스에서 직접 확인 가능합니다.</td>
+        <td>Log settings</td>
+        <td>10.</td>
+        <td>Integrate with log service</td>
+        <td>Choose to integrate using Log &amp; Crash Search service<br>The logs of the function are available directly from Log &amp; Crash Search service.<br>Logs are sent in 10-line units.</td>
     </tr>
 </table>
 
-> **[참고]** <br>
-> **(Pool Manager) 동시 실행 설정**
+> **[Note]** <br>
+> **(Pool Manager) Concurrent execution settings**
 
 
 ![console-guide-05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-05.png)
 
 <br>
 
-> **[참고]** <br>
-> **(New Deployment) 인스턴스 수** - 리소스 사용량에 따라 지정된 인스턴스 수만큼 생성되지 않을 수 있습니다.
+> **[Note]** <br>
+> **(New Deployment) Number of instances** - Depending on resource usage, the specified number of instances might not be created.
 
 <br>
 
 
-#### 코드 작성
+#### Code writing
 
-![console-guide-04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-04.png)
+![console-guide-09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-09.png)
+![console-guide-10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-10.png)
+![console-guide-11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-11.png)
 
 <table class="it">
     <tr>
-        <th>분류</th>
-        <th>항목</th>
-        <th>설명</th>
+        <th>Category</th>
+        <th>No.</th>
+        <th>Item</th>
+        <th>Description</th>
     </tr>
     <tr>
-        <td rowspan="2">소스 코드</td>
-        <td>런타임 환경</td>
-        <td>함수의 런타임 환경을 선택</td>
+        <td rowspan="2">Source code</td>
+        <td>1.</td>
+        <td>Runtime Environment</td>
+        <td>Select the function's runtime environment</td>
     </tr>
     <tr>
+        <td>2.</td>
         <td>Entry Point</td>
-        <td>함수의 진입 지점을 지정. 예: 함수명 <br>런타임 환경의 템플릿에 맞춰 자동으로 완성됩니다.<br>임의로 수정 시 작성한 소스 코드의 Entry Point와 일치해야 합니다.</td>
+        <td>Specify the entry point for the function, such as function name <br>It is automatically completed to match the template in the runtime environment.<br>It must match the entry point in the source code that you wrote when you modified randomly.</td>
     </tr>
     <tr>
-        <td rowspan="3">코드</td>
-        <td>코드 에디터</td>
-        <td>런타임 환경의 템플릿 파일이 로드되고, 해당 파일을 수정하여 함수를 작성</td>
+        <td rowspan="3">Code</td>
+        <td>3.</td>
+        <td>Code editor</td>
+        <td>The template files in the runtime environment are loaded, and you modify them to write the function.</td>
     </tr>
     <tr>
-        <td>사용자 로컬 환경</td>
-        <td>사용자 로컬 환경에서 함수 코드를 작성하여 ZIP 파일 형태로 업로드</td>
+        <td>4.</td>
+        <td>User’s local environment</td>
+        <td>Write function code in the local environment and upload as a ZIP file</td>
     </tr>
     <tr>
-        <td>배포</td>
-        <td>사용자가 작성하거나 업로드한 코드를 배포하여 빌드가 정상인지 확인하는 용도로 사용됩니다.<br>참고: 함수 생성 시 해당 배포 버전을 사용하지 않고 생성 시 최신 업데이트된 소스 코드로 재빌드됩니다.</td>
+        <td>5.</td>
+        <td>Deployment</td>
+        <td>Used to deploy user-written or uploaded code to verify that the build is normal.<br>Note: Functions are rebuilt with the latest updated source code at the time of creation, rather than using their distribution version.</td>
     </tr>
     <tr>
-        <td rowspan="2">테스트</td>
-        <td>테스트 이벤트</td>
-        <td>함수에 전달할 JSON Body를 작성</td>
+        <td rowspan="2">Test</td>
+        <td>6.</td>
+        <td>Test events</td>
+        <td>Create a JSON Body to send to the function</td>
     </tr>
     <tr>
-        <td>테스트</td>
-        <td>이벤트에 작성한 JSON Body를 전달하여 함수를 테스트. (배포가 선행되어야 합니다.) <br>로그로 함수 동작을 확인할 수 있습니다.</td>
+        <td>7.</td>
+        <td>Test</td>
+        <td>Test the function by sending the JSON Body you created to the event. (This must be deployed first.) <br>You can verify function behavior with logs.</td>
     </tr>
     <tr>
         <td></td>
-        <td>생성</td>
-        <td>생성 버튼을 이용해 함수 설정과 작성한 함수에 맞게 함수를 생성</td>
+        <td>8.</td>
+        <td>Creation</td>
+        <td>Use the Generate button to generate a function based on the function settings and the function you created.</td>
     </tr>
 </table>
 
 <br>
 
-> **[참고]** <br> 배포 버튼은 사용자가 작성한 소스 코드 빌드 확인 용도로만 사용되며, 함수 생성 시 배포로 테스트한 빌드가 아닌 최신 소스 코드로 다시 재빌드되어 생성됩니다.
+> **[Note]** <br> The Deploy button is only used to check the build of the source code you created, and when you create a function, it will be rebuilt with the latest source code, not the build you tested with Deploy.
 
-### 함수 수정
-기존 함수의 함수 설정 및 코드를 수정하기 위해 수정 버튼을 이용해 함수를 수정합니다.
-#### 수정 불가 항목
-- 이름, 런타임 환경
-    - 해당 항목을 제외한 모든 항목을 수정할 수 있습니다.
-#### 소스 코드
-- 코드 에디터를 사용하는 경우 기존 코드가 로드됩니다.
-- 사용자 로컬 환경의 ZIP 파일을 업로드하여 함수를 생성했을 경우, 코드 에디터로 변경하면 ZIP 파일을 보여주지 않고 기본 템플릿 코드를 로드합니다.
+### Modify functions
+To modify the function settings and code of an existing function, use the Edit button to modify the function.
+#### Non-modifiable item
+- Name, runtime environment
+    - You can edit everything except the item.
+#### Source code
+- If you're using the code editor, the existing code is loaded.
+- If you created a function by uploading a ZIP file from the local environment, when you switch to the code editor, it loads the default template code without showing the ZIP file.
 
-### 함수 삭제
-기존 함수를 선택하여 삭제합니다. 한 번에 여러 함수 삭제가 가능합니다.
+### Delete a function
+![console-guide-14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-14.png)
+Select an existing function to delete it. You can delete multiple functions at once.
 
-### 함수 복사
-기존 함수와 동일한 함수를 복사합니다. 이름은 중복이 불가능하여 복사 전에 이름을 새롭게 작성할 수 있습니다.
+### Copy a function
+![console-guide-13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-13.png)
+Copy a function that is identical to an existing function. The name cannot be duplicated, so you can rewrite the name before copying.
+- Triggers are not copied. (HTTP triggers are provided by default).
 
-## 함수 정보
-### 함수 목록
+## About functions
+### List of functions
 ![console-guide-01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-01.png)
-- 사용자가 생성한 함수 목록을 확인할 수 있습니다.
-- 빌드 상태는 자동으로 업데이트되어 함수가 사용 가능한지 확인할 수 있습니다.
-### 함수 기본 정보
+- You can see a list of functions that users have created.
+- The build status is automatically updated to confirm that the function is available.
+### Basic information of functions
 ![console-guide-02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-02.png)
-- 함수의 기본 정보를 확인할 수 있습니다.
-- 로그 관리 항목에서 Log & Crash Search 버튼을 통해 Log & Crash Search 서비스로 이동하여 로그를 확인할 수 있습니다.
-- 빌드 상태 항목에서 빌드 로그 확인 버튼을 통해 빌드 로그를 확인할 수 있습니다.
-- 사용자가 작성한 코드를 ZIP 파일 형태로 다운로드할 수 있습니다.
-### 함수 트리거 관리
-함수를 수행할 수 있는 트리거를 관리할 수 있습니다. HTTP 트리거는 기본 제공됩니다.
+- You can see basic information about the function.
+- You can check the logs by going to Log & Crash Search service via the Log & Crash Search button in the log management topic.
+- You can check the build log by clicking the “Check build log” button in the build status item.
+- You can download the code you wrote as a ZIP file.
+### Manage function triggers
+You can manage triggers that can perform functions. HTTP triggers are built-in.
 
-- 주어진 HTTP 트리거를 통해 생성한 함수를 수행할 수 있습니다.
-    - 예시 : `https://{userdomain}/{함수명}`
+![console-guid-12](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-12.png)
+
+- You can execute the function you created via a given HTTP trigger.
+    - Example: `https://{userdomain}/{function name}`
     - Method : GET, POST
 
-#### 트리거 생성/수정
+#### Create/edit triggers
 - Timer
-    - Value: Cron 문자열로 주기를 입력합니다.
-#### 트리거 삭제
-- 여러 건의 트리거를 선택하여 삭제할 수 있습니다. 기본 트리거인 HTTP 트리거는 삭제할 수 없습니다.
+    - Value: Enter the cycle as a Cron string.
+#### Delete triggers
+- You can select multiple triggers to delete. You can't delete the HTTP trigger, which is the default trigger.
 
-> **[참고]**
-> <br>현재는 Timer 트리거만 지원합니다.
-### 함수 모니터링
+> **[Note]**
+> <br>Currently, we only support Timer triggers.
+### Monitor functions
 ![console-guide-06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-06.png)
-- 함수의 사용량을 확인할 수 있습니다.
-- 함수 호출 횟수, 호출 거부 수, 오류 발생 횟수, 성공률, 함수 실행 시간 지표를 제공합니다.
-- 설정된 시간 내의 지표를 제공합니다.
-- 로그가 연동된 경우 Log & Crash Search 버튼을 이용해 Log & Crash Search 서비스로 이동할 수 있습니다.
+- You can check the usage of a function.
+- Provide metrics for the number of function calls, number of call rejections, number of errors, success rate, and function execution time.
+- Provide metrics within a set time.
+- If logs are integrated, you can navigate to the Log & Crash Search service using the Log & Crash Search button.
 
-| 항목 | 설명 |
+| Item | Description |
 | --- | --- |
-| 함수 호출 횟수 | 총 함수 호출 횟수(초당) |
-| 호출 거부 수 | 인스턴스가 생성되지 않아 함수 호출 실패한 횟수(초당) |
-| 오류 발생 횟수 | 응답 코드가 200이 아닌 응답 횟수(초당) |
-| 성공률 | 총 함수 호출 횟수 대비 성공한 호출 비율 |
-| 함수 실행 시간 | 함수 호출에 대한 응답 시간 |
+| Number of function calls | Total number of function calls (per second) |
+| Number of call rejections | Number of function calls that failed as instances were not created (per second) |
+| Number of errors | Number of responses with a non-200 response code (per second) |
+| Success rate | Ratio of successful calls to the total number of function calls |
+| Function execution time | Response time for function calls |
 
-> **[참고]**
-> <br>호출 거부 수는 Pool Manager 유형일 경우만 해당합니다.
+> **[Note]**
+> <br>The number of call rejections is only relevant if the type is Pool Manager.
+> <br>The number of function calls, call rejections, and errors are displayed as an average number of times per second within the range of the metric step. For example, if the step is 15 seconds and 1 event occurred within the time period, it is displayed as 0.0667 (1÷15).
+> <br>The average of the function execution time is the overall cumulative average, and the maximum is the maximum execution time during the period.
