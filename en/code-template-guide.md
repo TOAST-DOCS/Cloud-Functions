@@ -1,15 +1,16 @@
-## Compute > Cloud Functions > 코드 템플릿 가이드
-이 문서는 NHN Cloud Functions 함수의 코드 작성 시 제공되는 템플릿 코드에 대해 설명합니다.
+## Compute > Cloud Functions > Code Template Guide
+This document describes the template code provided when writing code for functions of NHN Cloud Functions.
+- Learn how to write the `Hello World` function for each language.
 
-## 템플릿 코드 목록
-| 언어     | 파일명            | Entry Point         |
-|----------|-----------------|--------------------|
-| NodeJS   | hello.js        | hello              |
-| Python   | user.py         | user.main          |
-| Go       | functions.go    | Handler            |
-| Java     | HelloWorld.java | example.HelloWorld |
-| Ruby     | parse.rb        | handler            |
-| .NET     | func.cs         | func               |
+## Template code list
+| Language     | Version       | Filename            | Entry Point         |
+|----------|------------|-------------------|-------------------|
+| NodeJS   | 20.16.0, 22.5.0 | hello.js        | hello              |
+| Python   | 3.11       | user.py         | user.main          |
+| Go       | 1.22, 1.23 | functions.go    | Handler            |
+| Java     | 17, 21     | HelloWorld.java | example.HelloWorld |
+| Ruby     | 2.6.1      | parse.rb        | handler            |
+| .NET     | 7          | func.cs         | func               |
 
 ## NodeJS
 `hello.js`
@@ -21,15 +22,37 @@ module.exports = async (context) => {
     };
 }
 ```
+### POST example
+``` js
+module.exports = async (context) => {
+    try {
+        // get the request body in JSON format
+        const requestBody = JSON.parse(context.request.body);
+
+        const name = requestBody.name || 'World';
+
+        return {
+            status: 200,
+            body: `Hello, ${name}!`
+        };
+    } catch (error) {
+        return {
+            status: 400,
+            body: `Error: ${error.message}`
+        };
+    }
+}
+```
+
 ### Package
 `package.json`
-- 이 파일을 작성하여 의존성을 관리합니다.
+- Create this file to manage dependencies.
 
 ### Entry Point
 - `hello`
-    - NodeJS의 Entry Point는 `파일명`입니다.
+    - The entry point in NodeJS is the `filename`.
 
-#### 두 개의 함수를 사용하는 경우 Entry Point 지정
+#### Specify entry points when using two functions
 ``` js
 module.exports.entry1 = async (context) => {
     return {
@@ -45,13 +68,13 @@ module.exports.entry2 = async (context) => {
     };
 }
 ```
-- 위 예시 코드의 Entry Point
-    - `파일명.entry1`
-    - `파일명.entry2`
+- The Entry Point In the example code above
+    - `filename.entry1`
+    - `filename.entry2`
 
-> [참고]<br>
-> 현재 ES Modules 사용은 지원하지 않습니다. CommonJS 방식만 사용 가능합니다.
-> <br>(ES Modules 추후 지원 예정)
+> **[Note]**<br>
+> Currently, we do not support using ES Modules; only CommonJS method is available.
+> <br>(ES Modules, to be provided later)
 
 ## Python
 `user.py`
@@ -70,22 +93,45 @@ def main():
     return yaml.dump(yaml.safe_load(document))
 ```
 
+### POST example
+``` python
+import json
+from flask import request
+
+def main():
+    try:
+        # get the request body in JSON format
+        request_body = request.get_json()
+
+        name = request_body.get('name', 'World')
+
+        return f"Hello, {name}!"
+    except Exception as e:
+        return f"Error: {str(e)}"
+```
+
 ### Package
 `requirements.txt`
-- 이 파일을 작성하여 의존성을 관리합니다.
+- Create this file to manage dependencies.
+
+Example
+```txt
+pyyaml
+```
+
 
 ### Entry Point
 - `user.main`
-    - Python의 Entry Point는 `파일명.함수명`입니다.
+    - The entry point in Python is `filename.functionname`.
 
-> [참고]<br>
-> 현재 아래 특징이 있는 복잡한 Package는 지원하지 않습니다.
-> 1. C/C++/Rust 확장 모듈 필수
-> 2. 시스템 라이브러리 의존성
-> 3. 복잡한 초기화 과정
-> 4. 소스 디렉토리 검사 수행
-> 5. 다중 서브패키지 구조
-> 6. 런타임 환경 검증
+> **[Note]**<br>
+> We currently do not support complex packages with the following characteristics: <br> Examples: numpy, pandas
+> 1. C/C++/Rust extension modules required
+> 2. System library dependencies
+> 3. Complex initialization process
+> 4. Perform a source directory check
+> 5. Multiple subpackage structures
+> 6. Verify runtime environment
 
 ## Go
 `functions.go`
@@ -113,13 +159,73 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
+### POST example
+```go
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+	"io"
+	"net/http"
+)
+
+type RequestBody struct {
+	Name string `json:"name"`
+}
+
+func Handler(w http.ResponseWriter, r *http.Request) {
+	// read request body
+	body, err := io.ReadAll(r.Body)
+	if err != nil {
+		http.Error(w, fmt.Sprintf("Error reading body: %v", err), http.StatusBadRequest)
+		return
+	}
+	defer r.Body.Close()
+
+	var requestBody RequestBody
+	err = json.Unmarshal(body, &requestBody)
+	if err != nil {
+		http.Error(w, fmt.Sprintf("Error parsing JSON: %v", err), http.StatusBadRequest)
+		return
+	}
+
+	name := requestBody.Name
+	if name == "" {
+		name = "World"
+	}
+
+	response := fmt.Sprintf("Hello, %s!", name)
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte(response))
+}
+```
+
 ### Package
 `go.mod`
-- 이 파일을 작성하여 의존성을 관리합니다.
+- Create this file to manage dependencies.
+
+How to create
+```bash
+go mod init example.com/myfunction
+go get github.com/brianvoe/gofakeit/v6
+```
+
+Example
+```mod
+module example.com/ncf
+
+go 1.22
+
+require github.com/brianvoe/gofakeit/v6 v6.28.0
+```
+
+> **[Note]**<br>
+> Use Go version 1.22 or 1.23.
 
 ### Entry Point
 - `Handler`
-    - Go의 Entry Point는 `함수명`입니다.
+    - The entry point in Go is `function name`.
 
 ## Java
 `HelloWorld.java`
@@ -133,6 +239,33 @@ public class HelloWorld{
 
 	public ResponseEntity<?> call(RequestEntity req) {
 		return ResponseEntity.ok("Hello World!");
+	}
+
+}
+```
+
+### POST example
+```java
+package example;
+
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
+import java.util.Map;
+
+public class HelloWorld{
+
+	public ResponseEntity<?> call(RequestEntity<Map<String, Object>> req) {
+		try {
+			Map<String, Object> requestBody = req.getBody();
+
+			String name = requestBody != null && requestBody.containsKey("name")
+				? requestBody.get("name").toString()
+				: "World";
+
+			return ResponseEntity.ok("Hello, " + name + "!");
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().body("Error: " + e.getMessage());
+		}
 	}
 
 }
@@ -199,12 +332,16 @@ public class HelloWorld{
 
 </project>
 ```
-- 이 파일을 작성하여 의존성을 관리합니다.
+- Create this file to manage dependencies.
 
 ### Entry Point
 - `example.HelloWorld`
-    - Java의 Entry Point는 `패키지명.클래스명`입니다.
-    - 메서드는 `public ResponseEntity<?> call(RequestEntity req)`로 지정해야 합니다.
+    - The entry point in Java is `package name.classname`.
+    - The method should be specified as `public ResponseEntity<?> call(RequestEntity req)`.
+
+> **[Note]**<br>
+> For Java, we recommend using the template structure `src/main/java` as is to write your user functions.
+> <br>Similarly, use Template `pom.xml` to add dependencies.
 
 ## Ruby
 `parse.rb`
@@ -224,13 +361,51 @@ def handler(context)
 end
 ```
 
+### POST example
+```ruby
+# frozen_string_literal: true
+
+require 'json'
+
+def handler(context)
+  begin
+    # get the request body in JSON format
+    request_body = JSON.parse(context.request.body.read)
+
+    name = request_body['name'] || 'World'
+
+    response = "Hello, #{name}!"
+    Rack::Response.new([response]).finish
+  rescue JSON::ParserError => e
+    Rack::Response.new(["Error: Invalid JSON - #{e.message}"], 400).finish
+  rescue => e
+    Rack::Response.new(["Error: #{e.message}"], 500).finish
+  end
+end
+```
+
 ### Package
 `Gemfile`
-- 이 파일을 작성하여 의존성을 관리합니다.
+- Create this file to manage dependencies.
+
+Example
+```Gemfile
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+
+gem "nokogiri", ">= 1.12.5"
+```
+
+> **[Note]**<br>
+> The Gemfile.lock file is created by running `bundle install`.
+> <br> Bundler version is 1.17.3 or later (1.x series)
 
 ### Entry Point
 - `handler`
-    - Ruby의 Entry Point는 `함수명`입니다.
+    - The entry point in Ruby is the `function name`.
 
 ## .NET
 `func.cs`
@@ -250,7 +425,7 @@ public class NhnFunction
         {
             context.Logger.WriteInfo("Starting..... ");
 
-            // CsvHelper 예제: CSV 읽기
+            // CsvHelper example: read CSV
             var csvData = "Name,Age\nJohn,30\nJane,25";
             using (var reader = new StringReader(csvData))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
@@ -270,10 +445,56 @@ public class NhnFunction
 }
 ```
 
+### POST example
+```cs
+using System;
+using System.IO;
+using Newtonsoft.Json.Linq;
+using Nhn.DotNetCore.Api;
+
+public class NhnFunction
+public class NhnFunction
+    public string Execute(NhnContext context)
+    { return
+        try
+        { }
+            // get the request body in JSON format
+            string requestBodyString = new StreamReader(context.Request.Body).ReadToEnd();
+
+            JObject requestBody = JObject.Parse(requestBodyString);
+
+            string name = requestBody["name"]?.ToString() ?? "World";
+
+            return $"Hello, {name}!";
+        }
+        } catch (Newtonsoft.Json.JsonException ex)
+        { }
+            return $"Error: Invalid JSON - {ex.Message}";
+        }
+        catch (Exception ex)
+        {
+            return $"Error: {ex.Message}";
+        }
+    }
+}
+```
+
 ### Package
 `nuget.txt`
-- 이 파일을 작성하여 의존성을 관리합니다.
+- Create this file to manage dependencies.
+
+Example
+```txt
+CsvHelper
+
+Newtonsoft.Json:9.0.1
+```
+
+> **[Note]**<br>
+> When adding `nuget.txt` packages, you should only add packages that you actually use.<br>
+> For example, in the POST example, we only add `Newtonsoft.Json`.<br>
+> Adding dependencies can cause type conflicts, so we recommend using .NET default libraries whenever possible.
 
 ### Entry Point
 - `func`
-    - .NET의 Entry Point는 `파일명`입니다.
+    - The entry point in .NET is the `filename`.
