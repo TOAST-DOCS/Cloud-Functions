@@ -1,9 +1,9 @@
-## Compute > Cloud Functions > コードテンプレートガイド
-この文書では、NHN Cloud Functions関数のコード作成時に提供されるテンプレートコードについて説明します。
-- 각 언어별로 `Hello World` 함수를 작성하는 방법을 알아봅니다.
+## Compute > Cloud Functions > Code Template Guide
+This document describes the template code provided when writing code for functions of NHN Cloud Functions.
+- Learn how to write the `Hello World` function for each language.
 
-## テンプレートコードリスト
-| 言語     | 버전       | ファイル名            | Entry Point         |
+## Template code list
+| Language     | Version       | Filename            | Entry Point         |
 |----------|------------|-------------------|-------------------|
 | NodeJS   | 20.16.0, 22.5.0 | hello.js        | hello              |
 | Python   | 3.11       | user.py         | user.main          |
@@ -22,11 +22,11 @@ module.exports = async (context) => {
     };
 }
 ```
-### POST 예시
+### POST example
 ``` js
 module.exports = async (context) => {
     try {
-        // JSON 형태의 request body 가져오기
+        // get the request body in JSON format
         const requestBody = JSON.parse(context.request.body);
 
         const name = requestBody.name || 'World';
@@ -46,13 +46,13 @@ module.exports = async (context) => {
 
 ### Package
 `package.json`
-- このファイルを作成して依存関係を管理します。
+- Create this file to manage dependencies.
 
 ### Entry Point
 - `hello`
-    - NodeJSのEntry Pointは`ファイル名`です。
+    - The entry point in NodeJS is the `filename`.
 
-#### 2つの関数を使用する場合のEntry Point指定
+#### Specify entry points when using two functions
 ``` js
 module.exports.entry1 = async (context) => {
     return {
@@ -68,13 +68,13 @@ module.exports.entry2 = async (context) => {
     };
 }
 ```
-- 上記の例コードのEntry Point
-    - `ファイル名.entry1`
-    - `ファイル名.entry2`
+- The Entry Point In the example code above
+    - `filename.entry1`
+    - `filename.entry2`
 
-> **[参考]**<br>
-> 現在ES Modulesの使用はサポートされていません。CommonJS方式のみ使用可能です。
-> <br>(ES Modulesは今後サポート予定)
+> **[Note]**<br>
+> Currently, we do not support using ES Modules; only CommonJS method is available.
+> <br>(ES Modules, to be provided later)
 
 ## Python
 `user.py`
@@ -93,14 +93,14 @@ def main():
     return yaml.dump(yaml.safe_load(document))
 ```
 
-### POST 예시
+### POST example
 ``` python
 import json
 from flask import request
 
 def main():
     try:
-        # JSON 형태의 request body 가져오기
+        # get the request body in JSON format
         request_body = request.get_json()
 
         name = request_body.get('name', 'World')
@@ -112,9 +112,9 @@ def main():
 
 ### Package
 `requirements.txt`
-- このファイルを作成して依存関係を管理します。
+- Create this file to manage dependencies.
 
-예시
+Example
 ```txt
 pyyaml
 ```
@@ -122,16 +122,16 @@ pyyaml
 
 ### Entry Point
 - `user.main`
-    - PythonのEntry Pointは`ファイル名。関数名`です。
+    - The entry point in Python is `filename.functionname`.
 
-> **[参考]**<br>
-> 現在のところ、以下の特徴を持つ複雑なPackageはサポートしません。 <br> 예: numpy, pandas
-> 1. C/C++/Rust拡張モジュール必須
-> 2. システムライブラリ依存関係
-> 3. 複雑な初期化プロセス
-> 4. ソースディレクトリ検査実行
-> 5. 複数のサブパッケージ構造
-> 6. ランタイム環境の検証
+> **[Note]**<br>
+> We currently do not support complex packages with the following characteristics: <br> Examples: numpy, pandas
+> 1. C/C++/Rust extension modules required
+> 2. System library dependencies
+> 3. Complex initialization process
+> 4. Perform a source directory check
+> 5. Multiple subpackage structures
+> 6. Verify runtime environment
 
 ## Go
 `functions.go`
@@ -159,7 +159,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-### POST 예시
+### POST example
 ```go
 package main
 
@@ -175,7 +175,7 @@ type RequestBody struct {
 }
 
 func Handler(w http.ResponseWriter, r *http.Request) {
-	// request body 읽기
+	// read request body
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		http.Error(w, fmt.Sprintf("Error reading body: %v", err), http.StatusBadRequest)
@@ -203,15 +203,15 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 
 ### Package
 `go.mod`
-- このファイルを作成して依存関係を管理します。
+- Create this file to manage dependencies.
 
-생성 방법
+How to create
 ```bash
 go mod init example.com/myfunction
 go get github.com/brianvoe/gofakeit/v6
 ```
 
-예시
+Example
 ```mod
 module example.com/ncf
 
@@ -220,12 +220,12 @@ go 1.22
 require github.com/brianvoe/gofakeit/v6 v6.28.0
 ```
 
-> **[참고]**<br>
-> Go 1.22 또는 1.23 버전을 사용합니다.
+> **[Note]**<br>
+> Use Go version 1.22 or 1.23.
 
 ### Entry Point
 - `Handler`
-    - GoのEntry Pointは`関数名`です。
+    - The entry point in Go is `function name`.
 
 ## Java
 `HelloWorld.java`
@@ -244,7 +244,7 @@ public class HelloWorld{
 }
 ```
 
-### POST 예시
+### POST example
 ```java
 package example;
 
@@ -332,16 +332,16 @@ public class HelloWorld{
 
 </project>
 ```
-- このファイルを作成して依存関係を管理します。
+- Create this file to manage dependencies.
 
 ### Entry Point
 - `example.HelloWorld`
-    - JavaのEntry Pointは`パッケージ名。クラス名`です。
-    - メソッドは`public ResponseEntity<?> call(RequestEntity req)`と指定する必要があります。
+    - The entry point in Java is `package name.classname`.
+    - The method should be specified as `public ResponseEntity<?> call(RequestEntity req)`.
 
-> **[참고]**<br>
-> Java의 경우 Template 구조 `src/main/java` 그대로 사용하여 사용자 함수를 작성하는 것을 권장합니다.
-> <br>마찬가지로 Template `pom.xml`을 사용하여 의존성을 추가하세요.
+> **[Note]**<br>
+> For Java, we recommend using the template structure `src/main/java` as is to write your user functions.
+> <br>Similarly, use Template `pom.xml` to add dependencies.
 
 ## Ruby
 `parse.rb`
@@ -361,7 +361,7 @@ def handler(context)
 end
 ```
 
-### POST 예시
+### POST example
 ```ruby
 # frozen_string_literal: true
 
@@ -369,7 +369,7 @@ require 'json'
 
 def handler(context)
   begin
-    # JSON 형태의 request body 가져오기
+    # get the request body in JSON format
     request_body = JSON.parse(context.request.body.read)
 
     name = request_body['name'] || 'World'
@@ -386,9 +386,9 @@ end
 
 ### Package
 `Gemfile`
-- このファイルを作成して依存関係を管理します。
+- Create this file to manage dependencies.
 
-예시
+Example
 ```Gemfile
 # frozen_string_literal: true
 
@@ -399,13 +399,13 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 gem "nokogiri", ">= 1.12.5"
 ```
 
-> **[참고]**<br>
-> Gemfile.lock 파일은 `bundle install`을 실행하여 생성됩니다.
-> <br> Bundler 버전은 1.17.3 이상(1.x 계열)
+> **[Note]**<br>
+> The Gemfile.lock file is created by running `bundle install`.
+> <br> Bundler version is 1.17.3 or later (1.x series)
 
 ### Entry Point
 - `handler`
-    - RubyのEntry Pointは`関数名`です。
+    - The entry point in Ruby is the `function name`.
 
 ## .NET
 `func.cs`
@@ -425,7 +425,7 @@ public class NhnFunction
         {
             context.Logger.WriteInfo("Starting..... ");
 
-            // CsvHelper例: CSV読み取り
+            // CsvHelper example: read CSV
             var csvData = "Name,Age\nJohn,30\nJane,25";
             using (var reader = new StringReader(csvData))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
@@ -445,7 +445,7 @@ public class NhnFunction
 }
 ```
 
-### POST 예시
+### POST example
 ```cs
 using System;
 using System.IO;
@@ -453,12 +453,12 @@ using Newtonsoft.Json.Linq;
 using Nhn.DotNetCore.Api;
 
 public class NhnFunction
-{
+public class NhnFunction
     public string Execute(NhnContext context)
-    {
+    { return
         try
-        {
-            // JSON 형태의 request body 가져오기
+        { }
+            // get the request body in JSON format
             string requestBodyString = new StreamReader(context.Request.Body).ReadToEnd();
 
             JObject requestBody = JObject.Parse(requestBodyString);
@@ -467,8 +467,8 @@ public class NhnFunction
 
             return $"Hello, {name}!";
         }
-        catch (Newtonsoft.Json.JsonException ex)
-        {
+        } catch (Newtonsoft.Json.JsonException ex)
+        { }
             return $"Error: Invalid JSON - {ex.Message}";
         }
         catch (Exception ex)
@@ -481,20 +481,20 @@ public class NhnFunction
 
 ### Package
 `nuget.txt`
-- このファイルを作成して依存関係を管理します。
+- Create this file to manage dependencies.
 
-예시
+Example
 ```txt
 CsvHelper
 
 Newtonsoft.Json:9.0.1
 ```
 
-> **[참고]**<br>
-> `nuget.txt` Package 추가 시에는 실제 사용하는 Package만 추가해야 합니다.<br>
-> 예를 들어 POST 예시에서는 `Newtonsoft.Json`만 추가합니다.<br>
-> 의존성 추가 시 타입 충돌이 발생할 수 있으므로 가능한 .NET 기본 라이브러리를 사용하는 것을 권장합니다.
+> **[Note]**<br>
+> When adding `nuget.txt` packages, you should only add packages that you actually use.<br>
+> For example, in the POST example, we only add `Newtonsoft.Json`.<br>
+> Adding dependencies can cause type conflicts, so we recommend using .NET default libraries whenever possible.
 
 ### Entry Point
 - `func`
-    - .NETのEntry Pointは`ファイル名`です。
+    - The entry point in .NET is the `filename`.
