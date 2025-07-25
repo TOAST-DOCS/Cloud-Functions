@@ -1,6 +1,6 @@
-## Compute > Cloud Functions > 릴리스 노트
+## Compute > Cloud Functions > Release Notes
 
-### 2025. 07. 29.
+### July 29. 2025
 
-#### Cloud Function 서비스 출시
-- 사용자는 함수 단위로 코드를 작성할 수 있으며, 특정 이벤트 발생 시 정의된 함수가 자동으로 실행되어 필요한 작업을 처리합니다. 서버 관리나 인프라 설정 없이 애플리케이션 로직에만 집중할 수 있습니다.
+#### Launch Cloud Function service
+- Users can write codes by function unit. Functions defined on a specific event are automatically executed, processing the required tasks. Without server management or infrastructure configuration, you can focus only on application logic.
