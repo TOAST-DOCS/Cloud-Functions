@@ -1,40 +1,40 @@
-## Compute > Cloud Functions > 개요
-사용자는 함수 단위로 코드를 작성할 수 있으며, 특정 이벤트 발생 시 정의된 함수가 자동으로 실행되어 필요한 작업을 처리합니다. 서버 관리나 인프라 설정 없이 애플리케이션 로직에만 집중할 수 있습니다.
+## Compute > Cloud Functions > Overview
+Users can write codes by function unit. Functions defined on a specific event are automatically executed, processing the required tasks. Without server management or infrastructure configuration, you can focus only on application logic.
 
-### 특징
-- 비용 효율성
-    - 사용한 만큼만 과금하여 비용을 절감합니다.
-    - 필요할 때만 리소스를 할당하므로 관리 비용을 감소할 수 있습니다.
-    - 요청에 따라 자동으로 확장 및 축소하여 효율적으로 운영할 수 있습니다.
-- 빠른 개발 및 배포
-    - 핵심 비즈니스 로직에 집중할 수 있습니다.
-    - DevOps 운영 부담 감소로 개발 속도를 향상시킬 수 있습니다.
-- 유연성과 확장성
-    - 다양한 언어 및 런타임을 지원합니다.
-    - 이벤트 기반 아키텍처로 다양한 활용이 가능합니다.
+### Features
+- Cost-effectiveness
+    - Save money with pay-as-you-go pricing.
+    - You can reduce management cost as it allocates resources only when necessary.
+    - Scale up and down automatically on demand to keep operating efficiently.
+- Rapid development and deployment
+    - Focus on the core business logic.
+    - Shorten the development speed by reducing the burden of DevOps operation.
+- Flexibility and scalability
+    - Support for multiple languages and runtimes.
+    - The event-based architecture is versatile.
 
-### 주요 기능
-- 다양한 언어(환경)를 제공합니다.
-- **코드 에디터**를 통해 간단한 함수 단위 코드를 작성할 수 있습니다.
-- 함수를 수행할 수 있는 HTTPS Endpoint를 기본 제공합니다.
-- 함수를 일정 주기로 반복 수행할 수 있습니다.
+### Main features
+- We offer multiple languages (environments).
+- The **code editor** makes you write simple function unit code.
+- Provide an HTTPS Endpoint as standard to perform the function.
+- Iterate the function at regular cycles.
 
-### 두 가지 모드 제공
+### Two modes available
 - Pool Manager
 - New Deployment
 #### Pool Manager
-- 함수가 수행될 때만 인스턴스가 생성되어 리소스를 사용합니다.
-- 일정 기간 함수가 수행되지 않으면 인스턴스는 사라지고 리소스 사용량은 0이 됩니다.
-- 함수 수행 요청량이 많지 않고 이벤트 발생 시에만 수행하고 싶을 때 사용합니다.
+- Instances are created and use resources only when the function is performed.
+- If the function is not performed for a certain period, instances disappear, and the resource usage becomes 0.
+- Use it only when the number of requests is small to perform the function and event occurs.
 ![overview-01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/overview-01.png)
 #### New Deployment
-- 함수를 생성하면 바로 인스턴스가 생성되어 일정량의 리소스를 계속 사용합니다.
-- 빠른 응답을 위해 인스턴스 생성을 유지합니다.
-- 함수 수행 요청량이 많고 빠른 응답이 필요한 경우 사용합니다.
+- Once functions are created, instances are created, keeping a certain amount of resources being used.
+- Instances are kept to reduce response latency.
+- Use it when the number of requests is large to perform the function and a quick response is needed.
 ![overview-02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/overview-02.png)
 
-### 지원 언어
-| 언어     | 버전       |
+### Supported languages
+| Language     | Version       |
 |----------|------------|
 | NodeJS   | 20.16.0    |
 |          | 22.5.0     |
@@ -49,6 +49,6 @@
 
 ### Trigger
 - HTTP Trigger
-    - 기본 제공(GET, POST 지원)
+    - Basic (support GET, POST)
 - Timer Trigger
-    - cron 표현식 형태로 추가할 수 있습니다.
+    - You can add it in the cron expression form.
