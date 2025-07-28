@@ -29,7 +29,7 @@
 ![overview-01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/overview-01.png)
 #### New Deployment
 - 関数を作成すると、すぐにインスタンスが作成され、一定量のリソースを継続して使用します。
-- 빠른 응답을 위해 인스턴스 생성을 유지합니다.
+- 迅速な応答のため、インスタンスの作成を維持します。
 - 関数実行リクエストが多く、迅速な応答が必要な場合に使用します。
 ![overview-02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/overview-02.png)
 

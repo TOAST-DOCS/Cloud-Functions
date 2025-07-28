@@ -1,9 +1,9 @@
 ## Compute > Cloud Functions > コードテンプレートガイド
 この文書では、NHN Cloud Functions関数のコード作成時に提供されるテンプレートコードについて説明します。
-- 각 언어별로 `Hello World` 함수를 작성하는 방법을 알아봅니다.
+- 言語ごとに`Hello World`関数を作成する方法を学びます。
 
 ## テンプレートコードリスト
-| 言語     | 버전       | ファイル名            | Entry Point         |
+| 言語   | バージョン     | ファイル名          | Entry Point         |
 |----------|------------|-------------------|-------------------|
 | NodeJS   | 20.16.0, 22.5.0 | hello.js        | hello              |
 | Python   | 3.11       | user.py         | user.main          |
@@ -22,11 +22,11 @@ module.exports = async (context) => {
     };
 }
 ```
-### POST 예시
+### POST例
 ``` js
 module.exports = async (context) => {
     try {
-        // JSON 형태의 request body 가져오기
+        // 形式のrequest bodyを取得する
         const requestBody = JSON.parse(context.request.body);
 
         const name = requestBody.name || 'World';
@@ -93,14 +93,14 @@ def main():
     return yaml.dump(yaml.safe_load(document))
 ```
 
-### POST 예시
+### POST例
 ``` python
 import json
 from flask import request
 
 def main():
     try:
-        # JSON 형태의 request body 가져오기
+        # 形式のrequest bodyを取得する
         request_body = request.get_json()
 
         name = request_body.get('name', 'World')
@@ -114,7 +114,7 @@ def main():
 `requirements.txt`
 - このファイルを作成して依存関係を管理します。
 
-예시
+例
 ```txt
 pyyaml
 ```
@@ -125,7 +125,7 @@ pyyaml
     - PythonのEntry Pointは`ファイル名。関数名`です。
 
 > **[参考]**<br>
-> 現在のところ、以下の特徴を持つ複雑なPackageはサポートしません。 <br> 예: numpy, pandas
+> 現在のところ、以下の特徴を持つ複雑なPackageはサポートしません。 <br> 例：numpy, pandas
 > 1. C/C++/Rust拡張モジュール必須
 > 2. システムライブラリ依存関係
 > 3. 複雑な初期化プロセス
@@ -159,7 +159,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-### POST 예시
+### POST例
 ```go
 package main
 
@@ -175,7 +175,7 @@ type RequestBody struct {
 }
 
 func Handler(w http.ResponseWriter, r *http.Request) {
-	// request body 읽기
+	// request body読み取り
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		http.Error(w, fmt.Sprintf("Error reading body: %v", err), http.StatusBadRequest)
@@ -205,13 +205,13 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 `go.mod`
 - このファイルを作成して依存関係を管理します。
 
-생성 방법
+作成方法
 ```bash
 go mod init example.com/myfunction
 go get github.com/brianvoe/gofakeit/v6
 ```
 
-예시
+例
 ```mod
 module example.com/ncf
 
@@ -220,8 +220,8 @@ go 1.22
 require github.com/brianvoe/gofakeit/v6 v6.28.0
 ```
 
-> **[참고]**<br>
-> Go 1.22 또는 1.23 버전을 사용합니다.
+> **[参考]**<br>
+> Go 1.22または1.23バージョンを使用します。
 
 ### Entry Point
 - `Handler`
@@ -244,7 +244,7 @@ public class HelloWorld{
 }
 ```
 
-### POST 예시
+### POST例
 ```java
 package example;
 
@@ -339,9 +339,9 @@ public class HelloWorld{
     - JavaのEntry Pointは`パッケージ名。クラス名`です。
     - メソッドは`public ResponseEntity<?> call(RequestEntity req)`と指定する必要があります。
 
-> **[참고]**<br>
-> Java의 경우 Template 구조 `src/main/java` 그대로 사용하여 사용자 함수를 작성하는 것을 권장합니다.
-> <br>마찬가지로 Template `pom.xml`을 사용하여 의존성을 추가하세요.
+> **[参考]**<br>
+> Javaの場合、Template構造`src/main/java`のまま使用してユーザー関数を作成することを推奨します。
+> <br>同様に、Template `pom.xml`を使用して依存関係を追加してください。
 
 ## Ruby
 `parse.rb`
@@ -361,7 +361,7 @@ def handler(context)
 end
 ```
 
-### POST 예시
+### POST例
 ```ruby
 # frozen_string_literal: true
 
@@ -369,7 +369,7 @@ require 'json'
 
 def handler(context)
   begin
-    # JSON 형태의 request body 가져오기
+    # 形式のrequest bodyを取得する
     request_body = JSON.parse(context.request.body.read)
 
     name = request_body['name'] || 'World'
@@ -388,7 +388,7 @@ end
 `Gemfile`
 - このファイルを作成して依存関係を管理します。
 
-예시
+例
 ```Gemfile
 # frozen_string_literal: true
 
@@ -399,9 +399,9 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 gem "nokogiri", ">= 1.12.5"
 ```
 
-> **[참고]**<br>
-> Gemfile.lock 파일은 `bundle install`을 실행하여 생성됩니다.
-> <br> Bundler 버전은 1.17.3 이상(1.x 계열)
+> **[参考]**<br>
+> Gemfile.lockファイルは`bundle install`を実行して作成されます。
+> <br> Bundlerバージョンは1.17.3以上(1.x系列)
 
 ### Entry Point
 - `handler`
@@ -445,7 +445,7 @@ public class NhnFunction
 }
 ```
 
-### POST 예시
+### POST例
 ```cs
 using System;
 using System.IO;
@@ -458,7 +458,7 @@ public class NhnFunction
     {
         try
         {
-            // JSON 형태의 request body 가져오기
+            // 形式のrequest bodyを取得する
             string requestBodyString = new StreamReader(context.Request.Body).ReadToEnd();
 
             JObject requestBody = JObject.Parse(requestBodyString);
@@ -483,17 +483,17 @@ public class NhnFunction
 `nuget.txt`
 - このファイルを作成して依存関係を管理します。
 
-예시
+例
 ```txt
 CsvHelper
 
 Newtonsoft.Json:9.0.1
 ```
 
-> **[참고]**<br>
-> `nuget.txt` Package 추가 시에는 실제 사용하는 Package만 추가해야 합니다.<br>
-> 예를 들어 POST 예시에서는 `Newtonsoft.Json`만 추가합니다.<br>
-> 의존성 추가 시 타입 충돌이 발생할 수 있으므로 가능한 .NET 기본 라이브러리를 사용하는 것을 권장합니다.
+> **[参考]**<br>
+> `nuget.txt` Packageを追加する際は、実際に使用するPackageのみを追加する必要があります。<br>
+> 例えばPOST例では`Newtonsoft.Json`のみを追加します。<br>
+> 依存関係を追加する際に型の衝突が発生する可能性があるため、可能であれば .NETの標準ライブラリを使用することを推奨します。
 
 ### Entry Point
 - `func`
