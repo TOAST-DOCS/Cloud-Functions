@@ -2,6 +2,13 @@
 
 이 문서는 NHN Cloud Functions에서 Node.js를 사용하여 함수를 개발하는 방법을 상세히 설명합니다.
 
+## 템플릿 정보
+| 항목         | 값                  |
+|--------------|---------------------|
+| **지원 버전** | 20.16.0, 22.5.0   |
+| **파일명**    | hello.js           |
+| **Entry Point** | hello            |
+
 ## 기본 템플릿
 ### Hello World 예시
 가장 기본적인 함수 형태입니다.
@@ -431,6 +438,24 @@ Entry Point 설정:
 - `users.getUser`
 - `users.createUser`
 - `users.updateUser`
+
+### Entry Point 제한사항
+- **하위 디렉토리 지정 불가**: 루트 디렉토리 아래의 하위 디렉토리에 있는 파일은 Entry Point로 지정할 수 없습니다.
+
+**올바른 Entry Point:**
+```
+hello.js → hello
+users.js → users.getUser
+```
+
+**잘못된 Entry Point:**
+```
+lib/utils.js → lib.utils ❌
+src/handlers.js → src.handlers ❌
+modules/auth.js → modules.auth ❌
+```
+
+모든 함수 파일은 ZIP 파일의 루트 레벨에 위치해야 합니다.
 
 ## 주의사항
 
