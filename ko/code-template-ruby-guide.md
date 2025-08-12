@@ -311,5 +311,3 @@ Entry Point는 함수명을 사용합니다.
 ### 주의사항
 - **Bundler 버전**: `Gemfile.lock` 생성 시 Bundler 1.x 버전 (1.17.3 이상) 사용을 권장합니다.
 - **ActiveSupport 등 일부 Gem 호환성**: `ActiveSupport`와 같이 C 확장(C extension)에 의존하거나 내부 구조가 복잡한 일부 Gem은 현재 Cloud Functions 환경과 호환성 문제가 발생할 수 있습니다. `activesupport` Gem은 내부적으로 `zeitwerk` Gem에 의존하며, 이 Gem이 파일 시스템을 탐색하는 방식이 실행 환경과 충돌하여 정상적으로 동작하지 않을 수 있습니다. 따라서 가급적 표준 라이브러리나 외부 의존성이 적은 Gem을 사용하는 것을 권장합니다.
-
-이 가이드를 참고하여 효율적이고 안정적인 Ruby Cloud Functions를 개발하시기 바랍니다.
