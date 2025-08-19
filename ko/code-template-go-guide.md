@@ -198,7 +198,7 @@ Compress-Archive -Path .\functions.go, .\go.mod -DestinationPath my-function.zip
 # macOS/Linux
 zip my-function.zip functions.go go.mod
 
-# 모든 파일 포함 (추가 파일이 있는 경우)
+# 모든 파일 포함(추가 파일이 있는 경우)
 zip -r my-function.zip . -x "*.git*" "go.sum" "test.go"
 ```
 
