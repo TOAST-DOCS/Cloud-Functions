@@ -187,7 +187,7 @@ zip my-function.zip func.cs nuget.txt
 
 ### Cloud Functions 콘솔에서 업로드
 - 함수 생성 또는 수정 시, **사용자 로컬 환경** 방식을 선택합니다.
-- 파일 선택 버튼을 클릭하여 생성한 `my-function.zip` 파일을 업로드합니다.
+- **파일 선택**을 클릭하여 생성한 `my-function.zip` 파일을 업로드합니다.
 
 ## HTTP 메서드별 처리
 
