@@ -72,7 +72,7 @@ public class NhnFunction
         var method = request.Method;
         var headers = request.Headers;
 
-        // 쿼리 파라미터는 context.Arguments 에서 직접 가져옵니다.
+        // 쿼리 파라미터는 context.Arguments에서 직접 가져옵니다.
         var queryParams = context.Arguments;
 
         string body;
