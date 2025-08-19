@@ -147,7 +147,7 @@ def main():
 ```
 
 #### 3. ZIP 파일로 압축
-수정된 코드를 다시 ZIP 파일로 압축합니다:
+수정된 코드를 다시 ZIP 파일로 압축합니다.
 
 ```bash
 # Windows (PowerShell)
