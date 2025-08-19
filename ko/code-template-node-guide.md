@@ -23,7 +23,7 @@ module.exports = async (context) => {
 ```
 
 ### Context 객체
-함수에 전달되는 `context` 객체는 다음과 같은 정보를 포함합니다:
+함수에 전달되는 `context` 객체는 다음과 같은 정보를 포함합니다.
 
 ```javascript
 module.exports = async (context) => {
