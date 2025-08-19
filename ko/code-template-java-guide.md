@@ -29,7 +29,7 @@ public class HelloWorld {
 }
 ```
 
-### Context 객체 (RequestEntity)
+### Context 객체(RequestEntity)
 Java 함수에서는 Spring의 `RequestEntity`를 통해 HTTP 요청 정보에 접근할 수 있습니다.
 
 ```java
