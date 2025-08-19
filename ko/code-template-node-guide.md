@@ -50,7 +50,7 @@ Cloud Functions에서 제공하는 Node.js 템플릿을 다운로드하여 로�
 **템플릿 다운로드 링크**: [nodejs.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/nodejs/nodejs.zip)
 
 ### 템플릿 파일 구조
-다운로드한 템플릿 파일의 구조는 다음과 같습니다:
+다운로드한 템플릿 파일의 구조는 다음과 같습니다.
 
 ```
 nodejs.zip
