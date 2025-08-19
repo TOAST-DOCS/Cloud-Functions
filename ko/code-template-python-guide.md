@@ -60,7 +60,7 @@ def main():
 ## 템플릿 파일 다운로드 및 활용
 
 ### 템플릿 다운로드
-NHN Cloud Functions에서 제공하는 Python 템플릿을 다운로드하여 로컬 환경에서 개발할 수 있습니다.
+Cloud Functions에서 제공하는 Python 템플릿을 다운로드하여 로컬 환경에서 개발할 수 있습니다.
 
 **템플릿 다운로드 링크**: [python.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/python/python.zip)
 
