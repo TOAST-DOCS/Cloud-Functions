@@ -159,7 +159,7 @@ Compress-Archive -Path .\user.py, .\requirements.txt -DestinationPath my-functio
 # macOS/Linux
 zip my-function.zip user.py requirements.txt
 
-# 모든 파일 포함 (추가 파일이 있는 경우)
+# 모든 파일 포함(추가 파일이 있는 경우)
 zip -r my-function.zip . -x "*.git*" "__pycache__/*" "*.pyc" "test.py"
 ```
 
