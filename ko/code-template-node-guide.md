@@ -446,7 +446,7 @@ modules/auth.js → modules.auth ❌
 ## 주의사항
 
 ### CommonJS vs ES Modules
-현재 NHN Cloud Functions는 CommonJS 방식만 지원합니다.
+현재 Cloud Functions는 CommonJS 방식만 지원합니다.
 
 **사용 가능 (CommonJS):**
 ```javascript
