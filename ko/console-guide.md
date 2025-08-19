@@ -1,5 +1,5 @@
 ## Compute > Cloud Functions > 콘솔 사용 가이드
-이 문서는 NHN Cloud Functions 콘솔에서 함수를 생성하고 관리하는 방법을 설명합니다.
+이 문서는 Cloud Functions 콘솔에서 함수를 생성하고 관리하는 방법을 설명합니다.
 
 ## 함수 관리
 함수를 생성, 수정, 삭제, 복사할 수 있습니다.
