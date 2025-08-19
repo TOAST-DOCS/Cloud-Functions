@@ -86,7 +86,7 @@ cd my-function
 ```
 
 #### 2. 함수 코드 수정
-`hello.js` 파일을 원하는 로직으로 수정합니다:
+`hello.js` 파일을 원하는 로직으로 수정합니다.
 
 ```javascript
 // hello.js - 간단한 수정 예시
