@@ -140,7 +140,7 @@ Compress-Archive -Path .\hello.js, .\package.json -DestinationPath my-function.z
 # macOS/Linux
 zip my-function.zip hello.js package.json
 
-# 모든 파일 포함 (추가 파일이 있는 경우)
+# 모든 파일 포함(추가 파일이 있는 경우)
 zip -r my-function.zip . -x "*.git*" "node_modules/*" "test.js"
 ```
 
