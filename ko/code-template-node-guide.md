@@ -98,12 +98,8 @@ module.exports = async (context) => {
         // POST 요청인 경우 body에서 메시지 가져오기
         let customMessage = '';
         if (context.request.method === 'POST' && context.request.body) {
-            try {
-                const body = JSON.parse(context.request.body);
-                customMessage = body.message || '';
-            } catch (e) {
-                // JSON 파싱 실패 시 무시
-            }
+            const body = context.request.body;
+            customMessage = body.message || '';
         }
 
         return {
@@ -227,48 +223,38 @@ module.exports = async (context) => {
         };
     }
 
-    try {
-        // JSON 형태의 request body 파싱
-        const requestBody = JSON.parse(context.request.body);
+    // JSON 형태의 request body 사용
+    const requestBody = context.request.body;
 
-        // 필수 필드 검증
-        if (!requestBody.name) {
-            return {
-                status: 400,
-                body: JSON.stringify({
-                    error: 'Missing required field: name'
-                })
-            };
-        }
-
-        const { name, email, message } = requestBody;
-
-        // 처리 로직
-        const response = {
-            id: Math.random().toString(36).substr(2, 9),
-            name: name,
-            email: email || 'not provided',
-            message: message || 'No message',
-            processed_at: new Date().toISOString()
-        };
-
-        return {
-            status: 201,
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(response)
-        };
-
-    } catch (error) {
+    // 필수 필드 검증
+    if (!requestBody.name) {
         return {
             status: 400,
             body: JSON.stringify({
-                error: 'Invalid JSON format',
-                details: error.message
+                error: 'Missing required field: name'
             })
         };
     }
+
+    const { name, email, message } = requestBody;
+
+    // 처리 로직
+    const response = {
+        id: Math.random().toString(36).substr(2, 9),
+        name: name,
+        email: email || 'not provided',
+        message: message || 'No message',
+        processed_at: new Date().toISOString()
+    };
+
+    return {
+        status: 201,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(response)
+    };
+
 }
 ```
 
@@ -350,7 +336,7 @@ const { v4: uuidv4 } = require('uuid');
 
 module.exports = async (context) => {
     try {
-        const requestBody = JSON.parse(context.request.body);
+        const requestBody = context.request.body;
         const { data } = requestBody;
 
         if (!Array.isArray(data)) {
