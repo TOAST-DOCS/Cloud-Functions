@@ -246,7 +246,7 @@ def handler(context)
 end
 ```
 
-## 패키지 관리 (`Gemfile`)
+## 패키지 관리(`Gemfile`)
 
 의존성(Gem) 관리를 위해 `Gemfile`을 사용합니다. 필요한 Gem을 추가하고 `bundle install`을 실행하여 `Gemfile.lock`을 생성합니다.
 
