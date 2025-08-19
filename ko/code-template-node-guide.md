@@ -59,7 +59,7 @@ nodejs.zip
 ```
 
 #### hello.js
-기본 Hello World 함수가 포함되어 있습니다:
+기본 Hello World 함수가 포함되어 있습니다.
 ```javascript
 module.exports = async (context) => {
     return {
