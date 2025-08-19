@@ -383,7 +383,7 @@ def normalize_name(name):
 ## Entry Point 설정
 
 ### 단일 함수
-파일명.함수명을 Entry Point로 사용합니다.
+`파일명.함수명`을 Entry Point로 사용합니다.
 
 파일명: `user.py`
 함수명: `main`
