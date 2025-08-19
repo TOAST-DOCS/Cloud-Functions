@@ -272,7 +272,7 @@ public class NhnFunction
 }
 ```
 
-## 패키지 관리 (`nuget.txt`)
+## 패키지 관리(`nuget.txt`)
 
 의존성(NuGet 패키지) 관리를 위해 `nuget.txt` 파일을 사용합니다. 필요한 패키지를 한 줄에 하나씩 작성합니다.
 
