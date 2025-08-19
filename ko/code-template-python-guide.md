@@ -30,7 +30,7 @@ def main():
 ```
 
 ### Context 객체
-Python 함수에서는 Flask의 request 객체를 통해 HTTP 요청 정보에 접근할 수 있습니다:
+Python 함수에서는 Flask의 request 객체를 통해 HTTP 요청 정보에 접근할 수 있습니다.
 
 ```python
 from flask import request
