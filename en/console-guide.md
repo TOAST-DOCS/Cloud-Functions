@@ -1,5 +1,5 @@
 ## Compute > Cloud Functions > Console User Guide
-This document describes how to create and manage functions in NHN Cloud Functions console.
+This document describes how to create and manage functions in Cloud Functions console.
 
 ## Manage functions
 You can create, edit, delete, and copy functions.
@@ -109,13 +109,13 @@ After setting up the function and writing the code, click the Create button to b
     <tr>
         <td>2.</td>
         <td>Entry Point</td>
-        <td>Specify the entry point for the function, such as function name <br>It is automatically completed to match the template in the runtime environment.<br>It must match the entry point in the source code that you wrote when you modified randomly.</td>
+        <td>Specify the entry point for the function, such as function name <br>It is automatically completed to match the template in the runtime environment.<br>It must match the entry point in the source code that you wrote when you modified randomly.<br>잘못 입력한 경우 <strong>배포로는 확인할 수 없고</strong>, <strong>테스트 시 로그를 통해 확인할 수 있습니다</strong>.</td>
     </tr>
     <tr>
         <td rowspan="3">Code</td>
         <td>3.</td>
         <td>Code editor</td>
-        <td>The template files in the runtime environment are loaded, and you modify them to write the function.</td>
+        <td>The template files in the runtime environment are loaded, and you modify them to write the function.<br>코드 에디터에서 디렉터리 추가는 불가능합니다. 디렉터리 구조를 편집하려면 템플릿 파일을 다운로드해 로컬에서 직접 수정한 뒤 ZIP 파일 업로드 방식을 사용해야 합니다.</td>
     </tr>
     <tr>
         <td>4.</td>
@@ -136,7 +136,7 @@ After setting up the function and writing the code, click the Create button to b
     <tr>
         <td>7.</td>
         <td>Test</td>
-        <td>Test the function by sending the JSON Body you created to the event. (This must be deployed first.) <br>You can verify function behavior with logs.</td>
+        <td>Test the function by sending the JSON Body you created to the event. (This must be deployed first.) <br>You can verify function behavior with logs.<br>GET 메서드로 호출합니다.</td>
     </tr>
     <tr>
         <td></td>
