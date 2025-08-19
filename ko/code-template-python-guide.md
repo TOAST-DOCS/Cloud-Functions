@@ -170,7 +170,7 @@ zip -r my-function.zip . -x "*.git*" "__pycache__/*" "*.pyc" "test.py"
 
 #### ZIP 파일 구조
 - ZIP 파일의 루트에 직접 `.py` 파일과 `requirements.txt`가 위치해야 합니다.
-- 불필요한 폴더 구조는 피하세요
+- 불필요한 폴더 구조는 피할 것을 권장합니다.
 
 **올바른 구조:**
 ```
