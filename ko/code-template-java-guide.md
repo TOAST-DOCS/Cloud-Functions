@@ -145,7 +145,7 @@ public class HelloWorld {
 ```
 
 #### 3. ZIP 파일로 압축
-수정된 소스 코드를 다시 ZIP 파일로 압축합니다. `pom.xml` 파일과 `src` 디렉토리가 최상위에 포함되도록 압축해야 합니다.
+수정된 소스 코드를 다시 ZIP 파일로 압축합니다. `pom.xml` 파일과 `src` 디렉터리가 최상위에 포함되도록 압축해야 합니다.
 
 ```bash
 # Windows (PowerShell)
