@@ -425,7 +425,7 @@ Entry Point 설정:
 - `users.createUser`
 - `users.updateUser`
 
-### Entry Point 제한사항
+### Entry Point 제한 사항
 - **하위 디렉토리 지정 불가**: 루트 디렉토리 아래의 하위 디렉토리에 있는 파일은 Entry Point로 지정할 수 없습니다.
 
 **올바른 Entry Point:**
