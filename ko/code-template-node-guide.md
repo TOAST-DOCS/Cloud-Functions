@@ -456,7 +456,7 @@ module.exports = async (context) => {
 };
 ```
 
-**사용 불가 (ES Modules):**
+**사용 불가(ES Modules):**
 ```javascript
 import axios from 'axios';  // ❌ 지원하지 않음
 export default async (context) => {  // ❌ 지원하지 않음
