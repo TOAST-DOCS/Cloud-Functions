@@ -74,7 +74,7 @@ python.zip
 ```
 
 #### user.py
-기본 YAML 처리 함수가 포함되어 있습니다:
+기본 YAML 처리 함수가 포함되어 있습니다.
 ```python
 import sys
 import yaml
