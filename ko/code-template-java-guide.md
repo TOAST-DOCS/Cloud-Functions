@@ -157,7 +157,7 @@ Compress-Archive -Path .\pom.xml, .\src -DestinationPath my-function.zip
 # macOS/Linux
 zip -r my-function.zip pom.xml src
 
-# 모든 파일 포함 (불필요한 파일 제외)
+# 모든 파일 포함(불필요한 파일 제외)
 zip -r my-function.zip . -x "*.git*" "target/*" "*.log"
 ```
 
