@@ -137,7 +137,7 @@ cd my-function
 ```
 
 #### 2. 함수 코드 수정
-`functions.go` 파일을 원하는 로직으로 수정합니다:
+`functions.go` 파일을 원하는 로직으로 수정합니다.
 
 ```go
 // functions.go - 간단한 수정 예시
