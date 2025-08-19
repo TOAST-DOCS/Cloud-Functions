@@ -318,5 +318,5 @@ public class StringUtilsHandler {
 - **중요**: 함수 역할을 하는 메서드는 `public ResponseEntity<?> call(RequestEntity<?> req)` 시그니처를 가져야 합니다.
 
 ### 주의사항
-- **프로젝트 구조**: `src/main/java` 디렉토리 구조를 유지해야 합니다.
+- **프로젝트 구조**: `src/main/java` 디렉터리 구조를 유지해야 합니다.
 - **메모리 및 실행 시간**: 함수는 제한된 리소스 내에서 동작해야 하므로, 무거운 작업은 피하고 코드를 최적화하세요.
