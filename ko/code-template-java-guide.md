@@ -256,7 +256,7 @@ public class PostHandler {
 
 ```xml
 <dependencies>
-    <!-- 기본 Spring Boot 의존성 (Jackson 포함) -->
+    <!-- 기본 Spring Boot 의존성(Jackson 포함) -->
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-web</artifactId>
