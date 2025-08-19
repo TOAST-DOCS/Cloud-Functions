@@ -141,7 +141,7 @@ public class NhnFunction
     {
         try
         {
-            // 쿼리 파라미터에서 이름 가져오기 (ToString()으로 명시적 변환)
+            // 쿼리 파라미터에서 이름 가져오기(ToString()으로 명시적 변환)
             string name = context.Arguments.ContainsKey("name") ? context.Arguments["name"].ToString() : "World";
 
             // POST 요청인 경우 body에서 메시지 가져오기
