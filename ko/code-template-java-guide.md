@@ -250,7 +250,7 @@ public class PostHandler {
 }
 ```
 
-## 패키지 관리 (`pom.xml`)
+## 패키지 관리(`pom.xml`)
 
 의존성 관리를 위해 `pom.xml` 파일을 수정합니다. `dependencies` 섹션에 필요한 라이브러리를 추가하면, 함수 업로드 시 Cloud Functions가 자동으로 의존성을 다운로드하여 빌드에 포함합니다.
 
