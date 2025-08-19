@@ -39,7 +39,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 ```
 
 ### Context 객체
-Go 함수에서는 `http.ResponseWriter`와 `*http.Request`를 통해 HTTP 요청과 응답을 처리합니다:
+Go 함수에서는 `http.ResponseWriter`와 `*http.Request`를 통해 HTTP 요청과 응답을 처리합니다.
 
 ```go
 package main
