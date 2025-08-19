@@ -171,7 +171,7 @@ my-function.zip
 
 #### 파일 크기 제한
 - ZIP 파일 크기는 100MiB 이하로 제한됩니다.
-- `node_modules` 폴더는 포함하지 마세요 (의존성은 `package.json`으로 관리)
+- `node_modules` 폴더는 포함하지 마세요. (의존성은 `package.json`으로 관리)
 
 #### 제외할 파일들
 ```bash
