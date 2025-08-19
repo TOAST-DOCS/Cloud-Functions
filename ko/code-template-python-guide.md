@@ -42,7 +42,7 @@ def main():
     headers = dict(request.headers)
     args = request.args.to_dict()
 
-    # 요청 본문 (POST/PUT 등)
+    # 요청 본문(POST/PUT 등)
     data = None
     if request.is_json:
         data = request.get_json()
