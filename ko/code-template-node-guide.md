@@ -448,7 +448,7 @@ modules/auth.js → modules.auth ❌
 ### CommonJS vs ES Modules
 현재 Cloud Functions는 CommonJS 방식만 지원합니다.
 
-**사용 가능 (CommonJS):**
+**사용 가능(CommonJS):**
 ```javascript
 const axios = require('axios');
 module.exports = async (context) => {
