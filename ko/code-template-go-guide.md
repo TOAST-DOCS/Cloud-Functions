@@ -91,7 +91,7 @@ go.zip
 ```
 
 #### functions.go
-기본 fake 데이터 생성 함수가 포함되어 있습니다:
+기본 fake 데이터 생성 함수가 포함되어 있습니다.
 ```go
 package main
 
