@@ -342,7 +342,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func generateID() string {
-	// 간단한 ID 생성 (실제로는 UUID 등 사용)
+	// 간단한 ID 생성(실제로는 UUID 등 사용)
 	return time.Now().Format("20060102150405")
 }
 
