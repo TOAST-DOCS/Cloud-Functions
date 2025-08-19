@@ -1,6 +1,6 @@
 ## Compute > Cloud Functions > 코드 템플릿 가이드 > Node.js
 
-이 문서는 NHN Cloud Functions에서 Node.js를 사용하여 함수를 개발하는 방법을 상세히 설명합니다.
+이 문서는 NHN Cloud의 Cloud Functions 서비스에서 Node.js를 사용하여 함수를 개발하는 방법을 상세히 설명합니다.
 
 ## 템플릿 정보
 | 항목         | 값                  |
