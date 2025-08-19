@@ -89,7 +89,7 @@ java.zip
 # 압축 해제
 unzip java.zip -d my-java-function
 
-# 작업 디렉토리 이동
+# 작업 디렉터리 이동
 cd my-java-function
 ```
 
