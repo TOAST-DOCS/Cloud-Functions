@@ -26,12 +26,12 @@
 - 関数が実行される際にのみインスタンスが作成され、リソースを使用します。
 - 一定期間関数が実行されない場合、インスタンスは消滅し、リソース使用量は0になります。
 - 関数実行リクエスト量が少なく、イベント発生時のみ実行したい場合に使用します。
-![overview-01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/overview-01.png)
+![overview-01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-08-26/NHN%20Cloud_Guide%20overview_CloudFunctions_1_ja.png)
 #### New Deployment
 - 関数を作成すると、すぐにインスタンスが作成され、一定量のリソースを継続して使用します。
 - 高速な応答のためにインスタンス作成を維持します。
 - 関数実行リクエストが多く、迅速な応答が必要な場合に使用します。
-![overview-02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/overview-02.png)
+![overview-02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-08-26/NHN%20Cloud_Guide%20overview_CloudFunctions_2_ja.png)
 
 ### サポート言語
 | 言語   | バージョン     |
