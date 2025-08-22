@@ -1,17 +1,17 @@
-## Compute > Cloud Functions > 코드 템플릿 가이드 > Node.js
+## Compute > Cloud Functions > Code Template Guide > Node.js
 
-이 문서는 NHN Cloud의 Cloud Functions 서비스에서 Node.js를 사용하여 함수를 개발하는 방법을 상세히 설명합니다.
+This document details how to develop functions by using Node.js from NHN Cloud's Cloud Functions service.
 
-## 템플릿 정보
-| 항목         | 값                  |
+## Template information
+| Item         | Value                  |
 |--------------|---------------------|
-| **지원 버전** | 20.16.0, 22.5.0   |
-| **파일명**    | hello.js           |
+| **Supported version** | 20.16.0, 22.5.0   |
+| **File name**    | hello.js           |
 | **Entry Point** | hello            |
 
-## 기본 템플릿
-### Hello World 예시
-가장 기본적인 함수 형태입니다.
+## Basic template
+### Hello World example
+A basic form of function.
 
 ```javascript
 module.exports = async (context) => {
@@ -22,12 +22,12 @@ module.exports = async (context) => {
 }
 ```
 
-### Context 객체
-함수에 전달되는 `context` 객체는 다음과 같은 정보를 포함합니다.
+### Context object
+'context' object sent to functions include:
 
 ```javascript
 module.exports = async (context) => {
-    // HTTP 요청 정보
+    // HTTP request information
     console.log('Method:', context.request.method);
     console.log('Headers:', context.request.headers);
     console.log('Query:', context.request.query);
@@ -42,24 +42,24 @@ module.exports = async (context) => {
 }
 ```
 
-## 템플릿 파일 다운로드 및 활용
+## Download and use template file
 
-### 템플릿 다운로드
-Cloud Functions에서 제공하는 Node.js 템플릿을 다운로드하여 로컬 환경에서 개발할 수 있습니다.
+### Template download
+You can download the Node.js template provided by Cloud Functions to develop a local environment.
 
-**템플릿 다운로드 링크**: [nodejs.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/nodejs/nodejs.zip)
+**Template download link**: [nodejs.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/nodejs/nodejs.zip)
 
-### 템플릿 파일 구조
-다운로드한 템플릿 파일의 구조는 다음과 같습니다.
+### Template file structure
+The structure of the downloaded template file is as follows:
 
 ```
 nodejs.zip
-├── hello.js          # 메인 함수 파일
-└── package.json      # 의존성 관리 파일
+├── hello.js          # Main function file
+└── package.json      # Dependency management file
 ```
 
 #### hello.js
-기본 Hello World 함수가 포함되어 있습니다.
+Basic Hello World function is included.
 ```javascript
 module.exports = async (context) => {
     return {
@@ -74,28 +74,28 @@ module.exports = async (context) => {
 {}
 ```
 
-### 로컬 개발 과정
+### Local development process
 
-#### 1. 압축 해제
+#### 1. Unzip
 ```bash
-# 압축 해제
+# Unzip
 unzip nodejs.zip -d my-function
 
-# 작업 디렉터리 이동
+# Move to task directory
 cd my-function
 ```
 
-#### 2. 함수 코드 수정
-`hello.js` 파일을 원하는 로직으로 수정합니다.
+#### 2. Modify function codes
+Modify `hello.js` file with the logic you want.
 
 ```javascript
-// hello.js - 간단한 수정 예시
+// hello.js - Simple modification example
 module.exports = async (context) => {
     try {
-        // 쿼리 파라미터에서 이름 가져오기
+        // Import name from query parameter
         const { name = 'World' } = context.request.query;
 
-        // POST 요청인 경우 body에서 메시지 가져오기
+        // Import message from body if POST request
         let customMessage = '';
         if (context.request.method === 'POST' && context.request.body) {
             const body = context.request.body;
@@ -127,41 +127,41 @@ module.exports = async (context) => {
 }
 ```
 
-#### 3. ZIP 파일로 압축
-수정된 코드를 다시 ZIP 파일로 압축합니다.
+#### 3. Compress into a ZIP file
+Compress the modified source code into ZIP file.
 
 ```bash
 # Windows (PowerShell)
 Compress-Archive -Path .\hello.js, .\package.json -DestinationPath my-function.zip
 
-# Windows (7-Zip 사용 시)
+# Windows (when using 7-Zip)
 7z a my-function.zip hello.js package.json
 
 # macOS/Linux
 zip my-function.zip hello.js package.json
 
-# 모든 파일 포함(추가 파일이 있는 경우)
+# Include all files (if any additional files are available)
 zip -r my-function.zip . -x "*.git*" "node_modules/*" "test.js"
 ```
 
-### Cloud Functions 콘솔에서 업로드
-> 함수를 생성하거나 수정할 때 사용자 로컬 환경의 파일을 업로드 시 사용. (콘솔 사용 가이드 참고)
+### Upload from Cloud Functions console
+> Used when uploading files from the user's local environment when creating or modifying a function. (refer to Console Guide)
 
-### 업로드 시 주의사항
+### Cautions for upload
 
-#### ZIP 파일 구조
-- ZIP 파일의 루트에 직접 `.js` 파일과 `package.json`이 위치해야 합니다.
-- 불필요한 폴더 구조는 피할 것을 권장합니다.
+#### ZIP file structure
+- The `.js` file and `package.json` must be located directly in the root of the ZIP file.
+- We recommend avoiding unnecessary folder structures.
 
-**올바른 구조:**
+**Right structure:**
 ```
 my-function.zip
 ├── hello.js
 ├── package.json
-└── utils.js (추가 파일이 있는 경우)
+└── utils.js (if there are additional files)
 ```
 
-**잘못된 구조:**
+**Wrong structure:**
 ```
 my-function.zip
 └── my-function/
@@ -169,13 +169,13 @@ my-function.zip
     └── package.json
 ```
 
-#### 파일 크기 제한
-- ZIP 파일 크기는 100MiB 이하로 제한됩니다.
-- `node_modules` 폴더는 포함하지 마세요. (의존성은 `package.json`으로 관리)
+#### File size limit
+- ZIP file size is limited to 100MiB.
+- `node_modules` file should not be included. (for dependencies, manageed as `package.json`)
 
-#### 제외할 파일들
+#### Files to exclude
 ```bash
-# .gitignore와 유사하게 다음 파일들은 제외
+# Similar to .gitignore, exclude the following files:
 zip -r my-function.zip . -x \
   "node_modules/*" \
   ".git/*" \
@@ -185,9 +185,9 @@ zip -r my-function.zip . -x \
   "*.zip"
 ```
 
-## HTTP 메서드별 처리
+## Process by HTTP method
 
-### GET 요청 처리
+### Process GET request
 ```javascript
 module.exports = async (context) => {
     if (context.request.method !== 'GET') {
@@ -197,7 +197,7 @@ module.exports = async (context) => {
         };
     }
 
-    // 쿼리 파라미터 가져오기
+    // Import query parameter
     const { name = 'World', greeting = 'Hello' } = context.request.query;
 
     return {
@@ -213,7 +213,7 @@ module.exports = async (context) => {
 }
 ```
 
-### POST 요청 처리
+### Process POST request
 ```javascript
 module.exports = async (context) => {
     if (context.request.method !== 'POST') {
@@ -223,10 +223,10 @@ module.exports = async (context) => {
         };
     }
 
-    // JSON 형태의 request body 사용
+    // Use request body as a JSON format
     const requestBody = context.request.body;
 
-    // 필수 필드 검증
+    // Validate required fields
     if (!requestBody.name) {
         return {
             status: 400,
@@ -238,7 +238,7 @@ module.exports = async (context) => {
 
     const { name, email, message } = requestBody;
 
-    // 처리 로직
+    // Processing logic
     const response = {
         id: Math.random().toString(36).substr(2, 9),
         name: name,
@@ -258,10 +258,10 @@ module.exports = async (context) => {
 }
 ```
 
-## 패키지 관리
+## Manage packages
 
-### package.json 작성
-의존성 관리를 위해 `package.json` 파일을 작성합니다.
+### Write package.json
+Write `package.json` to manage dependencies.
 
 ```json
 {
@@ -278,7 +278,7 @@ module.exports = async (context) => {
 }
 ```
 
-### 외부 API 호출 예시
+### Example of external API call
 ```javascript
 const axios = require('axios');
 
@@ -293,7 +293,7 @@ module.exports = async (context) => {
             };
         }
 
-        // 외부 API 호출
+        // External API call
         const response = await axios.get(`https://jsonplaceholder.typicode.com/users/${userId}`);
 
         return {
@@ -328,7 +328,7 @@ module.exports = async (context) => {
 }
 ```
 
-### 데이터 처리 예시
+### Data processing example
 ```javascript
 const _ = require('lodash');
 const moment = require('moment');
@@ -346,7 +346,7 @@ module.exports = async (context) => {
             };
         }
 
-        // 데이터 처리
+        // Data processing
         const processedData = data.map(item => ({
             id: uuidv4(),
             ...item,
@@ -354,7 +354,7 @@ module.exports = async (context) => {
             normalized_name: _.capitalize(_.trim(item.name))
         }));
 
-        // 데이터 정렬 및 필터링
+        // Data sorting and filtering
         const sortedData = _.orderBy(processedData, ['normalized_name'], ['asc']);
         const validData = sortedData.filter(item => item.normalized_name);
 
@@ -382,21 +382,21 @@ module.exports = async (context) => {
 }
 ```
 
-## Entry Point 설정
+## Configure Entry Point
 
-### 단일 함수
-파일명을 Entry Point로 사용합니다.
+### Single function
+Use the function name as the Entry Point.
 
-파일명: `hello.js`
+File name: `hello.js`
 Entry Point: `hello`
 
-### 다중 함수
-하나의 파일에서 여러 함수를 내보낼 수 있습니다.
+### Multiple functions
+You can define multiple functions in a single file.
 
 ```javascript
 // users.js
 module.exports.getUser = async (context) => {
-    // 사용자 조회 로직
+    // User lookup logic
     return {
         status: 200,
         body: JSON.stringify({ message: "Get user" })
@@ -404,7 +404,7 @@ module.exports.getUser = async (context) => {
 }
 
 module.exports.createUser = async (context) => {
-    // 사용자 생성 로직
+    // User creation logic
     return {
         status: 201,
         body: JSON.stringify({ message: "User created" })
@@ -412,7 +412,7 @@ module.exports.createUser = async (context) => {
 }
 
 module.exports.updateUser = async (context) => {
-    // 사용자 수정 로직
+    // User modification logic
     return {
         status: 200,
         body: JSON.stringify({ message: "User updated" })
@@ -420,51 +420,51 @@ module.exports.updateUser = async (context) => {
 }
 ```
 
-Entry Point 설정:
+Entry Point Configuration:
 - `users.getUser`
 - `users.createUser`
 - `users.updateUser`
 
-### Entry Point 제한 사항
-- **하위 디렉터리 지정 불가**: 루트 디렉터리의 하위 디렉터리에 있는 파일은 Entry Point로 지정할 수 없습니다.
+### Entry Point restriction
+- **Subdirectory specification unavailable**: Files in subdirectories of the root directory cannot be specified as Entry Points.
 
-**올바른 Entry Point:**
+**Right Entry Point:**
 ```
 hello.js → hello
 users.js → users.getUser
 ```
 
-**잘못된 Entry Point:**
+**Wrong Entry Point:**
 ```
 lib/utils.js → lib.utils ❌
 src/handlers.js → src.handlers ❌
 modules/auth.js → modules.auth ❌
 ```
 
-모든 함수 파일은 ZIP 파일의 루트 레벨에 위치해야 합니다.
+All function files must be located at the root level of the ZIP file.
 
-## 주의사항
+## Caution
 
 ### CommonJS vs ES Modules
-현재 Cloud Functions는 CommonJS 방식만 지원합니다.
+Cloud Functions currently only supports CommonJS method.
 
-**사용 가능(CommonJS):**
+**Available (CommonJS):**
 ```javascript
 const axios = require('axios');
 module.exports = async (context) => {
-    // 함수 로직
+    // Function logic
 };
 ```
 
-**사용 불가(ES Modules):**
+**Unavailable (ES Modules):**
 ```javascript
-import axios from 'axios';  // ❌ 지원하지 않음
-export default async (context) => {  // ❌ 지원하지 않음
-    // 함수 로직
+import axios from 'axios';  // ❌ Not supported
+export default async (context) => {  // ❌ Not supported
+    // Function logic
 };
 ```
 
-### 메모리 및 실행 시간 고려사항
-- 함수는 제한된 메모리와 실행 시간 내에서 동작해야 합니다.
-- 대용량 데이터 처리 시 스트림 처리를 고려하세요.
-- 장시간 실행되는 작업은 적절히 분할하세요.
+### Considerations for Memory and execution time
+- Functions must operate within limited memory and execution time.
+- Consider stream processing when handling large-scale data.
+- Split long-running tasks appropriately.

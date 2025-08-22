@@ -1,18 +1,18 @@
-## Compute > Cloud Functions > 코드 템플릿 가이드 > Python
+## Compute > Cloud Functions > Code Template Guide > Python
 
-이 문서는 NHN Cloud의 Cloud Functions 서비스에서 Python을 사용하여 함수를 개발하는 방법을 상세히 설명합니다.
+This document details how to develop functions by using Python from NHN Cloud's Cloud Functions service.
 
-## 템플릿 정보
-| 항목         | 값                  |
+## Template information
+| Item         | Value                  |
 |--------------|---------------------|
-| **지원 버전** | 3.11               |
-| **파일명**    | user.py            |
+| **Supported version** | 3.11               |
+| **File name**    | user.py            |
 | **Entry Point** | user.main        |
 
-## 기본 템플릿
+## Basic template
 
-### Hello World 예시
-가장 기본적인 함수 형태입니다.
+### Hello World example
+A basic form of function.
 
 ```python
 import sys
@@ -29,20 +29,20 @@ def main():
     return yaml.dump(yaml.safe_load(document))
 ```
 
-### Context 객체
-Python 함수에서는 Flask의 request 객체를 통해 HTTP 요청 정보에 접근할 수 있습니다.
+### Context object
+Python functions can access HTTP request information through Flask's request object.
 
 ```python
 from flask import request
 import json
 
 def main():
-    # HTTP 요청 정보
+    # HTTP request information
     method = request.method
     headers = dict(request.headers)
     args = request.args.to_dict()
 
-    # 요청 본문(POST/PUT 등)
+    # Request body (such as POST/PUT)
     data = None
     if request.is_json:
         data = request.get_json()
@@ -57,24 +57,24 @@ def main():
     }
 ```
 
-## 템플릿 파일 다운로드 및 활용
+## Download and use template file
 
-### 템플릿 다운로드
-Cloud Functions에서 제공하는 Python 템플릿을 다운로드하여 로컬 환경에서 개발할 수 있습니다.
+### Template download
+You can download the Python template provided by Cloud Functions to develop a local environment.
 
-**템플릿 다운로드 링크**: [python.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/python/python.zip)
+**Template download link**: [python.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/python/python.zip)
 
-### 템플릿 파일 구조
-다운로드한 템플릿 파일의 구조는 다음과 같습니다.
+### Template file structure
+The structure of the downloaded template file is as follows:
 
 ```
 python.zip
-├── user.py          # 메인 함수 파일
-└── requirements.txt # 의존성 관리 파일
+├── user.py          # Main function file
+└── requirements.txt # Dependency management file
 ```
 
 #### user.py
-기본 YAML 처리 함수가 포함되어 있습니다.
+Include basic YAML processing functions.
 ```python
 import sys
 import yaml
@@ -95,31 +95,31 @@ def main():
 pyyaml
 ```
 
-### 로컬 개발 과정
+### Local development process
 
-#### 1. 압축 해제
+#### 1. Unzip
 ```bash
-# 압축 해제
+# Unzip
 unzip python.zip -d my-function
 
-# 작업 디렉터리 이동
+# Move to task directory
 cd my-function
 ```
 
-#### 2. 함수 코드 수정
-`user.py` 파일을 원하는 로직으로 수정합니다.
+#### 2. Modify function codes
+Modify `user.py` file with the logic you want.
 
 ```python
-# user.py - 간단한 수정 예시
+# user.py - Simple modification example
 from flask import request
 import json
 
 def main():
     try:
-        # 쿼리 파라미터에서 이름 가져오기
+        # Import name from query parameter
         name = request.args.get('name', 'World')
 
-        # POST 요청인 경우 body에서 메시지 가져오기
+        # Import message from body if POST request
         custom_message = ''
         if request.method == 'POST':
             try:
@@ -127,7 +127,7 @@ def main():
                 if data:
                     custom_message = data.get('message', '')
             except Exception:
-                # JSON 파싱 실패 시 무시
+                # Ignore if JSON parsing fails
                 pass
 
         result = {
@@ -146,41 +146,41 @@ def main():
         }, ensure_ascii=False)
 ```
 
-#### 3. ZIP 파일로 압축
-수정된 코드를 다시 ZIP 파일로 압축합니다.
+#### 3. Compress into a ZIP file
+Compress the modified source code into ZIP file.
 
 ```bash
 # Windows (PowerShell)
 Compress-Archive -Path .\user.py, .\requirements.txt -DestinationPath my-function.zip
 
-# Windows (7-Zip 사용 시)
+# Windows (when using 7-Zip)
 7z a my-function.zip user.py requirements.txt
 
 # macOS/Linux
 zip my-function.zip user.py requirements.txt
 
-# 모든 파일 포함(추가 파일이 있는 경우)
+# Include all files (if any additional files are available)
 zip -r my-function.zip . -x "*.git*" "__pycache__/*" "*.pyc" "test.py"
 ```
 
-### Cloud Functions 콘솔에서 업로드
-> 함수를 생성하거나 수정할 때 사용자 로컬 환경의 파일을 업로드 시 사용. (콘솔 사용 가이드 참고)
+### Upload from Cloud Functions console
+> Used when uploading files from the user's local environment when creating or modifying a function. (refer to Console Guide)
 
-### 업로드 시 주의사항
+### Cautions for upload
 
-#### ZIP 파일 구조
-- ZIP 파일의 루트에 직접 `.py` 파일과 `requirements.txt`가 위치해야 합니다.
-- 불필요한 폴더 구조는 피할 것을 권장합니다.
+#### ZIP file structure
+- The `.py` file and `requirements.txt` must be located directly in the root of the ZIP file.
+- We recommend avoiding unnecessary folder structures.
 
-**올바른 구조:**
+**Right structure:**
 ```
 my-function.zip
 ├── user.py
 ├── requirements.txt
-└── utils.py (추가 파일이 있는 경우)
+└── utils.py (if there are additional files)
 ```
 
-**잘못된 구조:**
+**Wrong structure:**
 ```
 my-function.zip
 └── my-function/
@@ -188,13 +188,13 @@ my-function.zip
     └── requirements.txt
 ```
 
-#### 파일 크기 제한
-- ZIP 파일 크기는 100MiB 이하로 제한됩니다.
-- `__pycache__` 폴더는 포함하지 마세요.
+#### File size limit
+- ZIP file size is limited to 100MiB.
+- `__pycache__` file should not be included.
 
-#### 제외할 파일들
+#### Files to exclude
 ```bash
-# .gitignore와 유사하게 다음 파일들은 제외
+# Similar to .gitignore, exclude the following files:
 zip -r my-function.zip . -x \
   "__pycache__/*" \
   "*.pyc" \
@@ -205,9 +205,9 @@ zip -r my-function.zip . -x \
   "*.zip"
 ```
 
-## HTTP 메서드별 처리
+## Process by HTTP method
 
-### GET 요청 처리
+### Process GET request
 ```python
 from flask import request
 import json
@@ -217,7 +217,7 @@ def main():
     if request.method != 'GET':
         return json.dumps({'error': 'Method Not Allowed'}, ensure_ascii=False), 405
 
-    # 쿼리 파라미터 가져오기
+    # Import query parameter
     name = request.args.get('name', 'World')
     greeting = request.args.get('greeting', 'Hello')
 
@@ -230,7 +230,7 @@ def main():
     return json.dumps(result, ensure_ascii=False)
 ```
 
-### POST 요청 처리
+### Process POST request
 ```python
 from flask import request
 import json
@@ -242,10 +242,10 @@ def main():
         return json.dumps({'error': 'Method Not Allowed'}, ensure_ascii=False), 405
 
     try:
-        # JSON 형태의 request body 파싱
+        # Parse request body as a JSON format
         request_body = request.get_json()
 
-        # 필수 필드 검증
+        # Validate required fields
         if not request_body or 'name' not in request_body:
             return json.dumps({
                 'error': 'Missing required field: name'
@@ -255,7 +255,7 @@ def main():
         email = request_body.get('email', 'not provided')
         message = request_body.get('message', 'No message')
 
-        # 처리 로직
+        # Processing logic
         response = {
             'id': str(uuid.uuid4())[:8],
             'name': name,
@@ -273,10 +273,10 @@ def main():
         }, ensure_ascii=False), 400
 ```
 
-## 패키지 관리
+## Manage packages
 
-### requirements.txt 작성
-의존성 관리를 위해 `requirements.txt` 파일을 작성합니다.
+### Write requirements.txt
+Write `requirements.txt` to manage dependencies.
 
 ```txt
 pyyaml
@@ -284,7 +284,7 @@ requests>=2.28.0
 python-dateutil>=2.8.0
 ```
 
-### 외부 API 호출 예시
+### Example of external API call
 ```python
 from flask import request
 import json
@@ -298,7 +298,7 @@ def main():
         if not user_id:
             return json.dumps({'error': 'userId is required'}, ensure_ascii=False), 400
 
-        # 외부 API 호출
+        # External API call
         response = requests.get(f'https://jsonplaceholder.typicode.com/users/{user_id}')
 
         if response.status_code == 404:
@@ -326,7 +326,7 @@ def main():
         }, ensure_ascii=False), 500
 ```
 
-### 데이터 처리 예시
+### Data processing example
 ```python
 from flask import request
 import json
@@ -342,7 +342,7 @@ def main():
         if not isinstance(data, list):
             return json.dumps({'error': 'Data must be an array'}, ensure_ascii=False), 400
 
-        # 데이터 처리
+        # Data processing
         processed_data = []
         for item in data:
             if 'name' in item:
@@ -354,7 +354,7 @@ def main():
                 }
                 processed_data.append(processed_item)
 
-        # 데이터 정렬 및 필터링
+        # Data sorting and filtering
         valid_data = [item for item in processed_data if item['normalized_name']]
         valid_data.sort(key=lambda x: x['normalized_name'])
 
@@ -373,24 +373,24 @@ def main():
         }, ensure_ascii=False), 400
 
 def normalize_name(name):
-    """이름 정규화 함수"""
+    """name normalization function"""
     if not name:
         return ''
-    # 공백 제거 및 첫 글자 대문자화
+    # Remove spaces and capitalize the first letter
     return name.strip().title()
 ```
 
-## Entry Point 설정
+## Configure Entry Point
 
-### 단일 함수
-`파일명.함수명`을 Entry Point로 사용합니다.
+### Single function
+Use `filename.functionname` as the Entry Point.
 
-파일명: `user.py`
-함수명: `main`
+File name: `user.py`
+Function name: `main`
 Entry Point: `user.main`
 
-### 다중 함수
-하나의 파일에서 여러 함수를 정의할 수 있습니다.
+### Multiple functions
+You can define multiple functions in a single file.
 
 ```python
 # handlers.py
@@ -398,40 +398,40 @@ from flask import request
 import json
 
 def get_user():
-    # 사용자 조회 로직
+    # User lookup logic
     return json.dumps({'message': 'Get user'}, ensure_ascii=False)
 
 def create_user():
-    # 사용자 생성 로직
+    # User creation logic
     return json.dumps({'message': 'User created'}, ensure_ascii=False)
 
 def update_user():
-    # 사용자 수정 로직
+    # User modification logic
     return json.dumps({'message': 'User updated'}, ensure_ascii=False)
 ```
 
-Entry Point 설정:
+Entry Point Configuration:
 - `handlers.get_user`
 - `handlers.create_user`
 - `handlers.update_user`
 
-## 주의사항
+## Caution
 
-### 지원하지 않는 패키지
-현재 아래 특징이 있는 복잡한 패키지는 지원하지 않습니다.
+### Unsupported packages
+Complex packages with the following features are not currently supported:
 
-**지원하지 않는 패키지 예시:**
-- `numpy`, `pandas` (C/C++ 확장 모듈 필수)
-- `scipy` (시스템 라이브러리 의존성)
-- `tensorflow`, `pytorch` (복잡한 초기화 과정)
+**Examples of unsupported packages:**
+- `numpy`, `pandas` (C/C++ extension module required)
+- `scipy` (system library dependencies)
+- `tensorflow`, `pytorch` (complex initialization process)
 
-**지원 가능한 패키지 예시:**
-- `requests` (HTTP 클라이언트)
-- `pyyaml` (YAML 처리)
-- `python-dateutil` (날짜/시간 처리)
-- `pillow` (이미지 처리 - 기본 기능)
+**Examples of supported packages:**
+- `requests` (HTTP client)
+- `pyyaml` (YAML processing)
+- `python-dateutil` (date/time processing)
+- `pillow` (image processing - basic feature)
 
-### 메모리 및 실행 시간 고려사항
-- 함수는 제한된 메모리와 실행 시간 내에서 동작해야 합니다.
-- 대용량 데이터 처리 시 제너레이터나 스트림 처리를 고려하세요.
-- 장시간 실행되는 작업은 적절히 분할하세요.
+### Considerations for Memory and execution time
+- Functions must operate within limited memory and execution time.
+- Consider generator and stream processing when handling large-scale data.
+- Split long-running tasks appropriately.
