@@ -38,7 +38,7 @@ Users can write codes by function unit. Functions defined on a specific event ar
 |----------|------------|
 | NodeJS   | 20.16.0    |
 |          | 22.5.0     |
-|          | Debian     |
+|          | Debian (20.16.0)     |
 | Python   | 3.11       |
 | Go       | 1.22       |
 |          | 1.23       |

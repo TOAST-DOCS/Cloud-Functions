@@ -1,18 +1,18 @@
-## Compute > Cloud Functions > 코드 템플릿 가이드 > Go
+## Compute > Cloud Functions > Code Template Guide > Go
 
-이 문서는 NHN Cloud의 Cloud Functions 서비스에서 Go를 사용하여 함수를 개발하는 방법을 상세히 설명합니다.
+This document details how to develop functions by using Go from NHN Cloud's Cloud Functions service.
 
-## 템플릿 정보
-| 항목         | 값                  |
+## Template information
+| Item         | Value                  |
 |--------------|---------------------|
-| **지원 버전** | 1.22, 1.23         |
-| **파일명**    | functions.go       |
+| **Supported version** | 1.22, 1.23         |
+| **File name**    | functions.go       |
 | **Entry Point** | Handler          |
 
-## 기본 템플릿
+## Basic template
 
-### Hello World 예시
-가장 기본적인 함수 형태입니다.
+### Hello World example
+A basic form of function.
 
 ```go
 package main
@@ -38,8 +38,8 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-### Context 객체
-Go 함수에서는 `http.ResponseWriter`와 `*http.Request`를 통해 HTTP 요청과 응답을 처리합니다.
+### Context object
+In Go functions, HTTP requests and responses are processed via `http.ResponseWriter` and `*http.Request`.
 
 ```go
 package main
@@ -51,12 +51,12 @@ import (
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
-	// HTTP 요청 정보
+	// HTTP request information
 	method := r.Method
 	headers := r.Header
 	query := r.URL.Query()
 
-	// 응답 데이터 구성
+	// Configure response data
 	response := map[string]interface{}{
 		"method":  method,
 		"headers": headers,
@@ -64,7 +64,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		"path":    r.URL.Path,
 	}
 
-	// JSON 응답 설정
+	// Configure JSON response
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 
@@ -74,24 +74,24 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-## 템플릿 파일 다운로드 및 활용
+## Download and use template file
 
-### 템플릿 다운로드
-Cloud Functions에서 제공하는 Go 템플릿을 다운로드하여 로컬 환경에서 개발할 수 있습니다.
+### Template download
+You can download the Go template provided by Cloud Functions to develop a local environment.
 
-**템플릿 다운로드 링크**: [go.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/go/go.zip)
+**Template download link**: [go.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/go/go.zip)
 
-### 템플릿 파일 구조
-다운로드한 템플릿 파일의 구조는 다음과 같습니다.
+### Template file structure
+The structure of the downloaded template file is as follows:
 
 ```
 go.zip
-├── functions.go     # 메인 함수 파일
-└── go.mod          # 의존성 관리 파일
+├── functions.go     # Main function file
+└── go.mod          # Dependency management file
 ```
 
 #### functions.go
-기본 fake 데이터 생성 함수가 포함되어 있습니다.
+Include basic fake data generation functions.
 ```go
 package main
 
@@ -125,22 +125,22 @@ go 1.22
 require github.com/brianvoe/gofakeit/v6 v6.28.0
 ```
 
-### 로컬 개발 과정
+### Local development process
 
-#### 1. 압축 해제
+#### 1. Unzip
 ```bash
-# 압축 해제
+# Unzip
 unzip go.zip -d my-function
 
-# 작업 디렉터리 이동
+# Move to task directory
 cd my-function
 ```
 
-#### 2. 함수 코드 수정
-`functions.go` 파일을 원하는 로직으로 수정합니다.
+#### 2. Modify function codes
+Modify `functions.go` file with the logic you want.
 
 ```go
-// functions.go - 간단한 수정 예시
+// functions.go - Simple modification example
 package main
 
 import (
@@ -150,13 +150,13 @@ import (
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
-	// 쿼리 파라미터에서 이름 가져오기
+	// Import name from query parameter
 	name := r.URL.Query().Get("name")
 	if name == "" {
 		name = "World"
 	}
 
-	// POST 요청인 경우 body에서 메시지 가져오기
+	// Import message from body if POST request
 	var customMessage string
 	if r.Method == "POST" {
 		var data map[string]interface{}
@@ -167,7 +167,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	// 응답 데이터 구성
+	// Configure response data
 	response := map[string]interface{}{
 		"greeting":  "Hello, " + name + "!",
 		"message":   customMessage,
@@ -175,7 +175,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		"timestamp": time.Now().Format(time.RFC3339),
 	}
 
-	// JSON 응답
+	// JSON response
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 
@@ -185,41 +185,41 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-#### 3. ZIP 파일로 압축
-수정된 코드를 다시 ZIP 파일로 압축합니다.
+#### 3. Compress into a ZIP file
+Compress the modified source code into ZIP file.
 
 ```bash
 # Windows (PowerShell)
 Compress-Archive -Path .\functions.go, .\go.mod -DestinationPath my-function.zip
 
-# Windows (7-Zip 사용 시)
+# Windows (when using 7-Zip)
 7z a my-function.zip functions.go go.mod
 
 # macOS/Linux
 zip my-function.zip functions.go go.mod
 
-# 모든 파일 포함(추가 파일이 있는 경우)
+# Include all files (if any additional files are available)
 zip -r my-function.zip . -x "*.git*" "go.sum" "test.go"
 ```
 
-### Cloud Functions 콘솔에서 업로드
-> 함수를 생성하거나 수정할 때 사용자 로컬 환경의 파일을 업로드 시 사용. (콘솔 사용 가이드 참고)
+### Upload from Cloud Functions console
+> Used when uploading files from the user's local environment when creating or modifying a function. (refer to Console Guide)
 
-### 업로드 시 주의사항
+### Cautions for upload
 
-#### ZIP 파일 구조
-- ZIP 파일의 루트에 직접 `.go` 파일과 `go.mod`가 위치해야 합니다.
-- 불필요한 폴더 구조는 피할 것을 권장합니다.
+#### ZIP file structure
+- The `.go` file and `go.mod` must be located directly in the root of the ZIP file.
+- We recommend avoiding unnecessary folder structures.
 
-**올바른 구조:**
+**Right structure:**
 ```
 my-function.zip
 ├── functions.go
 ├── go.mod
-└── utils.go (추가 파일이 있는 경우)
+└── utils.go (if there are additional files)
 ```
 
-**잘못된 구조:**
+**Wrong structure:**
 ```
 my-function.zip
 └── my-function/
@@ -227,13 +227,13 @@ my-function.zip
     └── go.mod
 ```
 
-#### 파일 크기 제한
-- ZIP 파일 크기는 100MiB 이하로 제한됩니다.
-- `go.sum` 파일은 포함하지 마세요.
+#### File size limit
+- ZIP file size is limited to 100MiB.
+- `go.sum` file should not be included.
 
-#### 제외할 파일들
+#### Files to exclude
 ```bash
-# .gitignore와 유사하게 다음 파일들은 제외
+# Similar to .gitignore, exclude the following files:
 zip -r my-function.zip . -x \
   "go.sum" \
   ".git/*" \
@@ -243,9 +243,9 @@ zip -r my-function.zip . -x \
   "*.zip"
 ```
 
-## HTTP 메서드별 처리
+## Process by HTTP method
 
-### GET 요청 처리
+### Process GET request
 ```go
 package main
 
@@ -261,7 +261,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// 쿼리 파라미터 가져오기
+	// Import query parameter
 	name := r.URL.Query().Get("name")
 	if name == "" {
 		name = "World"
@@ -283,7 +283,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-### POST 요청 처리
+### Process POST request
 ```go
 package main
 
@@ -306,7 +306,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// request body 읽기
+	// Read request body
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		http.Error(w, "Error reading body", http.StatusBadRequest)
@@ -321,13 +321,13 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// 필수 필드 검증
+	// Validate required fields
 	if requestBody.Name == "" {
 		http.Error(w, "Missing required field: name", http.StatusBadRequest)
 		return
 	}
 
-	// 응답 데이터 생성
+	// Generate response data
 	response := map[string]interface{}{
 		"id":           generateID(),
 		"name":         requestBody.Name,
@@ -342,7 +342,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func generateID() string {
-	// 간단한 ID 생성(실제로는 UUID 등 사용)
+	// Generate simple ID (use UUID, etc. in reality)
 	return time.Now().Format("20060102150405")
 }
 
@@ -354,10 +354,10 @@ func getOrDefault(value, defaultValue string) string {
 }
 ```
 
-## 패키지 관리
+## Manage packages
 
-### go.mod 작성
-의존성 관리를 위해 `go.mod` 파일을 작성합니다.
+### Write go.mod
+Write `go.mod` to manage dependencies.
 
 ```go
 module example.com/myfunction
@@ -370,7 +370,7 @@ require (
 )
 ```
 
-### 외부 API 호출 예시
+### Example of external API call
 ```go
 package main
 
@@ -388,7 +388,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// 외부 API 호출
+	// External API call
 	resp, err := http.Get(fmt.Sprintf("https://jsonplaceholder.typicode.com/users/%s", userID))
 	if err != nil {
 		http.Error(w, "External API error", http.StatusInternalServerError)
@@ -412,7 +412,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// 응답 구성
+	// Response configuration
 	response := map[string]interface{}{
 		"user":       userData,
 		"fetched_at": time.Now().Format(time.RFC3339),
@@ -423,7 +423,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-### 데이터 처리 예시
+### Data processing example
 ```go
 package main
 
@@ -471,7 +471,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// 데이터 처리
+	// Data processing
 	var processedData []ProcessedItem
 	for _, item := range request.Data {
 		if item.Name != "" {
@@ -485,12 +485,12 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	// 데이터 정렬
+	// Data sorting
 	sort.Slice(processedData, func(i, j int) bool {
 		return processedData[i].NormalizedName < processedData[j].NormalizedName
 	})
 
-	// 유효한 데이터만 필터링
+	// Filter only vaild data
 	validData := make([]ProcessedItem, 0)
 	for _, item := range processedData {
 		if item.NormalizedName != "" {
@@ -516,16 +516,16 @@ func normalizeName(name string) string {
 }
 ```
 
-## Entry Point 설정
+## Configure Entry Point
 
-### 단일 함수
-함수명을 Entry Point로 사용합니다.
+### Single function
+Use the function name as the Entry Point.
 
-함수명: `Handler`
+Function name: `Handler`
 Entry Point: `Handler`
 
-### 다중 함수
-하나의 파일에서 여러 함수를 정의할 수 있습니다.
+### Multiple functions
+You can define multiple functions in a single file.
 
 ```go
 // handlers.go
@@ -537,14 +537,14 @@ import (
 )
 
 func GetUser(w http.ResponseWriter, r *http.Request) {
-	// 사용자 조회 로직
+	// User lookup logic
 	response := map[string]string{"message": "Get user"}
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(response)
 }
 
 func CreateUser(w http.ResponseWriter, r *http.Request) {
-	// 사용자 생성 로직
+	// User creation logic
 	response := map[string]string{"message": "User created"}
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
@@ -552,19 +552,19 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func UpdateUser(w http.ResponseWriter, r *http.Request) {
-	// 사용자 수정 로직
+	// User modification logic
 	response := map[string]string{"message": "User updated"}
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(response)
 }
 ```
 
-Entry Point 설정:
+Entry Point configuration:
 - `GetUser`
 - `CreateUser`
 - `UpdateUser`
 
-## 주의사항
+## Caution
 
-### Go 버전
-Go 1.22 또는 1.23 버전을 사용합니다.
+### Go version
+Use version Go 1.22 or 1.23.
