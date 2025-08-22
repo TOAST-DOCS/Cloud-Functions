@@ -1,18 +1,18 @@
-## Compute > Cloud Functions > 코드 템플릿 가이드 > Java
+## Compute > Cloud Functions > Code Template Guide > Java
 
-이 문서는 NHN Cloud의 Cloud Functions 서비스에서 Java를 사용하여 함수를 개발하는 방법을 상세히 설명합니다.
+This document details how to develop functions by using Java from NHN Cloud's Cloud Functions service.
 
-## 템플릿 정보
-| 항목         | 값                  |
+## Template information
+| Item         | Value                  |
 |--------------|---------------------|
-| **지원 버전** | 17, 21             |
-| **파일명**    | HelloWorld.java    |
+| **Supported version** | 17, 21             |
+| **File name**    | HelloWorld.java    |
 | **Entry Point** | example.HelloWorld |
 
-## 기본 템플릿
+## Basic template
 
-### Hello World 예시
-가장 기본적인 함수 형태입니다.
+### Hello World example
+A basic form of function.
 
 ```java
 package example;
@@ -29,8 +29,8 @@ public class HelloWorld {
 }
 ```
 
-### Context 객체(RequestEntity)
-Java 함수에서는 Spring의 `RequestEntity`를 통해 HTTP 요청 정보에 접근할 수 있습니다.
+### Context object (RequestEntity)
+In a Java function, you can access HTTP request information through `RequestEntity`.
 
 ```java
 package example;
@@ -45,13 +45,13 @@ import java.util.Map;
 public class HelloWorld {
 
     public ResponseEntity<?> call(RequestEntity<Map<String, Object>> req) {
-        // HTTP 요청 정보
+        // HTTP request information
         HttpMethod method = req.getMethod();
         URI url = req.getUrl();
         HttpHeaders headers = req.getHeaders();
         Map<String, Object> body = req.getBody();
 
-        // 응답 데이터 구성
+        // Response data configuration
         String responseBody = String.format(
             "Method: %s\nURL: %s\nHeaders: %s\nBody: %s",
             method, url, headers, body
@@ -62,15 +62,15 @@ public class HelloWorld {
 }
 ```
 
-## 템플릿 파일 다운로드 및 활용
+## Download and use template file
 
-### 템플릿 다운로드
-Cloud Functions에서 제공하는 Java 템플릿을 다운로드하여 로컬 환경에서 개발할 수 있습니다.
+### Template download
+You can download the Java template provided by Cloud Functions to develop a local environment.
 
-**템플릿 다운로드 링크**: [java.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/java/java.zip)
+**Template download link**: [java.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/java/java.zip)
 
-### 템플릿 파일 구조
-다운로드한 템플릿은 Maven 프로젝트 구조를 따릅니다.
+### Template file structure
+The structure of the downloaded template file is as follows:
 
 ```
 java.zip
@@ -82,22 +82,22 @@ java.zip
                 └── HelloWorld.java
 ```
 
-### 로컬 개발 과정
+### Local development process
 
-#### 1. 압축 해제
+#### 1. Unzip
 ```bash
-# 압축 해제
+# Unzip
 unzip java.zip -d my-java-function
 
-# 작업 디렉터리 이동
+# Move to task directory
 cd my-java-function
 ```
 
-#### 2. 함수 코드 수정
-`src/main/java/example/HelloWorld.java` 파일을 원하는 로직으로 수정합니다.
+#### 2. Modify function codes
+Modify `src/main/java/example/HelloWorld.java` file with the logic you want.
 
 ```java
-// HelloWorld.java - 간단한 수정 예시
+// HelloWorld.java - Simple modification example
 package example;
 
 import org.springframework.http.RequestEntity;
@@ -112,20 +112,20 @@ public class HelloWorld {
 
     public ResponseEntity<?> call(RequestEntity<Map<String, String>> req) {
         try {
-            // 쿼리 파라미터에서 이름 가져오기
+            // Import name from query parameter
             String name = Optional.ofNullable(req.getUrl().getQuery())
                                   .map(q -> q.split("="))
                                   .filter(p -> p.length > 1 && p[0].equals("name"))
                                   .map(p -> p[1])
                                   .orElse("World");
 
-            // POST 요청인 경우 body에서 메시지 가져오기
+            // Import message from body if POST request
             String customMessage = "";
             if (req.getMethod() == org.springframework.http.HttpMethod.POST && req.hasBody()) {
                 customMessage = req.getBody().getOrDefault("message", "");
             }
 
-            // 응답 데이터 구성
+            // Response data configuration
             Map<String, String> response = new HashMap<>();
             response.put("greeting", "Hello, " + name + "!");
             response.put("message", customMessage);
@@ -144,36 +144,36 @@ public class HelloWorld {
 }
 ```
 
-#### 3. ZIP 파일로 압축
-수정된 소스 코드를 다시 ZIP 파일로 압축합니다. `pom.xml` 파일과 `src` 디렉터리가 최상위에 포함되도록 압축해야 합니다.
+#### 3. Compress into a ZIP file
+Compress the modified source code into ZIP file. You must compress it so that `pom.xml` and `src` are included at the top level.
 
 ```bash
 # Windows (PowerShell)
 Compress-Archive -Path .\pom.xml, .\src -DestinationPath my-function.zip
 
-# Windows (7-Zip 사용 시)
+# Windows (when using 7-Zip)
 7z a my-function.zip pom.xml src
 
 # macOS/Linux
 zip -r my-function.zip pom.xml src
 
-# 모든 파일 포함(불필요한 파일 제외)
+# Include all files (exclude unnecessary files)
 zip -r my-function.zip . -x "*.git*" "target/*" "*.log"
 ```
 
-### Cloud Functions 콘솔에서 업로드
-- 함수 생성 또는 수정 시, **사용자 로컬 환경** 방식을 선택합니다.
-- **파일 선택**을 클릭하여 생성한 `my-function.zip` 파일을 업로드합니다.
+### Upload from Cloud Functions console
+- When creating or modifying a function, select the **User Local Environment** method.
+- Click **Select File** to upload the `my-function.zip` file you created.
 
-### 업로드 시 주의사항
-- **업로드 파일**: 소스 코드와 `pom.xml`이 포함된 **ZIP 파일**을 업로드해야 합니다.
-- **ZIP 파일 구조**: ZIP 파일의 루트에 `pom.xml`과 `src` 디렉터리가 위치해야 합니다.
-- **제외할 파일**: `target` 디렉터리, `.git` 디렉터리 등 불필요한 파일은 포함하지 마세요.
-- **파일 크기**: ZIP 파일 크기는 100MiB 이하로 제한됩니다.
+### Cautions for upload
+- **Upload File**: Upload **ZIP file** which includes source code and `pom.xml`.
+- **ZIP File Structure**: The `pom.xml` and `src` directory must be located directly in the root of the ZIP file.
+- **File to Exclude**: Do not include unnecessary files such as the `target` directory, `.git` directory, etc.
+- **File Size**: ZIP file size is limited to 100 MiB.
 
-## HTTP 메서드별 처리
+## Process by HTTP method
 
-### GET 요청 처리
+### Process GET request
 ```java
 package example;
 
@@ -193,7 +193,7 @@ public class GetHandler {
             return ResponseEntity.status(405).body("Method Not Allowed");
         }
 
-        // 쿼리 파라미터 가져오기
+        // Import query parameter
         String name = Optional.ofNullable(req.getUrl().getQuery())
                               .map(q -> URLDecoder.decode(q, StandardCharsets.UTF_8))
                               .map(q -> q.split("=")[1])
@@ -209,7 +209,7 @@ public class GetHandler {
 }
 ```
 
-### POST 요청 처리
+### Process POST request
 ```java
 package example;
 
@@ -238,7 +238,7 @@ public class PostHandler {
             return ResponseEntity.badRequest().body("Missing required field: name");
         }
 
-        // 처리 로직
+        // Processing logic
         Map<String, String> response = new HashMap<>();
         response.put("id", UUID.randomUUID().toString().substring(0, 8));
         response.put("name", name);
@@ -250,13 +250,13 @@ public class PostHandler {
 }
 ```
 
-## 패키지 관리(`pom.xml`)
+## Manage package (`pom.xml`)
 
-의존성 관리를 위해 `pom.xml` 파일을 수정합니다. `dependencies` 섹션에 필요한 라이브러리를 추가하면, 함수 업로드 시 Cloud Functions가 자동으로 의존성을 다운로드하여 빌드에 포함합니다.
+Use the `pom.xml` file to manage dependencies. When you add required libraries to the `dependencies` section, Cloud Functions automatically downloads the dependencies and includes them in the build when you upload your function.
 
 ```xml
 <dependencies>
-    <!-- 기본 Spring Boot 의존성(Jackson 포함) -->
+    <!-- Basic Spring Boot dependencies (include Jackson) -->
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-web</artifactId>
@@ -264,7 +264,7 @@ public class PostHandler {
         <scope>provided</scope>
     </dependency>
 
-    <!-- Apache Commons Lang3 라이브러리 추가 예시 -->
+    <!-- Example of adding Apache Commons Lang3 library -->
     <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-lang3</artifactId>
@@ -273,7 +273,7 @@ public class PostHandler {
 </dependencies>
 ```
 
-### 외부 라이브러리 활용 예시
+### Example of using external libraries
 ```java
 package example;
 
@@ -295,7 +295,7 @@ public class StringUtilsHandler {
             return ResponseEntity.badRequest().body("Body must contain a 'text' field.");
         }
 
-        // Apache Commons Lang3 StringUtils를 사용한 문자열 조작
+        // String manipulation using Apache Commons Lang3 StringUtils
         Map<String, Object> response = new HashMap<>();
         response.put("original", originalText);
         response.put("reversed", StringUtils.reverse(originalText));
@@ -307,16 +307,16 @@ public class StringUtilsHandler {
 }
 ```
 
-## Entry Point 설정
+## Entry Point configuration
 
-### 단일 클래스
-`패키지명.클래스명`을 Entry Point로 사용합니다.
+### Single class
+Use `packagename.classname` as an Entry Point.
 
-- 패키지명: `example`
-- 클래스명: `HelloWorld`
+- Package name: `example`
+- Class name: `HelloWorld`
 - Entry Point: `example.HelloWorld`
-- **중요**: 함수 역할을 하는 메서드는 `public ResponseEntity<?> call(RequestEntity<?> req)` 시그니처를 가져야 합니다.
+- **Important**: Methods that act as functions must have the signature `public ResponseEntity<?> call(RequestEntity<?> req)`.
 
-### 주의사항
-- **프로젝트 구조**: `src/main/java` 디렉터리 구조를 유지해야 합니다.
-- **메모리 및 실행 시간**: 함수는 제한된 리소스 내에서 동작해야 하므로, 무거운 작업은 피하고 코드를 최적화하세요.
+### Caution
+- **Project structure**: You must maintain the `src/main/java` directory structure.
+- **Memory and execution time**: Functions must operate within limited resources, so avoid heavy workloads and optimize the code.
