@@ -1,5 +1,5 @@
 ## Compute > Cloud Functions > Console User Guide
-This document describes how to create and manage functions in NHN Cloud Functions console.
+This document describes how to create and manage functions in Cloud Functions console.
 
 ## Manage functions
 You can create, edit, delete, and copy functions.
@@ -109,13 +109,13 @@ After setting up the function and writing the code, click the Create button to b
     <tr>
         <td>2.</td>
         <td>Entry Point</td>
-        <td>Specify the entry point for the function, such as function name <br>It is automatically completed to match the template in the runtime environment.<br>It must match the entry point in the source code that you wrote when you modified randomly.</td>
+        <td>Specify the entry point for the function, such as function name <br>It is automatically completed to match the template in the runtime environment.<br>It must match the entry point in the source code that you wrote when you modified randomly.<br>If you entered it incorrectly, <strong>you cannot check it with deployment</strong>, <strong>but you can check it with with the log during testing</strong>.</td>
     </tr>
     <tr>
         <td rowspan="3">Code</td>
         <td>3.</td>
         <td>Code editor</td>
-        <td>The template files in the runtime environment are loaded, and you modify them to write the function.</td>
+        <td>The template files in the runtime environment are loaded, and you modify them to write the function.<br>You cannot add directories on the code editor. To edit the directory structure, you must download the template file, edit it locally, and then upload the ZIP file.</td>
     </tr>
     <tr>
         <td>4.</td>
@@ -136,7 +136,7 @@ After setting up the function and writing the code, click the Create button to b
     <tr>
         <td>7.</td>
         <td>Test</td>
-        <td>Test the function by sending the JSON Body you created to the event. (This must be deployed first.) <br>You can verify function behavior with logs.</td>
+        <td>Test the function by sending the JSON Body you created to the event. (This must be deployed first.) <br>You can verify function behavior with logs.<br>Call with the GET method.</td>
     </tr>
     <tr>
         <td></td>
