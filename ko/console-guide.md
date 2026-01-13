@@ -180,7 +180,7 @@
 - 로그 관리 항목에서 **Log & Crash Search** 버튼을 클릭해 Log & Crash Search 서비스로 이동하여 로그를 확인할 수 있습니다.
 
 ### 함수 버전 관리
-![console-guide-XX]()
+![console-guide-15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2026-01-27/console-guide-15.png)
 - 함수의 버전을 관리할 수 있습니다.
 - 생성된 모든 버전의 이력을 확인하고, 이전 버전으로 롤백할 수 있습니다.
 
