@@ -183,7 +183,7 @@
 - ログ管理項目で **Log & Crash Search** ボタンをクリックし、Log & Crash Searchサービスへ移動してログを確認できます。
 
 ### 関数バージョン管理
-![console-guide-XX]()
+![console-guide-15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2026-01-27/console-guide-jp-15.png)
 - 関数のバージョンを管理できます。
 - 作成された全てのバージョンの履歴を確認し、以前のバージョンにロールバックできます。
 

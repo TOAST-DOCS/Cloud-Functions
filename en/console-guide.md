@@ -180,7 +180,7 @@ Copy a function that is identical to an existing function. The name cannot be du
 - Click Log & Crash Search in the Log Management section to view your logs in the Log & Crash Search service.
 
 ### Function versioning
-![console-guide-XX]()
+![console-guide-15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2026-01-27/console-guide-en-15.png)
 - You can manage function versions.
 - You can view version history and rollback to any previous version.
 
