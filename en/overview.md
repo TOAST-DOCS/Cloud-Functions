@@ -37,27 +37,29 @@ Users can write codes by function unit. Functions defined on a specific event ar
 ![overview-02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-08-26/NHN%20Cloud_Guide%20overview_CloudFunctions_2_en.png)
 
 ### Supported languages
-| Language     | Version       |
-|----------|------------|
-| NodeJS | 20.16.0         |
-|        | 22.5.0          |
-|        | Debian(20.16.0) |
-| Python | 3.11            |
-|        | 3.12            |
-|        | 3.13            |
-| Go     | 1.22 (scheduled for deprecation)   |
-|        | 1.23 (scheduled for deprecation)   |
-|        | 1.24            |
-|        | 1.25            |
-| Java   | 17              |
-|        | 21              |
-| Ruby   | 2.6.1 (deprecated)    |
-|        | 3.4.5           |
-| .NET   | 7 (deprecated)        |
-|        | 8               |
+| Language     | Version                | End of Support   | End of Service   |
+|--------|-------------------|------------|------------|
+| NodeJS | 22.5.0            | 2027-04-30 | 2027-10-30 |
+|        | 20.16.0           | 2026-04-30 | 2026-10-30 |
+|        | Debian(20.16.0)   | 2026-04-30 | 2026-10-30 |
+| Python | 3.13              | 2029-10-10 | 2030-04-10 |
+|        | 3.12              | 2028-10-02 | 2029-04-02 |
+|        | 3.11              | 2027-10-24 | 2028-04-24 |
+| Go     | 1.25              | -          | -          |
+|        | 1.24              | -          | -          |
+|        | 1.23              | 2026-02-21 | 2026-08-21 |
+|        | 1.22              | 2026-01-28 | 2026-07-28 |
+| Java   | 21                | 2029-12-31 | 2030-12-31 |
+|        | 17                | 2027-10-31 | 2028-10-31 |
+| Ruby   | 3.4.5             | 2028-03-31 | 2028-09-30 |
+|        | 2.6.1 (end of service)     | 2024-01-30 | 2025-01-30 |
+| .NET   | 8                 | 2026-11-10 | 2027-11-10 |
+|        | 7 (end of service)         | 2024-05-14 | 2025-05-14 |
 
 ### Trigger
 - HTTP Trigger
     - Basic (support GET, POST)
 - Timer Trigger
     - You can add it in the cron expression form.
+- API Gateway Trigger
+    - It can be integrated with the API Gateway service.
