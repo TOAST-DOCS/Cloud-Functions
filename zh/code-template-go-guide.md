@@ -5,7 +5,7 @@ This document details how to develop functions by using Go from NHN Cloud's Clou
 ## Template information
 | Item              | Value                                        |
 |-----------------|------------------------------------------|
-| **Supported version**       | 1.22 (scheduled for deprecation), 1.23 (scheduled for deprecation), 1.24, 1.25 |
+| **Supported version**       | 1.22, 1.23, 1.24, 1.25 |
 | **File name**    | functions.go                               |
 | **Entry Point** | Handler                                  |
 
@@ -567,15 +567,14 @@ Entry Point configuration:
 ## Caution
 
 ### Go version
-Currently, supported Go versions are **1.24** and **1.25**.
-
-**Deprecation Planned**: Go 1.22 and 1.23 are deprecated, and their use will be restricted.
+| Version | End of Support | End of Service |
+|-----|-----------|-----------|
+| 1.25 | - | - |
+| 1.24 | - | - |
+| 1.23 | 2026-02-21 | 2026-08-21 |
+| 1.22 | 2026-01-28 | 2026-07-28 |
 
 #### Go Version Support Policy
 Cloud Functions follows Go's official release policy. Go releases new major versions twice a year (January and July), and each version is supported only up to the latest two major versions.
-
-**Example**:
-- Go 1.22 will no longer be supported when Go 1.24 is released.
-- Go 1.23 will no longer be supported when Go 1.25 is released.
 
 **Recommendation**: use the latest supported version (1.24 or 1.25) to continue receiving security patches and bug fixes.
