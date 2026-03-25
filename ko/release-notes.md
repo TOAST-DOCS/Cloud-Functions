@@ -1,5 +1,11 @@
 ## Compute > Cloud Functions > 릴리스 노트
 
+### 2026. 04. 14.
+
+#### 기능 추가
+- Public API v1.0 추가
+    - API를 사용하여 Cloud Functions를 이용 가능
+
 ### 2026. 01. 27.
 
 #### 기능 추가
