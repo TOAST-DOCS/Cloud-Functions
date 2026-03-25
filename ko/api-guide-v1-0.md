@@ -283,11 +283,8 @@ GET /v1.0/functions/{functionName}
 ## 함수 생성
 
 새 함수를 생성합니다. multipart/form-data로 소스 파일을 업로드합니다.
-
-!!! tip "알아두기"
 runtime은 `{environment}-{version}` 형식으로 입력해야 합니다 (예: Node.js-18). 사용 가능한 런타임은 환경 목록 조회 API로 확인할 수 있습니다.
 
-!!! danger "주의"
 executorType에 따라 필수 파라미터가 달라집니다. poolManager일 때는 requestPerPod가, newDeployment일 때는 minInstance와 maxInstance가 필수입니다.
 
 ### 요청
@@ -346,7 +343,6 @@ Content-Type: multipart/form-data
 
 함수를 수정합니다. multipart/form-data로 소스 파일을 업로드할 수 있습니다.
 
-!!! "알아두기"
 소스 파일(sourceFile)은 선택 항목입니다. 소스 파일을 포함하지 않으면 기존 소스 코드가 유지됩니다.
 
 ### 요청
@@ -688,7 +684,6 @@ PUT /v1.0/functions/{functionName}/versions
 
 함수의 버전을 일괄 삭제합니다.
 
-!!! danger "주의"
 현재 활성 버전은 삭제할 수 없습니다.
 
 ### 요청
