@@ -27,14 +27,14 @@ User Access Key 토큰 발급 및 사용에 대한 자세한 내용은 [User Acc
 
 ```json
 {
-    "header": {
-        "isSuccessful": true,
-        "resultCode": 0,
-        "resultMessage": "success"
-    },
-    "data": {
-        ...
-    }
+  "header": {
+    "isSuccessful": true,
+    "resultCode": 0,
+    "resultMessage": "success"
+  },
+  "data": {
+    ...
+  }
 }
 ```
 
@@ -45,12 +45,12 @@ User Access Key 토큰 발급 및 사용에 대한 자세한 내용은 [User Acc
 
 ```json
 {
-    "header": {
-        "isSuccessful": false,
-        "resultCode": -1,
-        "resultMessage": "Error message"
-    },
-    "data": null
+  "header": {
+    "isSuccessful": false,
+    "resultCode": -1,
+    "resultMessage": "Error message"
+  },
+  "data": null
 }
 ```
 
@@ -60,9 +60,9 @@ User Access Key 토큰 발급 및 사용에 대한 자세한 내용은 [User Acc
 | --- | --- | --- |
 | header | Object | 응답 헤더 |
 | header.isSuccessful | Boolean | API 호출 성공 여부 |
-| header.resultCode | Integer | 결과 코드 (성공: 0, 실패: -1) |
+| header.resultCode | Integer | 결과 코드(성공: 0, 실패: -1) |
 | header.resultMessage | String | 결과 메시지 |
-| data | Object | 응답 데이터 (API별 상이) |
+| data | Object | 응답 데이터(API별 상이) |
 
 ---
 
@@ -81,7 +81,7 @@ GET /v1.0/env/list
 | 이름 | 구분 | 타입 | 필수 | 설명 |
 | --- | --- | --- | --- | --- |
 | X-NHN-appkey | Header | String | Y | 앱키 |
-| X-NHN-authorization | Header | String | Y | 사용자 토큰 (Bearer {token}) |
+| X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
 
 ### 요청 본문
 
@@ -122,8 +122,8 @@ GET /v1.0/env/list
 | --- | --- | --- |
 | data | Array | 환경 목록 |
 | data[].id | Integer | 환경 ID |
-| data[].environment | String | 런타임 환경 (예: Node.js) |
-| data[].version | String | 런타임 버전 (예: 18) |
+| data[].environment | String | 런타임 환경(예: Node.js) |
+| data[].version | String | 런타임 버전(예: 18) |
 | data[].entryPoint | String | 기본 진입점 |
 
 ---
@@ -143,9 +143,9 @@ GET /v1.0/functions
 | 이름 | 구분 | 타입 | 필수 | 설명 |
 | --- | --- | --- | --- | --- |
 | X-NHN-appkey | Header | String | Y | 앱키 |
-| X-NHN-authorization | Header | String | Y | 사용자 토큰 (Bearer {token}) |
-| page | Query | Integer | N | 현재 페이지 (기본값: 0) |
-| pageSize | Query | Integer | N | 한 페이지에 노출될 개수 (기본값: 5000) |
+| X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
+| page | Query | Integer | N | 현재 페이지(기본값: 0) |
+| pageSize | Query | Integer | N | 한 페이지에 노출될 개수(기본값: 5000) |
 
 ### 요청 본문
 
@@ -190,13 +190,13 @@ GET /v1.0/functions
 | data.functions | Array | 함수 목록 |
 | data.functions[].name | String | 함수 이름 |
 | data.functions[].description | String | 함수 설명 |
-| data.functions[].runtime | String | 런타임 (예: Node.js 18) |
-| data.functions[].executorType | String | 실행 타입 (poolmgr 또는 newdeploy) |
-| data.functions[].memory | Integer | 메모리 (MB) |
-| data.functions[].timeout | Integer | 타임아웃 (초) |
-| data.functions[].buildStatus | String | 빌드 상태 (PENDING, RUNNING, SUCCEEDED, FAILED) |
-| data.functions[].createdAt | String | 생성 시간 (epoch seconds) |
-| data.functions[].updatedAt | String | 수정 시간 (ISO 8601, 예: 2026-03-09T14:59:44Z) |
+| data.functions[].runtime | String | 런타임(예: Node.js 18) |
+| data.functions[].executorType | String | 실행 타입(poolmgr 또는 newdeploy) |
+| data.functions[].memory | Integer | 메모리(MB) |
+| data.functions[].timeout | Integer | 타임아웃(초) |
+| data.functions[].buildStatus | String | 빌드 상태(PENDING, RUNNING, SUCCEEDED, FAILED) |
+| data.functions[].createdAt | String | 생성 시간(epoch seconds) |
+| data.functions[].updatedAt | String | 수정 시간(ISO 8601, 예: 2026-03-09T14:59:44Z) |
 
 ---
 
@@ -215,7 +215,7 @@ GET /v1.0/functions/{functionName}
 | 이름 | 구분 | 타입 | 필수 | 설명 |
 | --- | --- | --- | --- | --- |
 | X-NHN-appkey | Header | String | Y | 앱키 |
-| X-NHN-authorization | Header | String | Y | 사용자 토큰 (Bearer {token}) |
+| X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
 | functionName | URL | String | Y | 함수 이름 |
 
 ### 요청 본문
@@ -262,13 +262,13 @@ GET /v1.0/functions/{functionName}
 | --- | --- | --- |
 | data.name | String | 함수 이름 |
 | data.description | String | 함수 설명 |
-| data.runtime | String | 런타임 (예: Node.js 18) |
-| data.executorType | String | 실행 타입 (poolmgr 또는 newdeploy) |
-| data.memory | Integer | 메모리 (MB) |
-| data.timeout | Integer | 타임아웃 (초) |
-| data.buildStatus | String | 빌드 상태 (PENDING, RUNNING, SUCCEEDED, FAILED) |
-| data.createdAt | String | 생성 시간 (epoch seconds) |
-| data.updatedAt | String | 수정 시간 (ISO 8601, 예: 2026-03-09T14:59:44Z) |
+| data.runtime | String | 런타임(예: Node.js 18) |
+| data.executorType | String | 실행 타입(poolmgr 또는 newdeploy) |
+| data.memory | Integer | 메모리(MB) |
+| data.timeout | Integer | 타임아웃(초) |
+| data.buildStatus | String | 빌드 상태(PENDING, RUNNING, SUCCEEDED, FAILED) |
+| data.createdAt | String | 생성 시간(epoch seconds) |
+| data.updatedAt | String | 수정 시간(ISO 8601, 예: 2026-03-09T14:59:44Z) |
 | data.entryPoint | String | 함수 진입점 |
 | data.requestPerPod | Integer | Pod당 동시 요청 수 |
 | data.minInstance | Integer | 최소 인스턴스 수 |
@@ -283,7 +283,7 @@ GET /v1.0/functions/{functionName}
 ## 함수 생성
 
 새 함수를 생성합니다. multipart/form-data로 소스 파일을 업로드합니다.
-runtime은 `{environment}-{version}` 형식으로 입력해야 합니다 (예: Node.js-18). 사용 가능한 런타임은 환경 목록 조회 API로 확인할 수 있습니다.
+runtime은 `{environment}-{version}` 형식으로 입력해야 합니다(예: Node.js-18). 사용 가능한 런타임은 환경 목록 조회 API로 확인할 수 있습니다.
 
 executorType에 따라 필수 파라미터가 달라집니다. poolManager일 때는 requestPerPod가, newDeployment일 때는 minInstance와 maxInstance가 필수입니다.
 
@@ -298,7 +298,7 @@ POST /v1.0/functions
 | 이름 | 구분 | 타입 | 필수 | 설명 |
 | --- | --- | --- | --- | --- |
 | X-NHN-appkey | Header | String | Y | 앱키 |
-| X-NHN-authorization | Header | String | Y | 사용자 토큰 (Bearer {token}) |
+| X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
 
 ### 요청 본문
 
@@ -308,16 +308,16 @@ Content-Type: multipart/form-data
 | --- | --- | --- | --- |
 | name | String | Y | 함수 이름 |
 | description | String | N | 함수 설명 |
-| executorType | String | Y | 실행 타입 (poolManager 또는 newDeployment) |
-| runtime | String | Y | 런타임 ({environment}-{version} 형식, 예: Node.js-18) |
+| executorType | String | Y | 실행 타입(poolManager 또는 newDeployment) |
+| runtime | String | Y | 런타임({environment}-{version} 형식, 예: Node.js-18) |
 | entryPoint | String | Y | 함수 진입점 |
-| memory | Integer | Y | 메모리 (MB). 기본 리소스 세트 값: 128, 256, 512, 1024, 2048, 4096. newDeployment의 경우 64~4096 범위의 커스텀 값도 사용 가능 |
-| requestPerPod | Integer | Conditional | Pod당 동시 요청 수 (poolManager일 때 1~1000, 기본값: 1) |
-| timeout | Integer | N | 타임아웃 (초, 1~900, 기본값: 60) |
-| minInstance | Integer | Conditional | 최소 인스턴스 수 (newDeployment일 때 필수, 1~100, maxInstance 이하) |
-| maxInstance | Integer | Conditional | 최대 인스턴스 수 (newDeployment일 때 필수, 1~100) |
+| memory | Integer | Y | 메모리(MB). 기본 리소스 세트 값: 128, 256, 512, 1024, 2048, 4096. newDeployment의 경우 64~4096 범위의 커스텀 값도 사용 가능 |
+| requestPerPod | Integer | Conditional | Pod당 동시 요청 수(poolManager일 때 1~1000, 기본값: 1) |
+| timeout | Integer | N | 타임아웃(초, 1~900, 기본값: 60) |
+| minInstance | Integer | Conditional | 최소 인스턴스 수(newDeployment일 때 필수, 1~100, maxInstance 이하) |
+| maxInstance | Integer | Conditional | 최대 인스턴스 수(newDeployment일 때 필수, 1~100) |
 | lncsAppkey | String | N | LnCS 앱키 |
-| sourceFile | Binary | Y | 소스 코드 파일 (zip) |
+| sourceFile | Binary | Y | 소스 코드 파일(ZIP) |
 
 ### 응답
 
@@ -356,7 +356,7 @@ PUT /v1.0/functions/{functionName}
 | 이름 | 구분 | 타입 | 필수 | 설명 |
 | --- | --- | --- | --- | --- |
 | X-NHN-appkey | Header | String | Y | 앱키 |
-| X-NHN-authorization | Header | String | Y | 사용자 토큰 (Bearer {token}) |
+| X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
 | functionName | URL | String | Y | 수정할 함수 이름 |
 
 ### 요청 본문
@@ -366,16 +366,16 @@ Content-Type: multipart/form-data
 | 이름 | 타입 | 필수 | 설명 |
 | --- | --- | --- | --- |
 | description | String | N | 함수 설명 |
-| executorType | String | Y | 실행 타입 (poolManager 또는 newDeployment) |
-| runtime | String | Y | 런타임 ({environment}-{version} 형식, 예: Node.js-18) |
+| executorType | String | Y | 실행 타입(poolManager 또는 newDeployment) |
+| runtime | String | Y | 런타임({environment}-{version} 형식, 예: Node.js-18) |
 | entryPoint | String | Y | 함수 진입점 |
-| memory | Integer | Y | 메모리 (MB). 기본 리소스 세트 값: 128, 256, 512, 1024, 2048, 4096. newDeployment의 경우 64~4096 범위의 커스텀 값도 사용 가능 |
-| requestPerPod | Integer | Conditional | Pod당 동시 요청 수 (poolManager일 때 1~1000) |
-| timeout | Integer | N | 타임아웃 (초, 1~900, 기본값: 60) |
-| minInstance | Integer | Conditional | 최소 인스턴스 수 (newDeployment일 때 필수, 1~100, maxInstance 이하) |
-| maxInstance | Integer | Conditional | 최대 인스턴스 수 (newDeployment일 때 필수, 1~100) |
+| memory | Integer | Y | 메모리(MB). 기본 리소스 세트 값: 128, 256, 512, 1024, 2048, 4096. newDeployment의 경우 64~4096 범위의 커스텀 값도 사용 가능 |
+| requestPerPod | Integer | Conditional | Pod당 동시 요청 수(poolManager일 때 1~1000) |
+| timeout | Integer | N | 타임아웃(초, 1~900, 기본값: 60) |
+| minInstance | Integer | Conditional | 최소 인스턴스 수(newDeployment일 때 필수, 1~100, maxInstance 이하) |
+| maxInstance | Integer | Conditional | 최대 인스턴스 수(newDeployment일 때 필수, 1~100) |
 | lncsAppkey | String | N | LnCS 앱키 |
-| sourceFile | Binary | N | 소스 코드 파일 (zip) |
+| sourceFile | Binary | N | 소스 코드 파일(ZIP) |
 
 ### 응답
 
@@ -412,7 +412,7 @@ DELETE /v1.0/functions
 | 이름 | 구분 | 타입 | 필수 | 설명 |
 | --- | --- | --- | --- | --- |
 | X-NHN-appkey | Header | String | Y | 앱키 |
-| X-NHN-authorization | Header | String | Y | 사용자 토큰 (Bearer {token}) |
+| X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
 
 ### 요청 본문
 
@@ -451,7 +451,7 @@ DELETE /v1.0/functions
 
 ---
 
-## 함수 실행 (GET)
+## 함수 실행(GET)
 
 GET 방식으로 함수를 실행합니다.
 
@@ -466,7 +466,7 @@ GET /v1.0/functions/{functionName}/invoke
 | 이름 | 구분 | 타입 | 필수 | 설명 |
 | --- | --- | --- | --- | --- |
 | X-NHN-appkey | Header | String | Y | 앱키 |
-| X-NHN-authorization | Header | String | Y | 사용자 토큰 (Bearer {token}) |
+| X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
 | functionName | URL | String | Y | 실행할 함수 이름 |
 
 ### 요청 본문
@@ -497,7 +497,7 @@ GET /v1.0/functions/{functionName}/invoke
 
 ---
 
-## 함수 실행 (POST)
+## 함수 실행(POST)
 
 POST 방식으로 함수를 실행합니다. body를 전달할 수 있습니다.
 
@@ -512,7 +512,7 @@ POST /v1.0/functions/{functionName}/invoke
 | 이름 | 구분 | 타입 | 필수 | 설명 |
 | --- | --- | --- | --- | --- |
 | X-NHN-appkey | Header | String | Y | 앱키 |
-| X-NHN-authorization | Header | String | Y | 사용자 토큰 (Bearer {token}) |
+| X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
 | functionName | URL | String | Y | 실행할 함수 이름 |
 
 ### 요청 본문
@@ -571,7 +571,7 @@ GET /v1.0/functions/{functionName}/versions
 | 이름 | 구분 | 타입 | 필수 | 설명 |
 | --- | --- | --- | --- | --- |
 | X-NHN-appkey | Header | String | Y | 앱키 |
-| X-NHN-authorization | Header | String | Y | 사용자 토큰 (Bearer {token}) |
+| X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
 | functionName | URL | String | Y | 함수 이름 |
 
 ### 요청 본문
@@ -619,8 +619,8 @@ GET /v1.0/functions/{functionName}/versions
 | data[].versionId | Integer | 버전 ID |
 | data[].versionName | String | 버전 이름 |
 | data[].sourceFileName | String | 소스 파일 이름 |
-| data[].buildStatus | String | 빌드 상태 (PENDING, RUNNING, SUCCEEDED, FAILED) |
-| data[].createdAt | String | 생성 시간 (ISO 8601, 예: 2026-03-09T14:59:44Z) |
+| data[].buildStatus | String | 빌드 상태(PENDING, RUNNING, SUCCEEDED, FAILED) |
+| data[].createdAt | String | 생성 시간(ISO 8601, 예: 2026-03-09T14:59:44Z) |
 | data[].isCurrent | Boolean | 현재 활성 버전 여부 |
 
 ---
@@ -640,7 +640,7 @@ PUT /v1.0/functions/{functionName}/versions
 | 이름 | 구분 | 타입 | 필수 | 설명 |
 | --- | --- | --- | --- | --- |
 | X-NHN-appkey | Header | String | Y | 앱키 |
-| X-NHN-authorization | Header | String | Y | 사용자 토큰 (Bearer {token}) |
+| X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
 | functionName | URL | String | Y | 함수 이름 |
 
 ### 요청 본문
@@ -697,7 +697,7 @@ DELETE /v1.0/functions/{functionName}/versions
 | 이름 | 구분 | 타입 | 필수 | 설명 |
 | --- | --- | --- | --- | --- |
 | X-NHN-appkey | Header | String | Y | 앱키 |
-| X-NHN-authorization | Header | String | Y | 사용자 토큰 (Bearer {token}) |
+| X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
 | functionName | URL | String | Y | 함수 이름 |
 
 ### 요청 본문
@@ -752,7 +752,7 @@ GET /v1.0/triggers/{functionName}
 | 이름 | 구분 | 타입 | 필수 | 설명 |
 | --- | --- | --- | --- | --- |
 | X-NHN-appkey | Header | String | Y | 앱키 |
-| X-NHN-authorization | Header | String | Y | 사용자 토큰 (Bearer {token}) |
+| X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
 | functionName | URL | String | Y | 함수 이름 |
 
 ### 요청 본문
@@ -793,9 +793,9 @@ GET /v1.0/triggers/{functionName}
 | 이름 | 타입 | 설명 |
 | --- | --- | --- |
 | data | Array | 트리거 목록 |
-| data[].type | String | 트리거 타입 (http, time, api-gateway) |
+| data[].type | String | 트리거 타입(http, time, api-gateway) |
 | data[].name | String | 트리거 이름 |
-| data[].value | String | 트리거 값 (URL 또는 cron 표현식) |
+| data[].value | String | 트리거 값(URL 또는 cron 표현식) |
 | data[].isActivated | Boolean | 활성화 여부 |
 
 ---
@@ -815,7 +815,7 @@ POST /v1.0/triggers/{functionName}/time
 | 이름 | 구분 | 타입 | 필수 | 설명 |
 | --- | --- | --- | --- | --- |
 | X-NHN-appkey | Header | String | Y | 앱키 |
-| X-NHN-authorization | Header | String | Y | 사용자 토큰 (Bearer {token}) |
+| X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
 | functionName | URL | String | Y | 함수 이름 |
 
 ### 요청 본문
@@ -870,7 +870,7 @@ PUT /v1.0/triggers/{functionName}/time
 | 이름 | 구분 | 타입 | 필수 | 설명 |
 | --- | --- | --- | --- | --- |
 | X-NHN-appkey | Header | String | Y | 앱키 |
-| X-NHN-authorization | Header | String | Y | 사용자 토큰 (Bearer {token}) |
+| X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
 | functionName | URL | String | Y | 함수 이름 |
 
 ### 요청 본문
@@ -927,7 +927,7 @@ DELETE /v1.0/triggers/{functionName}/time
 | 이름 | 구분 | 타입 | 필수 | 설명 |
 | --- | --- | --- | --- | --- |
 | X-NHN-appkey | Header | String | Y | 앱키 |
-| X-NHN-authorization | Header | String | Y | 사용자 토큰 (Bearer {token}) |
+| X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
 | functionName | URL | String | Y | 함수 이름 |
 
 ### 요청 본문
@@ -937,7 +937,7 @@ DELETE /v1.0/triggers/{functionName}/time
 
 ```json
 {
-    "names": ["time-trigger-1", "time-trigger-2"]
+  "names": ["time-trigger-1", "time-trigger-2"]
 }
 ```
 
@@ -954,12 +954,12 @@ DELETE /v1.0/triggers/{functionName}/time
 
 ```json
 {
-    "header": {
-        "isSuccessful": true,
-        "resultCode": 0,
-        "resultMessage": "Successfully deleted the trigger."
-    },
-    "data": null
+  "header": {
+    "isSuccessful": true,
+    "resultCode": 0,
+    "resultMessage": "Successfully deleted the trigger."
+  },
+  "data": null
 }
 ```
 
