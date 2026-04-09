@@ -102,8 +102,8 @@ GET /v1.0/env/list
     "data": [
         {
             "id": 1,
-            "environment": "Node.js",
-            "version": "18",
+            "environment": "NodeJS",
+            "version": "22.5.0",
             "entryPoint": "index.handler"
         },
         {
@@ -118,13 +118,13 @@ GET /v1.0/env/list
 
 </details>
 
-| 이름 | 타입 | 설명 |
-| --- | --- | --- |
-| data | Array | 환경 목록 |
-| data[].id | Integer | 환경 ID |
-| data[].environment | String | 런타임 환경(예: Node.js) |
-| data[].version | String | 런타임 버전(예: 18) |
-| data[].entryPoint | String | 기본 진입점 |
+| 이름 | 타입 | 설명                |
+| --- | --- |-------------------|
+| data | Array | 환경 목록             |
+| data[].id | Integer | 환경 ID             |
+| data[].environment | String | 런타임 환경(예: NodeJS) |
+| data[].version | String | 런타임 버전(예: 22.5.0)     |
+| data[].entryPoint | String | 기본 진입점            |
 
 ---
 
@@ -145,7 +145,7 @@ GET /v1.0/functions
 | X-NHN-appkey | Header | String | Y | 앱키 |
 | X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
 | page | Query | Integer | N | 현재 페이지(기본값: 0) |
-| pageSize | Query | Integer | N | 한 페이지에 노출될 개수(기본값: 5000) |
+| pageSize | Query | Integer | N | 한 페이지에 노출될 개수 |
 
 ### 요청 본문
 
@@ -169,7 +169,7 @@ GET /v1.0/functions
             {
                 "name": "my-function",
                 "description": "샘플 함수",
-                "runtime": "Node.js 18",
+                "runtime": "NodeJS 22.5.0",
                 "executorType": "poolmgr",
                 "memory": 256,
                 "timeout": 60,
@@ -190,7 +190,7 @@ GET /v1.0/functions
 | data.functions | Array | 함수 목록 |
 | data.functions[].name | String | 함수 이름 |
 | data.functions[].description | String | 함수 설명 |
-| data.functions[].runtime | String | 런타임(예: Node.js 18) |
+| data.functions[].runtime | String | 런타임(예: NodeJS 22.5.0) |
 | data.functions[].executorType | String | 실행 타입(poolmgr 또는 newdeploy) |
 | data.functions[].memory | Integer | 메모리(MB) |
 | data.functions[].timeout | Integer | 타임아웃(초) |
@@ -237,7 +237,7 @@ GET /v1.0/functions/{functionName}
     "data": {
         "name": "my-function",
         "description": "샘플 함수",
-        "runtime": "Node.js 18",
+        "runtime": "NodeJS 22.5.0",
         "executorType": "poolmgr",
         "memory": 256,
         "timeout": 60,
@@ -262,7 +262,7 @@ GET /v1.0/functions/{functionName}
 | --- | --- | --- |
 | data.name | String | 함수 이름 |
 | data.description | String | 함수 설명 |
-| data.runtime | String | 런타임(예: Node.js 18) |
+| data.runtime | String | 런타임(예: NodeJS 22.5.0) |
 | data.executorType | String | 실행 타입(poolmgr 또는 newdeploy) |
 | data.memory | Integer | 메모리(MB) |
 | data.timeout | Integer | 타임아웃(초) |
@@ -283,7 +283,7 @@ GET /v1.0/functions/{functionName}
 ## 함수 생성
 
 새 함수를 생성합니다. multipart/form-data로 소스 파일을 업로드합니다.
-runtime은 `{environment}-{version}` 형식으로 입력해야 합니다(예: Node.js-18). 사용 가능한 런타임은 환경 목록 조회 API로 확인할 수 있습니다.
+runtime은 `{environment}-{version}` 형식으로 입력해야 합니다(예: NodeJS-22.5.0). 사용 가능한 런타임은 환경 목록 조회 API로 확인할 수 있습니다.
 
 executorType에 따라 필수 파라미터가 달라집니다. poolManager일 때는 requestPerPod가, newDeployment일 때는 minInstance와 maxInstance가 필수입니다.
 
@@ -304,20 +304,20 @@ POST /v1.0/functions
 
 Content-Type: multipart/form-data
 
-| 이름 | 타입 | 필수 | 설명 |
-| --- | --- | --- | --- |
-| name | String | Y | 함수 이름 |
-| description | String | N | 함수 설명 |
-| executorType | String | Y | 실행 타입(poolManager 또는 newDeployment) |
-| runtime | String | Y | 런타임({environment}-{version} 형식, 예: Node.js-18) |
-| entryPoint | String | Y | 함수 진입점 |
-| memory | Integer | Y | 메모리(MB). 기본 리소스 세트 값: 128, 256, 512, 1024, 2048, 4096. newDeployment의 경우 64~4096 범위의 커스텀 값도 사용 가능 |
-| requestPerPod | Integer | Conditional | Pod당 동시 요청 수(poolManager일 때 1~1000, 기본값: 1) |
-| timeout | Integer | N | 타임아웃(초, 1~900, 기본값: 60) |
-| minInstance | Integer | Conditional | 최소 인스턴스 수(newDeployment일 때 필수, 1~100, maxInstance 이하) |
-| maxInstance | Integer | Conditional | 최대 인스턴스 수(newDeployment일 때 필수, 1~100) |
-| lncsAppkey | String | N | LnCS 앱키 |
-| sourceFile | Binary | Y | 소스 코드 파일(ZIP) |
+| 이름 | 타입 | 필수         | 설명                                                                                                |
+| --- | --- |------------|---------------------------------------------------------------------------------------------------|
+| name | String | Y          | 함수 이름                                                                                             |
+| description | String | N          | 함수 설명                                                                                             |
+| executorType | String | Y          | 실행 타입(poolManager 또는 newDeployment)                                                               |
+| runtime | String | Y          | 런타임({environment}-{version} 형식, 예: NodeJS-22.5.0)                                                 |
+| entryPoint | String | Y          | 함수 진입점                                                                                            |
+| memory | Integer | Y          | 메모리(MB). 기본 리소스 세트 값: 128, 256, 512, 1024, 2048, 4096. newDeployment의 경우 64~4096 범위의 커스텀 값도 사용 가능 |
+| requestPerPod | Integer | Conditional | Pod당 동시 요청 수(poolManager일 때 1~1000, 기본값: 1)                                                       |
+| timeout | Integer | Y          | 타임아웃(초, 1~900)                                                                                    |
+| minInstance | Integer | Conditional | 최소 인스턴스 수(newDeployment일 때 필수, 1~100, maxInstance 이하)                                             |
+| maxInstance | Integer | Conditional | 최대 인스턴스 수(newDeployment일 때 필수, 1~100)                                                             |
+| lncsAppkey | String | N          | LnCS 앱키                                                                                           |
+| sourceFile | Binary | Y          | 소스 코드 파일(ZIP)                                                                                     |
 
 ### 응답
 
@@ -363,19 +363,19 @@ PUT /v1.0/functions/{functionName}
 
 Content-Type: multipart/form-data
 
-| 이름 | 타입 | 필수 | 설명 |
-| --- | --- | --- | --- |
-| description | String | N | 함수 설명 |
-| executorType | String | Y | 실행 타입(poolManager 또는 newDeployment) |
-| runtime | String | Y | 런타임({environment}-{version} 형식, 예: Node.js-18) |
-| entryPoint | String | Y | 함수 진입점 |
-| memory | Integer | Y | 메모리(MB). 기본 리소스 세트 값: 128, 256, 512, 1024, 2048, 4096. newDeployment의 경우 64~4096 범위의 커스텀 값도 사용 가능 |
-| requestPerPod | Integer | Conditional | Pod당 동시 요청 수(poolManager일 때 1~1000) |
-| timeout | Integer | N | 타임아웃(초, 1~900, 기본값: 60) |
-| minInstance | Integer | Conditional | 최소 인스턴스 수(newDeployment일 때 필수, 1~100, maxInstance 이하) |
-| maxInstance | Integer | Conditional | 최대 인스턴스 수(newDeployment일 때 필수, 1~100) |
-| lncsAppkey | String | N | LnCS 앱키 |
-| sourceFile | Binary | N | 소스 코드 파일(ZIP) |
+| 이름 | 타입 | 필수         | 설명                                                                                                |
+| --- | --- |------------|---------------------------------------------------------------------------------------------------|
+| description | String | N          | 함수 설명                                                                                             |
+| executorType | String | Y          | 실행 타입(poolManager 또는 newDeployment)                                                               |
+| runtime | String | Y          | 런타임({environment}-{version} 형식, 예: NodeJS-22.5.0)                                                     |
+| entryPoint | String | Y          | 함수 진입점                                                                                            |
+| memory | Integer | Y          | 메모리(MB). 기본 리소스 세트 값: 128, 256, 512, 1024, 2048, 4096. newDeployment의 경우 64~4096 범위의 커스텀 값도 사용 가능 |
+| requestPerPod | Integer | Conditional | Pod당 동시 요청 수(poolManager일 때 1~1000)                                                               |
+| timeout | Integer | Y          | 타임아웃(초, 1~900)                                                                                    |
+| minInstance | Integer | Conditional | 최소 인스턴스 수(newDeployment일 때 필수, 1~100, maxInstance 이하)                                             |
+| maxInstance | Integer | Conditional | 최대 인스턴스 수(newDeployment일 때 필수, 1~100)                                                             |
+| lncsAppkey | String | N          | LnCS 앱키                                                                                           |
+| sourceFile | Binary | N          | 소스 코드 파일(ZIP)                                                                                     |
 
 ### 응답
 

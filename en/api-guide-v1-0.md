@@ -102,8 +102,8 @@ This API does not require a request body.
     "data": [
         {
             "id": 1,
-            "environment": "Node.js",
-            "version": "18",
+            "environment": "NodeJS",
+            "version": "22.5.0",
             "entryPoint": "index.handler"
         },
         {
@@ -122,8 +122,8 @@ This API does not require a request body.
 | --- | --- | --- |
 | data | Array | Environment list |
 | data[].id | Integer | Environment ID |
-| data[].environment | String | Runtime environment (e.g., Node.js) |
-| data[].version | String | Runtime version (e.g., 18) |
+| data[].environment | String | Runtime environment (e.g., NodeJS) |
+| data[].version | String | Runtime version (e.g., 22.5.0) |
 | data[].entryPoint | String | Default entry point |
 
 ---
@@ -169,7 +169,7 @@ This API does not require a request body.
             {
                 "name": "my-function",
                 "description": "sample function",
-                "runtime": "Node.js 18",
+                "runtime": "NodeJS 22.5.0",
                 "executorType": "poolmgr",
                 "memory": 256,
                 "timeout": 60,
@@ -190,7 +190,7 @@ This API does not require a request body.
 | data.functions | Array | Function list |
 | data.functions[].name | String | Function name |
 | data.functions[].description | String | Function description |
-| data.functions[].runtime | String | Runtime (e.g., Node.js 18) |
+| data.functions[].runtime | String | Runtime (e.g., NodeJS 22.5.0) |
 | data.functions[].executorType | String | Execution type (poolmgr or newdeploy) |
 | data.functions[].memory | Integer | Memory (MB) |
 | data.functions[].timeout | Integer | Timeout (seconds) |
@@ -237,7 +237,7 @@ This API does not require a request body.
     "data": {
         "name": "my-function",
         "description": "sample function",
-        "runtime": "Node.js 18",
+        "runtime": "NodeJS 22.5.0",
         "executorType": "poolmgr",
         "memory": 256,
         "timeout": 60,
@@ -262,7 +262,7 @@ This API does not require a request body.
 | --- | --- | --- |
 | data.name | String | Function name |
 | data.description | String | Function description |
-| data.runtime | String | Runtime (e.g., Node.js 18) |
+| data.runtime | String | Runtime (e.g., NodeJS 22.5.0) |
 | data.executorType | String | Execution type (poolmgr or newdeploy) |
 | data.memory | Integer | Memory (MB) |
 | data.timeout | Integer | Timeout (seconds) |
@@ -283,7 +283,7 @@ This API does not require a request body.
 ## Create Function
 
 Creates a new function. Upload the source file as multipart/form-data.
-The runtime must be entered in the `{environment}-{version}` format (e.g., Node.js-18). Available runtimes can be checked using the List Environments API.
+The runtime must be entered in the `{environment}-{version}` format (e.g., NodeJS-22.5.0). Available runtimes can be checked using the List Environments API.
 
 Required parameters vary depending on the executorType. When using poolManager, requestPerPod is required. When using newDeployment, minInstance and maxInstance are required.
 
@@ -309,7 +309,7 @@ Content-Type: multipart/form-data
 | name | String | Y | Function name |
 | description | String | N | Function description |
 | executorType | String | Y | Execution type (poolManager or newDeployment) |
-| runtime | String | Y | Runtime ({environment}-{version} format, e.g., Node.js-18) |
+| runtime | String | Y | Runtime ({environment}-{version} format, e.g., NodeJS-22.5.0) |
 | entryPoint | String | Y | Function entry point |
 | memory | Integer | Y | Memory (MB). Default resource set values: 128, 256, 512, 1,024, 2,048, 4,096. For newDeployment, custom values in the range of 64–4096 are also supported. |
 | requestPerPod | Integer | Conditional | Number of concurrent requests per pod (1–1,000 when using poolManager, default: 1) |
@@ -367,7 +367,7 @@ Content-Type: multipart/form-data
 | --- | --- | --- | --- |
 | description | String | N | Function description |
 | executorType | String | Y | Execution type (poolManager or newDeployment) |
-| runtime | String | Y | Runtime ({environment}-{version} format, e.g., Node.js-18) |
+| runtime | String | Y | Runtime ({environment}-{version} format, e.g., NodeJS-22.5.0) |
 | entryPoint | String | Y | Function entry point |
 | memory | Integer | Y | Memory (MB). Default resource set values: 128, 256, 512, 1,024, 2,048, 4,096. For newDeployment, custom values in the range of 64–4,096 are also supported. |
 | requestPerPod | Integer | Conditional | Number of concurrent requests per pod (1–1,000 when using poolManager) |

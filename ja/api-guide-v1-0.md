@@ -102,8 +102,8 @@ GET /v1.0/env/list
     "data": [
         {
             "id": 1,
-            "environment": "Node.js",
-            "version": "18",
+            "environment": "NodeJS",
+            "version": "22.5.0",
             "entryPoint": "index.handler"
         },
         {
@@ -122,8 +122,8 @@ GET /v1.0/env/list
 | --- | --- | --- |
 | data | Array | 環境一覧 |
 | data[].id | Integer | 環境ID |
-| data[].environment | String | ランタイム環境(例: Node.js) |
-| data[].version | String | ランタイムバージョン(例: 18) |
+| data[].environment | String | ランタイム環境(例: NodeJS) |
+| data[].version | String | ランタイムバージョン(例: 22.5.0) |
 | data[].entryPoint | String | デフォルトのエントリーポイント |
 
 ---
@@ -169,7 +169,7 @@ GET /v1.0/functions
             {
                 "name": "my-function",
                 "description": "サンプル関数",
-                "runtime": "Node.js 18",
+                "runtime": "NodeJS 22.5.0",
                 "executorType": "poolmgr",
                 "memory": 256,
                 "timeout": 60,
@@ -190,7 +190,7 @@ GET /v1.0/functions
 | data.functions | Array | 関数一覧 |
 | data.functions[].name | String | 関数名 |
 | data.functions[].description | String | 関数の説明 |
-| data.functions[].runtime | String | ランタイム(例: Node.js 18) |
+| data.functions[].runtime | String | ランタイム(例: NodeJS 22.5.0) |
 | data.functions[].executorType | String | 実行タイプ(poolmgrまたはnewdeploy) |
 | data.functions[].memory | Integer | メモリ(MB) |
 | data.functions[].timeout | Integer | タイムアウト(秒) |
@@ -237,7 +237,7 @@ GET /v1.0/functions/{functionName}
     "data": {
         "name": "my-function",
         "description": "サンプル関数",
-        "runtime": "Node.js 18",
+        "runtime": "NodeJS 22.5.0",
         "executorType": "poolmgr",
         "memory": 256,
         "timeout": 60,
@@ -262,7 +262,7 @@ GET /v1.0/functions/{functionName}
 | --- | --- | --- |
 | data.name | String | 関数名 |
 | data.description | String | 関数の説明 |
-| data.runtime | String | ランタイム(例: Node.js 18) |
+| data.runtime | String | ランタイム(例: NodeJS 22.5.0) |
 | data.executorType | String | 実行タイプ(poolmgrまたはnewdeploy) |
 | data.memory | Integer | メモリ(MB) |
 | data.timeout | Integer | タイムアウト(秒) |
@@ -283,7 +283,7 @@ GET /v1.0/functions/{functionName}
 ## 関数作成
 
 新しい関数を作成します。multipart/form-dataでソースファイルをアップロードします。
-runtimeは`{environment}-{version}`形式で入力する必要があります(例: Node.js-18)。使用可能なランタイムは環境一覧照会APIで確認できます。
+runtimeは`{environment}-{version}`形式で入力する必要があります(例: NodeJS-22.5.0)。使用可能なランタイムは環境一覧照会APIで確認できます。
 
 executorTypeによって必須パラメータが異なります。poolManagerの場合はrequestPerPodが、newDeploymentの場合はminInstanceとmaxInstanceが必須です。
 
@@ -309,7 +309,7 @@ Content-Type: multipart/form-data
 | name | String | Y | 関数名 |
 | description | String | N | 関数の説明 |
 | executorType | String | Y | 実行タイプ(poolManagerまたはnewDeployment) |
-| runtime | String | Y | ランタイム({environment}-{version}形式、例: Node.js-18) |
+| runtime | String | Y | ランタイム({environment}-{version}形式、例: NodeJS-22.5.0) |
 | entryPoint | String | Y | 関数のエントリーポイント |
 | memory | Integer | Y | メモリ(MB)。デフォルトのリソースセット値: 128、256、512、1024、2048、4096。newDeploymentの場合は64～4096の範囲のカスタム値も使用可能 |
 | requestPerPod | Integer | Conditional | Podあたりの同時リクエスト数(poolManagerの場合は1～1000、デフォルト値: 1) |
@@ -367,7 +367,7 @@ Content-Type: multipart/form-data
 | --- | --- | --- | --- |
 | description | String | N | 関数の説明 |
 | executorType | String | Y | 実行タイプ(poolManagerまたはnewDeployment) |
-| runtime | String | Y | ランタイム({environment}-{version}形式、例: Node.js-18) |
+| runtime | String | Y | ランタイム({environment}-{version}形式、例: NodeJS-22.5.0) |
 | entryPoint | String | Y | 関数のエントリーポイント |
 | memory | Integer | Y | メモリ(MB)。デフォルトのリソースセット値: 128、256、512、1024、2048、4096。newDeploymentの場合は64～4096の範囲のカスタム値も使用可能 |
 | requestPerPod | Integer | Conditional | Podあたりの同時リクエスト数(poolManagerの場合は1～1000) |
