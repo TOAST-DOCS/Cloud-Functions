@@ -528,9 +528,9 @@ POST /v1.0/functions/{functionName}/invoke
 
 </details>
 
-| 名前 | タイプ | 必須 | 説明 |
-| --- | --- | --- | --- |
-| body | String | N | 関数に渡すbody |
+| 名前 | タイプ  | 必須 | 説明 |
+| --- |------| --- | --- |
+| body | JSON | N | 関数に渡すbody |
 
 ### レスポンス
 
