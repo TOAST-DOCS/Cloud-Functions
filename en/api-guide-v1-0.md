@@ -529,8 +529,8 @@ POST /v1.0/functions/{functionName}/invoke
 </details>
 
 | Name | Type | Required | Description |
-| --- | --- | --- | --- |
-| body | String | N | Body to send to the function |
+| --- |------| --- | --- |
+| body | JSON | N | Body to send to the function |
 
 ### Response
 

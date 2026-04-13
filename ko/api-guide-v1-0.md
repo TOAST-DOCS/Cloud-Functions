@@ -528,9 +528,9 @@ POST /v1.0/functions/{functionName}/invoke
 
 </details>
 
-| 이름 | 타입 | 필수 | 설명 |
-| --- | --- | --- | --- |
-| body | String | N | 함수에 전달할 body |
+| 이름 | 타입   | 필수 | 설명 |
+| --- |------| --- | --- |
+| body | JSON | N | 함수에 전달할 body |
 
 ### 응답
 
