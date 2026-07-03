@@ -89,9 +89,9 @@
 
 #### 코드 작성
 
-![console-guide-09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-09.png)
-![console-guide-10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-10.png)
-![console-guide-11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-11.png)
+![console-guide-16](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-16.png)
+![console-guide-17](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-17.png)
+![console-guide-18](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-18.png)
 
 <table class="it">
     <tr>
@@ -104,7 +104,7 @@
         <td rowspan="2">소스 코드</td>
         <td>1.</td>
         <td>런타임 환경</td>
-        <td>함수의 런타임 환경을 선택</td>
+        <td>함수의 런타임 환경을 선택<br>런타임 선택 목록에는 지원 중단된 런타임 이름 우측에 지원 중단 뱃지가 표시됩니다.<br>지원 중단 런타임을 선택하면 하단에 안내 콜아웃이 노출됩니다.<br>사용 중단된 런타임은 목록에서 제외되어 선택할 수 없습니다.</td>
     </tr>
     <tr>
         <td>2.</td>
@@ -112,7 +112,7 @@
         <td>함수의 진입 지점을 지정. 예: 함수명 <br>런타임 환경의 템플릿에 맞춰 자동으로 완성됩니다.<br>임의로 수정 시 작성한 소스 코드의 Entry Point와 일치해야 합니다.<br>잘못 입력한 경우 <strong>빌드로는 확인할 수 없고</strong>, <strong>테스트 시 로그를 통해 확인할 수 있습니다</strong>.</td>
     </tr>
     <tr>
-        <td rowspan="3">코드</td>
+        <td rowspan="2">코드</td>
         <td>3.</td>
         <td>코드 에디터</td>
         <td>런타임 환경의 템플릿 파일이 로드되고, 해당 파일을 수정하여 함수를 작성<br>코드 에디터에서 디렉터리 추가는 불가능합니다. 디렉터리 구조를 편집하려면 템플릿 파일을 다운로드해 로컬에서 직접 수정한 뒤 ZIP 파일 업로드 방식을 사용해야 합니다.</td>
@@ -123,20 +123,21 @@
         <td>사용자 로컬 환경에서 함수 코드를 작성하여 ZIP 파일 형태로 업로드</td>
     </tr>
     <tr>
+        <td rowspan="2">빌드/테스트</td>
         <td>5.</td>
         <td>빌드</td>
-        <td>사용자가 작성하거나 업로드한 코드를 빌드하여 패키지를 생성합니다.<br>빌드된 패키지는 테스트에 사용되며, 함수 생성/수정 시 마지막 빌드한 패키지가 함수 버전으로 연동됩니다.</td>
+        <td>사용자가 작성하거나 업로드한 코드를 빌드하여 패키지를 생성합니다.<br>빌드된 패키지는 테스트에 사용되며, 함수 생성/수정 시 마지막 빌드한 패키지가 함수 버전으로 연동됩니다.<br>빌드/테스트 버튼은 설정 영역 하단의 빌드/테스트 영역에 위치하며, 빌드가 완료되면 테스트 버튼이 활성화됩니다.</td>
     </tr>
     <tr>
-        <td rowspan="2">테스트</td>
         <td>6.</td>
-        <td>테스트 이벤트</td>
-        <td>함수에 전달할 JSON Body를 작성</td>
+        <td>테스트</td>
+        <td><strong>테스트</strong> 탭에서 함수에 전달할 JSON Body(테스트 이벤트)를 작성하고, 하단 <strong>테스트</strong> 버튼으로 함수를 테스트. (빌드가 선행되어야 합니다.)<br>로그로 함수 동작을 확인할 수 있습니다.<br>GET 메서드로 호출합니다.</td>
     </tr>
     <tr>
+        <td>환경 변수</td>
         <td>7.</td>
-        <td>테스트</td>
-        <td>이벤트에 작성한 JSON Body를 전달하여 함수를 테스트. (빌드가 선행되어야 합니다.) <br>로그로 함수 동작을 확인할 수 있습니다. <br>GET 메서드로 호출합니다.</td>
+        <td>환경 변수</td>
+        <td>함수에 주입할 환경 변수를 등록/수정/삭제하고 키로 검색합니다. 자세한 내용은 아래 <strong>환경 변수</strong>를 참고하세요.</td>
     </tr>
     <tr>
         <td></td>
@@ -150,6 +151,49 @@
 
 > **[참고]** <br> 빌드 버튼을 통해 생성된 패키지는 함수 생성/수정 시 마지막 빌드한 패키지가 함수 버전으로 연동됩니다. 함수 생성 전 최소 1회 이상 빌드를 수행해야 합니다.
 
+> **[참고]** 빌드/테스트 영역 <br>
+> 빌드 또는 테스트를 실행하면 빌드/테스트 영역에서 터미널이 펼쳐지며, 빌드 로그와 테스트 로그가 탭으로 구분되어 표시됩니다. 접기 버튼으로 숨길 수 있습니다.
+
+> **[참고]** 런타임 지원 상태 <br>
+> 지원 중단(EOL)된 런타임을 선택하면 하단에 다음과 같은 콜아웃이 표시됩니다. (날짜는 런타임에 따라 다릅니다.)<br>
+> "본 런타임은 2026년 4월 30일에 지원이 중단되었으며, 2026년 10월 31일에 사용 중단될 예정입니다. 사용 중단 이후에는 기존 함수의 수정이 불가하므로, 안정적인 운영을 위해 최신 런타임 사용을 권장합니다."<br>
+> 사용 중단된 런타임은 목록에서 제외되어 새 함수 생성 시 선택할 수 없습니다. 런타임 상태에 대한 자세한 내용은 개요의 '런타임 지원 상태'를 참고하세요.
+
+#### 환경 변수
+함수가 외부 서비스 연동에 필요한 인증 정보(API 키, DB 접속 정보 등)를 코드에 하드코딩하지 않고 환경 변수로 분리하여 관리할 수 있습니다.
+
+- 함수 생성 및 수정의 코드 작성 단계에서 소스 코드 하위의 환경 변수 관리 영역을 통해 환경 변수를 등록/수정/삭제할 수 있습니다.
+    - 함수당 최대 100개까지 등록할 수 있으며, 100개에 도달하면 **변수 추가** 버튼이 비활성화됩니다.
+- 등록한 환경 변수는 함수 런타임에 주입되며, 코드에서 각 언어의 표준 환경 변수 접근 방식으로 값을 사용할 수 있습니다. (코드 템플릿 가이드 참고)
+- 키를 기준으로 검색할 수 있으며, 매칭되는 항목이 등록 순서대로 표시됩니다.
+- 환경 변수의 생성/수정/삭제는 빌드와 무관하게 동작합니다. 다만 변경한 값이 실행 중인 함수에 반영되려면 함수가 다시 시작되어야 합니다.
+
+##### 환경 변수 제약 사항
+<table class="it">
+    <tr>
+        <th>항목</th>
+        <th>제약</th>
+    </tr>
+    <tr>
+        <td>개수</td>
+        <td>함수당 최대 100개</td>
+    </tr>
+    <tr>
+        <td>키</td>
+        <td>영문자 또는 언더스코어(_)로 시작하며, 영문자·숫자·언더스코어(_)만 사용 가능<br>최대 128자, 중복 불가<br>(정규식: <code>^[A-Za-z_][A-Za-z0-9_]*$</code>)</td>
+    </tr>
+    <tr>
+        <td>값</td>
+        <td>최대 4,096자</td>
+    </tr>
+</table>
+
+> **[참고]** 예약 키 제한 <br>
+> 시스템·런타임이 특별하게 취급하는 일부 키는 보안상 환경 변수로 등록할 수 없습니다. 아래는 차단되는 키의 대표 예시이며, 이 외에도 차단되는 키가 있습니다.<br>
+> - 공통: `PATH`, `HOME`, `LD_PRELOAD`, `LD_LIBRARY_PATH`<br>
+> - 언어/런타임: `PYTHONPATH`(Python), `NODE_OPTIONS`(Node.js), `JAVA_TOOL_OPTIONS`·`CLASSPATH`(Java)<br>
+> - 접두사 `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_`로 시작하는 키는 모두 차단됩니다.
+
 ### 함수 수정
 기존 함수의 함수 설정 및 코드를 수정하기 위해 **수정** 버튼을 클릭해 함수를 수정합니다.
 #### 수정 불가 항목
@@ -158,6 +202,13 @@
 #### 소스 코드
 - 코드 에디터를 사용하는 경우 기존 코드가 로드됩니다.
 - 사용자 로컬 환경의 ZIP 파일을 업로드하여 함수를 생성했을 경우, 코드 에디터로 변경하면 ZIP 파일을 보여주지 않고 기본 템플릿 코드를 로드합니다.
+
+#### 사용 중단 런타임 함수 수정 제한
+- 사용 중단된 런타임을 사용하는 함수는 수정할 수 없습니다.
+- 함수 목록에서 사용 중단 런타임을 사용하는 함수를 단건 선택하면 **수정** 버튼이 비활성화되어 함수 수정 화면으로 진입할 수 없습니다.
+- 비활성화된 **수정** 버튼에 마우스를 올리면 다음과 같은 툴팁이 표시됩니다.
+    - "사용 중단된 런타임으로 함수를 수정할 수 없습니다. 최신 런타임으로 함수를 새로 생성해주세요."
+- 지원 중단(사용 중단 전) 런타임을 사용하는 함수는 수정할 수 있으며, 함수 생성과 동일하게 안내 콜아웃이 표시됩니다.
 
 ### 함수 삭제
 ![console-guide-14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-14.png)
@@ -168,16 +219,44 @@
 기존 함수와 동일한 함수를 복사합니다. 이름은 중복이 불가능하여 복사 전에 이름을 새롭게 작성할 수 있습니다.
 - 트리거는 복사되지 않습니다. (HTTP 트리거는 기본 제공)
 - 버전은 현재 적용된 버전만 복사됩니다.
+- 원본 함수에 등록된 환경 변수는 그대로 복사됩니다.
 
 ## 함수 정보
 ### 함수 목록
 ![console-guide-01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-01.png)
 - 사용자가 생성한 함수 목록을 확인할 수 있습니다.
 - 빌드 상태는 현재 버전의 빌드 상태를 표시합니다.
+- 런타임 정보 우측에 런타임의 지원 상태(지원 중단/사용 중단) 뱃지가 표시됩니다.
+
 ### 함수 기본 정보
-![console-guide-02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-02.png)
+![console-guide-19](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-19.png)
 - 함수의 기본 정보를 확인할 수 있습니다.
 - 로그 관리 항목에서 **Log & Crash Search** 버튼을 클릭해 Log & Crash Search 서비스로 이동하여 로그를 확인할 수 있습니다.
+
+### 함수 환경 변수
+함수 상세 정보의 환경 변수 탭에서 해당 함수에 등록된 환경 변수 목록을 확인할 수 있습니다.
+
+![console-guide-20](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-20.png)
+
+<table class="it">
+    <tr>
+        <th>No.</th>
+        <th>항목</th>
+        <th>설명</th>
+    </tr>
+    <tr>
+        <td>1.</td>
+        <td>검색</td>
+        <td>환경 변수 키를 기준으로 검색합니다.</td>
+    </tr>
+    <tr>
+        <td>2.</td>
+        <td>값 마스킹</td>
+        <td>값은 기본적으로 마스킹되어 표시됩니다.<br>각 행의 눈 모양 아이콘을 클릭해 값을 확인할 수 있으며, 여러 값을 동시에 확인할 수 있습니다.</td>
+    </tr>
+</table>
+
+- 환경 변수의 등록/수정/삭제는 함수 생성 및 수정의 코드 작성 단계에서 할 수 있습니다. (함수 생성 > 환경 변수 참고)
 
 ### 함수 버전 관리
 ![console-guide-15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2026-01-27/console-guide-15.png)
@@ -200,7 +279,7 @@
     <tr>
         <td>1.</td>
         <td>버전 목록</td>
-        <td>함수의 모든 버전 이력을 확인할 수 있습니다.<br>버전 이름, 런타임, 소스 코드, 빌드 상태 등의 정보가 표시됩니다.</td>
+        <td>함수의 모든 버전 이력을 확인할 수 있습니다.<br>버전 이름, 런타임, 소스 코드, 빌드 상태 등의 정보가 표시됩니다.<br>런타임 정보 우측에는 런타임의 지원 상태(지원 중단/사용 중단) 뱃지가 표시됩니다.</td>
     </tr>
     <tr>
         <td>2.</td>

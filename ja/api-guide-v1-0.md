@@ -64,6 +64,19 @@ User Access Keyトークンの発行手順や使用方法の詳細は、[User Ac
 | header.resultMessage | String | 結果メッセージ |
 | data | Object | レスポンスデータ(APIごとに異なる) |
 
+### 런타임 EOL 상태 공통 필드
+
+함수 및 환경 목록 조회 응답에는 런타임의 EOL(End of Life) 상태 정보가 포함됩니다.
+
+| 이름 | 타입 | 설명 |
+| --- | --- | --- |
+| runtimeStatus | String | 런타임 상태: `NORMAL`(정상) / `DEPRECATED`(지원 중단) / `DISCONTINUED`(사용 중단) |
+| deprecatedAt | String | 지원 중단일(ISO 8601, Asia/Seoul 기준). 없으면 null |
+| discontinuedAt | String | 사용 중단일(ISO 8601, Asia/Seoul 기준). 없으면 null |
+
+- 상태 판정: `discontinuedAt`이 현재 시각 이전이면 `DISCONTINUED`, `deprecatedAt`이 현재 시각 이전이면 `DEPRECATED`, 그 외에는 `NORMAL`입니다.
+- `DISCONTINUED` 런타임은 환경 목록 조회에서 제외되며, 해당 런타임을 사용하는 함수는 수정할 수 없습니다.
+
 ---
 
 ## 環境一覧
@@ -104,13 +117,19 @@ GET /v1.0/env/list
             "id": 1,
             "environment": "NodeJS",
             "version": "22.5.0",
-            "entryPoint": "index.handler"
+            "entryPoint": "index.handler",
+            "runtimeStatus": "NORMAL",
+            "deprecatedAt": "2027-04-30T00:00:00",
+            "discontinuedAt": "2027-10-30T00:00:00"
         },
         {
             "id": 2,
-            "environment": "Python",
-            "version": "3.9",
-            "entryPoint": "main.handler"
+            "environment": "NodeJS",
+            "version": "20.16.0",
+            "entryPoint": "index.handler",
+            "runtimeStatus": "DEPRECATED",
+            "deprecatedAt": "2026-04-30T00:00:00",
+            "discontinuedAt": "2026-10-30T00:00:00"
         }
     ]
 }
@@ -125,6 +144,9 @@ GET /v1.0/env/list
 | data[].environment | String | ランタイム環境(例: NodeJS) |
 | data[].version | String | ランタイムバージョン(例: 22.5.0) |
 | data[].entryPoint | String | デフォルトのエントリーポイント |
+| data[].runtimeStatus | String | 런타임 EOL 상태(`NORMAL`, `DEPRECATED`). 사용 중단(`DISCONTINUED`) 런타임은 목록에서 제외됩니다. |
+| data[].deprecatedAt | String | 지원 중단일(ISO 8601). 없으면 null |
+| data[].discontinuedAt | String | 사용 중단일(ISO 8601). 없으면 null |
 
 ---
 
@@ -175,7 +197,10 @@ GET /v1.0/functions
                 "timeout": 60,
                 "buildStatus": "SUCCEEDED",
                 "createdAt": "1700000000",
-                "updatedAt": "2026-03-09T14:59:44Z"
+                "updatedAt": "2026-03-09T14:59:44Z",
+                "runtimeStatus": "NORMAL",
+                "deprecatedAt": "2027-04-30T00:00:00",
+                "discontinuedAt": "2027-10-30T00:00:00"
             }
         ]
     }
@@ -197,6 +222,9 @@ GET /v1.0/functions
 | data.functions[].buildStatus | String | ビルド状態(PENDING、RUNNING、SUCCEEDED、FAILED) |
 | data.functions[].createdAt | String | 作成時間(epoch seconds) |
 | data.functions[].updatedAt | String | 更新時間(ISO 8601、例: 2026-03-09T14:59:44Z) |
+| data.functions[].runtimeStatus | String | 런타임 EOL 상태(`NORMAL`, `DEPRECATED`, `DISCONTINUED`) |
+| data.functions[].deprecatedAt | String | 지원 중단일(ISO 8601). 없으면 null |
+| data.functions[].discontinuedAt | String | 사용 중단일(ISO 8601). 없으면 null |
 
 ---
 
@@ -251,7 +279,14 @@ GET /v1.0/functions/{functionName}
         "buildLog": "Build succeeded...",
         "currentVersionName": "v1",
         "sourceFileName": "source.zip",
-        "lncsAppkey": null
+        "lncsAppkey": null,
+        "runtimeStatus": "NORMAL",
+        "deprecatedAt": "2027-04-30T00:00:00",
+        "discontinuedAt": "2027-10-30T00:00:00",
+        "envVars": {
+            "DB_HOST": "10.0.0.1",
+            "LOG_LEVEL": "info"
+        }
     }
 }
 ```
@@ -277,6 +312,10 @@ GET /v1.0/functions/{functionName}
 | data.currentVersionName | String | 現在のバージョン名 |
 | data.sourceFileName | String | ソースファイル名 |
 | data.lncsAppkey | String | LnCS Appkey |
+| data.runtimeStatus | String | 런타임 EOL 상태(`NORMAL`, `DEPRECATED`, `DISCONTINUED`) |
+| data.deprecatedAt | String | 지원 중단일(ISO 8601). 없으면 null |
+| data.discontinuedAt | String | 사용 중단일(ISO 8601). 없으면 null |
+| data.envVars | Object | 함수에 설정된 환경 변수(키-값). 단건 조회에서만 제공되며, 환경 변수가 없으면 null |
 
 ---
 
@@ -286,6 +325,8 @@ GET /v1.0/functions/{functionName}
 runtimeは`{environment}-{version}`形式で入力する必要があります(例: NodeJS-22.5.0)。使用可能なランタイムは環境一覧照会APIで確認できます。
 
 executorTypeによって必須パラメータが異なります。poolManagerの場合はrequestPerPodが、newDeploymentの場合はminInstanceとmaxInstanceが必須です。
+
+환경 변수는 `envVars` 필드에 JSON 문자열로 전달합니다. 함수당 최대 100개, 키는 `^[A-Za-z_][A-Za-z0-9_]*$`(최대 128자, 중복 불가), 값은 최대 4,096자이며, 보안상 예약된 키는 등록할 수 없습니다. 잘못된 JSON이면 실패 응답을 반환합니다.
 
 ### リクエスト
 
@@ -317,6 +358,7 @@ Content-Type: multipart/form-data
 | minInstance | Integer | Conditional | 最小インスタンス数(newDeploymentの場合は必須、1～100、maxInstance以下) |
 | maxInstance | Integer | Conditional | 最大インスタンス数(newDeploymentの場合は必須、1～100) |
 | lncsAppkey | String | N | LnCS Appkey |
+| envVars | String | N          | 환경 변수(JSON 문자열, 예: `{"DB_HOST":"10.0.0.1"}`). 미지정 시 환경 변수 없음. 잘못된 JSON이면 실패 응답 |
 | sourceFile | Binary | Y | ソースコードファイル(ZIP) |
 
 ### レスポンス
@@ -344,6 +386,10 @@ Content-Type: multipart/form-data
 関数を修正します。multipart/form-dataでソースファイルをアップロードできます。
 
 ソースファイル(sourceFile)は任意項目です。ソースファイルを指定しない場合、既存のソースコードが維持されます。
+
+환경 변수는 `envVars` 필드에 JSON 문자열로 전달합니다. 미지정 시 기존 환경 변수가 유지되고, `"{}"`이면 전체 삭제, 값이 있으면 전체 교체됩니다. 제약 조건은 함수 생성과 동일합니다.
+
+사용 중단(`DISCONTINUED`)된 런타임을 사용하는 함수는 수정할 수 없습니다. 요청 시 실패 응답(`header.isSuccessful`이 `false`)과 함께 "사용 중단된 런타임으로 함수를 수정할 수 없습니다. 최신 런타임으로 함수를 새로 생성해주세요." 메시지가 반환됩니다.
 
 ### リクエスト
 
@@ -375,6 +421,7 @@ Content-Type: multipart/form-data
 | minInstance | Integer | Conditional | 最小インスタンス数(newDeploymentの場合は必須、1～100、maxInstance以下) |
 | maxInstance | Integer | Conditional | 最大インスタンス数(newDeploymentの場合は必須、1～100) |
 | lncsAppkey | String | N | LnCS Appkey |
+| envVars | String | N          | 환경 변수(JSON 문자열). 미지정 시 기존 유지, `"{}"`이면 전체 삭제, 값이 있으면 전체 교체. 잘못된 JSON이면 실패 응답 |
 | sourceFile | Binary | N | ソースコードファイル(ZIP) |
 
 ### レスポンス
