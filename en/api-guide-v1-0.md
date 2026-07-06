@@ -66,7 +66,7 @@ Every API response follows the common format as below:
 
 ### 런타임 EOL 상태 공통 필드
 
-함수 및 환경 목록 조회 응답에는 런타임의 EOL(End of Life) 상태 정보가 포함됩니다.
+함수 및 환경 목록 조회 응답에는 런타임의 EOL(end of life) 상태 정보가 포함됩니다.
 
 | 이름 | 타입 | 설명 |
 | --- | --- | --- |

@@ -66,7 +66,7 @@ User Access Key 토큰 발급 및 사용에 대한 자세한 내용은 [User Acc
 
 ### 런타임 EOL 상태 공통 필드
 
-함수 및 환경 목록 조회 응답에는 런타임의 EOL(End of Life) 상태 정보가 포함됩니다.
+함수 및 환경 목록 조회 응답에는 런타임의 EOL(end of life) 상태 정보가 포함됩니다.
 
 | 이름 | 타입 | 설명 |
 | --- | --- | --- |
@@ -322,9 +322,9 @@ GET /v1.0/functions/{functionName}
 ## 함수 생성
 
 새 함수를 생성합니다. multipart/form-data로 소스 파일을 업로드합니다.
-runtime은 `{environment}-{version}` 형식으로 입력해야 합니다(예: NodeJS-22.5.0). 사용 가능한 런타임은 환경 목록 조회 API로 확인할 수 있습니다.
+`runtime`은 `{environment}-{version}` 형식으로 입력해야 합니다(예: NodeJS-22.5.0). 사용 가능한 런타임은 환경 목록 조회 API로 확인할 수 있습니다.
 
-executorType에 따라 필수 파라미터가 달라집니다. poolManager일 때는 requestPerPod가, newDeployment일 때는 minInstance와 maxInstance가 필수입니다.
+`executorType`에 따라 필수 파라미터가 달라집니다. `poolManager`일 때는 `requestPerPod`가, `newDeployment`일 때는 `minInstance`와 `maxInstance`가 필수입니다.
 
 환경 변수는 `envVars` 필드에 JSON 문자열로 전달합니다. 함수당 최대 100개, 키는 `^[A-Za-z_][A-Za-z0-9_]*$`(최대 128자, 중복 불가), 값은 최대 4,096자이며, 보안상 예약된 키는 등록할 수 없습니다. 잘못된 JSON이면 실패 응답을 반환합니다.
 
@@ -352,7 +352,7 @@ Content-Type: multipart/form-data
 | executorType | String | Y          | 실행 타입(poolManager 또는 newDeployment)                                                               |
 | runtime | String | Y          | 런타임({environment}-{version} 형식, 예: NodeJS-22.5.0)                                                 |
 | entryPoint | String | Y          | 함수 진입점                                                                                            |
-| memory | Integer | Y          | 메모리(MB). 기본 리소스 세트 값: 128, 256, 512, 1024, 2048, 4096. newDeployment의 경우 64~4096 범위의 커스텀 값도 사용 가능 |
+| memory | Integer | Y          | 메모리(MB). 기본 리소스 세트 값: 128, 256, 512, 1024, 2048, 4096. newDeployment의 경우 64~4096 범위의 사용자 지정 값도 사용 가능 |
 | requestPerPod | Integer | Conditional | Pod당 동시 요청 수(poolManager일 때 1~1000, 기본값: 1)                                                       |
 | timeout | Integer | Y          | 타임아웃(초, 1~900)                                                                                    |
 | minInstance | Integer | Conditional | 최소 인스턴스 수(newDeployment일 때 필수, 1~100, maxInstance 이하)                                             |
@@ -385,7 +385,7 @@ Content-Type: multipart/form-data
 
 함수를 수정합니다. multipart/form-data로 소스 파일을 업로드할 수 있습니다.
 
-소스 파일(sourceFile)은 선택 항목입니다. 소스 파일을 포함하지 않으면 기존 소스 코드가 유지됩니다.
+소스 파일(`sourceFile`)은 선택 항목입니다. 소스 파일을 포함하지 않으면 기존 소스 코드가 유지됩니다.
 
 환경 변수는 `envVars` 필드에 JSON 문자열로 전달합니다. 미지정 시 기존 환경 변수가 유지되고, `"{}"`이면 전체 삭제, 값이 있으면 전체 교체됩니다. 제약 조건은 함수 생성과 동일합니다.
 
@@ -415,7 +415,7 @@ Content-Type: multipart/form-data
 | executorType | String | Y          | 실행 타입(poolManager 또는 newDeployment)                                                               |
 | runtime | String | Y          | 런타임({environment}-{version} 형식, 예: NodeJS-22.5.0)                                                     |
 | entryPoint | String | Y          | 함수 진입점                                                                                            |
-| memory | Integer | Y          | 메모리(MB). 기본 리소스 세트 값: 128, 256, 512, 1024, 2048, 4096. newDeployment의 경우 64~4096 범위의 커스텀 값도 사용 가능 |
+| memory | Integer | Y          | 메모리(MB). 기본 리소스 세트 값: 128, 256, 512, 1024, 2048, 4096. newDeployment의 경우 64~4096 범위의 사용자 지정 값도 사용 가능 |
 | requestPerPod | Integer | Conditional | Pod당 동시 요청 수(poolManager일 때 1~1000)                                                               |
 | timeout | Integer | Y          | 타임아웃(초, 1~900)                                                                                    |
 | minInstance | Integer | Conditional | 최소 인스턴스 수(newDeployment일 때 필수, 1~100, maxInstance 이하)                                             |

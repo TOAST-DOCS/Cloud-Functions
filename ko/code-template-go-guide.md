@@ -5,9 +5,9 @@
 ## 템플릿 정보
 | 항목              | 값                                        |
 |-----------------|------------------------------------------|
-| **지원 버전**       | 1.22, 1.23, 1.24, 1.25 |
-| **파일명**         | functions.go                             |
-| **Entry Point** | Handler                                  |
+| 지원 버전       | 1.22, 1.23, 1.24, 1.25 |
+| 파일명         | functions.go                             |
+| Entry Point | Handler                                  |
 
 ## 기본 템플릿
 
@@ -39,7 +39,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 ```
 
 ### Context 객체
-Go 함수에서는 `http.ResponseWriter`와 `*http.Request`를 통해 HTTP 요청과 응답을 처리합니다.
+Go 함수에서는 `http.ResponseWriter`와 `*http.Request`로 HTTP 요청과 응답을 처리합니다.
 
 ```go
 package main
@@ -79,7 +79,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 ### 템플릿 다운로드
 Cloud Functions에서 제공하는 Go 템플릿을 다운로드하여 로컬 환경에서 개발할 수 있습니다.
 
-**템플릿 다운로드 링크**: [go.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/go/go.zip)
+템플릿 다운로드 링크: [go.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/go/go.zip)
 
 ### 템플릿 파일 구조
 다운로드한 템플릿 파일의 구조는 다음과 같습니다.
@@ -203,7 +203,7 @@ zip -r my-function.zip . -x "*.git*" "go.sum" "test.go"
 ```
 
 ### Cloud Functions 콘솔에서 업로드
-> 함수를 생성하거나 수정할 때 사용자 로컬 환경의 파일을 업로드 시 사용. (콘솔 사용 가이드 참고)
+함수를 생성하거나 수정할 때 사용자 로컬 환경의 파일을 업로드하는 경우에 사용합니다. 자세한 내용은 콘솔 사용 가이드를 참고하세요.
 
 ### 업로드 시 주의사항
 
@@ -211,7 +211,7 @@ zip -r my-function.zip . -x "*.git*" "go.sum" "test.go"
 - ZIP 파일의 루트에 직접 `.go` 파일과 `go.mod`가 위치해야 합니다.
 - 불필요한 폴더 구조는 피할 것을 권장합니다.
 
-**올바른 구조:**
+올바른 구조:
 ```
 my-function.zip
 ├── functions.go
@@ -219,7 +219,7 @@ my-function.zip
 └── utils.go (추가 파일이 있는 경우)
 ```
 
-**잘못된 구조:**
+잘못된 구조:
 ```
 my-function.zip
 └── my-function/
@@ -517,7 +517,7 @@ func normalizeName(name string) string {
 ```
 
 ## 환경 변수 사용
-함수에 등록한 환경 변수는 `os.Getenv`를 통해 접근할 수 있습니다. 환경 변수는 함수 생성 및 수정의 코드 작성 단계에서 등록합니다. (콘솔 사용 가이드 참고)
+함수에 등록한 환경 변수는 `os.Getenv`로 접근할 수 있습니다. 환경 변수는 함수 생성 및 수정의 코드 작성 단계에서 등록합니다. 자세한 내용은 콘솔 사용 가이드를 참고하세요.
 
 ```go
 package main
@@ -547,20 +547,23 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-> **[참고]** 보안상 다음 키·접두사는 환경 변수로 등록할 수 없습니다.
->
-> **공통(모든 런타임)**
-> - 셸/subprocess: `PATH`, `IFS`, `HOME`, `BASH_ENV`, `ENV`, `SHELLOPTS`
-> - 로더/라이브러리: `LD_PRELOAD`, `LD_LIBRARY_PATH`, `LD_AUDIT`
-> - glibc 동적 로딩: `GCONV_PATH`, `LOCPATH`, `HOSTALIASES`
-> - 프록시: `HTTP_PROXY`, `HTTPS_PROXY`, `ALL_PROXY`(소문자 포함)
-> - TLS 신뢰 저장소: `SSL_CERT_FILE`, `SSL_CERT_DIR`, `REQUESTS_CA_BUNDLE`, `CURL_CA_BUNDLE`
-> - 플랫폼 내부: `RUNTIME_PORT`, `USERFUNCVOL`, `WSGI_FRAMEWORK`, `SENTRY_DSN`, `SENTRY_RELEASE`, `TIMEOUT`, `BODY_PARSER_LIMIT`
-> - 접두사: `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_`
->
-> **Go**
-> - `GODEBUG`
-> - Go는 일반 사용자 변수와의 충돌을 피하기 위해 접두사 차단이 없습니다.
+!!! tip "참고"
+    보안상 다음 키·접두사는 환경 변수로 등록할 수 없습니다.
+
+    공통(모든 런타임)
+
+    - 셸/subprocess: `PATH`, `IFS`, `HOME`, `BASH_ENV`, `ENV`, `SHELLOPTS`
+    - 로더/라이브러리: `LD_PRELOAD`, `LD_LIBRARY_PATH`, `LD_AUDIT`
+    - glibc 동적 로딩: `GCONV_PATH`, `LOCPATH`, `HOSTALIASES`
+    - 프록시: `HTTP_PROXY`, `HTTPS_PROXY`, `ALL_PROXY`(소문자 포함)
+    - TLS 신뢰 저장소: `SSL_CERT_FILE`, `SSL_CERT_DIR`, `REQUESTS_CA_BUNDLE`, `CURL_CA_BUNDLE`
+    - 플랫폼 내부: `RUNTIME_PORT`, `USERFUNCVOL`, `WSGI_FRAMEWORK`, `SENTRY_DSN`, `SENTRY_RELEASE`, `TIMEOUT`, `BODY_PARSER_LIMIT`
+    - 접두사: `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_`
+
+    Go
+
+    - `GODEBUG`
+    - Go는 일반 사용자 변수와 충돌하지 않도록 접두사 차단이 없습니다.
 
 ## Entry Point 설정
 
@@ -621,6 +624,6 @@ Entry Point 설정:
 | 1.22 | 2026-01-28 | 2026-07-28 |
 
 #### Go 버전 지원 정책
-Cloud Functions는 Go의 공식 릴리즈 정책을 따릅니다. Go는 연 2회(1월, 7월) 새로운 메이저 버전을 릴리즈하며, 각 버전은 최신 2개 메이저 버전까지만 지원됩니다.
+Cloud Functions는 Go의 공식 릴리스 정책을 따릅니다. Go는 연 2회(1월, 7월) 새로운 메이저 버전을 릴리스하며, 각 버전은 최신 2개 메이저 버전까지만 지원됩니다.
 
-**권장사항**: 최신 지원 버전(1.24 또는 1.25)을 사용하여 보안 패치와 버그 수정을 계속 받을 수 있도록 합니다.
+권장사항: 최신 지원 버전(1.24 또는 1.25)을 사용하여 보안 패치와 버그 수정을 계속 받을 수 있도록 합니다.

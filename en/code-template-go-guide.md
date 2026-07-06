@@ -517,7 +517,7 @@ func normalizeName(name string) string {
 ```
 
 ## 환경 변수 사용
-함수에 등록한 환경 변수는 `os.Getenv`를 통해 접근할 수 있습니다. 환경 변수는 함수 생성 및 수정의 코드 작성 단계에서 등록합니다. (콘솔 사용 가이드 참고)
+함수에 등록한 환경 변수는 `os.Getenv`로 접근할 수 있습니다. 환경 변수는 함수 생성 및 수정의 코드 작성 단계에서 등록합니다. 자세한 내용은 콘솔 사용 가이드를 참고하세요.
 
 ```go
 package main
@@ -547,20 +547,23 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-> **[참고]** 보안상 다음 키·접두사는 환경 변수로 등록할 수 없습니다.
->
-> **공통(모든 런타임)**
-> - 셸/subprocess: `PATH`, `IFS`, `HOME`, `BASH_ENV`, `ENV`, `SHELLOPTS`
-> - 로더/라이브러리: `LD_PRELOAD`, `LD_LIBRARY_PATH`, `LD_AUDIT`
-> - glibc 동적 로딩: `GCONV_PATH`, `LOCPATH`, `HOSTALIASES`
-> - 프록시: `HTTP_PROXY`, `HTTPS_PROXY`, `ALL_PROXY`(소문자 포함)
-> - TLS 신뢰 저장소: `SSL_CERT_FILE`, `SSL_CERT_DIR`, `REQUESTS_CA_BUNDLE`, `CURL_CA_BUNDLE`
-> - 플랫폼 내부: `RUNTIME_PORT`, `USERFUNCVOL`, `WSGI_FRAMEWORK`, `SENTRY_DSN`, `SENTRY_RELEASE`, `TIMEOUT`, `BODY_PARSER_LIMIT`
-> - 접두사: `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_`
->
-> **Go**
-> - `GODEBUG`
-> - Go는 일반 사용자 변수와의 충돌을 피하기 위해 접두사 차단이 없습니다.
+!!! tip "참고"
+    보안상 다음 키·접두사는 환경 변수로 등록할 수 없습니다.
+
+    공통(모든 런타임)
+
+    - 셸/subprocess: `PATH`, `IFS`, `HOME`, `BASH_ENV`, `ENV`, `SHELLOPTS`
+    - 로더/라이브러리: `LD_PRELOAD`, `LD_LIBRARY_PATH`, `LD_AUDIT`
+    - glibc 동적 로딩: `GCONV_PATH`, `LOCPATH`, `HOSTALIASES`
+    - 프록시: `HTTP_PROXY`, `HTTPS_PROXY`, `ALL_PROXY`(소문자 포함)
+    - TLS 신뢰 저장소: `SSL_CERT_FILE`, `SSL_CERT_DIR`, `REQUESTS_CA_BUNDLE`, `CURL_CA_BUNDLE`
+    - 플랫폼 내부: `RUNTIME_PORT`, `USERFUNCVOL`, `WSGI_FRAMEWORK`, `SENTRY_DSN`, `SENTRY_RELEASE`, `TIMEOUT`, `BODY_PARSER_LIMIT`
+    - 접두사: `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_`
+
+    Go
+
+    - `GODEBUG`
+    - Go는 일반 사용자 변수와 충돌하지 않도록 접두사 차단이 없습니다.
 
 ## Configure Entry Point
 

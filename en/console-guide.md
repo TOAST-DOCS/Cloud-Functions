@@ -104,7 +104,7 @@ Configure the function, write your code, and build it. Then, click **Create** to
         <td rowspan="2">Source code</td>
         <td>1.</td>
         <td>Runtime Environment</td>
-        <td>Select the function's runtime environment<br>런타임 선택 목록에는 지원 중단된 런타임 이름 우측에 지원 중단 뱃지가 표시됩니다.<br>지원 중단 런타임을 선택하면 하단에 안내 콜아웃이 노출됩니다.<br>사용 중단된 런타임은 목록에서 제외되어 선택할 수 없습니다.</td>
+        <td>Select the function's runtime environment<br>런타임 선택 목록에는 지원 중단된 런타임 이름 우측에 지원 중단 배지가 표시됩니다.<br>지원 중단 런타임을 선택하면 하단에 안내 콜아웃이 노출됩니다.<br>사용 중단된 런타임은 목록에서 제외되어 선택할 수 없습니다.</td>
     </tr>
     <tr>
         <td>2.</td>
@@ -151,10 +151,10 @@ Configure the function, write your code, and build it. Then, click **Create** to
 
 > **[Note]** <br> Packages generated via Build button are linked to the function version during creation or updates. You must perform at least one build before creating a function
 
-> **[참고]** 빌드/테스트 영역 <br>
+> [참고] 빌드/테스트 영역 <br>
 > 빌드 또는 테스트를 실행하면 빌드/테스트 영역에서 터미널이 펼쳐지며, 빌드 로그와 테스트 로그가 탭으로 구분되어 표시됩니다. 접기 버튼으로 숨길 수 있습니다.
 
-> **[참고]** 런타임 지원 상태 <br>
+> [참고] 런타임 지원 상태 <br>
 > 지원 중단(EOL)된 런타임을 선택하면 하단에 다음과 같은 콜아웃이 표시됩니다. (날짜는 런타임에 따라 다릅니다.)<br>
 > "본 런타임은 2026년 4월 30일에 지원이 중단되었으며, 2026년 10월 31일에 사용 중단될 예정입니다. 사용 중단 이후에는 기존 함수의 수정이 불가하므로, 안정적인 운영을 위해 최신 런타임 사용을 권장합니다."<br>
 > 사용 중단된 런타임은 목록에서 제외되어 새 함수 생성 시 선택할 수 없습니다. 런타임 상태에 대한 자세한 내용은 개요의 '런타임 지원 상태'를 참고하세요.
@@ -162,9 +162,9 @@ Configure the function, write your code, and build it. Then, click **Create** to
 #### 환경 변수
 함수가 외부 서비스 연동에 필요한 인증 정보(API 키, DB 접속 정보 등)를 코드에 하드코딩하지 않고 환경 변수로 분리하여 관리할 수 있습니다.
 
-- 함수 생성 및 수정의 코드 작성 단계에서 소스 코드 하위의 환경 변수 관리 영역을 통해 환경 변수를 등록/수정/삭제할 수 있습니다.
+- 함수 생성 및 수정의 코드 작성 단계에서 소스 코드 하위의 환경 변수 관리 영역에서 환경 변수를 등록/수정/삭제할 수 있습니다.
     - 함수당 최대 100개까지 등록할 수 있으며, 100개에 도달하면 **변수 추가** 버튼이 비활성화됩니다.
-- 등록한 환경 변수는 함수 런타임에 주입되며, 코드에서 각 언어의 표준 환경 변수 접근 방식으로 값을 사용할 수 있습니다. (코드 템플릿 가이드 참고)
+- 등록한 환경 변수는 함수 런타임에 주입되며, 코드에서 각 언어의 표준 환경 변수 접근 방식으로 값을 사용할 수 있습니다. 자세한 내용은 코드 템플릿 가이드를 참고하세요.
 - 키를 기준으로 검색할 수 있으며, 매칭되는 항목이 등록 순서대로 표시됩니다.
 - 환경 변수의 생성/수정/삭제는 빌드와 무관하게 동작합니다. 다만 변경한 값이 실행 중인 함수에 반영되려면 함수가 다시 시작되어야 합니다.
 
@@ -188,7 +188,7 @@ Configure the function, write your code, and build it. Then, click **Create** to
     </tr>
 </table>
 
-> **[참고]** 예약 키 제한 <br>
+> [참고] 예약 키 제한 <br>
 > 시스템·런타임이 특별하게 취급하는 일부 키는 보안상 환경 변수로 등록할 수 없습니다. 아래는 차단되는 키의 대표 예시이며, 이 외에도 차단되는 키가 있습니다.<br>
 > - 공통: `PATH`, `HOME`, `LD_PRELOAD`, `LD_LIBRARY_PATH`<br>
 > - 언어/런타임: `PYTHONPATH`(Python), `NODE_OPTIONS`(Node.js), `JAVA_TOOL_OPTIONS`·`CLASSPATH`(Java)<br>
@@ -226,7 +226,7 @@ Copy a function that is identical to an existing function. The name cannot be du
 ![console-guide-01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-en-08.png)
 - You can see a list of functions that users have created.
 - Build status shows the build status of the current version.
-- 런타임 정보 우측에 런타임의 지원 상태(지원 중단/사용 중단) 뱃지가 표시됩니다.
+- 런타임 정보 우측에 런타임의 지원 상태(지원 중단/사용 중단) 배지가 표시됩니다.
 
 ### Basic information of functions
 ![console-guide-19](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-en-19.png)
@@ -256,7 +256,7 @@ Copy a function that is identical to an existing function. The name cannot be du
     </tr>
 </table>
 
-- 환경 변수의 등록/수정/삭제는 함수 생성 및 수정의 코드 작성 단계에서 할 수 있습니다. (함수 생성 > 환경 변수 참고)
+- 환경 변수의 등록/수정/삭제는 함수 생성 및 수정의 코드 작성 단계에서 할 수 있습니다. 자세한 내용은 함수 생성 > 환경 변수를 참고하세요.
 
 ### Function versioning
 ![console-guide-15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2026-01-27/console-guide-en-15.png)
@@ -279,7 +279,7 @@ Build your code by clicking **Build** in the function creation or modification s
     <tr>
         <td>1.</td>
         <td>Version List</td>
-        <td>You can check the full version history of the function.<br>This list displays information such as the version name, runtime, source code, and build status.<br>런타임 정보 우측에는 런타임의 지원 상태(지원 중단/사용 중단) 뱃지가 표시됩니다.</td>
+        <td>You can check the full version history of the function.<br>This list displays information such as the version name, runtime, source code, and build status.<br>런타임 정보 우측에는 런타임의 지원 상태(지원 중단/사용 중단) 배지가 표시됩니다.</td>
     </tr>
     <tr>
         <td>2.</td>

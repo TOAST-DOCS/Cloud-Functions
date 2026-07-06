@@ -5,9 +5,9 @@
 ## 템플릿 정보
 | 항목              | 값               |
 |-----------------|-----------------|
-| **지원 버전**       | 20.16.0, 22.5.0 |
-| **파일명**         | hello.js        |
-| **Entry Point** | hello           |
+| 지원 버전       | 20.16.0, 22.5.0 |
+| 파일명         | hello.js        |
+| Entry Point | hello           |
 
 ## 기본 템플릿
 ### Hello World 예시
@@ -47,7 +47,7 @@ module.exports = async (context) => {
 ### 템플릿 다운로드
 Cloud Functions에서 제공하는 Node.js 템플릿을 다운로드하여 로컬 환경에서 개발할 수 있습니다.
 
-**템플릿 다운로드 링크**: [nodejs.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/nodejs/nodejs.zip)
+템플릿 다운로드 링크: [nodejs.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/nodejs/nodejs.zip)
 
 ### 템플릿 파일 구조
 다운로드한 템플릿 파일의 구조는 다음과 같습니다.
@@ -145,7 +145,7 @@ zip -r my-function.zip . -x "*.git*" "node_modules/*" "test.js"
 ```
 
 ### Cloud Functions 콘솔에서 업로드
-> 함수를 생성하거나 수정할 때 사용자 로컬 환경의 파일을 업로드 시 사용. (콘솔 사용 가이드 참고)
+함수를 생성하거나 수정할 때 사용자 로컬 환경의 파일을 업로드하는 경우에 사용합니다. 자세한 내용은 콘솔 사용 가이드를 참고하세요.
 
 ### 업로드 시 주의사항
 
@@ -153,7 +153,7 @@ zip -r my-function.zip . -x "*.git*" "node_modules/*" "test.js"
 - ZIP 파일의 루트에 직접 `.js` 파일과 `package.json`이 위치해야 합니다.
 - 불필요한 폴더 구조는 피할 것을 권장합니다.
 
-**올바른 구조:**
+올바른 구조:
 ```
 my-function.zip
 ├── hello.js
@@ -161,7 +161,7 @@ my-function.zip
 └── utils.js (추가 파일이 있는 경우)
 ```
 
-**잘못된 구조:**
+잘못된 구조:
 ```
 my-function.zip
 └── my-function/
@@ -383,7 +383,7 @@ module.exports = async (context) => {
 ```
 
 ## 환경 변수 사용
-함수에 등록한 환경 변수는 `process.env`를 통해 접근할 수 있습니다. 환경 변수는 함수 생성 및 수정의 코드 작성 단계에서 등록합니다. (콘솔 사용 가이드 참고)
+함수에 등록한 환경 변수는 `process.env`로 접근할 수 있습니다. 환경 변수는 함수 생성 및 수정의 코드 작성 단계에서 등록합니다. 자세한 내용은 콘솔 사용 가이드를 참고하세요.
 
 ```javascript
 module.exports = async (context) => {
@@ -406,20 +406,23 @@ module.exports = async (context) => {
 }
 ```
 
-> **[참고]** 보안상 다음 키·접두사는 환경 변수로 등록할 수 없습니다.
->
-> **공통(모든 런타임)**
-> - 셸/subprocess: `PATH`, `IFS`, `HOME`, `BASH_ENV`, `ENV`, `SHELLOPTS`
-> - 로더/라이브러리: `LD_PRELOAD`, `LD_LIBRARY_PATH`, `LD_AUDIT`
-> - glibc 동적 로딩: `GCONV_PATH`, `LOCPATH`, `HOSTALIASES`
-> - 프록시: `HTTP_PROXY`, `HTTPS_PROXY`, `ALL_PROXY`(소문자 포함)
-> - TLS 신뢰 저장소: `SSL_CERT_FILE`, `SSL_CERT_DIR`, `REQUESTS_CA_BUNDLE`, `CURL_CA_BUNDLE`
-> - 플랫폼 내부: `RUNTIME_PORT`, `USERFUNCVOL`, `WSGI_FRAMEWORK`, `SENTRY_DSN`, `SENTRY_RELEASE`, `TIMEOUT`, `BODY_PARSER_LIMIT`
-> - 접두사: `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_`
->
-> **Node.js**
-> - `NODE_PATH`, `NODE_OPTIONS`, `NODE_EXTRA_CA_CERTS`
-> - 접두사 `NODE_`
+!!! tip "참고"
+    보안상 다음 키·접두사는 환경 변수로 등록할 수 없습니다.
+
+    공통(모든 런타임)
+
+    - 셸/subprocess: `PATH`, `IFS`, `HOME`, `BASH_ENV`, `ENV`, `SHELLOPTS`
+    - 로더/라이브러리: `LD_PRELOAD`, `LD_LIBRARY_PATH`, `LD_AUDIT`
+    - glibc 동적 로딩: `GCONV_PATH`, `LOCPATH`, `HOSTALIASES`
+    - 프록시: `HTTP_PROXY`, `HTTPS_PROXY`, `ALL_PROXY`(소문자 포함)
+    - TLS 신뢰 저장소: `SSL_CERT_FILE`, `SSL_CERT_DIR`, `REQUESTS_CA_BUNDLE`, `CURL_CA_BUNDLE`
+    - 플랫폼 내부: `RUNTIME_PORT`, `USERFUNCVOL`, `WSGI_FRAMEWORK`, `SENTRY_DSN`, `SENTRY_RELEASE`, `TIMEOUT`, `BODY_PARSER_LIMIT`
+    - 접두사: `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_`
+
+    Node.js
+
+    - `NODE_PATH`, `NODE_OPTIONS`, `NODE_EXTRA_CA_CERTS`
+    - 접두사 `NODE_`
 
 ## Entry Point 설정
 
@@ -465,15 +468,15 @@ Entry Point 설정:
 - `users.updateUser`
 
 ### Entry Point 제한 사항
-- **하위 디렉터리 지정 불가**: 루트 디렉터리의 하위 디렉터리에 있는 파일은 Entry Point로 지정할 수 없습니다.
+- 하위 디렉터리 지정 불가: 루트 디렉터리의 하위 디렉터리에 있는 파일은 Entry Point로 지정할 수 없습니다.
 
-**올바른 Entry Point:**
+올바른 Entry Point:
 ```
 hello.js → hello
 users.js → users.getUser
 ```
 
-**잘못된 Entry Point:**
+잘못된 Entry Point:
 ```
 lib/utils.js → lib.utils ❌
 src/handlers.js → src.handlers ❌
@@ -487,7 +490,7 @@ modules/auth.js → modules.auth ❌
 ### CommonJS vs ES Modules
 현재 Cloud Functions는 CommonJS 방식만 지원합니다.
 
-**사용 가능(CommonJS):**
+사용 가능(CommonJS):
 ```javascript
 const axios = require('axios');
 module.exports = async (context) => {
@@ -495,7 +498,7 @@ module.exports = async (context) => {
 };
 ```
 
-**사용 불가(ES Modules):**
+사용 불가(ES Modules):
 ```javascript
 import axios from 'axios';  // ❌ 지원하지 않음
 export default async (context) => {  // ❌ 지원하지 않음

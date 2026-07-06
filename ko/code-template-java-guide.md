@@ -5,9 +5,9 @@
 ## 템플릿 정보
 | 항목              | 값                  |
 |-----------------|--------------------|
-| **지원 버전**       | 17, 21             |
-| **파일명**         | HelloWorld.java    |
-| **Entry Point** | example.HelloWorld |
+| 지원 버전       | 17, 21             |
+| 파일명         | HelloWorld.java    |
+| Entry Point | example.HelloWorld |
 
 ## 기본 템플릿
 
@@ -30,7 +30,7 @@ public class HelloWorld {
 ```
 
 ### Context 객체(RequestEntity)
-Java 함수에서는 Spring의 `RequestEntity`를 통해 HTTP 요청 정보에 접근할 수 있습니다.
+Java 함수에서는 Spring의 `RequestEntity`로 HTTP 요청 정보에 접근할 수 있습니다.
 
 ```java
 package example;
@@ -67,7 +67,7 @@ public class HelloWorld {
 ### 템플릿 다운로드
 Cloud Functions에서 제공하는 Java 템플릿을 다운로드하여 로컬 환경에서 개발할 수 있습니다.
 
-**템플릿 다운로드 링크**: [java.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/java/java.zip)
+템플릿 다운로드 링크: [java.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/java/java.zip)
 
 ### 템플릿 파일 구조
 다운로드한 템플릿은 Maven 프로젝트 구조를 따릅니다.
@@ -166,10 +166,10 @@ zip -r my-function.zip . -x "*.git*" "target/*" "*.log"
 - **파일 선택**을 클릭하여 생성한 `my-function.zip` 파일을 업로드합니다.
 
 ### 업로드 시 주의사항
-- **업로드 파일**: 소스 코드와 `pom.xml`이 포함된 **ZIP 파일**을 업로드해야 합니다.
-- **ZIP 파일 구조**: ZIP 파일의 루트에 `pom.xml`과 `src` 디렉터리가 위치해야 합니다.
-- **제외할 파일**: `target` 디렉터리, `.git` 디렉터리 등 불필요한 파일은 포함하지 마세요.
-- **파일 크기**: ZIP 파일 크기는 100MiB 이하로 제한됩니다.
+- 업로드 파일: 소스 코드와 `pom.xml`이 포함된 ZIP 파일을 업로드해야 합니다.
+- ZIP 파일 구조: ZIP 파일의 루트에 `pom.xml`과 `src` 디렉터리가 위치해야 합니다.
+- 제외할 파일: `target` 디렉터리, `.git` 디렉터리 등 불필요한 파일은 포함하지 마세요.
+- 파일 크기: ZIP 파일 크기는 100MiB 이하로 제한됩니다.
 
 ## HTTP 메서드별 처리
 
@@ -308,9 +308,10 @@ public class StringUtilsHandler {
 ```
 
 ## 환경 변수 사용
-함수에 등록한 환경 변수는 `System.getProperty`를 통해 접근할 수 있습니다. 환경 변수는 함수 생성 및 수정의 코드 작성 단계에서 등록합니다. (콘솔 사용 가이드 참고)
+함수에 등록한 환경 변수는 `System.getProperty`로 접근할 수 있습니다. 환경 변수는 함수 생성 및 수정의 코드 작성 단계에서 등록합니다. 자세한 내용은 콘솔 사용 가이드를 참고하세요.
 
-> **[참고]** Java 런타임에서는 환경 변수가 OS 환경 변수가 아닌 JVM 시스템 프로퍼티로 주입됩니다. 따라서 `System.getenv`가 아닌 `System.getProperty`로 읽어야 하며, `System.getenv`를 사용하면 값이 조회되지 않습니다.
+!!! tip "참고"
+    Java 런타임에서는 환경 변수가 OS 환경 변수가 아닌 JVM 시스템 프로퍼티로 주입됩니다. 따라서 `System.getenv`가 아닌 `System.getProperty`로 읽어야 하며, `System.getenv`를 사용하면 값이 조회되지 않습니다.
 
 ```java
 package example;
@@ -340,19 +341,22 @@ public class HelloWorld {
 }
 ```
 
-> **[참고]** 보안상 다음 키·접두사는 환경 변수로 등록할 수 없습니다.
->
-> **공통(모든 런타임)**
-> - 셸/subprocess: `PATH`, `IFS`, `HOME`, `BASH_ENV`, `ENV`, `SHELLOPTS`
-> - 로더/라이브러리: `LD_PRELOAD`, `LD_LIBRARY_PATH`, `LD_AUDIT`
-> - glibc 동적 로딩: `GCONV_PATH`, `LOCPATH`, `HOSTALIASES`
-> - 프록시: `HTTP_PROXY`, `HTTPS_PROXY`, `ALL_PROXY`(소문자 포함)
-> - TLS 신뢰 저장소: `SSL_CERT_FILE`, `SSL_CERT_DIR`, `REQUESTS_CA_BUNDLE`, `CURL_CA_BUNDLE`
-> - 플랫폼 내부: `RUNTIME_PORT`, `USERFUNCVOL`, `WSGI_FRAMEWORK`, `SENTRY_DSN`, `SENTRY_RELEASE`, `TIMEOUT`, `BODY_PARSER_LIMIT`
-> - 접두사: `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_`
->
-> **Java**
-> - `JAVA_TOOL_OPTIONS`, `_JAVA_OPTIONS`, `JDK_JAVA_OPTIONS`, `CLASSPATH`
+!!! tip "참고"
+    보안상 다음 키·접두사는 환경 변수로 등록할 수 없습니다.
+
+    공통(모든 런타임)
+
+    - 셸/subprocess: `PATH`, `IFS`, `HOME`, `BASH_ENV`, `ENV`, `SHELLOPTS`
+    - 로더/라이브러리: `LD_PRELOAD`, `LD_LIBRARY_PATH`, `LD_AUDIT`
+    - glibc 동적 로딩: `GCONV_PATH`, `LOCPATH`, `HOSTALIASES`
+    - 프록시: `HTTP_PROXY`, `HTTPS_PROXY`, `ALL_PROXY`(소문자 포함)
+    - TLS 신뢰 저장소: `SSL_CERT_FILE`, `SSL_CERT_DIR`, `REQUESTS_CA_BUNDLE`, `CURL_CA_BUNDLE`
+    - 플랫폼 내부: `RUNTIME_PORT`, `USERFUNCVOL`, `WSGI_FRAMEWORK`, `SENTRY_DSN`, `SENTRY_RELEASE`, `TIMEOUT`, `BODY_PARSER_LIMIT`
+    - 접두사: `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_`
+
+    Java
+
+    - `JAVA_TOOL_OPTIONS`, `_JAVA_OPTIONS`, `JDK_JAVA_OPTIONS`, `CLASSPATH`
 
 ## Entry Point 설정
 
@@ -362,8 +366,10 @@ public class HelloWorld {
 - 패키지명: `example`
 - 클래스명: `HelloWorld`
 - Entry Point: `example.HelloWorld`
-- **중요**: 함수 역할을 하는 메서드는 `public ResponseEntity<?> call(RequestEntity<?> req)` 시그니처를 가져야 합니다.
+
+!!! danger "중요"
+    함수 역할을 하는 메서드는 `public ResponseEntity<?> call(RequestEntity<?> req)` 시그니처를 가져야 합니다.
 
 ### 주의사항
-- **프로젝트 구조**: `src/main/java` 디렉터리 구조를 유지해야 합니다.
-- **메모리 및 실행 시간**: 함수는 제한된 리소스 내에서 동작해야 하므로, 무거운 작업은 피하고 코드를 최적화하세요.
+- 프로젝트 구조: `src/main/java` 디렉터리 구조를 유지해야 합니다.
+- 메모리 및 실행 시간: 함수는 제한된 리소스 내에서 동작해야 하므로, 무거운 작업은 피하고 코드를 최적화하세요.
