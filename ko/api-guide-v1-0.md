@@ -64,6 +64,19 @@ User Access Key 토큰 발급 및 사용에 대한 자세한 내용은 [User Acc
 | header.resultMessage | String | 결과 메시지 |
 | data | Object | 응답 데이터(API별 상이) |
 
+### 런타임 EOL 상태 공통 필드
+
+함수 및 환경 목록 조회 응답에는 런타임의 EOL(end of life) 상태 정보가 포함됩니다.
+
+| 이름 | 타입 | 설명 |
+| --- | --- | --- |
+| runtimeStatus | String | 런타임 상태: `NORMAL`(정상) / `DEPRECATED`(지원 중단) / `DISCONTINUED`(사용 중단) |
+| deprecatedAt | String | 지원 중단일(ISO 8601, Asia/Seoul 기준). 없으면 null |
+| discontinuedAt | String | 사용 중단일(ISO 8601, Asia/Seoul 기준). 없으면 null |
+
+- 상태 판정: `discontinuedAt`이 현재 시각 이전이면 `DISCONTINUED`, `deprecatedAt`이 현재 시각 이전이면 `DEPRECATED`, 그 외에는 `NORMAL`입니다.
+- `DISCONTINUED` 런타임은 환경 목록 조회에서 제외되며, 해당 런타임을 사용하는 함수는 수정할 수 없습니다.
+
 ---
 
 ## 환경 목록 조회
@@ -104,13 +117,19 @@ GET /v1.0/env/list
             "id": 1,
             "environment": "NodeJS",
             "version": "22.5.0",
-            "entryPoint": "index.handler"
+            "entryPoint": "index.handler",
+            "runtimeStatus": "NORMAL",
+            "deprecatedAt": "2027-04-30T00:00:00",
+            "discontinuedAt": "2027-10-30T00:00:00"
         },
         {
             "id": 2,
-            "environment": "Python",
-            "version": "3.9",
-            "entryPoint": "main.handler"
+            "environment": "NodeJS",
+            "version": "20.16.0",
+            "entryPoint": "index.handler",
+            "runtimeStatus": "DEPRECATED",
+            "deprecatedAt": "2026-04-30T00:00:00",
+            "discontinuedAt": "2026-10-30T00:00:00"
         }
     ]
 }
@@ -125,6 +144,9 @@ GET /v1.0/env/list
 | data[].environment | String | 런타임 환경(예: NodeJS) |
 | data[].version | String | 런타임 버전(예: 22.5.0)     |
 | data[].entryPoint | String | 기본 진입점            |
+| data[].runtimeStatus | String | 런타임 EOL 상태(`NORMAL`, `DEPRECATED`). 사용 중단(`DISCONTINUED`) 런타임은 목록에서 제외됩니다. |
+| data[].deprecatedAt | String | 지원 중단일(ISO 8601). 없으면 null |
+| data[].discontinuedAt | String | 사용 중단일(ISO 8601). 없으면 null |
 
 ---
 
@@ -175,7 +197,10 @@ GET /v1.0/functions
                 "timeout": 60,
                 "buildStatus": "SUCCEEDED",
                 "createdAt": "1700000000",
-                "updatedAt": "2026-03-09T14:59:44Z"
+                "updatedAt": "2026-03-09T14:59:44Z",
+                "runtimeStatus": "NORMAL",
+                "deprecatedAt": "2027-04-30T00:00:00",
+                "discontinuedAt": "2027-10-30T00:00:00"
             }
         ]
     }
@@ -197,6 +222,9 @@ GET /v1.0/functions
 | data.functions[].buildStatus | String | 빌드 상태(PENDING, RUNNING, SUCCEEDED, FAILED) |
 | data.functions[].createdAt | String | 생성 시간(epoch seconds) |
 | data.functions[].updatedAt | String | 수정 시간(ISO 8601, 예: 2026-03-09T14:59:44Z) |
+| data.functions[].runtimeStatus | String | 런타임 EOL 상태(`NORMAL`, `DEPRECATED`, `DISCONTINUED`) |
+| data.functions[].deprecatedAt | String | 지원 중단일(ISO 8601). 없으면 null |
+| data.functions[].discontinuedAt | String | 사용 중단일(ISO 8601). 없으면 null |
 
 ---
 
@@ -251,7 +279,14 @@ GET /v1.0/functions/{functionName}
         "buildLog": "Build succeeded...",
         "currentVersionName": "v1",
         "sourceFileName": "source.zip",
-        "lncsAppkey": null
+        "lncsAppkey": null,
+        "runtimeStatus": "NORMAL",
+        "deprecatedAt": "2027-04-30T00:00:00",
+        "discontinuedAt": "2027-10-30T00:00:00",
+        "envVars": {
+            "DB_HOST": "10.0.0.1",
+            "LOG_LEVEL": "info"
+        }
     }
 }
 ```
@@ -277,15 +312,21 @@ GET /v1.0/functions/{functionName}
 | data.currentVersionName | String | 현재 버전 이름 |
 | data.sourceFileName | String | 소스 파일 이름 |
 | data.lncsAppkey | String | LnCS 앱키 |
+| data.runtimeStatus | String | 런타임 EOL 상태(`NORMAL`, `DEPRECATED`, `DISCONTINUED`) |
+| data.deprecatedAt | String | 지원 중단일(ISO 8601). 없으면 null |
+| data.discontinuedAt | String | 사용 중단일(ISO 8601). 없으면 null |
+| data.envVars | Object | 함수에 설정된 환경 변수(키-값). 단건 조회에서만 제공되며, 환경 변수가 없으면 null |
 
 ---
 
 ## 함수 생성
 
 새 함수를 생성합니다. multipart/form-data로 소스 파일을 업로드합니다.
-runtime은 `{environment}-{version}` 형식으로 입력해야 합니다(예: NodeJS-22.5.0). 사용 가능한 런타임은 환경 목록 조회 API로 확인할 수 있습니다.
+`runtime`은 `{environment}-{version}` 형식으로 입력해야 합니다(예: NodeJS-22.5.0). 사용 가능한 런타임은 환경 목록 조회 API로 확인할 수 있습니다.
 
-executorType에 따라 필수 파라미터가 달라집니다. poolManager일 때는 requestPerPod가, newDeployment일 때는 minInstance와 maxInstance가 필수입니다.
+`executorType`에 따라 필수 파라미터가 달라집니다. `poolManager`일 때는 `requestPerPod`가, `newDeployment`일 때는 `minInstance`와 `maxInstance`가 필수입니다.
+
+환경 변수는 `envVars` 필드에 JSON 문자열로 전달합니다. 함수당 최대 100개, 키는 `^[A-Za-z_][A-Za-z0-9_]*$`(최대 128자, 중복 불가), 값은 최대 4,096자이며, 보안상 예약된 키는 등록할 수 없습니다. 잘못된 JSON이면 실패 응답을 반환합니다.
 
 ### 요청
 
@@ -311,12 +352,13 @@ Content-Type: multipart/form-data
 | executorType | String | Y          | 실행 타입(poolManager 또는 newDeployment)                                                               |
 | runtime | String | Y          | 런타임({environment}-{version} 형식, 예: NodeJS-22.5.0)                                                 |
 | entryPoint | String | Y          | 함수 진입점                                                                                            |
-| memory | Integer | Y          | 메모리(MB). 기본 리소스 세트 값: 128, 256, 512, 1024, 2048, 4096. newDeployment의 경우 64~4096 범위의 커스텀 값도 사용 가능 |
+| memory | Integer | Y          | 메모리(MB). 기본 리소스 세트 값: 128, 256, 512, 1024, 2048, 4096. newDeployment의 경우 64~4096 범위의 사용자 지정 값도 사용 가능 |
 | requestPerPod | Integer | Conditional | Pod당 동시 요청 수(poolManager일 때 1~1000, 기본값: 1)                                                       |
 | timeout | Integer | Y          | 타임아웃(초, 1~900)                                                                                    |
 | minInstance | Integer | Conditional | 최소 인스턴스 수(newDeployment일 때 필수, 1~100, maxInstance 이하)                                             |
 | maxInstance | Integer | Conditional | 최대 인스턴스 수(newDeployment일 때 필수, 1~100)                                                             |
 | lncsAppkey | String | N          | LnCS 앱키                                                                                           |
+| envVars | String | N          | 환경 변수(JSON 문자열, 예: `{"DB_HOST":"10.0.0.1"}`). 미지정 시 환경 변수 없음. 잘못된 JSON이면 실패 응답 |
 | sourceFile | Binary | Y          | 소스 코드 파일(ZIP)                                                                                     |
 
 ### 응답
@@ -343,7 +385,11 @@ Content-Type: multipart/form-data
 
 함수를 수정합니다. multipart/form-data로 소스 파일을 업로드할 수 있습니다.
 
-소스 파일(sourceFile)은 선택 항목입니다. 소스 파일을 포함하지 않으면 기존 소스 코드가 유지됩니다.
+소스 파일(`sourceFile`)은 선택 항목입니다. 소스 파일을 포함하지 않으면 기존 소스 코드가 유지됩니다.
+
+환경 변수는 `envVars` 필드에 JSON 문자열로 전달합니다. 미지정 시 기존 환경 변수가 유지되고, `"{}"`이면 전체 삭제, 값이 있으면 전체 교체됩니다. 제약 조건은 함수 생성과 동일합니다.
+
+사용 중단(`DISCONTINUED`)된 런타임을 사용하는 함수는 수정할 수 없습니다. 요청 시 실패 응답(`header.isSuccessful`이 `false`)과 함께 "사용 중단된 런타임으로 함수를 수정할 수 없습니다. 최신 런타임으로 함수를 새로 생성해주세요." 메시지가 반환됩니다.
 
 ### 요청
 
@@ -369,12 +415,13 @@ Content-Type: multipart/form-data
 | executorType | String | Y          | 실행 타입(poolManager 또는 newDeployment)                                                               |
 | runtime | String | Y          | 런타임({environment}-{version} 형식, 예: NodeJS-22.5.0)                                                     |
 | entryPoint | String | Y          | 함수 진입점                                                                                            |
-| memory | Integer | Y          | 메모리(MB). 기본 리소스 세트 값: 128, 256, 512, 1024, 2048, 4096. newDeployment의 경우 64~4096 범위의 커스텀 값도 사용 가능 |
+| memory | Integer | Y          | 메모리(MB). 기본 리소스 세트 값: 128, 256, 512, 1024, 2048, 4096. newDeployment의 경우 64~4096 범위의 사용자 지정 값도 사용 가능 |
 | requestPerPod | Integer | Conditional | Pod당 동시 요청 수(poolManager일 때 1~1000)                                                               |
 | timeout | Integer | Y          | 타임아웃(초, 1~900)                                                                                    |
 | minInstance | Integer | Conditional | 최소 인스턴스 수(newDeployment일 때 필수, 1~100, maxInstance 이하)                                             |
 | maxInstance | Integer | Conditional | 최대 인스턴스 수(newDeployment일 때 필수, 1~100)                                                             |
 | lncsAppkey | String | N          | LnCS 앱키                                                                                           |
+| envVars | String | N          | 환경 변수(JSON 문자열). 미지정 시 기존 유지, `"{}"`이면 전체 삭제, 값이 있으면 전체 교체. 잘못된 JSON이면 실패 응답 |
 | sourceFile | Binary | N          | 소스 코드 파일(ZIP)                                                                                     |
 
 ### 응답

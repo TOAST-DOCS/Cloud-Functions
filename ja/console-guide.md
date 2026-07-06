@@ -89,9 +89,9 @@
 
 #### コード作成
 
-![console-guide-09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-jp-03.png)
-![console-guide-10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-jp-04.png)
-![console-guide-11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-jp-05.png)
+![console-guide-16](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-jp-16.png)
+![console-guide-17](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-jp-17.png)
+![console-guide-18](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-jp-18.png)
 
 <table class="it">
     <tr>
@@ -104,7 +104,7 @@
         <td rowspan="2">ソースコード</td>
         <td>1.</td>
         <td>ランタイム環境</td>
-        <td>関数のランタイム環境を選択</td>
+        <td>関数のランタイム環境を選択<br>런타임 선택 목록에는 지원 중단된 런타임 이름 우측에 지원 중단 배지가 표시됩니다.<br>지원 중단 런타임을 선택하면 하단에 안내 콜아웃이 노출됩니다.<br>사용 중단된 런타임은 목록에서 제외되어 선택할 수 없습니다.</td>
     </tr>
     <tr>
         <td>2.</td>
@@ -112,7 +112,7 @@
         <td>関数のエントリーポイントを指定。例：関数名 <br>ランタイム環境のテンプレートに基づいて自動的に補完されます。<br>任意に修正する場合は、作成したソースコードのエントリーポイントと一致している必要があります。<br>誤って入力した場合、**ビルドでは確認できず**、**テスト実行時のログを通じて確認できます**。</td>
     </tr>
     <tr>
-        <td rowspan="3">コード</td>
+        <td rowspan="2">コード</td>
         <td>3.</td>
         <td>コードエディタ</td>
         <td>ランタイム環境のテンプレートファイルが読み込まれ、そのファイルを編集して関数を作成<br>コードエディタでのディレクトリ追加はできません。ディレクトリ構造を編集するには、テンプレートファイルをダウンロードしてローカルで直接修正した後、ZIPファイルアップロード方式を使用する必要があります。</td>
@@ -123,20 +123,21 @@
         <td>ユーザーローカル環境で関数コードを作成し、ZIPファイル形式でアップロード</td>
     </tr>
     <tr>
+        <td rowspan="2">빌드/테스트</td>
         <td>5.</td>
         <td>ビルド</td>
-        <td>ユーザーが作成またはアップロードしたコードをビルドしてパッケージを作成します。<br>ビルドされたパッケージはテストに使用され、関数の作成/修正時に最後にビルドされたパッケージが関数バージョンとして連携されます。</td>
+        <td>ユーザーが作成またはアップロードしたコードをビルドしてパッケージを作成します。<br>ビルドされたパッケージはテストに使用され、関数の作成/修正時に最後にビルドされたパッケージが関数バージョンとして連携されます。<br>빌드/테스트 버튼은 설정 영역 하단의 빌드/테스트 영역에 위치하며, 빌드가 완료되면 테스트 버튼이 활성화됩니다.</td>
     </tr>
     <tr>
-        <td rowspan="2">テスト</td>
         <td>6.</td>
-        <td>テストイベント</td>
-        <td>関数に渡すJSON Bodyを作成</td>
+        <td>テスト</td>
+        <td><strong>테스트</strong> 탭에서 함수에 전달할 JSON Body(테스트 이벤트)를 작성하고, 하단 <strong>테스트</strong> 버튼으로 함수를 테스트. (빌드가 선행되어야 합니다.)<br>로그로 함수 동작을 확인할 수 있습니다.<br>GET 메서드로 호출합니다.</td>
     </tr>
     <tr>
+        <td>환경 변수</td>
         <td>7.</td>
-        <td>テスト</td>
-        <td>イベントに作成したJSON Bodyを渡して関数をテストします(事前にビルドが必要です)。ログで関数の動作を確認できます。<br>GETメソッドで呼び出します。</td>
+        <td>환경 변수</td>
+        <td>함수에 주입할 환경 변수를 등록/수정/삭제하고 키로 검색합니다. 자세한 내용은 아래 <strong>환경 변수</strong>를 참고하세요.</td>
     </tr>
     <tr>
         <td></td>
@@ -150,6 +151,49 @@
 
 > **[参考]** <br>ビルドボタンを通じて作成されたパッケージは、関数の作成/修正時に最後にビルドされたパッケージが関数バージョンとして連携されます。関数作成前に少なくとも1回以上ビルドを実行する必要があります。
 
+> [참고] 빌드/테스트 영역 <br>
+> 빌드 또는 테스트를 실행하면 빌드/테스트 영역에서 터미널이 펼쳐지며, 빌드 로그와 테스트 로그가 탭으로 구분되어 표시됩니다. 접기 버튼으로 숨길 수 있습니다.
+
+> [참고] 런타임 지원 상태 <br>
+> 지원 중단(EOL)된 런타임을 선택하면 하단에 다음과 같은 콜아웃이 표시됩니다. (날짜는 런타임에 따라 다릅니다.)<br>
+> "본 런타임은 2026년 4월 30일에 지원이 중단되었으며, 2026년 10월 31일에 사용 중단될 예정입니다. 사용 중단 이후에는 기존 함수의 수정이 불가하므로, 안정적인 운영을 위해 최신 런타임 사용을 권장합니다."<br>
+> 사용 중단된 런타임은 목록에서 제외되어 새 함수 생성 시 선택할 수 없습니다. 런타임 상태에 대한 자세한 내용은 개요의 '런타임 지원 상태'를 참고하세요.
+
+#### 환경 변수
+함수가 외부 서비스 연동에 필요한 인증 정보(API 키, DB 접속 정보 등)를 코드에 하드코딩하지 않고 환경 변수로 분리하여 관리할 수 있습니다.
+
+- 함수 생성 및 수정의 코드 작성 단계에서 소스 코드 하위의 환경 변수 관리 영역에서 환경 변수를 등록/수정/삭제할 수 있습니다.
+    - 함수당 최대 100개까지 등록할 수 있으며, 100개에 도달하면 **변수 추가** 버튼이 비활성화됩니다.
+- 등록한 환경 변수는 함수 런타임에 주입되며, 코드에서 각 언어의 표준 환경 변수 접근 방식으로 값을 사용할 수 있습니다. 자세한 내용은 코드 템플릿 가이드를 참고하세요.
+- 키를 기준으로 검색할 수 있으며, 매칭되는 항목이 등록 순서대로 표시됩니다.
+- 환경 변수의 생성/수정/삭제는 빌드와 무관하게 동작합니다. 다만 변경한 값이 실행 중인 함수에 반영되려면 함수가 다시 시작되어야 합니다.
+
+##### 환경 변수 제약 사항
+<table class="it">
+    <tr>
+        <th>항목</th>
+        <th>제약</th>
+    </tr>
+    <tr>
+        <td>개수</td>
+        <td>함수당 최대 100개</td>
+    </tr>
+    <tr>
+        <td>키</td>
+        <td>영문자 또는 언더스코어(_)로 시작하며, 영문자·숫자·언더스코어(_)만 사용 가능<br>최대 128자, 중복 불가<br>(정규식: <code>^[A-Za-z_][A-Za-z0-9_]*$</code>)</td>
+    </tr>
+    <tr>
+        <td>값</td>
+        <td>최대 4,096자</td>
+    </tr>
+</table>
+
+> [참고] 예약 키 제한 <br>
+> 시스템·런타임이 특별하게 취급하는 일부 키는 보안상 환경 변수로 등록할 수 없습니다. 아래는 차단되는 키의 대표 예시이며, 이 외에도 차단되는 키가 있습니다.<br>
+> - 공통: `PATH`, `HOME`, `LD_PRELOAD`, `LD_LIBRARY_PATH`<br>
+> - 언어/런타임: `PYTHONPATH`(Python), `NODE_OPTIONS`(Node.js), `JAVA_TOOL_OPTIONS`·`CLASSPATH`(Java)<br>
+> - 접두사 `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_`로 시작하는 키는 모두 차단됩니다.
+
 ### 関数修正
 既存の関数の設定とコードを修正するために、**修正**ボタンを クリックして 関数を修正します。
 
@@ -161,6 +205,13 @@
 - コードエディタを使用する場合既存コードが読み込まれます。
 - ユーザーローカル環境のZIPファイルをアップロードして関数を生成した場合、コードエディタに変更するとZIPファイルを表示せず、基本テンプレートコードが読み込まれます。
 
+#### 사용 중단 런타임 함수 수정 제한
+- 사용 중단된 런타임을 사용하는 함수는 수정할 수 없습니다.
+- 함수 목록에서 사용 중단 런타임을 사용하는 함수를 단건 선택하면 **수정** 버튼이 비활성화되어 함수 수정 화면으로 진입할 수 없습니다.
+- 비활성화된 **수정** 버튼에 마우스를 올리면 다음과 같은 툴팁이 표시됩니다.
+    - "사용 중단된 런타임으로 함수를 수정할 수 없습니다. 최신 런타임으로 함수를 새로 생성해주세요."
+- 지원 중단(사용 중단 전) 런타임을 사용하는 함수는 수정할 수 있으며, 함수 생성과 동일하게 안내 콜아웃이 표시됩니다.
+
 ### 関数削除
 ![console-guide-14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-jp-06.png)
 既存の関数を選択して削除します。一度に複数の関数を削除可能です。
@@ -170,17 +221,44 @@
 既存の関数と同一の関数をコピーします。名前は重複不可のため、コピー前に新しい名前を指定できます。
 - トリガーはコピーされません。(HTTPトリガーはデフォルトで提供)
 - バージョンは現在適用されているバージョンのみコピーされます。
+- 원본 함수에 등록된 환경 변수는 그대로 복사됩니다.
 
 ## 関数情報
 ### 関数リスト
 ![console-guide-01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-jp-08.png)
 - ユーザーが作成した関数リストを確認できます。
 - ビルドの状態は 現在のバージョンのビルド状態を表示します。
+- 런타임 정보 우측에 런타임의 지원 상태(지원 중단/사용 중단) 배지가 표시됩니다.
 
 ### 関数基本情報
-![console-guide-02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-jp-09.png)
+![console-guide-19](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-jp-19.png)
 - 関数の基本情報を確認できます。
 - ログ管理項目で **Log & Crash Search** ボタンをクリックし、Log & Crash Searchサービスへ移動してログを確認できます。
+
+### 함수 환경 변수
+함수 상세 정보의 환경 변수 탭에서 해당 함수에 등록된 환경 변수 목록을 확인할 수 있습니다.
+
+![console-guide-20](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-jp-20.png)
+
+<table class="it">
+    <tr>
+        <th>No.</th>
+        <th>항목</th>
+        <th>설명</th>
+    </tr>
+    <tr>
+        <td>1.</td>
+        <td>검색</td>
+        <td>환경 변수 키를 기준으로 검색합니다.</td>
+    </tr>
+    <tr>
+        <td>2.</td>
+        <td>값 마스킹</td>
+        <td>값은 기본적으로 마스킹되어 표시됩니다.<br>각 행의 눈 모양 아이콘을 클릭해 값을 확인할 수 있으며, 여러 값을 동시에 확인할 수 있습니다.</td>
+    </tr>
+</table>
+
+- 환경 변수의 등록/수정/삭제는 함수 생성 및 수정의 코드 작성 단계에서 할 수 있습니다. 자세한 내용은 함수 생성 > 환경 변수를 참고하세요.
 
 ### 関数バージョン管理
 ![console-guide-15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2026-01-27/console-guide-jp-15.png)
@@ -203,7 +281,7 @@
     <tr>
         <td>1.</td>
         <td>バージョンリスト</td>
-        <td>関数の全てのバージョン履歴を確認できます。<br>バージョン名、ランタイム、ソースコード、ビルド状態などの情報が表示されます。</td>
+        <td>関数の全てのバージョン履歴を確認できます。<br>バージョン名、ランタイム、ソースコード、ビルド状態などの情報が表示されます。<br>런타임 정보 우측에는 런타임의 지원 상태(지원 중단/사용 중단) 배지가 표시됩니다.</td>
     </tr>
     <tr>
         <td>2.</td>

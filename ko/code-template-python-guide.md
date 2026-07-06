@@ -5,9 +5,9 @@
 ## 템플릿 정보
 | 항목              | 값                |
 |-----------------|------------------|
-| **지원 버전**       | 3.11, 3.12, 3.13 |
-| **파일명**         | user.py          |
-| **Entry Point** | user.main        |
+| 지원 버전       | 3.11, 3.12, 3.13 |
+| 파일명         | user.py          |
+| Entry Point | user.main        |
 
 ## 기본 템플릿
 
@@ -30,7 +30,7 @@ def main():
 ```
 
 ### Context 객체
-Python 함수에서는 Flask의 request 객체를 통해 HTTP 요청 정보에 접근할 수 있습니다.
+Python 함수에서는 Flask의 request 객체로 HTTP 요청 정보에 접근할 수 있습니다.
 
 ```python
 from flask import request
@@ -62,7 +62,7 @@ def main():
 ### 템플릿 다운로드
 Cloud Functions에서 제공하는 Python 템플릿을 다운로드하여 로컬 환경에서 개발할 수 있습니다.
 
-**템플릿 다운로드 링크**: [python.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/python/python.zip)
+템플릿 다운로드 링크: [python.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/python/python.zip)
 
 ### 템플릿 파일 구조
 다운로드한 템플릿 파일의 구조는 다음과 같습니다.
@@ -165,7 +165,7 @@ zip -r my-function.zip . -x "*.git*" "__pycache__/*" "*.pyc" "test.py"
 ```
 
 ### Cloud Functions 콘솔에서 업로드
-> 함수를 생성하거나 수정할 때 사용자 로컬 환경의 파일을 업로드 시 사용. (콘솔 사용 가이드 참고)
+함수를 생성하거나 수정할 때 사용자 로컬 환경의 파일을 업로드하는 경우에 사용합니다. 자세한 내용은 콘솔 사용 가이드를 참고하세요.
 
 ### 업로드 시 주의사항
 
@@ -173,7 +173,7 @@ zip -r my-function.zip . -x "*.git*" "__pycache__/*" "*.pyc" "test.py"
 - ZIP 파일의 루트에 직접 `.py` 파일과 `requirements.txt`가 위치해야 합니다.
 - 불필요한 폴더 구조는 피할 것을 권장합니다.
 
-**올바른 구조:**
+올바른 구조:
 ```
 my-function.zip
 ├── user.py
@@ -181,7 +181,7 @@ my-function.zip
 └── utils.py (추가 파일이 있는 경우)
 ```
 
-**잘못된 구조:**
+잘못된 구조:
 ```
 my-function.zip
 └── my-function/
@@ -381,6 +381,43 @@ def normalize_name(name):
     return name.strip().title()
 ```
 
+## 환경 변수 사용
+함수에 등록한 환경 변수는 `os.environ`(또는 `os.getenv`)으로 접근할 수 있습니다. 환경 변수는 함수 생성 및 수정의 코드 작성 단계에서 등록합니다. 자세한 내용은 콘솔 사용 가이드를 참고하세요.
+
+```python
+from flask import request
+import os
+import json
+
+def main():
+    # 환경 변수 읽기
+    db_host = os.environ.get('DB_HOST')
+    api_key = os.getenv('API_KEY')
+
+    if not api_key:
+        return json.dumps({'error': 'API_KEY is not set'}, ensure_ascii=False), 500
+
+    return json.dumps({'db_host': db_host}, ensure_ascii=False)
+```
+
+!!! tip "참고"
+    보안상 다음 키·접두사는 환경 변수로 등록할 수 없습니다.
+
+    공통(모든 런타임)
+
+    - 셸/subprocess: `PATH`, `IFS`, `HOME`, `BASH_ENV`, `ENV`, `SHELLOPTS`
+    - 로더/라이브러리: `LD_PRELOAD`, `LD_LIBRARY_PATH`, `LD_AUDIT`
+    - glibc 동적 로딩: `GCONV_PATH`, `LOCPATH`, `HOSTALIASES`
+    - 프록시: `HTTP_PROXY`, `HTTPS_PROXY`, `ALL_PROXY`(소문자 포함)
+    - TLS 신뢰 저장소: `SSL_CERT_FILE`, `SSL_CERT_DIR`, `REQUESTS_CA_BUNDLE`, `CURL_CA_BUNDLE`
+    - 플랫폼 내부: `RUNTIME_PORT`, `USERFUNCVOL`, `WSGI_FRAMEWORK`, `SENTRY_DSN`, `SENTRY_RELEASE`, `TIMEOUT`, `BODY_PARSER_LIMIT`
+    - 접두사: `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_`
+
+    Python
+
+    - `PYTHONPATH`, `PYTHONSTARTUP`, `PYTHONHOME`, `PYTHONEXECUTABLE`
+    - 접두사 `PYTHON`
+
 ## Entry Point 설정
 
 ### 단일 함수
@@ -421,12 +458,12 @@ Entry Point 설정:
 ### 지원하지 않는 패키지
 현재 아래 특징이 있는 복잡한 패키지는 지원하지 않습니다.
 
-**지원하지 않는 패키지 예시:**
+지원하지 않는 패키지 예시:
 - `numpy`, `pandas` (C/C++ 확장 모듈 필수)
 - `scipy` (시스템 라이브러리 의존성)
 - `tensorflow`, `pytorch` (복잡한 초기화 과정)
 
-**지원 가능한 패키지 예시:**
+지원 가능한 패키지 예시:
 - `requests` (HTTP 클라이언트)
 - `pyyaml` (YAML 처리)
 - `python-dateutil` (날짜/시간 처리)

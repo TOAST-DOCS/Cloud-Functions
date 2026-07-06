@@ -5,9 +5,9 @@
 ## 템플릿 정보
 | 항목              | 값       |
 |-----------------|---------|
-| **지원 버전**       | 8       |
-| **파일명**         | func.cs |
-| **Entry Point** | func    |
+| 지원 버전       | 8       |
+| 파일명         | func.cs |
+| Entry Point | func    |
 
 ## 기본 템플릿
 
@@ -51,7 +51,7 @@ public class NhnFunction
 ```
 
 ### Context 객체
-`NhnContext` 객체를 통해 로거, 요청(Request), 응답(Response) 객체에 접근할 수 있습니다.
+`NhnContext` 객체로 로거, 요청(Request), 응답(Response) 객체에 접근할 수 있습니다.
 
 ```csharp
 using System;
@@ -100,7 +100,7 @@ public class NhnFunction
 ### 템플릿 다운로드
 Cloud Functions에서 제공하는 .NET 템플릿을 다운로드하여 로컬 환경에서 개발할 수 있습니다.
 
-**템플릿 다운로드 링크**: [dotnet.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/dotnet/dotnet.zip)
+템플릿 다운로드 링크: [dotnet.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/dotnet/dotnet.zip)
 
 ### 템플릿 파일 구조
 다운로드한 템플릿 파일의 구조는 다음과 같습니다.
@@ -274,7 +274,7 @@ public class NhnFunction
 
 ## 패키지 관리(`nuget.txt`)
 
-의존성(NuGet 패키지) 관리를 위해 `nuget.txt` 파일을 사용합니다. 필요한 패키지를 한 줄에 하나씩 작성합니다.
+의존성(NuGet 패키지)을 관리하려면 `nuget.txt` 파일을 사용합니다. 필요한 패키지를 한 줄에 하나씩 작성합니다.
 
 ```
 # nuget.txt
@@ -362,15 +362,67 @@ public class NhnFunction
 }
 ```
 
+## 환경 변수 사용
+함수에 등록한 환경 변수는 `Environment.GetEnvironmentVariable`로 접근할 수 있습니다. 환경 변수는 함수 생성 및 수정의 코드 작성 단계에서 등록합니다. 자세한 내용은 콘솔 사용 가이드를 참고하세요.
+
+```csharp
+using System;
+using System.Collections.Generic;
+using Nhn.DotNetCore.Api;
+using Newtonsoft.Json;
+
+public class NhnFunction
+{
+    public string Execute(NhnContext context)
+    {
+        // 환경 변수 읽기
+        string dbHost = Environment.GetEnvironmentVariable("DB_HOST");
+        string apiKey = Environment.GetEnvironmentVariable("API_KEY");
+
+        if (string.IsNullOrEmpty(apiKey))
+        {
+            return "{ \"error\": \"API_KEY is not set\" }";
+        }
+
+        var responseData = new Dictionary<string, object>
+        {
+            { "dbHost", dbHost }
+        };
+
+        return JsonConvert.SerializeObject(responseData);
+    }
+}
+```
+
+!!! tip "참고"
+    보안상 다음 키·접두사는 환경 변수로 등록할 수 없습니다.
+
+    공통(모든 런타임)
+
+    - 셸/subprocess: `PATH`, `IFS`, `HOME`, `BASH_ENV`, `ENV`, `SHELLOPTS`
+    - 로더/라이브러리: `LD_PRELOAD`, `LD_LIBRARY_PATH`, `LD_AUDIT`
+    - glibc 동적 로딩: `GCONV_PATH`, `LOCPATH`, `HOSTALIASES`
+    - 프록시: `HTTP_PROXY`, `HTTPS_PROXY`, `ALL_PROXY`(소문자 포함)
+    - TLS 신뢰 저장소: `SSL_CERT_FILE`, `SSL_CERT_DIR`, `REQUESTS_CA_BUNDLE`, `CURL_CA_BUNDLE`
+    - 플랫폼 내부: `RUNTIME_PORT`, `USERFUNCVOL`, `WSGI_FRAMEWORK`, `SENTRY_DSN`, `SENTRY_RELEASE`, `TIMEOUT`, `BODY_PARSER_LIMIT`
+    - 접두사: `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_`
+
+    .NET
+
+    - `DOTNET_STARTUP_HOOKS`, `DOTNET_ADDITIONAL_DEPS`, `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`
+    - 접두사 `CORECLR_`, `COMPLUS_`, `DOTNET_`, `ASPNETCORE_`
+
 ## Entry Point 설정
 
-Entry Point는 **파일명**입니다. (확장자 제외)
+Entry Point는 파일명입니다(확장자 제외).
 
 - 파일명: `func.cs`
 - Entry Point: `func`
 
-**중요**: 클래스 이름은 `NhnFunction`이어야 하며, 함수 역할을 하는 메서드는 `public string Execute(NhnContext context)` 시그니처를 가져야 합니다.
+!!! danger "중요"
+    클래스 이름은 `NhnFunction`이어야 하며, 함수 역할을 하는 메서드는 `public string Execute(NhnContext context)` 시그니처를 가져야 합니다.
+    
 
 ### 주의사항
-- **패키지 버전**: `nuget.txt`에서 패키지 버전을 명시할 수 있습니다. (예: `Newtonsoft.Json:9.0.1`)
-- **타입 충돌**: 의존성 추가 시 타입 충돌이 발생할 수 있으므로, 가능한 .NET 기본 라이브러리를 사용하거나 호환되는 버전의 패키지를 사용하는 것을 권장합니다.
+- 패키지 버전: `nuget.txt`에서 패키지 버전을 명시할 수 있습니다(예: `Newtonsoft.Json:9.0.1`).
+- 타입 충돌: 의존성 추가 시 타입 충돌이 발생할 수 있으므로, 가능하면 .NET 기본 라이브러리를 사용하거나 호환되는 버전의 패키지를 사용하는 것을 권장합니다.
