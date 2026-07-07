@@ -64,18 +64,18 @@ Every API response follows the common format as below:
 | header.resultMessage | String | Result message |
 | data | Object | Response data (varies by API) |
 
-### 런타임 EOL 상태 공통 필드
+### Runtime EOL Status Common Fields
 
-함수 및 환경 목록 조회 응답에는 런타임의 EOL(end of life) 상태 정보가 포함됩니다.
+The response for function and environment list retrieval includes EOL (end of life) status information for the runtime.
 
-| 이름 | 타입 | 설명 |
+| Name | Type | Description |
 | --- | --- | --- |
-| runtimeStatus | String | 런타임 상태: `NORMAL`(정상) / `DEPRECATED`(지원 중단) / `DISCONTINUED`(사용 중단) |
-| deprecatedAt | String | 지원 중단일(ISO 8601, Asia/Seoul 기준). 없으면 null |
-| discontinuedAt | String | 사용 중단일(ISO 8601, Asia/Seoul 기준). 없으면 null |
+| runtimeStatus | String | Runtime status: `NORMAL` (active) / `DEPRECATED` (deprecated) / `DISCONTINUED` (discontinued) |
+| deprecatedAt | String | Deprecation date (ISO 8601, Asia/Seoul). Null if not set. |
+| discontinuedAt | String | Discontinuation date (ISO 8601, Asia/Seoul). Null if not set. |
 
-- 상태 판정: `discontinuedAt`이 현재 시각 이전이면 `DISCONTINUED`, `deprecatedAt`이 현재 시각 이전이면 `DEPRECATED`, 그 외에는 `NORMAL`입니다.
-- `DISCONTINUED` 런타임은 환경 목록 조회에서 제외되며, 해당 런타임을 사용하는 함수는 수정할 수 없습니다.
+- Status determination: If `discontinuedAt` is before the current time, the status is `DISCONTINUED`. If `deprecatedAt` is before the current time, the status is `DEPRECATED`. Otherwise, the status is `NORMAL`.
+- `DISCONTINUED` runtimes are excluded from the environment list retrieval, and functions using the runtime cannot be modified.
 
 ---
 
@@ -144,9 +144,9 @@ This API does not require a request body.
 | data[].environment | String | Runtime environment (e.g., NodeJS) |
 | data[].version | String | Runtime version (e.g., 22.5.0) |
 | data[].entryPoint | String | Default entry point |
-| data[].runtimeStatus | String | 런타임 EOL 상태(`NORMAL`, `DEPRECATED`). 사용 중단(`DISCONTINUED`) 런타임은 목록에서 제외됩니다. |
-| data[].deprecatedAt | String | 지원 중단일(ISO 8601). 없으면 null |
-| data[].discontinuedAt | String | 사용 중단일(ISO 8601). 없으면 null |
+| data[].runtimeStatus | String | Runtime EOL status (`NORMAL`, `DEPRECATED`). Runtimes with a discontinued (`DISCONTINUED`) status are excluded from the list. |
+| data[].deprecatedAt | String | Deprecation date (ISO 8601). Null if not set. |
+| data[].discontinuedAt | String | Discontinuation date (ISO 8601). Null if not set. |
 
 ---
 
@@ -222,9 +222,9 @@ This API does not require a request body.
 | data.functions[].buildStatus | String | Build status (PENDING, RUNNING, SUCCEEDED, FAILED) |
 | data.functions[].createdAt | String | Creation time (epoch seconds) |
 | data.functions[].updatedAt | String | Last modified time (ISO 8601, e.g., 2026-03-09T14:59:44Z) |
-| data.functions[].runtimeStatus | String | 런타임 EOL 상태(`NORMAL`, `DEPRECATED`, `DISCONTINUED`) |
-| data.functions[].deprecatedAt | String | 지원 중단일(ISO 8601). 없으면 null |
-| data.functions[].discontinuedAt | String | 사용 중단일(ISO 8601). 없으면 null |
+| data.functions[].runtimeStatus | String | Runtime EOL status (`NORMAL`, `DEPRECATED`, `DISCONTINUED`) |
+| data.functions[].deprecatedAt | String | Deprecation date (ISO 8601). Null if not set. |
+| data.functions[].discontinuedAt | String | Discontinuation date (ISO 8601). Null if not set. |
 
 ---
 
@@ -312,10 +312,10 @@ This API does not require a request body.
 | data.currentVersionName | String | Current version name |
 | data.sourceFileName | String | Source file name |
 | data.lncsAppkey | String | LnCS Appkey |
-| data.runtimeStatus | String | 런타임 EOL 상태(`NORMAL`, `DEPRECATED`, `DISCONTINUED`) |
-| data.deprecatedAt | String | 지원 중단일(ISO 8601). 없으면 null |
-| data.discontinuedAt | String | 사용 중단일(ISO 8601). 없으면 null |
-| data.envVars | Object | 함수에 설정된 환경 변수(키-값). 단건 조회에서만 제공되며, 환경 변수가 없으면 null |
+| data.runtimeStatus | String | Runtime EOL status (`NORMAL`, `DEPRECATED`, `DISCONTINUED`) |
+| data.deprecatedAt | String | Deprecation date (ISO 8601). Null if not set. |
+| data.discontinuedAt | String | Discontinuation date (ISO 8601). Null if not set. |
+| data.envVars | Object | Environment variables set for the function (key-value pairs). Provided only in single-item retrieval. Null if no environment variables are set. |
 
 ---
 
@@ -326,7 +326,7 @@ The runtime must be entered in the `{environment}-{version}` format (e.g., NodeJ
 
 Required parameters vary depending on the executorType. When using poolManager, requestPerPod is required. When using newDeployment, minInstance and maxInstance are required.
 
-환경 변수는 `envVars` 필드에 JSON 문자열로 전달합니다. 함수당 최대 100개, 키는 `^[A-Za-z_][A-Za-z0-9_]*$`(최대 128자, 중복 불가), 값은 최대 4,096자이며, 보안상 예약된 키는 등록할 수 없습니다. 잘못된 JSON이면 실패 응답을 반환합니다.
+Environment variables are passed as a JSON string in the `envVars` field. Up to 100 variables are allowed per function, keys must match `^[A-Za-z_][A-Za-z0-9_]*$` (maximum 128 characters, no duplicates), values can be up to 4,096 characters, and reserved keys cannot be registered for security reasons. An invalid JSON will return a failure response.
 
 ### Request
 
@@ -358,7 +358,7 @@ Content-Type: multipart/form-data
 | minInstance | Integer | Conditional | Minimum number of instances (required when using newDeployment, 1–100, must be less than or equal to maxInstance) |
 | maxInstance | Integer | Conditional | Maximum number of instances (required when using newDeployment, 1–100) |
 | lncsAppkey | String | N | LnCS Appkey |
-| envVars | String | N          | 환경 변수(JSON 문자열, 예: `{"DB_HOST":"10.0.0.1"}`). 미지정 시 환경 변수 없음. 잘못된 JSON이면 실패 응답 |
+| envVars | String | N          | Environment variables (JSON string, e.g., `{"DB_HOST":"10.0.0.1"}`). If not specified, no environment variables are set. An invalid JSON will return a failure response. |
 | sourceFile | Binary | Y | Source code file (ZIP) |
 
 ### Response
@@ -387,9 +387,9 @@ Modifies a function. The source file can be uploaded as multipart/form-data.
 
 The source file (sourceFile) is optional. If no source file is included, the existing source code is retained.
 
-환경 변수는 `envVars` 필드에 JSON 문자열로 전달합니다. 미지정 시 기존 환경 변수가 유지되고, `"{}"`이면 전체 삭제, 값이 있으면 전체 교체됩니다. 제약 조건은 함수 생성과 동일합니다.
+Environment variables are passed as a JSON string in the `envVars` field. If not specified, the existing environment variables are retained. If set to `"{}"`, all environment variables are deleted. If a value is provided, all environment variables are replaced. Constraints are the same as for function creation.
 
-사용 중단(`DISCONTINUED`)된 런타임을 사용하는 함수는 수정할 수 없습니다. 요청 시 실패 응답(`header.isSuccessful`이 `false`)과 함께 "사용 중단된 런타임으로 함수를 수정할 수 없습니다. 최신 런타임으로 함수를 새로 생성해주세요." 메시지가 반환됩니다.
+Functions using a discontinued (`DISCONTINUED`) runtime cannot be modified. When requested, a failure response is returned with `header.isSuccessful` set to `false`, along with the message "Functions cannot be modified using a discontinued runtime. Please create a new function with the latest runtime."
 
 ### Request
 
@@ -421,7 +421,7 @@ Content-Type: multipart/form-data
 | minInstance | Integer | Conditional | Minimum number of instances (required when using newDeployment, 1–100, must be less than or equal to maxInstance) |
 | maxInstance | Integer | Conditional | Maximum number of instances (required when using newDeployment, 1–100) |
 | lncsAppkey | String | N | LnCS Appkey |
-| envVars | String | N          | 환경 변수(JSON 문자열). 미지정 시 기존 유지, `"{}"`이면 전체 삭제, 값이 있으면 전체 교체. 잘못된 JSON이면 실패 응답 |
+| envVars | String | N          | Environment variables (JSON string). If not specified, the existing environment variables are retained. If set to `"{}"`, all environment variables are deleted. If a value is provided, all environment variables are replaced. An invalid JSON will return a failure response. |
 | sourceFile | Binary | N | Source code file (ZIP) |
 
 ### Response

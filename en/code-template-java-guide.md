@@ -307,11 +307,11 @@ public class StringUtilsHandler {
 }
 ```
 
-## 환경 변수 사용
-함수에 등록한 환경 변수는 `System.getProperty`로 접근할 수 있습니다. 환경 변수는 함수 생성 및 수정의 코드 작성 단계에서 등록합니다. 자세한 내용은 콘솔 사용 가이드를 참고하세요.
+## Use Environment Variables
+Environment variables registered for a function can be accessed via `System.getProperty`. Environment variables are registered during the code writing step of function creation and modification. For more information, see the console user guide.
 
-!!! tip "참고"
-    Java 런타임에서는 환경 변수가 OS 환경 변수가 아닌 JVM 시스템 프로퍼티로 주입됩니다. 따라서 `System.getenv`가 아닌 `System.getProperty`로 읽어야 하며, `System.getenv`를 사용하면 값이 조회되지 않습니다.
+!!! tip "Note"
+    In the Java runtime, environment variables are injected as JVM system properties rather than OS environment variables. Therefore, they must be read using `System.getProperty` instead of `System.getenv`. Using `System.getenv` will not return the values.
 
 ```java
 package example;
@@ -324,7 +324,7 @@ import java.util.Map;
 public class HelloWorld {
 
     public ResponseEntity<?> call(RequestEntity<?> req) {
-        // 환경 변수 읽기(Java는 시스템 프로퍼티로 주입되므로 getProperty 사용)
+        // Read environment variables (Java injects environment variables as system properties, so use `getProperty` to access them.)
         String dbHost = System.getProperty("DB_HOST");
         String apiKey = System.getProperty("API_KEY");
 
@@ -341,18 +341,18 @@ public class HelloWorld {
 }
 ```
 
-!!! tip "참고"
-    보안상 다음 키·접두사는 환경 변수로 등록할 수 없습니다.
+!!! tip "Note"
+    For security reasons, the following keys and prefixes cannot be registered as environment variables:
 
-    공통(모든 런타임)
+    Common (all runtimes)
 
-    - 셸/subprocess: `PATH`, `IFS`, `HOME`, `BASH_ENV`, `ENV`, `SHELLOPTS`
-    - 로더/라이브러리: `LD_PRELOAD`, `LD_LIBRARY_PATH`, `LD_AUDIT`
-    - glibc 동적 로딩: `GCONV_PATH`, `LOCPATH`, `HOSTALIASES`
-    - 프록시: `HTTP_PROXY`, `HTTPS_PROXY`, `ALL_PROXY`(소문자 포함)
-    - TLS 신뢰 저장소: `SSL_CERT_FILE`, `SSL_CERT_DIR`, `REQUESTS_CA_BUNDLE`, `CURL_CA_BUNDLE`
-    - 플랫폼 내부: `RUNTIME_PORT`, `USERFUNCVOL`, `WSGI_FRAMEWORK`, `SENTRY_DSN`, `SENTRY_RELEASE`, `TIMEOUT`, `BODY_PARSER_LIMIT`
-    - 접두사: `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_`
+    - Shell/subprocess: `PATH`, `IFS`, `HOME`, `BASH_ENV`, `ENV`, `SHELLOPTS`
+    - Loader/library: `LD_PRELOAD`, `LD_LIBRARY_PATH`, `LD_AUDIT`
+    - glibc dynamic loading: `GCONV_PATH`, `LOCPATH`, `HOSTALIASES`
+    - Proxy: `HTTP_PROXY`, `HTTPS_PROXY`, `ALL_PROXY` (including lowercase)
+    - TLS trust store: `SSL_CERT_FILE`, `SSL_CERT_DIR`, `REQUESTS_CA_BUNDLE`, `CURL_CA_BUNDLE`
+    - Platform internal: `RUNTIME_PORT`, `USERFUNCVOL`, `WSGI_FRAMEWORK`, `SENTRY_DSN`, `SENTRY_RELEASE`, `TIMEOUT`, `BODY_PARSER_LIMIT`
+    - Prefixes: `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_`
 
     Java
 

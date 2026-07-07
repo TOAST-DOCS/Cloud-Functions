@@ -101,10 +101,10 @@ Configure the function, write your code, and build it. Then, click **Create** to
         <th>Description</th>
     </tr>
     <tr>
-        <td rowspan="2">Source code</td>
+        <td rowspan="2">Source Code</td>
         <td>1.</td>
         <td>Runtime Environment</td>
-        <td>Select the function's runtime environment<br>런타임 선택 목록에는 지원 중단된 런타임 이름 우측에 지원 중단 배지가 표시됩니다.<br>지원 중단 런타임을 선택하면 하단에 안내 콜아웃이 노출됩니다.<br>사용 중단된 런타임은 목록에서 제외되어 선택할 수 없습니다.</td>
+        <td>Select the function's runtime environment<br>In the runtime selection list, a deprecated badge is displayed to the right of the deprecated runtime name.<br>When a deprecated runtime is selected, a guidance callout appears at the bottom.<br>Discontinued runtimes are excluded from the list and cannot be selected.</td>
     </tr>
     <tr>
         <td>2.</td>
@@ -119,25 +119,25 @@ Configure the function, write your code, and build it. Then, click **Create** to
     </tr>
     <tr>
         <td>4.</td>
-        <td>User’s local environment</td>
+        <td>User’s Local Environment</td>
         <td>Write function code in the local environment and upload as a ZIP file</td>
     </tr>
     <tr>
-        <td rowspan="2">빌드/테스트</td>
+        <td rowspan="2">Build/Test</td>
         <td>5.</td>
         <td>Build</td>
-        <td>Build a package from the code you have written or uploaded.<br>The built packages are used for testing. When creating or updating a function, the latest built package is automatically integrated into the function version<br>빌드/테스트 버튼은 설정 영역 하단의 빌드/테스트 영역에 위치하며, 빌드가 완료되면 테스트 버튼이 활성화됩니다.</td>
+        <td>Build a package from the code you have written or uploaded.<br>The built packages are used for testing. When creating or updating a function, the latest built package is automatically integrated into the function version<br>The Build/Test button is located in the build/test area at the bottom of the settings area, and the Test button is activated when the build is complete.</td>
     </tr>
     <tr>
         <td>6.</td>
         <td>Test</td>
-        <td><strong>테스트</strong> 탭에서 함수에 전달할 JSON Body(테스트 이벤트)를 작성하고, 하단 <strong>테스트</strong> 버튼으로 함수를 테스트. (빌드가 선행되어야 합니다.)<br>로그로 함수 동작을 확인할 수 있습니다.<br>GET 메서드로 호출합니다.</td>
+        <td>In the <strong>Test</strong> tab, write a JSON body (test event) to pass to the function, and test the function using the <strong>Test</strong> button at the bottom. (A build must be completed first.)<br>Function behavior can be verified through logs.<br>Called using the GET method.</td>
     </tr>
     <tr>
-        <td>환경 변수</td>
+        <td>Environment Variable</td>
         <td>7.</td>
-        <td>환경 변수</td>
-        <td>함수에 주입할 환경 변수를 등록/수정/삭제하고 키로 검색합니다. 자세한 내용은 아래 <strong>환경 변수</strong>를 참고하세요.</td>
+        <td>Environment Variable</td>
+        <td>Register, modify, or delete environment variables to inject into the function, and search by key. For more information, see <strong>Environment Variable</strong> below.</td>
     </tr>
     <tr>
         <td></td>
@@ -151,48 +151,48 @@ Configure the function, write your code, and build it. Then, click **Create** to
 
 > **[Note]** <br> Packages generated via Build button are linked to the function version during creation or updates. You must perform at least one build before creating a function
 
-> [참고] 빌드/테스트 영역 <br>
-> 빌드 또는 테스트를 실행하면 빌드/테스트 영역에서 터미널이 펼쳐지며, 빌드 로그와 테스트 로그가 탭으로 구분되어 표시됩니다. 접기 버튼으로 숨길 수 있습니다.
+> [Note] Build/Test area <br>
+> When a build or test is run, a terminal expands in the build/test area, and the build log and test log are displayed in separate tabs. The area can be hidden using the collapse button.
 
-> [참고] 런타임 지원 상태 <br>
-> 지원 중단(EOL)된 런타임을 선택하면 하단에 다음과 같은 콜아웃이 표시됩니다. (날짜는 런타임에 따라 다릅니다.)<br>
-> "본 런타임은 2026년 4월 30일에 지원이 중단되었으며, 2026년 10월 31일에 사용 중단될 예정입니다. 사용 중단 이후에는 기존 함수의 수정이 불가하므로, 안정적인 운영을 위해 최신 런타임 사용을 권장합니다."<br>
-> 사용 중단된 런타임은 목록에서 제외되어 새 함수 생성 시 선택할 수 없습니다. 런타임 상태에 대한 자세한 내용은 개요의 '런타임 지원 상태'를 참고하세요.
+> [Note] Runtime support status <br>
+> When a deprecated (EOL) runtime is selected, the following callout is displayed at the bottom. (Dates vary by runtime.)<br>
+> "This runtime was deprecated on April 30, 2026, and is scheduled to be discontinued on October 31, 2026. Modification of existing functions will not be possible after discontinuation, so the use of the latest runtime is recommended for stable operation."<br>
+> Discontinued runtimes are excluded from the list and cannot be selected when creating a new function. For more information on runtime status, see "Runtime Support Status" in the overview.
 
-#### 환경 변수
-함수가 외부 서비스 연동에 필요한 인증 정보(API 키, DB 접속 정보 등)를 코드에 하드코딩하지 않고 환경 변수로 분리하여 관리할 수 있습니다.
+#### Environment Variable
+Credentials required for integration with external services (API keys, DB connection information, etc.) can be managed separately as environment variables without hardcoding them in the code.
 
-- 함수 생성 및 수정의 코드 작성 단계에서 소스 코드 하위의 환경 변수 관리 영역에서 환경 변수를 등록/수정/삭제할 수 있습니다.
-    - 함수당 최대 100개까지 등록할 수 있으며, 100개에 도달하면 **변수 추가** 버튼이 비활성화됩니다.
-- 등록한 환경 변수는 함수 런타임에 주입되며, 코드에서 각 언어의 표준 환경 변수 접근 방식으로 값을 사용할 수 있습니다. 자세한 내용은 코드 템플릿 가이드를 참고하세요.
-- 키를 기준으로 검색할 수 있으며, 매칭되는 항목이 등록 순서대로 표시됩니다.
-- 환경 변수의 생성/수정/삭제는 빌드와 무관하게 동작합니다. 다만 변경한 값이 실행 중인 함수에 반영되려면 함수가 다시 시작되어야 합니다.
+- Environment variables can be registered, modified, or deleted in the environment variable management area under the source code section during the code writing step of function creation and modification.
+    - Up to 100 variables can be registered per function. When the limit is reached, the **Add Variable** button is disabled.
+- Registered environment variables are injected into the function runtime, and the values can be accessed in the code using the standard environment variable access method of each language. For more information, see the code template guide.
+- You can search by key, and matching items are displayed in the order they were registered.
+- Creating, modifying, and deleting environment variables operates independently of builds. However, the function must be restarted for the updated values to take effect in the running function.
 
-##### 환경 변수 제약 사항
+##### Environment Variable Constraints
 <table class="it">
     <tr>
-        <th>항목</th>
-        <th>제약</th>
+        <th>Item</th>
+        <th>Constraint</th>
     </tr>
     <tr>
-        <td>개수</td>
-        <td>함수당 최대 100개</td>
+        <td>Count</td>
+        <td>Up to 100 per function</td>
     </tr>
     <tr>
-        <td>키</td>
-        <td>영문자 또는 언더스코어(_)로 시작하며, 영문자·숫자·언더스코어(_)만 사용 가능<br>최대 128자, 중복 불가<br>(정규식: <code>^[A-Za-z_][A-Za-z0-9_]*$</code>)</td>
+        <td>Key</td>
+        <td>Must start with a letter or underscore (_), and can only contain letters, numbers, and underscores (_)<br>Maximum 128 characters, no duplicates allowed<br>(Regex: <code>^[A-Za-z_][A-Za-z0-9_]*$</code>)</td>
     </tr>
     <tr>
-        <td>값</td>
-        <td>최대 4,096자</td>
+        <td>Value</td>
+        <td>Maximum 4,096 characters</td>
     </tr>
 </table>
 
-> [참고] 예약 키 제한 <br>
-> 시스템·런타임이 특별하게 취급하는 일부 키는 보안상 환경 변수로 등록할 수 없습니다. 아래는 차단되는 키의 대표 예시이며, 이 외에도 차단되는 키가 있습니다.<br>
-> - 공통: `PATH`, `HOME`, `LD_PRELOAD`, `LD_LIBRARY_PATH`<br>
-> - 언어/런타임: `PYTHONPATH`(Python), `NODE_OPTIONS`(Node.js), `JAVA_TOOL_OPTIONS`·`CLASSPATH`(Java)<br>
-> - 접두사 `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_`로 시작하는 키는 모두 차단됩니다.
+> [Note] Reserved key restrictions <br>
+> Some keys that are treated specially by the system or runtime cannot be registered as environment variables for security reasons. The following are representative examples of blocked keys, and there may be other blocked keys not listed here:<br>
+> - Common: `PATH`, `HOME`, `LD_PRELOAD`, `LD_LIBRARY_PATH`<br>
+> - Language/runtime: `PYTHONPATH` (Python), `NODE_OPTIONS` (Node.js), `JAVA_TOOL_OPTIONS`·`CLASSPATH` (Java)<br>
+> - Keys starting with the prefixes `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_` are all blocked.
 
 ### Modify functions
 To modify the function settings and code of an existing function, click **Modify** button to modify the function.
@@ -203,12 +203,12 @@ To modify the function settings and code of an existing function, click **Modify
 - If you're using the code editor, the existing code is loaded.
 - If you created a function by uploading a ZIP file from the local environment, when you switch to the code editor, it loads the default template code without showing the ZIP file.
 
-#### 사용 중단 런타임 함수 수정 제한
-- 사용 중단된 런타임을 사용하는 함수는 수정할 수 없습니다.
-- 함수 목록에서 사용 중단 런타임을 사용하는 함수를 단건 선택하면 **수정** 버튼이 비활성화되어 함수 수정 화면으로 진입할 수 없습니다.
-- 비활성화된 **수정** 버튼에 마우스를 올리면 다음과 같은 툴팁이 표시됩니다.
-    - "사용 중단된 런타임으로 함수를 수정할 수 없습니다. 최신 런타임으로 함수를 새로 생성해주세요."
-- 지원 중단(사용 중단 전) 런타임을 사용하는 함수는 수정할 수 있으며, 함수 생성과 동일하게 안내 콜아웃이 표시됩니다.
+#### Modify Function Restrictions for Discontinued Runtimes
+- Functions using a discontinued runtime cannot be modified.
+- When a single function using a discontinued runtime is selected in the function list, the **Modify** button is disabled and the function modification screen cannot be accessed.
+- Hovering over the disabled **Modify** button displays the following tooltip:
+    - "Functions cannot be modified using a discontinued runtime. Please create a new function with the latest runtime."
+- Functions using a deprecated (pre-discontinuation) runtime can be modified, and a guidance callout is displayed in the same way as when creating a function.
 
 ### Delete a function
 ![console-guide-14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-en-06.png)
@@ -219,44 +219,44 @@ Select an existing function to delete it. You can delete multiple functions at o
 Copy a function that is identical to an existing function. The name cannot be duplicated, so you can rewrite the name before copying.
 - Triggers are not copied. (HTTP triggers are provided by default).
 - Only the currently applied version will be copied.
-- 원본 함수에 등록된 환경 변수는 그대로 복사됩니다.
+- Environment variables registered in the original function are copied as-is.
 
 ## About functions
 ### List of functions
 ![console-guide-01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-en-08.png)
 - You can see a list of functions that users have created.
 - Build status shows the build status of the current version.
-- 런타임 정보 우측에 런타임의 지원 상태(지원 중단/사용 중단) 배지가 표시됩니다.
+- A runtime support status badge (deprecated/discontinued) is displayed to the right of the runtime information.
 
 ### Basic information of functions
 ![console-guide-19](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-en-19.png)
 - You can see basic information about the function.
 - Click Log & Crash Search in the Log Management section to view your logs in the Log & Crash Search service.
 
-### 함수 환경 변수
-함수 상세 정보의 환경 변수 탭에서 해당 함수에 등록된 환경 변수 목록을 확인할 수 있습니다.
+### Function Environment Variables
+You can check the list of environment variables registered for a function in the environment variable tab of the function details.
 
 ![console-guide-20](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-en-20.png)
 
 <table class="it">
     <tr>
-        <th>No.</th>
-        <th>항목</th>
-        <th>설명</th>
+<th>No.</th>
+        <th>Item</th>
+        <th>Description</th>
     </tr>
     <tr>
         <td>1.</td>
-        <td>검색</td>
-        <td>환경 변수 키를 기준으로 검색합니다.</td>
+        <td>Search</td>
+        <td>Search by environment variable key.</td>
     </tr>
     <tr>
         <td>2.</td>
-        <td>값 마스킹</td>
-        <td>값은 기본적으로 마스킹되어 표시됩니다.<br>각 행의 눈 모양 아이콘을 클릭해 값을 확인할 수 있으며, 여러 값을 동시에 확인할 수 있습니다.</td>
+        <td>Value masking</td>
+        <td>Values are masked by default.<br>You can view a value by clicking the eye icon on each row, and multiple values can be viewed simultaneously.</td>
     </tr>
 </table>
 
-- 환경 변수의 등록/수정/삭제는 함수 생성 및 수정의 코드 작성 단계에서 할 수 있습니다. 자세한 내용은 함수 생성 > 환경 변수를 참고하세요.
+- Environment variables can be registered, modified, or deleted during the code writing step of function creation and modification. For more information, see Function Creation > Environment Variable.
 
 ### Function versioning
 ![console-guide-15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2026-01-27/console-guide-en-15.png)
@@ -279,7 +279,7 @@ Build your code by clicking **Build** in the function creation or modification s
     <tr>
         <td>1.</td>
         <td>Version List</td>
-        <td>You can check the full version history of the function.<br>This list displays information such as the version name, runtime, source code, and build status.<br>런타임 정보 우측에는 런타임의 지원 상태(지원 중단/사용 중단) 배지가 표시됩니다.</td>
+        <td>You can check the full version history of the function.<br>This list displays information such as the version name, runtime, source code, and build status.<br>A runtime support status badge (deprecated/discontinued) is displayed to the right of the runtime information.</td>
     </tr>
     <tr>
         <td>2.</td>
