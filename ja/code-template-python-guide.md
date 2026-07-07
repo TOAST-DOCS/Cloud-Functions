@@ -1,6 +1,10 @@
+<!-- pre-align:aligned sig=577d9bcb43c9 -->
+
 ## Compute > Cloud Functions > コードテンプレートガイド > Python
 
 このドキュメントでは、NHN CloudのCloud FunctionsサービスでPythonを使用して関数を開発する方法を詳しく説明します。
+
+<a id="template-information"></a>
 
 ## テンプレート情報
 | 項目             | 値               |
@@ -9,7 +13,11 @@
 | **ファイル名**         | user.py          |
 | **Entry Point** | user.main        |
 
+<a id="basic-template"></a>
+
 ## 基本テンプレート
+
+<a id="hello-world-example"></a>
 
 ### Hello Worldの例
 最も基本的な関数の形式です。
@@ -28,6 +36,8 @@ document = """
 def main():
     return yaml.dump(yaml.safe_load(document))
 ```
+
+<a id="context-object"></a>
 
 ### Contextオブジェクト
 Pythonの関数では、Flaskのrequestオブジェクトを通じてHTTPリクエスト情報にアクセスできます。
@@ -57,12 +67,18 @@ def main():
     }
 ```
 
+<a id="download-and-use-template-file"></a>
+
 ## テンプレートファイルのダウンロードと活用
+
+<a id="template-download"></a>
 
 ### テンプレートのダウンロード
 Cloud Functionsが提供するPythonテンプレートをダウンロードし、ローカル環境で開発できます。
 
 **テンプレートのダウンロードリンク**: [python.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/python/python.zip)
+
+<a id="template-file-structure"></a>
 
 ### テンプレートのファイル構造
 ダウンロードしたテンプレートファイルの構造は以下の通りです:
@@ -72,6 +88,8 @@ python.zip
 ├── user.py          # メイン関数ファイル
 └── requirements.txt # 依存関係管理ファイル
 ```
+
+<a id="userpy"></a>
 
 #### user.py
 基本的なYAML処理関数が含まれています。
@@ -90,12 +108,18 @@ def main():
     return yaml.dump(yaml.safe_load(document))
 ```
 
+<a id="requirementstxt"></a>
+
 #### requirements.txt
 ```txt
 pyyaml
 ```
 
+<a id="local-development-process"></a>
+
 ### ローカルでの開発プロセス
+
+<a id="unzip"></a>
 
 #### 1. 解凍
 ```bash
@@ -105,6 +129,8 @@ unzip python.zip -d my-function
 # 作業ディレクトリへ移動
 cd my-function
 ```
+
+<a id="modify-function-codes"></a>
 
 #### 2. 関数コードの修正
 `user.py`ファイルを、目的のロジックに合わせて修正します。
@@ -147,6 +173,8 @@ def main():
         }, ensure_ascii=False)
 ```
 
+<a id="compress-into-a-zip-file"></a>
+
 #### 3. ZIPファイルへ圧縮
 修正したコードを、再度ZIPファイルへ圧縮します。
 
@@ -164,10 +192,16 @@ zip my-function.zip user.py requirements.txt
 zip -r my-function.zip . -x "*.git*" "__pycache__/*" "*.pyc" "test.py"
 ```
 
+<a id="upload-from-cloud-functions-console"></a>
+
 ### Cloud Functionsコンソールでのアップロード
 > 関数を作成または修正する際に、ユーザーのローカル環境にあるファイルをアップロードする場合に使用します。(コンソール利用ガイド参照)
 
+<a id="cautions-for-upload"></a>
+
 ### アップロード時の注意事項
+
+<a id="zip-file-structure"></a>
 
 #### ZIPファイルの構造
 - ZIPファイルのルートに、直接`.py`ファイルと`requirements.txt`を配置する必要があります。
@@ -189,9 +223,13 @@ my-function.zip
     └── requirements.txt
 ```
 
+<a id="file-size-limit"></a>
+
 #### ファイルサイズの制限
 - ZIPファイルのサイズは100MiB以下に制限されます。
 - `__pycache__`フォルダは含めないでください。
+
+<a id="files-to-exclude"></a>
 
 #### 除外するファイル
 ```bash
@@ -206,7 +244,11 @@ zip -r my-function.zip . -x \
   "*.zip"
 ```
 
+<a id="process-by-http-method"></a>
+
 ## HTTPメソッド別の処理
+
+<a id="process-get-request"></a>
 
 ### GETリクエストの処理
 ```python
@@ -230,6 +272,8 @@ def main():
 
     return json.dumps(result, ensure_ascii=False)
 ```
+
+<a id="process-post-request"></a>
 
 ### POSTリクエストの処理
 ```python
@@ -274,7 +318,11 @@ def main():
         }, ensure_ascii=False), 400
 ```
 
+<a id="manage-packages"></a>
+
 ## パッケージ管理
+
+<a id="write-requirementstxt"></a>
 
 ### requirements.txtの作成
 依存関係の管理には、`requirements.txt`ファイルを作成します。
@@ -284,6 +332,8 @@ pyyaml
 requests>=2.28.0
 python-dateutil>=2.8.0
 ```
+
+<a id="example-of-external-api-call"></a>
 
 ### 外部API呼び出しの例
 ```python
@@ -326,6 +376,8 @@ def main():
             'details': str(e)
         }, ensure_ascii=False), 500
 ```
+
+<a id="data-processing-example"></a>
 
 ### データ処理の例
 ```python
@@ -381,7 +433,11 @@ def normalize_name(name):
     return name.strip().title()
 ```
 
+<a id="configure-entry-point"></a>
+
 ## エントリーポイントの設定
+
+<a id="single-function"></a>
 
 ### 単一関数
 `ファイル名.関数名`をエントリーポイントとして使用します。
@@ -389,6 +445,8 @@ def normalize_name(name):
 ファイル名: `user.py`
 関数名: `main`
 Entry Point: `user.main`
+
+<a id="multiple-functions"></a>
 
 ### 複数関数
 1つのファイルで複数の関数を定義できます。
@@ -416,7 +474,11 @@ def update_user():
 - `handlers.create_user`
 - `handlers.update_user`
 
+<a id="caution"></a>
+
 ## 注意事項
+
+<a id="unsupported-packages"></a>
 
 ### サポートしていないパッケージ
 現在、以下の特徴を持つ複雑なパッケージはサポートしていません。
@@ -431,6 +493,8 @@ def update_user():
 - `pyyaml` (YAML処理)
 - `python-dateutil` (日付・時刻処理)
 - `pillow` (画像処理 - 基本機能)
+
+<a id="considerations-for-memory-and-execution-time"></a>
 
 ### メモリ及び実行時間に関する考慮事項
 - 関数は、限られたメモリと実行時間内で動作する必要があります。

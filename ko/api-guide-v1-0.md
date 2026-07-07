@@ -1,8 +1,14 @@
+<!-- pre-align:aligned sig=f22611a38cd5 -->
+
 ## Cloud Functions API v1.0 가이드
 
 **Compute > Cloud Functions > API 가이드 > API v1.0 가이드**
 
+<a id="cloud-functions-api-v10-common-information"></a>
+
 ## Cloud Functions API v1.0 공통 정보
+
+<a id="api-endpoint"></a>
 
 ### API 엔드포인트
 
@@ -12,11 +18,15 @@ Cloud Functions API를 호출하기 위한 리전별 엔드포인트는 다음�
 | --- |-----------------------------------------------------|
 | 한국(판교) 리전 | https://kr1-cloud-functions.api.nhncloudservice.com |
 
+<a id="authentication-and-authorization"></a>
+
 ### 인증 및 권한
 
 Cloud Functions는 API 호출 시 인증/인가를 위해 User Access Key 토큰을 사용합니다.
 User Access Key 토큰은 User Access Key를 기반으로 발급되는 Bearer 타입의 일시적 액세스 토큰입니다.
 User Access Key 토큰 발급 및 사용에 대한 자세한 내용은 [User Access Key 토큰](/nhncloud/ko/public-api/user-access-key-token)을 참고하세요.
+
+<a id="response-common-information"></a>
 
 ### 응답 공통 정보
 
@@ -66,15 +76,21 @@ User Access Key 토큰 발급 및 사용에 대한 자세한 내용은 [User Acc
 
 ---
 
+<a id="list-environments"></a>
+
 ## 환경 목록 조회
 
 사용 가능한 런타임 환경 목록을 조회합니다.
+
+<a id="request"></a>
 
 ### 요청
 
 ```
 GET /v1.0/env/list
 ```
+
+<a id="request-parameter"></a>
 
 ### 요청 파라미터
 
@@ -83,9 +99,13 @@ GET /v1.0/env/list
 | X-NHN-appkey | Header | String | Y | 앱키 |
 | X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
 
+<a id="request-body"></a>
+
 ### 요청 본문
 
 이 API는 요청 본문을 요구하지 않습니다.
+
+<a id="response"></a>
 
 ### 응답
 
@@ -128,15 +148,21 @@ GET /v1.0/env/list
 
 ---
 
+<a id="list-functions"></a>
+
 ## 함수 목록 조회
 
 함수 목록을 조회합니다.
+
+<a id="list-functions-request"></a>
 
 ### 요청
 
 ```
 GET /v1.0/functions
 ```
+
+<a id="list-functions-request-parameter"></a>
 
 ### 요청 파라미터
 
@@ -147,9 +173,13 @@ GET /v1.0/functions
 | page | Query | Integer | N | 현재 페이지(기본값: 0) |
 | pageSize | Query | Integer | N | 한 페이지에 노출될 개수 |
 
+<a id="list-functions-request-body"></a>
+
 ### 요청 본문
 
 이 API는 요청 본문을 요구하지 않습니다.
+
+<a id="list-functions-response"></a>
 
 ### 응답
 
@@ -200,15 +230,21 @@ GET /v1.0/functions
 
 ---
 
+<a id="get-function"></a>
+
 ## 함수 상세 조회
 
 함수의 상세 정보와 빌드 로그를 함께 조회합니다.
+
+<a id="get-function-request"></a>
 
 ### 요청
 
 ```
 GET /v1.0/functions/{functionName}
 ```
+
+<a id="get-function-request-parameter"></a>
 
 ### 요청 파라미터
 
@@ -218,9 +254,13 @@ GET /v1.0/functions/{functionName}
 | X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
 | functionName | URL | String | Y | 함수 이름 |
 
+<a id="get-function-request-body"></a>
+
 ### 요청 본문
 
 이 API는 요청 본문을 요구하지 않습니다.
+
+<a id="get-function-response"></a>
 
 ### 응답
 
@@ -280,6 +320,8 @@ GET /v1.0/functions/{functionName}
 
 ---
 
+<a id="create-function"></a>
+
 ## 함수 생성
 
 새 함수를 생성합니다. multipart/form-data로 소스 파일을 업로드합니다.
@@ -287,11 +329,15 @@ runtime은 `{environment}-{version}` 형식으로 입력해야 합니다(예: No
 
 executorType에 따라 필수 파라미터가 달라집니다. poolManager일 때는 requestPerPod가, newDeployment일 때는 minInstance와 maxInstance가 필수입니다.
 
+<a id="create-function-request"></a>
+
 ### 요청
 
 ```
 POST /v1.0/functions
 ```
+
+<a id="create-function-request-parameter"></a>
 
 ### 요청 파라미터
 
@@ -299,6 +345,8 @@ POST /v1.0/functions
 | --- | --- | --- | --- | --- |
 | X-NHN-appkey | Header | String | Y | 앱키 |
 | X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
+
+<a id="create-function-request-body"></a>
 
 ### 요청 본문
 
@@ -318,6 +366,8 @@ Content-Type: multipart/form-data
 | maxInstance | Integer | Conditional | 최대 인스턴스 수(newDeployment일 때 필수, 1~100)                                                             |
 | lncsAppkey | String | N          | LnCS 앱키                                                                                           |
 | sourceFile | Binary | Y          | 소스 코드 파일(ZIP)                                                                                     |
+
+<a id="create-function-response"></a>
 
 ### 응답
 
@@ -339,17 +389,23 @@ Content-Type: multipart/form-data
 
 ---
 
+<a id="modify-function"></a>
+
 ## 함수 수정
 
 함수를 수정합니다. multipart/form-data로 소스 파일을 업로드할 수 있습니다.
 
 소스 파일(sourceFile)은 선택 항목입니다. 소스 파일을 포함하지 않으면 기존 소스 코드가 유지됩니다.
 
+<a id="modify-function-request"></a>
+
 ### 요청
 
 ```
 PUT /v1.0/functions/{functionName}
 ```
+
+<a id="modify-function-request-parameter"></a>
 
 ### 요청 파라미터
 
@@ -358,6 +414,8 @@ PUT /v1.0/functions/{functionName}
 | X-NHN-appkey | Header | String | Y | 앱키 |
 | X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
 | functionName | URL | String | Y | 수정할 함수 이름 |
+
+<a id="modify-function-request-body"></a>
 
 ### 요청 본문
 
@@ -376,6 +434,8 @@ Content-Type: multipart/form-data
 | maxInstance | Integer | Conditional | 최대 인스턴스 수(newDeployment일 때 필수, 1~100)                                                             |
 | lncsAppkey | String | N          | LnCS 앱키                                                                                           |
 | sourceFile | Binary | N          | 소스 코드 파일(ZIP)                                                                                     |
+
+<a id="modify-function-response"></a>
 
 ### 응답
 
@@ -397,9 +457,13 @@ Content-Type: multipart/form-data
 
 ---
 
+<a id="delete-functions"></a>
+
 ## 함수 삭제
 
 함수를 일괄 삭제합니다.
+
+<a id="delete-functions-request"></a>
 
 ### 요청
 
@@ -407,12 +471,16 @@ Content-Type: multipart/form-data
 DELETE /v1.0/functions
 ```
 
+<a id="delete-functions-request-parameter"></a>
+
 ### 요청 파라미터
 
 | 이름 | 구분 | 타입 | 필수 | 설명 |
 | --- | --- | --- | --- | --- |
 | X-NHN-appkey | Header | String | Y | 앱키 |
 | X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
+
+<a id="delete-functions-request-body"></a>
 
 ### 요청 본문
 
@@ -430,6 +498,8 @@ DELETE /v1.0/functions
 | 이름 | 타입 | 필수 | 설명 |
 | --- | --- | --- | --- |
 | names | Array | Y | 삭제할 함수 이름 목록 |
+
+<a id="delete-functions-response"></a>
 
 ### 응답
 
@@ -451,15 +521,21 @@ DELETE /v1.0/functions
 
 ---
 
+<a id="execute-function-get"></a>
+
 ## 함수 실행(GET)
 
 GET 방식으로 함수를 실행합니다.
+
+<a id="execute-function-get-request"></a>
 
 ### 요청
 
 ```
 GET /v1.0/functions/{functionName}/invoke
 ```
+
+<a id="execute-function-get-request-parameter"></a>
 
 ### 요청 파라미터
 
@@ -469,9 +545,13 @@ GET /v1.0/functions/{functionName}/invoke
 | X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
 | functionName | URL | String | Y | 실행할 함수 이름 |
 
+<a id="execute-function-get-request-body"></a>
+
 ### 요청 본문
 
 이 API는 요청 본문을 요구하지 않습니다.
+
+<a id="execute-function-get-response"></a>
 
 ### 응답
 
@@ -497,15 +577,21 @@ GET /v1.0/functions/{functionName}/invoke
 
 ---
 
+<a id="execute-function-post"></a>
+
 ## 함수 실행(POST)
 
 POST 방식으로 함수를 실행합니다. body를 전달할 수 있습니다.
+
+<a id="execute-function-post-request"></a>
 
 ### 요청
 
 ```
 POST /v1.0/functions/{functionName}/invoke
 ```
+
+<a id="execute-function-post-request-parameter"></a>
 
 ### 요청 파라미터
 
@@ -514,6 +600,8 @@ POST /v1.0/functions/{functionName}/invoke
 | X-NHN-appkey | Header | String | Y | 앱키 |
 | X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
 | functionName | URL | String | Y | 실행할 함수 이름 |
+
+<a id="execute-function-post-request-body"></a>
 
 ### 요청 본문
 
@@ -531,6 +619,8 @@ POST /v1.0/functions/{functionName}/invoke
 | 이름 | 타입   | 필수 | 설명 |
 | --- |------| --- | --- |
 | body | JSON | N | 함수에 전달할 body |
+
+<a id="execute-function-post-response"></a>
 
 ### 응답
 
@@ -556,15 +646,21 @@ POST /v1.0/functions/{functionName}/invoke
 
 ---
 
+<a id="list-versions"></a>
+
 ## 버전 목록 조회
 
 함수의 버전(패키지) 목록을 조회합니다.
+
+<a id="list-versions-request"></a>
 
 ### 요청
 
 ```
 GET /v1.0/functions/{functionName}/versions
 ```
+
+<a id="list-versions-request-parameter"></a>
 
 ### 요청 파라미터
 
@@ -574,9 +670,13 @@ GET /v1.0/functions/{functionName}/versions
 | X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
 | functionName | URL | String | Y | 함수 이름 |
 
+<a id="list-versions-request-body"></a>
+
 ### 요청 본문
 
 이 API는 요청 본문을 요구하지 않습니다.
+
+<a id="list-versions-response"></a>
 
 ### 응답
 
@@ -625,15 +725,21 @@ GET /v1.0/functions/{functionName}/versions
 
 ---
 
+<a id="switch-version"></a>
+
 ## 버전 전환
 
 함수의 현재 활성 버전을 변경합니다.
+
+<a id="switch-version-request"></a>
 
 ### 요청
 
 ```
 PUT /v1.0/functions/{functionName}/versions
 ```
+
+<a id="switch-version-request-parameter"></a>
 
 ### 요청 파라미터
 
@@ -642,6 +748,8 @@ PUT /v1.0/functions/{functionName}/versions
 | X-NHN-appkey | Header | String | Y | 앱키 |
 | X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
 | functionName | URL | String | Y | 함수 이름 |
+
+<a id="switch-version-request-body"></a>
 
 ### 요청 본문
 
@@ -660,6 +768,8 @@ PUT /v1.0/functions/{functionName}/versions
 | --- | --- | --- | --- |
 | versionId | Integer | Y | 전환할 버전 ID |
 
+<a id="switch-version-response"></a>
+
 ### 응답
 
 <details>
@@ -680,17 +790,23 @@ PUT /v1.0/functions/{functionName}/versions
 
 ---
 
+<a id="delete-versions"></a>
+
 ## 버전 삭제
 
 함수의 버전을 일괄 삭제합니다.
 
 현재 활성 버전은 삭제할 수 없습니다.
 
+<a id="delete-versions-request"></a>
+
 ### 요청
 
 ```
 DELETE /v1.0/functions/{functionName}/versions
 ```
+
+<a id="delete-versions-request-parameter"></a>
 
 ### 요청 파라미터
 
@@ -699,6 +815,8 @@ DELETE /v1.0/functions/{functionName}/versions
 | X-NHN-appkey | Header | String | Y | 앱키 |
 | X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
 | functionName | URL | String | Y | 함수 이름 |
+
+<a id="delete-versions-request-body"></a>
 
 ### 요청 본문
 
@@ -717,6 +835,8 @@ DELETE /v1.0/functions/{functionName}/versions
 | --- | --- | --- | --- |
 | versionIds | Array | Y | 삭제할 버전 ID 목록 |
 
+<a id="delete-versions-response"></a>
+
 ### 응답
 
 <details>
@@ -737,15 +857,21 @@ DELETE /v1.0/functions/{functionName}/versions
 
 ---
 
+<a id="list-triggers"></a>
+
 ## 트리거 목록 조회
 
 함수의 트리거 목록을 조회합니다.
+
+<a id="list-triggers-request"></a>
 
 ### 요청
 
 ```
 GET /v1.0/triggers/{functionName}
 ```
+
+<a id="list-triggers-request-parameter"></a>
 
 ### 요청 파라미터
 
@@ -755,9 +881,13 @@ GET /v1.0/triggers/{functionName}
 | X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
 | functionName | URL | String | Y | 함수 이름 |
 
+<a id="list-triggers-request-body"></a>
+
 ### 요청 본문
 
 이 API는 요청 본문을 요구하지 않습니다.
+
+<a id="list-triggers-response"></a>
 
 ### 응답
 
@@ -800,15 +930,21 @@ GET /v1.0/triggers/{functionName}
 
 ---
 
+<a id="create-time-trigger"></a>
+
 ## 타임 트리거 생성
 
 함수에 타임 트리거를 생성합니다.
+
+<a id="create-time-trigger-request"></a>
 
 ### 요청
 
 ```
 POST /v1.0/triggers/{functionName}/time
 ```
+
+<a id="create-time-trigger-request-parameter"></a>
 
 ### 요청 파라미터
 
@@ -817,6 +953,8 @@ POST /v1.0/triggers/{functionName}/time
 | X-NHN-appkey | Header | String | Y | 앱키 |
 | X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
 | functionName | URL | String | Y | 함수 이름 |
+
+<a id="create-time-trigger-request-body"></a>
 
 ### 요청 본문
 
@@ -834,6 +972,8 @@ POST /v1.0/triggers/{functionName}/time
 | 이름 | 타입 | 필수 | 설명 |
 | --- | --- | --- | --- |
 | cron | String | Y | cron 표현식 |
+
+<a id="create-time-trigger-response"></a>
 
 ### 응답
 
@@ -855,15 +995,21 @@ POST /v1.0/triggers/{functionName}/time
 
 ---
 
+<a id="modify-time-trigger"></a>
+
 ## 타임 트리거 수정
 
 타임 트리거의 cron 표현식을 수정합니다.
+
+<a id="modify-time-trigger-request"></a>
 
 ### 요청
 
 ```
 PUT /v1.0/triggers/{functionName}/time
 ```
+
+<a id="modify-time-trigger-request-parameter"></a>
 
 ### 요청 파라미터
 
@@ -872,6 +1018,8 @@ PUT /v1.0/triggers/{functionName}/time
 | X-NHN-appkey | Header | String | Y | 앱키 |
 | X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
 | functionName | URL | String | Y | 함수 이름 |
+
+<a id="modify-time-trigger-request-body"></a>
 
 ### 요청 본문
 
@@ -891,6 +1039,8 @@ PUT /v1.0/triggers/{functionName}/time
 | --- | --- | --- | --- |
 | name | String | Y | 트리거 이름 |
 | cron | String | Y | cron 표현식 |
+
+<a id="modify-time-trigger-response"></a>
 
 ### 응답
 
@@ -912,15 +1062,21 @@ PUT /v1.0/triggers/{functionName}/time
 
 ---
 
+<a id="delete-time-triggers"></a>
+
 ## 타임 트리거 삭제
 
 타임 트리거를 일괄 삭제합니다.
+
+<a id="delete-time-triggers-request"></a>
 
 ### 요청
 
 ```
 DELETE /v1.0/triggers/{functionName}/time
 ```
+
+<a id="delete-time-triggers-request-parameter"></a>
 
 ### 요청 파라미터
 
@@ -929,6 +1085,8 @@ DELETE /v1.0/triggers/{functionName}/time
 | X-NHN-appkey | Header | String | Y | 앱키 |
 | X-NHN-authorization | Header | String | Y | 사용자 토큰(Bearer {token}) |
 | functionName | URL | String | Y | 함수 이름 |
+
+<a id="delete-time-triggers-request-body"></a>
 
 ### 요청 본문
 
@@ -946,6 +1104,8 @@ DELETE /v1.0/triggers/{functionName}/time
 | 이름 | 타입 | 필수 | 설명 |
 | --- | --- | --- | --- |
 | names | Array | Y | 삭제할 트리거 이름 목록 |
+
+<a id="delete-time-triggers-response"></a>
 
 ### 응답
 

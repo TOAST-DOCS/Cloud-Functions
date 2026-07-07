@@ -1,5 +1,9 @@
+<!-- pre-align:aligned sig=92acb111e0a0 -->
+
 ## Compute > Cloud Functions > Overview
 Users can write codes by function unit. Functions defined on a specific event are automatically executed, processing the required tasks. Without server management or infrastructure configuration, you can focus only on application logic.
+
+<a id="features"></a>
 
 ### Features
 - Cost-effectiveness
@@ -13,15 +17,21 @@ Users can write codes by function unit. Functions defined on a specific event ar
     - Support for multiple languages and runtimes.
     - The event-based architecture is versatile.
 
+<a id="main-features"></a>
+
 ### Main features
 - We offer multiple languages (environments).
 - The **code editor** makes you write simple function unit code.
 - Provide an HTTPS Endpoint as standard to perform the function.
 - Iterate the function at regular cycles.
 
+<a id="two-modes-available"></a>
+
 ### Two modes available
 - Pool Manager
 - New Deployment
+<a id="pool-manager"></a>
+
 #### Pool Manager
 - Instances are created and use resources only when the function is performed.
 - If the function is not performed for a certain period, instances disappear, and the resource usage becomes 0.
@@ -29,12 +39,16 @@ Users can write codes by function unit. Functions defined on a specific event ar
 
 ![overview-01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-08-26/NHN%20Cloud_Guide%20overview_CloudFunctions_1_en.png)
 
+<a id="new-deployment"></a>
+
 #### New Deployment
 - Once functions are created, instances are created, keeping a certain amount of resources being used.
 - Instances are kept to reduce response latency.
 - Use it when the number of requests is large to perform the function and a quick response is needed.
 
 ![overview-02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-08-26/NHN%20Cloud_Guide%20overview_CloudFunctions_2_en.png)
+
+<a id="supported-languages"></a>
 
 ### Supported languages
 | Language     | Version                | End of Support   | End of Service   |
@@ -55,6 +69,8 @@ Users can write codes by function unit. Functions defined on a specific event ar
 |        | 2.6.1 (end of service)     | 2024-01-30 | 2025-01-30 |
 | .NET   | 8                 | 2026-11-10 | 2027-11-10 |
 |        | 7 (end of service)         | 2024-05-14 | 2025-05-14 |
+
+<a id="trigger"></a>
 
 ### Trigger
 - HTTP Trigger

@@ -1,8 +1,14 @@
+<!-- pre-align:aligned sig=f22611a38cd5 -->
+
 ## Cloud Functions API v1.0 ガイド
 
 **Compute > Cloud Functions > API ガイド > API v1.0 ガイド**
 
+<a id="cloud-functions-api-v10-common-information"></a>
+
 ## Cloud Functions API v1.0 共通情報
+
+<a id="api-endpoint"></a>
 
 ### API エンドポイント
 
@@ -12,11 +18,15 @@ Cloud Functions APIを呼び出すためのリージョン別エンドポイン�
 | --- |-----------------------------------------------------|
 | 韓国(パンギョ)リージョン | https://kr1-cloud-functions.api.nhncloudservice.com |
 
+<a id="authentication-and-authorization"></a>
+
 ### 認証及び権限
 
 Cloud Functionsは、API呼び出し時の認証/認可にUser Access Keyトークンを使用します。
 User Access Keyトークンは、User Access Keyをもとに発行されるBearerタイプの一時的なアクセストークンです。
 User Access Keyトークンの発行手順や使用方法の詳細は、[User Access Keyトークン](/nhncloud/ko/public-api/user-access-key-token)をご参照ください。
+
+<a id="response-common-information"></a>
 
 ### レスポンス共通情報
 
@@ -66,15 +76,21 @@ User Access Keyトークンの発行手順や使用方法の詳細は、[User Ac
 
 ---
 
+<a id="list-environments"></a>
+
 ## 環境一覧
 
 使用可能なランタイム環境一覧を照会します。
+
+<a id="request"></a>
 
 ### リクエスト
 
 ```
 GET /v1.0/env/list
 ```
+
+<a id="request-parameter"></a>
 
 ### リクエストパラメータ
 
@@ -83,9 +99,13 @@ GET /v1.0/env/list
 | X-NHN-appkey | Header | String | Y | Appkey |
 | X-NHN-authorization | Header | String | Y | ユーザートークン(Bearer {token}) |
 
+<a id="request-body"></a>
+
 ### リクエストボディ
 
 このAPIはリクエストボディを必要としません。
+
+<a id="response"></a>
 
 ### レスポンス
 
@@ -128,15 +148,21 @@ GET /v1.0/env/list
 
 ---
 
+<a id="list-functions"></a>
+
 ## 関数一覧
 
 関数一覧を照会します。
+
+<a id="list-functions-request"></a>
 
 ### リクエスト
 
 ```
 GET /v1.0/functions
 ```
+
+<a id="list-functions-request-parameter"></a>
 
 ### リクエストパラメータ
 
@@ -147,9 +173,13 @@ GET /v1.0/functions
 | page | Query | Integer | N | 現在のページ(デフォルト値: 0) |
 | pageSize | Query | Integer | N | 1ページに表示する件数(デフォルト値: 5000) |
 
+<a id="list-functions-request-body"></a>
+
 ### リクエストボディ
 
 このAPIはリクエストボディを必要としません。
+
+<a id="list-functions-response"></a>
 
 ### レスポンス
 
@@ -200,15 +230,21 @@ GET /v1.0/functions
 
 ---
 
+<a id="get-function"></a>
+
 ## 関数詳細照会
 
 関数の詳細情報とビルドログを同時に照会します。
+
+<a id="get-function-request"></a>
 
 ### リクエスト
 
 ```
 GET /v1.0/functions/{functionName}
 ```
+
+<a id="get-function-request-parameter"></a>
 
 ### リクエストパラメータ
 
@@ -218,9 +254,13 @@ GET /v1.0/functions/{functionName}
 | X-NHN-authorization | Header | String | Y | ユーザートークン(Bearer {token}) |
 | functionName | URL | String | Y | 関数名 |
 
+<a id="get-function-request-body"></a>
+
 ### リクエストボディ
 
 このAPIはリクエストボディを必要としません。
+
+<a id="get-function-response"></a>
 
 ### レスポンス
 
@@ -280,6 +320,8 @@ GET /v1.0/functions/{functionName}
 
 ---
 
+<a id="create-function"></a>
+
 ## 関数作成
 
 新しい関数を作成します。multipart/form-dataでソースファイルをアップロードします。
@@ -287,11 +329,15 @@ runtimeは`{environment}-{version}`形式で入力する必要があります(�
 
 executorTypeによって必須パラメータが異なります。poolManagerの場合はrequestPerPodが、newDeploymentの場合はminInstanceとmaxInstanceが必須です。
 
+<a id="create-function-request"></a>
+
 ### リクエスト
 
 ```
 POST /v1.0/functions
 ```
+
+<a id="create-function-request-parameter"></a>
 
 ### リクエストパラメータ
 
@@ -299,6 +345,8 @@ POST /v1.0/functions
 | --- | --- | --- | --- | --- |
 | X-NHN-appkey | Header | String | Y | Appkey |
 | X-NHN-authorization | Header | String | Y | ユーザートークン(Bearer {token}) |
+
+<a id="create-function-request-body"></a>
 
 ### リクエストボディ
 
@@ -318,6 +366,8 @@ Content-Type: multipart/form-data
 | maxInstance | Integer | Conditional | 最大インスタンス数(newDeploymentの場合は必須、1～100) |
 | lncsAppkey | String | N | LnCS Appkey |
 | sourceFile | Binary | Y | ソースコードファイル(ZIP) |
+
+<a id="create-function-response"></a>
 
 ### レスポンス
 
@@ -339,17 +389,23 @@ Content-Type: multipart/form-data
 
 ---
 
+<a id="modify-function"></a>
+
 ## 関数修正
 
 関数を修正します。multipart/form-dataでソースファイルをアップロードできます。
 
 ソースファイル(sourceFile)は任意項目です。ソースファイルを指定しない場合、既存のソースコードが維持されます。
 
+<a id="modify-function-request"></a>
+
 ### リクエスト
 
 ```
 PUT /v1.0/functions/{functionName}
 ```
+
+<a id="modify-function-request-parameter"></a>
 
 ### リクエストパラメータ
 
@@ -358,6 +414,8 @@ PUT /v1.0/functions/{functionName}
 | X-NHN-appkey | Header | String | Y | Appkey |
 | X-NHN-authorization | Header | String | Y | ユーザートークン(Bearer {token}) |
 | functionName | URL | String | Y | 修正する関数名 |
+
+<a id="modify-function-request-body"></a>
 
 ### リクエストボディ
 
@@ -376,6 +434,8 @@ Content-Type: multipart/form-data
 | maxInstance | Integer | Conditional | 最大インスタンス数(newDeploymentの場合は必須、1～100) |
 | lncsAppkey | String | N | LnCS Appkey |
 | sourceFile | Binary | N | ソースコードファイル(ZIP) |
+
+<a id="modify-function-response"></a>
 
 ### レスポンス
 
@@ -397,9 +457,13 @@ Content-Type: multipart/form-data
 
 ---
 
+<a id="delete-functions"></a>
+
 ## 関数削除
 
 関数を一括削除します。
+
+<a id="delete-functions-request"></a>
 
 ### リクエスト
 
@@ -407,12 +471,16 @@ Content-Type: multipart/form-data
 DELETE /v1.0/functions
 ```
 
+<a id="delete-functions-request-parameter"></a>
+
 ### リクエストパラメータ
 
 | 名前 | 区分 | タイプ | 必須 | 説明 |
 | --- | --- | --- | --- | --- |
 | X-NHN-appkey | Header | String | Y | Appkey |
 | X-NHN-authorization | Header | String | Y | ユーザートークン(Bearer {token}) |
+
+<a id="delete-functions-request-body"></a>
 
 ### リクエストボディ
 
@@ -430,6 +498,8 @@ DELETE /v1.0/functions
 | 名前 | タイプ | 必須 | 説明 |
 | --- | --- | --- | --- |
 | names | Array | Y | 削除する関数名一覧 |
+
+<a id="delete-functions-response"></a>
 
 ### レスポンス
 
@@ -451,15 +521,21 @@ DELETE /v1.0/functions
 
 ---
 
+<a id="execute-function-get"></a>
+
 ## 関数実行(GET)
 
 GETメソッドで関数を実行します。
+
+<a id="execute-function-get-request"></a>
 
 ### リクエスト
 
 ```
 GET /v1.0/functions/{functionName}/invoke
 ```
+
+<a id="execute-function-get-request-parameter"></a>
 
 ### リクエストパラメータ
 
@@ -469,9 +545,13 @@ GET /v1.0/functions/{functionName}/invoke
 | X-NHN-authorization | Header | String | Y | ユーザートークン(Bearer {token}) |
 | functionName | URL | String | Y | 実行する関数名 |
 
+<a id="execute-function-get-request-body"></a>
+
 ### リクエストボディ
 
 このAPIはリクエストボディを必要としません。
+
+<a id="execute-function-get-response"></a>
 
 ### レスポンス
 
@@ -497,15 +577,21 @@ GET /v1.0/functions/{functionName}/invoke
 
 ---
 
+<a id="execute-function-post"></a>
+
 ## 関数実行(POST)
 
 POSTメソッドで関数を実行します。bodyを送信できます。
+
+<a id="execute-function-post-request"></a>
 
 ### リクエスト
 
 ```
 POST /v1.0/functions/{functionName}/invoke
 ```
+
+<a id="execute-function-post-request-parameter"></a>
 
 ### リクエストパラメータ
 
@@ -514,6 +600,8 @@ POST /v1.0/functions/{functionName}/invoke
 | X-NHN-appkey | Header | String | Y | Appkey |
 | X-NHN-authorization | Header | String | Y | ユーザートークン(Bearer {token}) |
 | functionName | URL | String | Y | 実行する関数名 |
+
+<a id="execute-function-post-request-body"></a>
 
 ### リクエストボディ
 
@@ -531,6 +619,8 @@ POST /v1.0/functions/{functionName}/invoke
 | 名前 | タイプ  | 必須 | 説明 |
 | --- |------| --- | --- |
 | body | JSON | N | 関数に渡すbody |
+
+<a id="execute-function-post-response"></a>
 
 ### レスポンス
 
@@ -556,15 +646,21 @@ POST /v1.0/functions/{functionName}/invoke
 
 ---
 
+<a id="list-versions"></a>
+
 ## バージョン一覧
 
 関数のバージョン(パッケージ)一覧を照会します。
+
+<a id="list-versions-request"></a>
 
 ### リクエスト
 
 ```
 GET /v1.0/functions/{functionName}/versions
 ```
+
+<a id="list-versions-request-parameter"></a>
 
 ### リクエストパラメータ
 
@@ -574,9 +670,13 @@ GET /v1.0/functions/{functionName}/versions
 | X-NHN-authorization | Header | String | Y | ユーザートークン(Bearer {token}) |
 | functionName | URL | String | Y | 関数名 |
 
+<a id="list-versions-request-body"></a>
+
 ### リクエストボディ
 
 このAPIはリクエストボディを必要としません。
+
+<a id="list-versions-response"></a>
 
 ### レスポンス
 
@@ -625,15 +725,21 @@ GET /v1.0/functions/{functionName}/versions
 
 ---
 
+<a id="switch-version"></a>
+
 ## バージョン切り替え
 
 関数の現在のアクティブバージョンを変更します。
+
+<a id="switch-version-request"></a>
 
 ### リクエスト
 
 ```
 PUT /v1.0/functions/{functionName}/versions
 ```
+
+<a id="switch-version-request-parameter"></a>
 
 ### リクエストパラメータ
 
@@ -642,6 +748,8 @@ PUT /v1.0/functions/{functionName}/versions
 | X-NHN-appkey | Header | String | Y | Appkey |
 | X-NHN-authorization | Header | String | Y | ユーザートークン(Bearer {token}) |
 | functionName | URL | String | Y | 関数名 |
+
+<a id="switch-version-request-body"></a>
 
 ### リクエストボディ
 
@@ -660,6 +768,8 @@ PUT /v1.0/functions/{functionName}/versions
 | --- | --- | --- | --- |
 | versionId | Integer | Y | 切り替えるバージョンID |
 
+<a id="switch-version-response"></a>
+
 ### レスポンス
 
 <details>
@@ -680,17 +790,23 @@ PUT /v1.0/functions/{functionName}/versions
 
 ---
 
+<a id="delete-versions"></a>
+
 ## バージョン削除
 
 関数のバージョンを一括削除します。
 
 現在のアクティブバージョンは削除できません。
 
+<a id="delete-versions-request"></a>
+
 ### リクエスト
 
 ```
 DELETE /v1.0/functions/{functionName}/versions
 ```
+
+<a id="delete-versions-request-parameter"></a>
 
 ### リクエストパラメータ
 
@@ -699,6 +815,8 @@ DELETE /v1.0/functions/{functionName}/versions
 | X-NHN-appkey | Header | String | Y | Appkey |
 | X-NHN-authorization | Header | String | Y | ユーザートークン(Bearer {token}) |
 | functionName | URL | String | Y | 関数名 |
+
+<a id="delete-versions-request-body"></a>
 
 ### リクエストボディ
 
@@ -717,6 +835,8 @@ DELETE /v1.0/functions/{functionName}/versions
 | --- | --- | --- | --- |
 | versionIds | Array | Y | 削除するバージョンID一覧 |
 
+<a id="delete-versions-response"></a>
+
 ### レスポンス
 
 <details>
@@ -737,15 +857,21 @@ DELETE /v1.0/functions/{functionName}/versions
 
 ---
 
+<a id="list-triggers"></a>
+
 ## トリガー一覧
 
 関数のトリガー一覧を照会します。
+
+<a id="list-triggers-request"></a>
 
 ### リクエスト
 
 ```
 GET /v1.0/triggers/{functionName}
 ```
+
+<a id="list-triggers-request-parameter"></a>
 
 ### リクエストパラメータ
 
@@ -755,9 +881,13 @@ GET /v1.0/triggers/{functionName}
 | X-NHN-authorization | Header | String | Y | ユーザートークン(Bearer {token}) |
 | functionName | URL | String | Y | 関数名 |
 
+<a id="list-triggers-request-body"></a>
+
 ### リクエストボディ
 
 このAPIはリクエストボディを必要としません。
+
+<a id="list-triggers-response"></a>
 
 ### レスポンス
 
@@ -800,15 +930,21 @@ GET /v1.0/triggers/{functionName}
 
 ---
 
+<a id="create-time-trigger"></a>
+
 ## タイムトリガー作成
 
 関数にタイムトリガーを作成します。
+
+<a id="create-time-trigger-request"></a>
 
 ### リクエスト
 
 ```
 POST /v1.0/triggers/{functionName}/time
 ```
+
+<a id="create-time-trigger-request-parameter"></a>
 
 ### リクエストパラメータ
 
@@ -817,6 +953,8 @@ POST /v1.0/triggers/{functionName}/time
 | X-NHN-appkey | Header | String | Y | Appkey |
 | X-NHN-authorization | Header | String | Y | ユーザートークン(Bearer {token}) |
 | functionName | URL | String | Y | 関数名 |
+
+<a id="create-time-trigger-request-body"></a>
 
 ### リクエストボディ
 
@@ -834,6 +972,8 @@ POST /v1.0/triggers/{functionName}/time
 | 名前 | タイプ | 必須 | 説明 |
 | --- | --- | --- | --- |
 | cron | String | Y | cron式 |
+
+<a id="create-time-trigger-response"></a>
 
 ### レスポンス
 
@@ -855,15 +995,21 @@ POST /v1.0/triggers/{functionName}/time
 
 ---
 
+<a id="modify-time-trigger"></a>
+
 ## タイムトリガー修正
 
 タイムトリガーのcron式を修正します。
+
+<a id="modify-time-trigger-request"></a>
 
 ### リクエスト
 
 ```
 PUT /v1.0/triggers/{functionName}/time
 ```
+
+<a id="modify-time-trigger-request-parameter"></a>
 
 ### リクエストパラメータ
 
@@ -872,6 +1018,8 @@ PUT /v1.0/triggers/{functionName}/time
 | X-NHN-appkey | Header | String | Y | Appkey |
 | X-NHN-authorization | Header | String | Y | ユーザートークン(Bearer {token}) |
 | functionName | URL | String | Y | 関数名 |
+
+<a id="modify-time-trigger-request-body"></a>
 
 ### リクエストボディ
 
@@ -891,6 +1039,8 @@ PUT /v1.0/triggers/{functionName}/time
 | --- | --- | --- | --- |
 | name | String | Y | トリガー名 |
 | cron | String | Y | cron式 |
+
+<a id="modify-time-trigger-response"></a>
 
 ### レスポンス
 
@@ -912,15 +1062,21 @@ PUT /v1.0/triggers/{functionName}/time
 
 ---
 
+<a id="delete-time-triggers"></a>
+
 ## タイムトリガー削除
 
 タイムトリガーを一括削除します。
+
+<a id="delete-time-triggers-request"></a>
 
 ### リクエスト
 
 ```
 DELETE /v1.0/triggers/{functionName}/time
 ```
+
+<a id="delete-time-triggers-request-parameter"></a>
 
 ### リクエストパラメータ
 
@@ -929,6 +1085,8 @@ DELETE /v1.0/triggers/{functionName}/time
 | X-NHN-appkey | Header | String | Y | Appkey |
 | X-NHN-authorization | Header | String | Y | ユーザートークン(Bearer {token}) |
 | functionName | URL | String | Y | 関数名 |
+
+<a id="delete-time-triggers-request-body"></a>
 
 ### リクエストボディ
 
@@ -946,6 +1104,8 @@ DELETE /v1.0/triggers/{functionName}/time
 | 名前 | タイプ | 必須 | 説明 |
 | --- | --- | --- | --- |
 | names | Array | Y | 削除するトリガー名一覧 |
+
+<a id="delete-time-triggers-response"></a>
 
 ### レスポンス
 

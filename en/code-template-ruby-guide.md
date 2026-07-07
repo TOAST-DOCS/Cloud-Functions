@@ -1,6 +1,10 @@
+<!-- pre-align:aligned sig=1d5361d8d187 -->
+
 ## Compute > Cloud Functions > Code Template Guide   > Ruby
 
 This document details how to develop functions by using Ruby from NHN Cloud's Cloud Functions service.
+
+<a id="template-information"></a>
 
 ## Template information
 | Item         | Value        |
@@ -9,7 +13,11 @@ This document details how to develop functions by using Ruby from NHN Cloud's Cl
 | **File name**         | parse.rb |
 | **Entry Point** | handler |
 
+<a id="basic-template"></a>
+
 ## Basic template
+
+<a id="hello-world-example"></a>
 
 ### Hello World example
 A basic form of function.
@@ -29,6 +37,8 @@ def handler(context)
   Rack::Response.new([msg, "\n"]).finish
 end
 ```
+
+<a id="context-object"></a>
 
 ### Context object
 You can access logger and request information through the `context` object passed to the function.
@@ -64,12 +74,18 @@ def handler(context)
 end
 ```
 
+<a id="download-and-use-template-file"></a>
+
 ## Download and use template file
+
+<a id="template-download"></a>
 
 ### Template download
 You can download the Ruby template provided by Cloud Functions to develop a local environment.
 
 **Template download link**: [ruby.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/ruby/ruby.zip)
+
+<a id="template-file-structure"></a>
 
 ### Template file structure
 The structure of the downloaded template file is as follows:
@@ -80,7 +96,11 @@ ruby.zip
 └── Gemfile
 ```
 
+<a id="local-development-process"></a>
+
 ### Local development process
+
+<a id="unzip"></a>
 
 #### 1. Unzip
 ```bash
@@ -90,6 +110,8 @@ unzip ruby.zip -d my-function
 # Move to task directory
 cd my-function
 ```
+
+<a id="modify-function-codes"></a>
 
 #### 2. Modify function codes
 Modify `parse.rb` file with the logic you want.
@@ -135,6 +157,8 @@ def handler(context)
 end
 ```
 
+<a id="compress-into-a-zip-file"></a>
+
 #### 3. Compress into a ZIP file
 Compress the modified source code into ZIP file. You must compress it so that `parse.rb` and `Gemfile` are included at the top level.
 
@@ -143,9 +167,13 @@ zip my-function.zip parse.rb Gemfile Gemfile.lock
 ```
 **Note**: The `Gemfile.lock` file is automatically created during the deployment phase, but if you want to check or lock the exact versions of your dependencies in advance, you can create one yourself by running `bundle install` locally and then compress it together. If a `Gemfile.lock` file is included, the build will use the versions specified in it.
 
+<a id="upload-from-cloud-functions-console"></a>
+
 ### Upload from Cloud Functions console
 - When creating or modifying a function, select the **User Local Environment** method.
 - Click **Select File** to upload the `my-function.zip` file you created.
+
+<a id="cautions-for-upload"></a>
 
 ### Cautions for upload
 - **Upload File**: Upload **ZIP file** which includes `*.rb`, `Gemfile`.
@@ -153,7 +181,11 @@ zip my-function.zip parse.rb Gemfile Gemfile.lock
 - **ZIP Files Structure**: Files must be located directly in the root of the ZIP file.
 - **File Size**: ZIP file size is limited to 100 MiB.
 
+<a id="process-post-request"></a>
+
 ## Process POST request
+
+<a id="process-get-request"></a>
 
 ### Process GET request
 ```ruby
@@ -178,6 +210,8 @@ def handler(context)
   Rack::Response.new([response_data], 200, { 'Content-Type' => 'application/json' }).finish
 end
 ```
+
+<a id="process-post-request-2"></a>
 
 ### Process POST request
 ```ruby
@@ -214,6 +248,8 @@ def handler(context)
 end
 ```
 
+<a id="manage-package-gemfile"></a>
+
 ## Manage package (`Gemfile`)
 
 Use `Gemfile` to manage dependencies (gems). Add the required gems and run `bundle install` to generate `Gemfile.lock`.
@@ -227,6 +263,8 @@ source "https://rubygems.org"
 gem "nokogiri", "~> 1.18" # XML/HTML parser
 gem "httparty", "~> 0.23" # HTTP client
 ```
+
+<a id="example-of-external-api-call"></a>
 
 ### Example of external API call
 ```ruby
@@ -268,6 +306,8 @@ def handler(context)
 end
 ```
 
+<a id="configure-entry-point"></a>
+
 ## Configure Entry Point
 
 Entry Point uses the function name.
@@ -275,6 +315,8 @@ Entry Point uses the function name.
 - File name: `parse.rb`
 - Function name: `handler`
 - Entry Point: `handler`
+
+<a id="caution"></a>
 
 ### Caution
 - **Bundler version**: We recommend using Bundler 2.6.2 or later when generating `Gemfile.lock`.

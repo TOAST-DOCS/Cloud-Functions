@@ -1,6 +1,10 @@
+<!-- pre-align:aligned sig=65e9891c8f54 -->
+
 ## Compute > Cloud Functions > コードテンプレートガイド > Java
 
 このドキュメントでは、NHN CloudのCloud FunctionsサービスでJavaを使用して関数を開発する方法を詳しく説明します。
+
+<a id="template-information"></a>
 
 ## テンプレート情報
 | 項目       | 値                |
@@ -9,7 +13,11 @@
 | **ファイル名**    | HelloWorld.java    |
 | **Entry Point** | example.HelloWorld |
 
+<a id="basic-template"></a>
+
 ## 基本テンプレート
+
+<a id="hello-world-example"></a>
 
 ### Hello Worldの例
 最も基本的な関数の形式です。
@@ -28,6 +36,8 @@ public class HelloWorld {
 
 }
 ```
+
+<a id="context-object-requestentity"></a>
 
 ### Contextオブジェクト(RequestEntity)
 Javaの関数では、Springの`RequestEntity`を通じてHTTPリクエスト情報にアクセスできます。
@@ -62,12 +72,18 @@ public class HelloWorld {
 }
 ```
 
+<a id="download-and-use-template-file"></a>
+
 ## テンプレートファイルのダウンロードと活用
+
+<a id="template-download"></a>
 
 ### テンプレートのダウンロード
 Cloud Functionsが提供するJavaテンプレートをダウンロードし、ローカル環境で開発できます。
 
 **テンプレートのダウンロードリンク**: [java.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/java/java.zip)
+
+<a id="template-file-structure"></a>
 
 ### テンプレートのファイル構造
 ダウンロードしたテンプレートは、Mavenのプロジェクト構造に従っています。
@@ -82,7 +98,11 @@ java.zip
                 └── HelloWorld.java
 ```
 
+<a id="local-development-process"></a>
+
 ### ローカルでの開発プロセス
+
+<a id="unzip"></a>
 
 #### 1. 解凍
 ```bash
@@ -92,6 +112,8 @@ unzip java.zip -d my-java-function
 # 作業ディレクトリへ移動
 cd my-java-function
 ```
+
+<a id="modify-function-codes"></a>
 
 #### 2. 関数コードの修正
 `src/main/java/example/HelloWorld.java`ファイルを、目的のロジックに合わせて修正します。
@@ -144,6 +166,8 @@ public class HelloWorld {
 }
 ```
 
+<a id="compress-into-a-zip-file"></a>
+
 #### 3. ZIPファイルへ圧縮
 修正したソースコードを、再度ZIPファイルへ圧縮します。`pom.xml`ファイルと`src`ディレクトリがルートディレクトリに含まれるように圧縮する必要があります。
 
@@ -161,9 +185,13 @@ zip -r my-function.zip pom.xml src
 zip -r my-function.zip . -x "*.git*" "target/*" "*.log"
 ```
 
+<a id="upload-from-cloud-functions-console"></a>
+
 ### Cloud Functionsコンソールでのアップロード
 - 関数を作成または修正する際に、**ユーザーローカル環境**方式を選択します。
 - **ファイルを選択**をクリックし、作成した`my-function.zip`ファイルをアップロードします。
+
+<a id="cautions-for-upload"></a>
 
 ### アップロード時の注意事項
 - **アップロードファイル**:ソースコードと`pom.xml`が含まれた**ZIPファイル**をアップロードする必要があります。
@@ -171,7 +199,11 @@ zip -r my-function.zip . -x "*.git*" "target/*" "*.log"
 - **除外するファイル**: `target`ディレクトリや`.git`ディレクトリなど、不要なファイルは含めないでください。
 - **ファイルサイズ**: ZIPファイルのサイズは100MiB以下に制限されます。
 
+<a id="process-by-http-method"></a>
+
 ## HTTPメソッド別の処理
+
+<a id="process-get-request"></a>
 
 ### GETリクエストの処理
 ```java
@@ -208,6 +240,8 @@ public class GetHandler {
     }
 }
 ```
+
+<a id="process-post-request"></a>
 
 ### POSTリクエストの処理
 ```java
@@ -250,6 +284,8 @@ public class PostHandler {
 }
 ```
 
+<a id="manage-package-pomxml"></a>
+
 ## パッケージ管理(`pom.xml`)
 
 依存関係の管理には、`pom.xml`ファイルを修正します。`dependencies`セクションに必要なライブラリを追加すると、関数のアップロード時にCloud Functionsが自動で依存関係をダウンロードし、ビルドに含めます。
@@ -272,6 +308,8 @@ public class PostHandler {
     </dependency>
 </dependencies>
 ```
+
+<a id="example-of-using-external-libraries"></a>
 
 ### 外部ライブラリの活用例
 ```java
@@ -307,7 +345,11 @@ public class StringUtilsHandler {
 }
 ```
 
+<a id="entry-point-configuration"></a>
+
 ## エントリーポイントの設定
+
+<a id="single-class"></a>
 
 ### 単一クラス
 `パッケージ名。クラス名`をエントリーポイントとして使用します。
@@ -316,6 +358,8 @@ public class StringUtilsHandler {
 - クラス名: `HelloWorld`
 - Entry Point: `example.HelloWorld`
 - **重要**:関数として機能するメソッドは、`public ResponseEntity<?> call(RequestEntity<?> req)`というシグネチャを持つ必要があります。
+
+<a id="caution"></a>
 
 ### 注意事項
 - **プロジェクト構造**: `src/main/java`のディレクトリ構造を維持する必要があります。

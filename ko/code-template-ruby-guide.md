@@ -1,6 +1,10 @@
+<!-- pre-align:aligned sig=1d5361d8d187 -->
+
 ## Compute > Cloud Functions > 코드 템플릿 가이드 > Ruby
 
 이 문서는 NHN Cloud의 Cloud Functions 서비스에서 Ruby를 사용하여 함수를 개발하는 방법을 상세히 설명합니다.
+
+<a id="template-information"></a>
 
 ## 템플릿 정보
 | 항목              | 값        |
@@ -9,7 +13,11 @@
 | **파일명**         | parse.rb |
 | **Entry Point** | handler  |
 
+<a id="basic-template"></a>
+
 ## 기본 템플릿
+
+<a id="hello-world-example"></a>
 
 ### Hello World 예시
 가장 기본적인 함수 형태입니다.
@@ -29,6 +37,8 @@ def handler(context)
   Rack::Response.new([msg, "\n"]).finish
 end
 ```
+
+<a id="context-object"></a>
 
 ### Context 객체
 함수에 전달되는 `context` 객체를 통해 로거와 요청 정보에 접근할 수 있습니다.
@@ -64,12 +74,18 @@ def handler(context)
 end
 ```
 
+<a id="download-and-use-template-file"></a>
+
 ## 템플릿 파일 다운로드 및 활용
+
+<a id="template-download"></a>
 
 ### 템플릿 다운로드
 Cloud Functions에서 제공하는 Ruby 템플릿을 다운로드하여 로컬 환경에서 개발할 수 있습니다.
 
 **템플릿 다운로드 링크**: [ruby.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/ruby/ruby.zip)
+
+<a id="template-file-structure"></a>
 
 ### 템플릿 파일 구조
 다운로드한 템플릿 파일의 구조는 다음과 같습니다.
@@ -80,7 +96,11 @@ ruby.zip
 └── Gemfile
 ```
 
+<a id="local-development-process"></a>
+
 ### 로컬 개발 과정
+
+<a id="unzip"></a>
 
 #### 1. 압축 해제
 ```bash
@@ -90,6 +110,8 @@ unzip ruby.zip -d my-function
 # 작업 디렉터리 이동
 cd my-function
 ```
+
+<a id="modify-function-codes"></a>
 
 #### 2. 함수 코드 수정
 `parse.rb` 파일을 원하는 로직으로 수정합니다.
@@ -135,6 +157,8 @@ def handler(context)
 end
 ```
 
+<a id="compress-into-a-zip-file"></a>
+
 #### 3. ZIP 파일로 압축
 수정된 소스 코드를 다시 ZIP 파일로 압축합니다. `parse.rb`와 `Gemfile`이 최상위에 포함되도록 압축해야 합니다.
 
@@ -143,9 +167,13 @@ zip my-function.zip parse.rb Gemfile Gemfile.lock
 ```
 **참고**: `Gemfile.lock` 파일은 배포 단계에서 자동으로 생성되지만, 의존성의 정확한 버전을 미리 확인하거나 고정하고 싶은 경우 로컬에서 `bundle install`을 실행하여 직접 생성한 후 함께 압축할 수 있습니다. `Gemfile.lock` 파일이 포함된 경우 해당 파일에 명시된 버전을 사용하여 빌드됩니다.
 
+<a id="upload-from-cloud-functions-console"></a>
+
 ### Cloud Functions 콘솔에서 업로드
 - 함수 생성 또는 수정 시, **사용자 로컬 환경** 방식을 선택합니다.
 - **파일 선택**을 클릭하여 생성한 `my-function.zip` 파일을 업로드합니다.
+
+<a id="cautions-for-upload"></a>
 
 ### 업로드 시 주의사항
 - **업로드 파일**: `*.rb`, `Gemfile`이 포함된 **ZIP 파일**을 업로드해야 합니다.
@@ -153,7 +181,11 @@ zip my-function.zip parse.rb Gemfile Gemfile.lock
 - **ZIP 파일 구조**: ZIP 파일의 루트에 파일들이 위치해야 합니다.
 - **파일 크기**: ZIP 파일 크기는 100MiB 이하로 제한됩니다.
 
+<a id="process-post-request"></a>
+
 ## HTTP 메서드별 처리
+
+<a id="process-get-request"></a>
 
 ### GET 요청 처리
 ```ruby
@@ -178,6 +210,8 @@ def handler(context)
   Rack::Response.new([response_data], 200, { 'Content-Type' => 'application/json' }).finish
 end
 ```
+
+<a id="process-post-request-2"></a>
 
 ### POST 요청 처리
 ```ruby
@@ -214,6 +248,8 @@ def handler(context)
 end
 ```
 
+<a id="manage-package-gemfile"></a>
+
 ## 패키지 관리(`Gemfile`)
 
 의존성(Gem) 관리를 위해 `Gemfile`을 사용합니다. 필요한 Gem을 추가하고 `bundle install`을 실행하여 `Gemfile.lock`을 생성합니다.
@@ -227,6 +263,8 @@ source "https://rubygems.org"
 gem "nokogiri", "~> 1.18" # XML/HTML 파서
 gem "httparty", "~> 0.23" # HTTP 클라이언트
 ```
+
+<a id="example-of-external-api-call"></a>
 
 ### 외부 API 호출 예시
 ```ruby
@@ -268,6 +306,8 @@ def handler(context)
 end
 ```
 
+<a id="configure-entry-point"></a>
+
 ## Entry Point 설정
 
 Entry Point는 함수명을 사용합니다.
@@ -275,6 +315,8 @@ Entry Point는 함수명을 사용합니다.
 - 파일명: `parse.rb`
 - 함수명: `handler`
 - Entry Point: `handler`
+
+<a id="caution"></a>
 
 ### 주의사항
 - **Bundler 버전**: `Gemfile.lock` 생성 시 Bundler 2.6.2 이상 버전 사용을 권장합니다.

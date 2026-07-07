@@ -1,6 +1,10 @@
+<!-- pre-align:aligned sig=9b45d499c0b7 -->
+
 ## Compute > Cloud Functions > コードテンプレートガイド > Go
 
 このドキュメントでは、NHN CloudのCloud FunctionsサービスでGoを使用して関数を開発する方法を詳しく説明します。
+
+<a id="template-information"></a>
 
 ## テンプレート情報
 | 項目             | 値                                       |
@@ -9,7 +13,11 @@
 | **ファイル名**         | functions.go                             |
 | **Entry Point** | Handler                                  |
 
+<a id="basic-template"></a>
+
 ## 基本テンプレート
+
+<a id="hello-world-example"></a>
 
 ### Hello Worldの例
 最も基本的な関数の形式です。
@@ -37,6 +45,8 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 ```
+
+<a id="context-object"></a>
 
 ### Contextオブジェクト
 Goの関数では、`http.ResponseWriter`と`*http.Request`を通じてHTTPのリクエストとレスポンスを処理します。
@@ -74,12 +84,18 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
+<a id="download-and-use-template-file"></a>
+
 ## テンプレートファイルのダウンロードと活用
+
+<a id="template-download"></a>
 
 ### テンプレートのダウンロード
 Cloud Functionsが提供するGoテンプレートをダウンロードし、ローカル環境で開発できます。
 
 **テンプレートのダウンロードリンク**: [go.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/go/go.zip)
+
+<a id="template-file-structure"></a>
 
 ### テンプレートのファイル構造
 ダウンロードしたテンプレートファイルの構造は次のとおりです。
@@ -89,6 +105,8 @@ go.zip
 ├── functions.go     # メイン関数ファイル
 └── go.mod          # 依存関係管理ファイル
 ```
+
+<a id="functionsgo"></a>
 
 #### functions.go
 基本的なfakeデータ生成関数が含まれています。
@@ -116,6 +134,8 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
+<a id="gomod"></a>
+
 #### go.mod
 ```go
 module example.com/ncf
@@ -125,7 +145,11 @@ go 1.22
 require github.com/brianvoe/gofakeit/v6 v6.28.0
 ```
 
+<a id="local-development-process"></a>
+
 ### ローカルでの開発プロセス
+
+<a id="unzip"></a>
 
 #### 1. 解凍
 ```bash
@@ -135,6 +159,8 @@ unzip go.zip -d my-function
 # 作業ディレクトリへ移動
 cd my-function
 ```
+
+<a id="modify-function-codes"></a>
 
 #### 2. 関数コードの修正
 `functions.go`ファイルを、目的のロジックに合わせて修正します。
@@ -185,6 +211,8 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
+<a id="compress-into-a-zip-file"></a>
+
 #### 3. ZIPファイルへ圧縮
 修正したコードを、再度ZIPファイルへ圧縮します。
 
@@ -202,10 +230,16 @@ zip my-function.zip functions.go go.mod
 zip -r my-function.zip . -x "*.git*" "go.sum" "test.go"
 ```
 
+<a id="upload-from-cloud-functions-console"></a>
+
 ### Cloud Functionsコンソールでのアップロード
 > 関数を作成または修正する際に、ユーザーのローカル環境にあるファイルをアップロードする場合に使用します。(コンソール利用ガイド参照)
 
+<a id="cautions-for-upload"></a>
+
 ### アップロード時の注意事項
+
+<a id="zip-file-structure"></a>
 
 #### ZIPファイルの構造
 - ZIPファイルのルートに、直接`.go`ファイルと`go.mod`を配置する必要があります。
@@ -227,9 +261,13 @@ my-function.zip
     └── go.mod
 ```
 
+<a id="file-size-limit"></a>
+
 #### ファイルサイズの制限
 - ZIPファイルのサイズは100MiB以下に制限されます。
 - `go.sum`ファイルは含めないでください。
+
+<a id="files-to-exclude"></a>
 
 #### 除外するファイル
 ```bash
@@ -243,7 +281,11 @@ zip -r my-function.zip . -x \
   "*.zip"
 ```
 
+<a id="process-by-http-method"></a>
+
 ## HTTPメソッド別の処理
+
+<a id="process-get-request"></a>
 
 ### GETリクエストの処理
 ```go
@@ -282,6 +324,8 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(response)
 }
 ```
+
+<a id="process-post-request"></a>
 
 ### POSTリクエストの処理
 ```go
@@ -354,7 +398,11 @@ func getOrDefault(value, defaultValue string) string {
 }
 ```
 
+<a id="manage-packages"></a>
+
 ## パッケージ管理
+
+<a id="write-gomod"></a>
 
 ### go.modの作成
 依存関係の管理には、`go.mod`ファイルを作成します。
@@ -369,6 +417,8 @@ require (
     github.com/gorilla/mux v1.8.1
 )
 ```
+
+<a id="example-of-external-api-call"></a>
 
 ### 外部API呼び出しの例
 ```go
@@ -422,6 +472,8 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(response)
 }
 ```
+
+<a id="data-processing-example"></a>
 
 ### データ処理の例
 ```go
@@ -516,13 +568,19 @@ func normalizeName(name string) string {
 }
 ```
 
+<a id="configure-entry-point"></a>
+
 ## エントリーポイントの設定
+
+<a id="single-function"></a>
 
 ### 単一関数
 関数名をエントリーポイントとして使用します。
 
 関数名: `Handler`
 Entry Point: `Handler`
+
+<a id="multiple-functions"></a>
 
 ### 複数関数
 1つのファイルで複数の関数を定義できます。
@@ -564,7 +622,11 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 - `CreateUser`
 - `UpdateUser`
 
+<a id="caution"></a>
+
 ## 注意事項
+
+<a id="go-version"></a>
 
 ### Goのバージョン
 | バージョン | サポート終了日 | 利用終了日 |
@@ -573,6 +635,8 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 | 1.24 | - | - |
 | 1.23 | 2026-02-21 | 2026-08-21 |
 | 1.22 | 2026-01-28 | 2026-07-28 |
+
+<a id="go-version-support-policy"></a>
 
 #### Goバージョンサポートポリシー
 Cloud Functionsは、Goの公式リリース方針に従います。Goは年2回(1月、7月)新しいメジャーバージョンをリリースしており、各バージョンは最新の2つのメジャーバージョンまでサポートされます。

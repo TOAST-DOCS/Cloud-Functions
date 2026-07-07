@@ -1,8 +1,14 @@
+<!-- pre-align:aligned sig=f22611a38cd5 -->
+
 ## Cloud Functions API v1.0 Guide
 
 **Compute > Cloud Functions > API Guide > API v1.0 Guide**
 
+<a id="cloud-functions-api-v10-common-information"></a>
+
 ## Cloud Functions API v1.0 Common Information
+
+<a id="api-endpoint"></a>
 
 ### API Endpoint
 
@@ -12,11 +18,15 @@ The endpoints by region for calling the Cloud Functions API are as follows:
 | --- |-----------------------------------------------------|
 | Korea (Pangyo) Region | https://kr1-cloud-functions.api.nhncloudservice.com |
 
+<a id="authentication-and-authorization"></a>
+
 ### Authentication and Authorization
 
 Cloud Functions uses User Access Key tokens for authentication and authorization when making API calls.
 The User Access Key token is a temporary, Bearer-type access token issued from a User Access Key.
 For more information on issuing and using User Access Key tokens, refer to the [User Access Key Token](/nhncloud/en/public-api/user-access-key-token).
+
+<a id="response-common-information"></a>
 
 ### Response Common Information
 
@@ -66,15 +76,21 @@ Every API response follows the common format as below:
 
 ---
 
+<a id="list-environments"></a>
+
 ## List Environments
 
 Retrieves a list of available runtime environments.
+
+<a id="request"></a>
 
 ### Request
 
 ```
 GET /v1.0/env/list
 ```
+
+<a id="request-parameter"></a>
 
 ### Request Parameter
 
@@ -83,9 +99,13 @@ GET /v1.0/env/list
 | X-NHN-appkey | Header | String | Y | Appkey |
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 
+<a id="request-body"></a>
+
 ### Request Body
 
 This API does not require a request body.
+
+<a id="response"></a>
 
 ### Response
 
@@ -128,15 +148,21 @@ This API does not require a request body.
 
 ---
 
+<a id="list-functions"></a>
+
 ## List Functions
 
 Retrieves a list of functions.
+
+<a id="list-functions-request"></a>
 
 ### Request
 
 ```
 GET /v1.0/functions
 ```
+
+<a id="list-functions-request-parameter"></a>
 
 ### Request Parameter
 
@@ -147,9 +173,13 @@ GET /v1.0/functions
 | page | Query | Integer | N | Current page (default: 0) |
 | pageSize | Query | Integer | N | Number of items to display per page (default: 5,000) |
 
+<a id="list-functions-request-body"></a>
+
 ### Request Body
 
 This API does not require a request body.
+
+<a id="list-functions-response"></a>
 
 ### Response
 
@@ -200,15 +230,21 @@ This API does not require a request body.
 
 ---
 
+<a id="get-function"></a>
+
 ## Get Function
 
 Retrieves detailed information and build logs for a function.
+
+<a id="get-function-request"></a>
 
 ### Request
 
 ```
 GET /v1.0/functions/{functionName}
 ```
+
+<a id="get-function-request-parameter"></a>
 
 ### Request Parameter
 
@@ -218,9 +254,13 @@ GET /v1.0/functions/{functionName}
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 | functionName | URL | String | Y | Function name |
 
+<a id="get-function-request-body"></a>
+
 ### Request Body
 
 This API does not require a request body.
+
+<a id="get-function-response"></a>
 
 ### Response
 
@@ -280,6 +320,8 @@ This API does not require a request body.
 
 ---
 
+<a id="create-function"></a>
+
 ## Create Function
 
 Creates a new function. Upload the source file as multipart/form-data.
@@ -287,11 +329,15 @@ The runtime must be entered in the `{environment}-{version}` format (e.g., NodeJ
 
 Required parameters vary depending on the executorType. When using poolManager, requestPerPod is required. When using newDeployment, minInstance and maxInstance are required.
 
+<a id="create-function-request"></a>
+
 ### Request
 
 ```
 POST /v1.0/functions
 ```
+
+<a id="create-function-request-parameter"></a>
 
 ### Request Parameter
 
@@ -299,6 +345,8 @@ POST /v1.0/functions
 | --- | --- | --- | --- | --- |
 | X-NHN-appkey | Header | String | Y | Appkey |
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
+
+<a id="create-function-request-body"></a>
 
 ### Request Body
 
@@ -318,6 +366,8 @@ Content-Type: multipart/form-data
 | maxInstance | Integer | Conditional | Maximum number of instances (required when using newDeployment, 1–100) |
 | lncsAppkey | String | N | LnCS Appkey |
 | sourceFile | Binary | Y | Source code file (ZIP) |
+
+<a id="create-function-response"></a>
 
 ### Response
 
@@ -339,17 +389,23 @@ Content-Type: multipart/form-data
 
 ---
 
+<a id="modify-function"></a>
+
 ## Modify Function
 
 Modifies a function. The source file can be uploaded as multipart/form-data.
 
 The source file (sourceFile) is optional. If no source file is included, the existing source code is retained.
 
+<a id="modify-function-request"></a>
+
 ### Request
 
 ```
 PUT /v1.0/functions/{functionName}
 ```
+
+<a id="modify-function-request-parameter"></a>
 
 ### Request Parameter
 
@@ -358,6 +414,8 @@ PUT /v1.0/functions/{functionName}
 | X-NHN-appkey | Header | String | Y | Appkey |
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 | functionName | URL | String | Y | Name of the function to modify |
+
+<a id="modify-function-request-body"></a>
 
 ### Request Body
 
@@ -376,6 +434,8 @@ Content-Type: multipart/form-data
 | maxInstance | Integer | Conditional | Maximum number of instances (required when using newDeployment, 1–100) |
 | lncsAppkey | String | N | LnCS Appkey |
 | sourceFile | Binary | N | Source code file (ZIP) |
+
+<a id="modify-function-response"></a>
 
 ### Response
 
@@ -397,9 +457,13 @@ Content-Type: multipart/form-data
 
 ---
 
+<a id="delete-functions"></a>
+
 ## Delete Functions
 
 Deletes functions in bulk.
+
+<a id="delete-functions-request"></a>
 
 ### Request
 
@@ -407,12 +471,16 @@ Deletes functions in bulk.
 DELETE /v1.0/functions
 ```
 
+<a id="delete-functions-request-parameter"></a>
+
 ### Request Parameter
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
 | X-NHN-appkey | Header | String | Y | Appkey |
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
+
+<a id="delete-functions-request-body"></a>
 
 ### Request Body
 
@@ -430,6 +498,8 @@ DELETE /v1.0/functions
 | Name | Type | Required | Description |
 | --- | --- | --- | --- |
 | names | Array | Y | Function name list to delete |
+
+<a id="delete-functions-response"></a>
 
 ### Response
 
@@ -451,15 +521,21 @@ DELETE /v1.0/functions
 
 ---
 
+<a id="execute-function-get"></a>
+
 ## Execute Function (GET)
 
 Executes a function using the GET method.
+
+<a id="execute-function-get-request"></a>
 
 ### Request
 
 ```
 GET /v1.0/functions/{functionName}/invoke
 ```
+
+<a id="execute-function-get-request-parameter"></a>
 
 ### Request Parameter
 
@@ -469,9 +545,13 @@ GET /v1.0/functions/{functionName}/invoke
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 | functionName | URL | String | Y | Function name to execute |
 
+<a id="execute-function-get-request-body"></a>
+
 ### Request Body
 
 This API does not require a request body.
+
+<a id="execute-function-get-response"></a>
 
 ### Response
 
@@ -497,15 +577,21 @@ This API does not require a request body.
 
 ---
 
+<a id="execute-function-post"></a>
+
 ## Execute Function (POST)
 
 Executes a function using the POST method. A request body can be included.
+
+<a id="execute-function-post-request"></a>
 
 ### Request
 
 ```
 POST /v1.0/functions/{functionName}/invoke
 ```
+
+<a id="execute-function-post-request-parameter"></a>
 
 ### Request Parameter
 
@@ -514,6 +600,8 @@ POST /v1.0/functions/{functionName}/invoke
 | X-NHN-appkey | Header | String | Y | Appkey |
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 | functionName | URL | String | Y | Function name to execute |
+
+<a id="execute-function-post-request-body"></a>
 
 ### Request Body
 
@@ -531,6 +619,8 @@ POST /v1.0/functions/{functionName}/invoke
 | Name | Type | Required | Description |
 | --- |------| --- | --- |
 | body | JSON | N | Body to send to the function |
+
+<a id="execute-function-post-response"></a>
 
 ### Response
 
@@ -556,15 +646,21 @@ POST /v1.0/functions/{functionName}/invoke
 
 ---
 
+<a id="list-versions"></a>
+
 ## List Versions
 
 Retrieves a list of versions (packages) for a function.
+
+<a id="list-versions-request"></a>
 
 ### Request
 
 ```
 GET /v1.0/functions/{functionName}/versions
 ```
+
+<a id="list-versions-request-parameter"></a>
 
 ### Request Parameter
 
@@ -574,9 +670,13 @@ GET /v1.0/functions/{functionName}/versions
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 | functionName | URL | String | Y | Function name |
 
+<a id="list-versions-request-body"></a>
+
 ### Request Body
 
 This API does not require a request body.
+
+<a id="list-versions-response"></a>
 
 ### Response
 
@@ -625,15 +725,21 @@ This API does not require a request body.
 
 ---
 
+<a id="switch-version"></a>
+
 ## Switch Version
 
 Changes the currently active version of a function.
+
+<a id="switch-version-request"></a>
 
 ### Request
 
 ```
 PUT /v1.0/functions/{functionName}/versions
 ```
+
+<a id="switch-version-request-parameter"></a>
 
 ### Request Parameter
 
@@ -642,6 +748,8 @@ PUT /v1.0/functions/{functionName}/versions
 | X-NHN-appkey | Header | String | Y | Appkey |
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 | functionName | URL | String | Y | Function name |
+
+<a id="switch-version-request-body"></a>
 
 ### Request Body
 
@@ -660,6 +768,8 @@ PUT /v1.0/functions/{functionName}/versions
 | --- | --- | --- | --- |
 | versionId | Integer | Y | Version ID to convert |
 
+<a id="switch-version-response"></a>
+
 ### Response
 
 <details>
@@ -680,17 +790,23 @@ PUT /v1.0/functions/{functionName}/versions
 
 ---
 
+<a id="delete-versions"></a>
+
 ## Delete Versions
 
 Deletes versions of a function in bulk.
 
 The currently active version cannot be deleted.
 
+<a id="delete-versions-request"></a>
+
 ### Request
 
 ```
 DELETE /v1.0/functions/{functionName}/versions
 ```
+
+<a id="delete-versions-request-parameter"></a>
 
 ### Request Parameter
 
@@ -699,6 +815,8 @@ DELETE /v1.0/functions/{functionName}/versions
 | X-NHN-appkey | Header | String | Y | Appkey |
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 | functionName | URL | String | Y | Function name |
+
+<a id="delete-versions-request-body"></a>
 
 ### Request Body
 
@@ -717,6 +835,8 @@ DELETE /v1.0/functions/{functionName}/versions
 | --- | --- | --- | --- |
 | versionIds | Array | Y | Version ID list to delete |
 
+<a id="delete-versions-response"></a>
+
 ### Response
 
 <details>
@@ -737,15 +857,21 @@ DELETE /v1.0/functions/{functionName}/versions
 
 ---
 
+<a id="list-triggers"></a>
+
 ## List Triggers
 
 Retrieves a list of triggers for a function.
+
+<a id="list-triggers-request"></a>
 
 ### Request
 
 ```
 GET /v1.0/triggers/{functionName}
 ```
+
+<a id="list-triggers-request-parameter"></a>
 
 ### Request Parameter
 
@@ -755,9 +881,13 @@ GET /v1.0/triggers/{functionName}
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 | functionName | URL | String | Y | Function name |
 
+<a id="list-triggers-request-body"></a>
+
 ### Request Body
 
 This API does not require a request body.
+
+<a id="list-triggers-response"></a>
 
 ### Response
 
@@ -800,15 +930,21 @@ This API does not require a request body.
 
 ---
 
+<a id="create-time-trigger"></a>
+
 ## Create Time Trigger
 
 Creates a time trigger for a function.
+
+<a id="create-time-trigger-request"></a>
 
 ### Request
 
 ```
 POST /v1.0/triggers/{functionName}/time
 ```
+
+<a id="create-time-trigger-request-parameter"></a>
 
 ### Request Parameter
 
@@ -817,6 +953,8 @@ POST /v1.0/triggers/{functionName}/time
 | X-NHN-appkey | Header | String | Y | Appkey |
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 | functionName | URL | String | Y | Function name |
+
+<a id="create-time-trigger-request-body"></a>
 
 ### Request Body
 
@@ -834,6 +972,8 @@ POST /v1.0/triggers/{functionName}/time
 | Name | Type | Required | Description |
 | --- | --- | --- | --- |
 | cron | String | Y | cron expression |
+
+<a id="create-time-trigger-response"></a>
 
 ### Response
 
@@ -855,15 +995,21 @@ POST /v1.0/triggers/{functionName}/time
 
 ---
 
+<a id="modify-time-trigger"></a>
+
 ## Modify Time Trigger
 
 Modifies the cron expression of a time trigger.
+
+<a id="modify-time-trigger-request"></a>
 
 ### Request
 
 ```
 PUT /v1.0/triggers/{functionName}/time
 ```
+
+<a id="modify-time-trigger-request-parameter"></a>
 
 ### Request Parameter
 
@@ -872,6 +1018,8 @@ PUT /v1.0/triggers/{functionName}/time
 | X-NHN-appkey | Header | String | Y | Appkey |
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 | functionName | URL | String | Y | Function name |
+
+<a id="modify-time-trigger-request-body"></a>
 
 ### Request Body
 
@@ -891,6 +1039,8 @@ PUT /v1.0/triggers/{functionName}/time
 | --- | --- | --- | --- |
 | name | String | Y | Trigger name |
 | cron | String | Y | cron expression |
+
+<a id="modify-time-trigger-response"></a>
 
 ### Response
 
@@ -912,15 +1062,21 @@ PUT /v1.0/triggers/{functionName}/time
 
 ---
 
+<a id="delete-time-triggers"></a>
+
 ## Delete Time Triggers
 
 Deletes time triggers in bulk.
+
+<a id="delete-time-triggers-request"></a>
 
 ### Request
 
 ```
 DELETE /v1.0/triggers/{functionName}/time
 ```
+
+<a id="delete-time-triggers-request-parameter"></a>
 
 ### Request Parameter
 
@@ -929,6 +1085,8 @@ DELETE /v1.0/triggers/{functionName}/time
 | X-NHN-appkey | Header | String | Y | Appkey |
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 | functionName | URL | String | Y | Function name |
+
+<a id="delete-time-triggers-request-body"></a>
 
 ### Request Body
 
@@ -946,6 +1104,8 @@ DELETE /v1.0/triggers/{functionName}/time
 | Name | Type | Required | Description |
 | --- | --- | --- | --- |
 | names | Array | Y | List of trigger names to delete |
+
+<a id="delete-time-triggers-response"></a>
 
 ### Response
 

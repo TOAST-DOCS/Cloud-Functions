@@ -1,6 +1,10 @@
+<!-- pre-align:aligned sig=ce91cd7cb2f1 -->
+
 ## Compute > Cloud Functions > 코드 템플릿 가이드 > Node.js
 
 이 문서는 NHN Cloud의 Cloud Functions 서비스에서 Node.js를 사용하여 함수를 개발하는 방법을 상세히 설명합니다.
+
+<a id="template-information"></a>
 
 ## 템플릿 정보
 | 항목              | 값               |
@@ -9,7 +13,11 @@
 | **파일명**         | hello.js        |
 | **Entry Point** | hello           |
 
+<a id="basic-template"></a>
+
 ## 기본 템플릿
+<a id="hello-world-example"></a>
+
 ### Hello World 예시
 가장 기본적인 함수 형태입니다.
 
@@ -21,6 +29,8 @@ module.exports = async (context) => {
     };
 }
 ```
+
+<a id="context-object"></a>
 
 ### Context 객체
 함수에 전달되는 `context` 객체는 다음과 같은 정보를 포함합니다.
@@ -42,12 +52,18 @@ module.exports = async (context) => {
 }
 ```
 
+<a id="download-and-use-template-file"></a>
+
 ## 템플릿 파일 다운로드 및 활용
+
+<a id="template-download"></a>
 
 ### 템플릿 다운로드
 Cloud Functions에서 제공하는 Node.js 템플릿을 다운로드하여 로컬 환경에서 개발할 수 있습니다.
 
 **템플릿 다운로드 링크**: [nodejs.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/nodejs/nodejs.zip)
+
+<a id="template-file-structure"></a>
 
 ### 템플릿 파일 구조
 다운로드한 템플릿 파일의 구조는 다음과 같습니다.
@@ -57,6 +73,8 @@ nodejs.zip
 ├── hello.js          # 메인 함수 파일
 └── package.json      # 의존성 관리 파일
 ```
+
+<a id="hellojs"></a>
 
 #### hello.js
 기본 Hello World 함수가 포함되어 있습니다.
@@ -69,12 +87,18 @@ module.exports = async (context) => {
 }
 ```
 
+<a id="packagejson"></a>
+
 #### package.json
 ```json
 {}
 ```
 
+<a id="local-development-process"></a>
+
 ### 로컬 개발 과정
+
+<a id="unzip"></a>
 
 #### 1. 압축 해제
 ```bash
@@ -84,6 +108,8 @@ unzip nodejs.zip -d my-function
 # 작업 디렉터리 이동
 cd my-function
 ```
+
+<a id="modify-function-codes"></a>
 
 #### 2. 함수 코드 수정
 `hello.js` 파일을 원하는 로직으로 수정합니다.
@@ -127,6 +153,8 @@ module.exports = async (context) => {
 }
 ```
 
+<a id="compress-into-a-zip-file"></a>
+
 #### 3. ZIP 파일로 압축
 수정된 코드를 다시 ZIP 파일로 압축합니다.
 
@@ -144,10 +172,16 @@ zip my-function.zip hello.js package.json
 zip -r my-function.zip . -x "*.git*" "node_modules/*" "test.js"
 ```
 
+<a id="upload-from-cloud-functions-console"></a>
+
 ### Cloud Functions 콘솔에서 업로드
 > 함수를 생성하거나 수정할 때 사용자 로컬 환경의 파일을 업로드 시 사용. (콘솔 사용 가이드 참고)
 
+<a id="cautions-for-upload"></a>
+
 ### 업로드 시 주의사항
+
+<a id="zip-file-structure"></a>
 
 #### ZIP 파일 구조
 - ZIP 파일의 루트에 직접 `.js` 파일과 `package.json`이 위치해야 합니다.
@@ -169,9 +203,13 @@ my-function.zip
     └── package.json
 ```
 
+<a id="file-size-limit"></a>
+
 #### 파일 크기 제한
 - ZIP 파일 크기는 100MiB 이하로 제한됩니다.
 - `node_modules` 폴더는 포함하지 마세요. (의존성은 `package.json`으로 관리)
+
+<a id="files-to-exclude"></a>
 
 #### 제외할 파일들
 ```bash
@@ -185,7 +223,11 @@ zip -r my-function.zip . -x \
   "*.zip"
 ```
 
+<a id="process-by-http-method"></a>
+
 ## HTTP 메서드별 처리
+
+<a id="process-get-request"></a>
 
 ### GET 요청 처리
 ```javascript
@@ -212,6 +254,8 @@ module.exports = async (context) => {
     };
 }
 ```
+
+<a id="process-post-request"></a>
 
 ### POST 요청 처리
 ```javascript
@@ -258,7 +302,11 @@ module.exports = async (context) => {
 }
 ```
 
+<a id="manage-packages"></a>
+
 ## 패키지 관리
+
+<a id="write-packagejson"></a>
 
 ### package.json 작성
 의존성 관리를 위해 `package.json` 파일을 작성합니다.
@@ -277,6 +325,8 @@ module.exports = async (context) => {
   }
 }
 ```
+
+<a id="example-of-external-api-call"></a>
 
 ### 외부 API 호출 예시
 ```javascript
@@ -327,6 +377,8 @@ module.exports = async (context) => {
     }
 }
 ```
+
+<a id="data-processing-example"></a>
 
 ### 데이터 처리 예시
 ```javascript
@@ -382,13 +434,19 @@ module.exports = async (context) => {
 }
 ```
 
+<a id="configure-entry-point"></a>
+
 ## Entry Point 설정
+
+<a id="single-function"></a>
 
 ### 단일 함수
 파일명을 Entry Point로 사용합니다.
 
 파일명: `hello.js`
 Entry Point: `hello`
+
+<a id="multiple-functions"></a>
 
 ### 다중 함수
 하나의 파일에서 여러 함수를 내보낼 수 있습니다.
@@ -425,6 +483,8 @@ Entry Point 설정:
 - `users.createUser`
 - `users.updateUser`
 
+<a id="entry-point-restriction"></a>
+
 ### Entry Point 제한 사항
 - **하위 디렉터리 지정 불가**: 루트 디렉터리의 하위 디렉터리에 있는 파일은 Entry Point로 지정할 수 없습니다.
 
@@ -443,7 +503,11 @@ modules/auth.js → modules.auth ❌
 
 모든 함수 파일은 ZIP 파일의 루트 레벨에 위치해야 합니다.
 
+<a id="caution"></a>
+
 ## 주의사항
+
+<a id="commonjs-vs-es-modules"></a>
 
 ### CommonJS vs ES Modules
 현재 Cloud Functions는 CommonJS 방식만 지원합니다.
@@ -463,6 +527,8 @@ export default async (context) => {  // ❌ 지원하지 않음
     // 함수 로직
 };
 ```
+
+<a id="considerations-for-memory-and-execution-time"></a>
 
 ### 메모리 및 실행 시간 고려사항
 - 함수는 제한된 메모리와 실행 시간 내에서 동작해야 합니다.
