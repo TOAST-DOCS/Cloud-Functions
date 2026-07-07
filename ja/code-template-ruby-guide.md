@@ -1,6 +1,10 @@
+<!-- pre-align:aligned sig=1d5361d8d187 -->
+
 ## Compute > Cloud Functions > コードテンプレートガイド > Ruby
 
 このドキュメントでは、NHN CloudのCloud FunctionsサービスでRubyを使用して関数を開発する方法を詳しく説明します。
+
+<a id="template-information"></a>
 
 ## テンプレート情報
 | 項目             | 値       |
@@ -9,7 +13,11 @@
 | **ファイル名**         | parse.rb |
 | **Entry Point** | handler  |
 
+<a id="basic-template"></a>
+
 ## 基本テンプレート
+
+<a id="hello-world-example"></a>
 
 ### Hello Worldの例
 最も基本的な関数の形式です。
@@ -29,6 +37,8 @@ def handler(context)
   Rack::Response.new([msg, "\n"]).finish
 end
 ```
+
+<a id="context-object"></a>
 
 ### Contextオブジェクト
 関数に渡される`context`オブジェクトを通じて、ロガーやリクエスト情報にアクセスできます。
@@ -64,12 +74,18 @@ def handler(context)
 end
 ```
 
+<a id="download-and-use-template-file"></a>
+
 ## テンプレートファイルのダウンロードと活用
+
+<a id="template-download"></a>
 
 ### テンプレートのダウンロード
 Cloud Functionsが提供するRubyテンプレートをダウンロードし、ローカル環境で開発できます。
 
 **テンプレートのダウンロードリンク**: [ruby.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/ruby/ruby.zip)
+
+<a id="template-file-structure"></a>
 
 ### テンプレートのファイル構造
 ダウンロードしたテンプレートファイルの構造は次のとおりです。
@@ -80,7 +96,11 @@ ruby.zip
 └── Gemfile
 ```
 
+<a id="local-development-process"></a>
+
 ### ローカルでの開発プロセス
+
+<a id="unzip"></a>
 
 #### 1. 解凍
 ```bash
@@ -90,6 +110,8 @@ unzip ruby.zip -d my-function
 # 作業ディレクトリへ移動
 cd my-function
 ```
+
+<a id="modify-function-codes"></a>
 
 #### 2. 関数コードの修正
 `parse.rb`ファイルを、目的のロジックに合わせて修正します。
@@ -135,6 +157,8 @@ def handler(context)
 end
 ```
 
+<a id="compress-into-a-zip-file"></a>
+
 #### 3. ZIPファイルへ圧縮
 修正したソースコードを、再度ZIPファイルへ圧縮します。`parse.rb`と`Gemfile`がルートディレクトリに含まれるように圧縮する必要があります。
 
@@ -143,9 +167,13 @@ zip my-function.zip parse.rb Gemfile Gemfile.lock
 ```
 **参考**: `Gemfile.lock`ファイルはデプロイ段階で自動的に生成されますが、依存関係の正確なバージョンを事前に確認または固定したい場合は、ローカルで`bundle install`を実行して直接生成した後、一緒に圧縮できます。`Gemfile.lock`ファイルが含まれている場合、そのファイルに明記されたバージョンを使用してビルドされます。
 
+<a id="upload-from-cloud-functions-console"></a>
+
 ### Cloud Functionsコンソールでのアップロード
 - 関数を作成または修正する際に、**ユーザーローカル環境**方式を選択します。
 - **ファイルを選択**をクリックし、作成した`my-function.zip`ファイルをアップロードします。
+
+<a id="cautions-for-upload"></a>
 
 ### アップロード時の注意事項
 - **アップロードファイル**: `*.rb`、`Gemfile`が含まれた**ZIPファイル**をアップロードする必要があります。
@@ -153,7 +181,11 @@ zip my-function.zip parse.rb Gemfile Gemfile.lock
 - **ZIPファイルの構造**: ZIPファイルのルートに各ファイルを配置する必要があります。
 - **ファイルサイズ**: ZIPファイルのサイズは100MiB以下に制限されます。
 
+<a id="process-post-request"></a>
+
 ## HTTPメソッド別の処理
+
+<a id="process-get-request"></a>
 
 ### GETリクエストの処理
 ```ruby
@@ -178,6 +210,8 @@ def handler(context)
   Rack::Response.new([response_data], 200, { 'Content-Type' => 'application/json' }).finish
 end
 ```
+
+<a id="process-post-request-2"></a>
 
 ### POSTリクエストの処理
 ```ruby
@@ -214,6 +248,8 @@ def handler(context)
 end
 ```
 
+<a id="manage-package-gemfile"></a>
+
 ## パッケージ管理(`Gemfile`)
 
 依存関係(Gem)の管理には`Gemfile`を使用します。必要なGemを追加し、`bundle install`を実行して`Gemfile.lock`を生成します。
@@ -227,6 +263,8 @@ source "https://rubygems.org"
 gem "nokogiri", "~> 1.18" # XML/HTMLパーサー
 gem "httparty", "~> 0.23" # HTTPクライアント
 ```
+
+<a id="example-of-external-api-call"></a>
 
 ### 外部API呼び出しの例
 ```ruby
@@ -268,6 +306,8 @@ def handler(context)
 end
 ```
 
+<a id="configure-entry-point"></a>
+
 ## エントリーポイントの設定
 
 エントリーポイントには関数名を使用します。
@@ -275,6 +315,8 @@ end
 - ファイル名: `parse.rb`
 - 関数名: `handler`
 - Entry Point: `handler`
+
+<a id="caution"></a>
 
 ### 注意事項
 - **Bundlerのバージョン**: `Gemfile.lock`を作成する際には、Bundler 2.6.2以上のバージョンの使用を推奨します。

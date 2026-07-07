@@ -1,6 +1,10 @@
+<!-- pre-align:aligned sig=65e9891c8f54 -->
+
 ## Compute > Cloud Functions > 코드 템플릿 가이드 > Java
 
 이 문서는 NHN Cloud의 Cloud Functions 서비스에서 Java를 사용하여 함수를 개발하는 방법을 상세히 설명합니다.
+
+<a id="template-information"></a>
 
 ## 템플릿 정보
 | 항목              | 값                  |
@@ -9,7 +13,11 @@
 | **파일명**         | HelloWorld.java    |
 | **Entry Point** | example.HelloWorld |
 
+<a id="basic-template"></a>
+
 ## 기본 템플릿
+
+<a id="hello-world-example"></a>
 
 ### Hello World 예시
 가장 기본적인 함수 형태입니다.
@@ -28,6 +36,8 @@ public class HelloWorld {
 
 }
 ```
+
+<a id="context-object-requestentity"></a>
 
 ### Context 객체(RequestEntity)
 Java 함수에서는 Spring의 `RequestEntity`를 통해 HTTP 요청 정보에 접근할 수 있습니다.
@@ -62,12 +72,18 @@ public class HelloWorld {
 }
 ```
 
+<a id="download-and-use-template-file"></a>
+
 ## 템플릿 파일 다운로드 및 활용
+
+<a id="template-download"></a>
 
 ### 템플릿 다운로드
 Cloud Functions에서 제공하는 Java 템플릿을 다운로드하여 로컬 환경에서 개발할 수 있습니다.
 
 **템플릿 다운로드 링크**: [java.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/java/java.zip)
+
+<a id="template-file-structure"></a>
 
 ### 템플릿 파일 구조
 다운로드한 템플릿은 Maven 프로젝트 구조를 따릅니다.
@@ -82,7 +98,11 @@ java.zip
                 └── HelloWorld.java
 ```
 
+<a id="local-development-process"></a>
+
 ### 로컬 개발 과정
+
+<a id="unzip"></a>
 
 #### 1. 압축 해제
 ```bash
@@ -92,6 +112,8 @@ unzip java.zip -d my-java-function
 # 작업 디렉터리 이동
 cd my-java-function
 ```
+
+<a id="modify-function-codes"></a>
 
 #### 2. 함수 코드 수정
 `src/main/java/example/HelloWorld.java` 파일을 원하는 로직으로 수정합니다.
@@ -144,6 +166,8 @@ public class HelloWorld {
 }
 ```
 
+<a id="compress-into-a-zip-file"></a>
+
 #### 3. ZIP 파일로 압축
 수정된 소스 코드를 다시 ZIP 파일로 압축합니다. `pom.xml` 파일과 `src` 디렉터리가 최상위에 포함되도록 압축해야 합니다.
 
@@ -161,9 +185,13 @@ zip -r my-function.zip pom.xml src
 zip -r my-function.zip . -x "*.git*" "target/*" "*.log"
 ```
 
+<a id="upload-from-cloud-functions-console"></a>
+
 ### Cloud Functions 콘솔에서 업로드
 - 함수 생성 또는 수정 시, **사용자 로컬 환경** 방식을 선택합니다.
 - **파일 선택**을 클릭하여 생성한 `my-function.zip` 파일을 업로드합니다.
+
+<a id="cautions-for-upload"></a>
 
 ### 업로드 시 주의사항
 - **업로드 파일**: 소스 코드와 `pom.xml`이 포함된 **ZIP 파일**을 업로드해야 합니다.
@@ -171,7 +199,11 @@ zip -r my-function.zip . -x "*.git*" "target/*" "*.log"
 - **제외할 파일**: `target` 디렉터리, `.git` 디렉터리 등 불필요한 파일은 포함하지 마세요.
 - **파일 크기**: ZIP 파일 크기는 100MiB 이하로 제한됩니다.
 
+<a id="process-by-http-method"></a>
+
 ## HTTP 메서드별 처리
+
+<a id="process-get-request"></a>
 
 ### GET 요청 처리
 ```java
@@ -208,6 +240,8 @@ public class GetHandler {
     }
 }
 ```
+
+<a id="process-post-request"></a>
 
 ### POST 요청 처리
 ```java
@@ -250,6 +284,8 @@ public class PostHandler {
 }
 ```
 
+<a id="manage-package-pomxml"></a>
+
 ## 패키지 관리(`pom.xml`)
 
 의존성 관리를 위해 `pom.xml` 파일을 수정합니다. `dependencies` 섹션에 필요한 라이브러리를 추가하면, 함수 업로드 시 Cloud Functions가 자동으로 의존성을 다운로드하여 빌드에 포함합니다.
@@ -272,6 +308,8 @@ public class PostHandler {
     </dependency>
 </dependencies>
 ```
+
+<a id="example-of-using-external-libraries"></a>
 
 ### 외부 라이브러리 활용 예시
 ```java
@@ -307,7 +345,11 @@ public class StringUtilsHandler {
 }
 ```
 
+<a id="entry-point-configuration"></a>
+
 ## Entry Point 설정
+
+<a id="single-class"></a>
 
 ### 단일 클래스
 `패키지명.클래스명`을 Entry Point로 사용합니다.
@@ -316,6 +358,8 @@ public class StringUtilsHandler {
 - 클래스명: `HelloWorld`
 - Entry Point: `example.HelloWorld`
 - **중요**: 함수 역할을 하는 메서드는 `public ResponseEntity<?> call(RequestEntity<?> req)` 시그니처를 가져야 합니다.
+
+<a id="caution"></a>
 
 ### 주의사항
 - **프로젝트 구조**: `src/main/java` 디렉터리 구조를 유지해야 합니다.

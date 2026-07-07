@@ -1,6 +1,10 @@
+<!-- pre-align:aligned sig=3c324618eb1e -->
+
 ## Compute > Cloud Functions > Code Template Guide > .NET
 
 This document details how to develop functions by using .NET from NHN Cloud's Cloud Functions service.
+
+<a id="template-information"></a>
 
 ## Template information
 | Item              | Value                  |
@@ -9,7 +13,11 @@ This document details how to develop functions by using .NET from NHN Cloud's Cl
 | **File name**         | func.cs |
 | **Entry point** | func             |
 
+<a id="basic-template"></a>
+
 ## Basic template
+
+<a id="hello-world-example"></a>
 
 ### Hello World example
 A basic form of function. Use `NhnContext` of `Nhn.DotNetCore.Api` namespace to access the logger and request information.
@@ -49,6 +57,8 @@ public class NhnFunction
     }
 }
 ```
+
+<a id="context-object"></a>
 
 ### Context object
 With the `NhnContext` object, you can access the logger, request, and response.
@@ -95,12 +105,18 @@ public class NhnFunction
 }
 ```
 
+<a id="download-and-use-template-file"></a>
+
 ## Download and use template file
+
+<a id="template-download"></a>
 
 ### Template download
 You can download the .NET template provided by Cloud Functions to develop a local environment.
 
 **Template download link**: [dotnet.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/dotnet/dotnet.zip)
+
+<a id="template-file-structure"></a>
 
 ### Template file structure
 The structure of the downloaded template file is as follows:
@@ -112,7 +128,11 @@ dotnet.zip
 └── nuget.txt     # Dependency management file
 ```
 
+<a id="local-development-process"></a>
+
 ### Local development process
+
+<a id="unzip"></a>
 
 #### 1. Unzip
 ```bash
@@ -122,6 +142,8 @@ unzip dotnet.zip -d my-function
 # Move to task directory
 cd my-function
 ```
+
+<a id="modify-function-codes"></a>
 
 #### 2. Modify function codes
 Modify `func.cs` file with the logic you want.
@@ -178,6 +200,8 @@ public class NhnFunction
 }
 ```
 
+<a id="compress-into-a-zip-file"></a>
+
 #### 3. Compress into a ZIP file
 Compress the modified source code into ZIP file. You must compress it so that `func.cs` and `nuget.txt` are included at the top level.
 
@@ -185,11 +209,17 @@ Compress the modified source code into ZIP file. You must compress it so that `f
 zip my-function.zip func.cs nuget.txt
 ```
 
+<a id="upload-from-cloud-functions-console"></a>
+
 ### Upload from Cloud Functions console
 - When creating or modifying a function, select the **User Local Environment** method.
 - Click **Select File** to upload the `my-function.zip` file you created.
 
+<a id="process-by-http-method"></a>
+
 ## Process by HTTP method
+
+<a id="process-get-request"></a>
 
 ### Process GET request
 ```csharp
@@ -219,6 +249,8 @@ public class NhnFunction
     }
 }
 ```
+
+<a id="process-post-request"></a>
 
 ### Process POST request
 ```csharp
@@ -272,6 +304,8 @@ public class NhnFunction
 }
 ```
 
+<a id="manage-package-nugettxt"></a>
+
 ## Manage package (`nuget.txt`)
 
 Use the `nuget.txt` file to manage dependencies (NuGet packages). Write the required packages one per line.
@@ -280,6 +314,8 @@ Use the `nuget.txt` file to manage dependencies (NuGet packages). Write the requ
 # nuget.txt
 Microsoft.Extensions.Configuration:8.0.0
 ```
+
+<a id="example-of-configuration-management"></a>
 
 ### Example of configuration management
 ```csharp
@@ -362,6 +398,8 @@ public class NhnFunction
 }
 ```
 
+<a id="configure-entry-point"></a>
+
 ## Configure Entry Point
 
 Entry Point is **file name**. (excluding extention)
@@ -370,6 +408,8 @@ Entry Point is **file name**. (excluding extention)
 - Entry Point: `func`
 
 **Important**: The class name must be `NhnFunction`, and the method acting as a function must have the signature `public string Execute(NhnContext context)`.
+
+<a id="caution"></a>
 
 ### Caution
 - **Package version**: You can specify the package version in `nuget.txt`. (example: `Newtonsoft.Json:9.0.1`)

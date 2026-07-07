@@ -1,6 +1,10 @@
+<!-- pre-align:aligned sig=9b45d499c0b7 -->
+
 ## Compute > Cloud Functions > 코드 템플릿 가이드 > Go
 
 이 문서는 NHN Cloud의 Cloud Functions 서비스에서 Go를 사용하여 함수를 개발하는 방법을 상세히 설명합니다.
+
+<a id="template-information"></a>
 
 ## 템플릿 정보
 | 항목              | 값                                        |
@@ -9,7 +13,11 @@
 | **파일명**         | functions.go                             |
 | **Entry Point** | Handler                                  |
 
+<a id="basic-template"></a>
+
 ## 기본 템플릿
+
+<a id="hello-world-example"></a>
 
 ### Hello World 예시
 가장 기본적인 함수 형태입니다.
@@ -37,6 +45,8 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 ```
+
+<a id="context-object"></a>
 
 ### Context 객체
 Go 함수에서는 `http.ResponseWriter`와 `*http.Request`를 통해 HTTP 요청과 응답을 처리합니다.
@@ -74,12 +84,18 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
+<a id="download-and-use-template-file"></a>
+
 ## 템플릿 파일 다운로드 및 활용
+
+<a id="template-download"></a>
 
 ### 템플릿 다운로드
 Cloud Functions에서 제공하는 Go 템플릿을 다운로드하여 로컬 환경에서 개발할 수 있습니다.
 
 **템플릿 다운로드 링크**: [go.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/go/go.zip)
+
+<a id="template-file-structure"></a>
 
 ### 템플릿 파일 구조
 다운로드한 템플릿 파일의 구조는 다음과 같습니다.
@@ -89,6 +105,8 @@ go.zip
 ├── functions.go     # 메인 함수 파일
 └── go.mod          # 의존성 관리 파일
 ```
+
+<a id="functionsgo"></a>
 
 #### functions.go
 기본 fake 데이터 생성 함수가 포함되어 있습니다.
@@ -116,6 +134,8 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
+<a id="gomod"></a>
+
 #### go.mod
 ```go
 module example.com/ncf
@@ -125,7 +145,11 @@ go 1.22
 require github.com/brianvoe/gofakeit/v6 v6.28.0
 ```
 
+<a id="local-development-process"></a>
+
 ### 로컬 개발 과정
+
+<a id="unzip"></a>
 
 #### 1. 압축 해제
 ```bash
@@ -135,6 +159,8 @@ unzip go.zip -d my-function
 # 작업 디렉터리 이동
 cd my-function
 ```
+
+<a id="modify-function-codes"></a>
 
 #### 2. 함수 코드 수정
 `functions.go` 파일을 원하는 로직으로 수정합니다.
@@ -185,6 +211,8 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
+<a id="compress-into-a-zip-file"></a>
+
 #### 3. ZIP 파일로 압축
 수정된 코드를 다시 ZIP 파일로 압축합니다.
 
@@ -202,10 +230,16 @@ zip my-function.zip functions.go go.mod
 zip -r my-function.zip . -x "*.git*" "go.sum" "test.go"
 ```
 
+<a id="upload-from-cloud-functions-console"></a>
+
 ### Cloud Functions 콘솔에서 업로드
 > 함수를 생성하거나 수정할 때 사용자 로컬 환경의 파일을 업로드 시 사용. (콘솔 사용 가이드 참고)
 
+<a id="cautions-for-upload"></a>
+
 ### 업로드 시 주의사항
+
+<a id="zip-file-structure"></a>
 
 #### ZIP 파일 구조
 - ZIP 파일의 루트에 직접 `.go` 파일과 `go.mod`가 위치해야 합니다.
@@ -227,9 +261,13 @@ my-function.zip
     └── go.mod
 ```
 
+<a id="file-size-limit"></a>
+
 #### 파일 크기 제한
 - ZIP 파일 크기는 100MiB 이하로 제한됩니다.
 - `go.sum` 파일은 포함하지 마세요.
+
+<a id="files-to-exclude"></a>
 
 #### 제외할 파일들
 ```bash
@@ -243,7 +281,11 @@ zip -r my-function.zip . -x \
   "*.zip"
 ```
 
+<a id="process-by-http-method"></a>
+
 ## HTTP 메서드별 처리
+
+<a id="process-get-request"></a>
 
 ### GET 요청 처리
 ```go
@@ -282,6 +324,8 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(response)
 }
 ```
+
+<a id="process-post-request"></a>
 
 ### POST 요청 처리
 ```go
@@ -354,7 +398,11 @@ func getOrDefault(value, defaultValue string) string {
 }
 ```
 
+<a id="manage-packages"></a>
+
 ## 패키지 관리
+
+<a id="write-gomod"></a>
 
 ### go.mod 작성
 의존성 관리를 위해 `go.mod` 파일을 작성합니다.
@@ -369,6 +417,8 @@ require (
     github.com/gorilla/mux v1.8.1
 )
 ```
+
+<a id="example-of-external-api-call"></a>
 
 ### 외부 API 호출 예시
 ```go
@@ -422,6 +472,8 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(response)
 }
 ```
+
+<a id="data-processing-example"></a>
 
 ### 데이터 처리 예시
 ```go
@@ -516,13 +568,19 @@ func normalizeName(name string) string {
 }
 ```
 
+<a id="configure-entry-point"></a>
+
 ## Entry Point 설정
+
+<a id="single-function"></a>
 
 ### 단일 함수
 함수명을 Entry Point로 사용합니다.
 
 함수명: `Handler`
 Entry Point: `Handler`
+
+<a id="multiple-functions"></a>
 
 ### 다중 함수
 하나의 파일에서 여러 함수를 정의할 수 있습니다.
@@ -564,7 +622,11 @@ Entry Point 설정:
 - `CreateUser`
 - `UpdateUser`
 
+<a id="caution"></a>
+
 ## 주의사항
+
+<a id="go-version"></a>
 
 ### Go 버전
 | 버전 | 지원 중단일 | 사용 중단일 |
@@ -573,6 +635,8 @@ Entry Point 설정:
 | 1.24 | - | - |
 | 1.23 | 2026-02-21 | 2026-08-21 |
 | 1.22 | 2026-01-28 | 2026-07-28 |
+
+<a id="go-version-support-policy"></a>
 
 #### Go 버전 지원 정책
 Cloud Functions는 Go의 공식 릴리즈 정책을 따릅니다. Go는 연 2회(1월, 7월) 새로운 메이저 버전을 릴리즈하며, 각 버전은 최신 2개 메이저 버전까지만 지원됩니다.

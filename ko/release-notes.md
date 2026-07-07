@@ -1,22 +1,38 @@
+<!-- pre-align:aligned sig=06519d7ca905 -->
+
 ## Compute > Cloud Functions > 릴리스 노트
 
+<a id="april-14-2026"></a>
+
 ### 2026. 04. 14.
+
+<a id="added-features"></a>
 
 #### 기능 추가
 - Public API v1.0 추가
   - API로 Cloud Functions를 이용할 수 있습니다.
 
+<a id="january-27-2026"></a>
+
 ### 2026. 01. 27.
+
+<a id="january-27-2026-added-features"></a>
 
 #### 기능 추가
 - 함수 버전 관리 기능 추가
   - 빌드한 패키지를 버전으로 관리하고 이전 버전으로 롤백할 수 있습니다.
 
+<a id="november-25-2025"></a>
+
 ### 2025. 11. 25.
+
+<a id="november-25-2025-added-features"></a>
 
 #### 기능 추가
 - API Gateway 트리거 추가
   - 동일 프로젝트의 API Gateway 서비스를 활용하여 API Gateway 트리거를 생성할 수 있습니다.
+
+<a id="feature-updates"></a>
 
 #### 기능 개선
 - 런타임 환경 최신 버전 추가 및 일부 버전 사용 중단
@@ -26,7 +42,11 @@
   - Ruby 2.6.1 사용 중단, Ruby 3.4.5 추가
   - .NET 7 사용 중단, .NET 8 추가
 
+<a id="july-29-2025"></a>
+
 ### 2025. 07. 29.
+
+<a id="launch-cloud-functions-service"></a>
 
 #### Cloud Functions 서비스 출시
 - 사용자는 함수 단위로 코드를 작성할 수 있으며, 특정 이벤트 발생 시 정의된 함수가 자동으로 실행되어 필요한 작업을 처리합니다. 서버 관리나 인프라 설정 없이 애플리케이션 로직에만 집중할 수 있습니다.
