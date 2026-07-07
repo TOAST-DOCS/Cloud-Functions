@@ -268,8 +268,8 @@ def handler(context)
 end
 ```
 
-## 환경 변수 사용
-함수에 등록한 환경 변수는 `ENV`로 접근할 수 있습니다. 환경 변수는 함수 생성 및 수정의 코드 작성 단계에서 등록합니다. 자세한 내용은 콘솔 사용 가이드를 참고하세요.
+## Use Environment Variables
+Environment variables registered for a function can be accessed via `ENV`. Environment variables are registered during the code writing step of function creation and modification. For more information, see the console user guide.
 
 ```ruby
 # frozen_string_literal: true
@@ -277,7 +277,7 @@ end
 require 'json'
 
 def handler(context)
-  # 환경 변수 읽기
+  # Read environment variables
   db_host = ENV['DB_HOST']
   api_key = ENV['API_KEY']
 
@@ -291,23 +291,23 @@ def handler(context)
 end
 ```
 
-!!! tip "참고"
-    보안상 다음 키·접두사는 환경 변수로 등록할 수 없습니다.
+!!! tip "Note"
+    For security reasons, the following keys and prefixes cannot be registered as environment variables:
 
-    공통(모든 런타임)
+    Common (all runtimes)
 
-    - 셸/subprocess: `PATH`, `IFS`, `HOME`, `BASH_ENV`, `ENV`, `SHELLOPTS`
-    - 로더/라이브러리: `LD_PRELOAD`, `LD_LIBRARY_PATH`, `LD_AUDIT`
-    - glibc 동적 로딩: `GCONV_PATH`, `LOCPATH`, `HOSTALIASES`
-    - 프록시: `HTTP_PROXY`, `HTTPS_PROXY`, `ALL_PROXY`(소문자 포함)
-    - TLS 신뢰 저장소: `SSL_CERT_FILE`, `SSL_CERT_DIR`, `REQUESTS_CA_BUNDLE`, `CURL_CA_BUNDLE`
-    - 플랫폼 내부: `RUNTIME_PORT`, `USERFUNCVOL`, `WSGI_FRAMEWORK`, `SENTRY_DSN`, `SENTRY_RELEASE`, `TIMEOUT`, `BODY_PARSER_LIMIT`
-    - 접두사: `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_`
+    - Shell/subprocess: `PATH`, `IFS`, `HOME`, `BASH_ENV`, `ENV`, `SHELLOPTS`
+    - Loader/library: `LD_PRELOAD`, `LD_LIBRARY_PATH`, `LD_AUDIT`
+    - glibc dynamic loading: `GCONV_PATH`, `LOCPATH`, `HOSTALIASES`
+    - Proxy: `HTTP_PROXY`, `HTTPS_PROXY`, `ALL_PROXY` (including lowercase)
+    - TLS trust store: `SSL_CERT_FILE`, `SSL_CERT_DIR`, `REQUESTS_CA_BUNDLE`, `CURL_CA_BUNDLE`
+    - Platform internal: `RUNTIME_PORT`, `USERFUNCVOL`, `WSGI_FRAMEWORK`, `SENTRY_DSN`, `SENTRY_RELEASE`, `TIMEOUT`, `BODY_PARSER_LIMIT`
+    - Prefixes: `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_`
 
     Ruby
 
     - `RUBYOPT`, `RUBYLIB`, `GEM_HOME`, `GEM_PATH`
-    - 접두사 `RUBY`
+    - Prefix `RUBY`
 
 ## Configure Entry Point
 

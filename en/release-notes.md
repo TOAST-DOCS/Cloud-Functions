@@ -1,14 +1,14 @@
 ## Compute > Cloud Functions > Release Notes
 
-### 2026. 07. 14.
+### July 14, 2026
 
-#### 기능 추가
-- 환경 변수 기능 추가
-  - 함수에 환경 변수를 설정하여 코드와 설정을 분리할 수 있습니다.
-  - 인증 정보 등 민감한 값을 코드에 하드코딩하지 않고 관리할 수 있습니다.
-- 런타임 EOL(end of life) 표시 기능 추가
-  - 함수 목록과 상세 정보에 런타임의 지원 중단/사용 중단 상태를 표시합니다.
-  - 함수 생성/수정 시 지원 중단 런타임을 안내하고, 사용 중단 런타임의 선택 및 수정을 제한합니다.
+#### Added Features
+- Added environment variable feature
+  - Allows separation of code and configuration by setting environment variables for functions.
+  - Enables management of sensitive values such as credentials without hardcoding them in the code.
+- Added runtime EOL (end of life) indicator feature
+  - Displays the deprecated/discontinued status of runtimes in the function list and details.
+  - Provides guidance on deprecated runtimes when creating or modifying functions, and restricts the selection and modification of discontinued runtimes.
 
 ### April 14, 2026
 

@@ -13,13 +13,13 @@ Users can write codes by function unit. Functions defined on a specific event ar
     - Support for multiple languages and runtimes.
     - The event-based architecture is versatile.
 
-### Main features
+### Main Features
 - We offer multiple languages (environments).
 - The **code editor** makes you write simple function unit code.
 - Provide an HTTPS Endpoint as standard to perform the function.
 - Iterate the function at regular cycles.
 
-### Two modes available
+### Two Modes Available
 - Pool Manager
 - New Deployment
 #### Pool Manager
@@ -36,7 +36,7 @@ Users can write codes by function unit. Functions defined on a specific event ar
 
 ![overview-02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-08-26/NHN%20Cloud_Guide%20overview_CloudFunctions_2_en.png)
 
-### Supported languages
+### Supported Languages
 | Language     | Version                | End of Support   | End of Service   |
 |--------|-------------------|------------|------------|
 | NodeJS | 22.5.0            | 2027-04-30 | 2027-10-30 |
@@ -56,19 +56,19 @@ Users can write codes by function unit. Functions defined on a specific event ar
 | .NET   | 8                 | 2026-11-10 | 2027-11-10 |
 |        | 7 (end of service)         | 2024-05-14 | 2025-05-14 |
 
-#### 런타임 지원 상태
-각 런타임은 EOL(end of life) 정책에 따라 다음 세 가지 상태로 구분됩니다.
+#### Runtime Support Status
+Each runtime is categorized into one of the following three statuses based on the EOL (end of life) policy.
 
-| 상태 | 의미 | 함수 생성 | 함수 수정 |
+| Status | Description | Create function | Modify function |
 | --- | --- | --- | --- |
-| 정상 | 정상적으로 지원되는 상태 | 가능 | 가능 |
-| 지원 중단 | 지원 중단일이 지나 런타임 커뮤니티 지원이 종료된 상태. 사용에는 제한이 없으나 최신 런타임으로 이전을 권고하는 기간 | 가능 | 가능 |
-| 사용 중단 | 사용 중단일이 지난 상태. 함수 실행을 강제로 중단하지는 않으나 정상 동작을 보장하지 않으며, 신규 생성 및 수정이 제한됨 | 불가(목록에서 제외) | 불가(수정 버튼 비활성화) |
+| Active | The runtime is fully supported. | Available | Available |
+| Deprecated | The runtime community support has ended after the deprecation date. There are no restrictions on use, but migration to the latest runtime is recommended. | Available | Available |
+| Discontinued | The discontinuation date has passed. Function execution is not forcibly stopped, but normal operation is not guaranteed, and new creation and modification are restricted. | Unavailable (excluded from list) | Unavailable (modify button disabled) |
 
-- 지원 중단일: 해당 일자부터 런타임이 '지원 중단' 상태가 됩니다.
-- 사용 중단일: 해당 일자부터 런타임이 '사용 중단' 상태가 됩니다.
+- Deprecation date: The runtime enters the "Deprecated" status from this date.
+- Discontinuation date: The runtime enters the "Discontinued" status from this date.
 
-런타임의 상태는 함수 목록과 상세 정보, 함수 생성/수정 화면에서 확인할 수 있습니다. 자세한 동작은 콘솔 사용 가이드를 참고하세요.
+The status of a runtime can be checked in the function list, function details, and the function creation/modification screen. For details on behavior, see the console user guide.
 
 ### Trigger
 - HTTP Trigger
