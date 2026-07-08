@@ -1,7 +1,11 @@
-## Compute > Cloud Functions > Overview
+<!-- pre-align:aligned sig=1cb57d0b02b5 -->
+
+<a id="compute-cloud-functions-overview"></a>
+## Compute > Cloud Functions > Overview { #compute-cloud-functions-overview }
 Users can write codes by function unit. Functions defined on a specific event are automatically executed, processing the required tasks. Without server management or infrastructure configuration, you can focus only on application logic.
 
-### Features
+<a id="features"></a>
+### Features { #features }
 - Cost-effectiveness
     - Save money with pay-as-you-go pricing.
     - You can reduce management cost as it allocates resources only when necessary.
@@ -13,15 +17,18 @@ Users can write codes by function unit. Functions defined on a specific event ar
     - Support for multiple languages and runtimes.
     - The event-based architecture is versatile.
 
-### Main Features
+<a id="main-features"></a>
+### Main Features { #main-features }
 - We offer multiple languages (environments).
 - The **code editor** makes you write simple function unit code.
 - Provide an HTTPS Endpoint as standard to perform the function.
 - Iterate the function at regular cycles.
 
-### Two Modes Available
+<a id="two-modes-available"></a>
+### Two Modes Available { #two-modes-available }
 - Pool Manager
 - New Deployment
+<a id="two-modes-available-pool-manager"></a>
 #### Pool Manager
 - Instances are created and use resources only when the function is performed.
 - If the function is not performed for a certain period, instances disappear, and the resource usage becomes 0.
@@ -29,6 +36,7 @@ Users can write codes by function unit. Functions defined on a specific event ar
 
 ![overview-01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-08-26/NHN%20Cloud_Guide%20overview_CloudFunctions_1_en.png)
 
+<a id="two-modes-available-new-deployment"></a>
 #### New Deployment
 - Once functions are created, instances are created, keeping a certain amount of resources being used.
 - Instances are kept to reduce response latency.
@@ -36,7 +44,8 @@ Users can write codes by function unit. Functions defined on a specific event ar
 
 ![overview-02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-08-26/NHN%20Cloud_Guide%20overview_CloudFunctions_2_en.png)
 
-### Supported Languages
+<a id="supported-languages"></a>
+### Supported Languages { #supported-languages }
 | Language     | Version                | End of Support   | End of Service   |
 |--------|-------------------|------------|------------|
 | NodeJS | 22.5.0            | 2027-04-30 | 2027-10-30 |
@@ -56,6 +65,7 @@ Users can write codes by function unit. Functions defined on a specific event ar
 | .NET   | 8                 | 2026-11-10 | 2027-11-10 |
 |        | 7 (end of service)         | 2024-05-14 | 2025-05-14 |
 
+<a id="supported-languages-runtime-support-status"></a>
 #### Runtime Support Status
 Each runtime is categorized into one of the following three statuses based on the EOL (end of life) policy.
 
@@ -70,7 +80,8 @@ Each runtime is categorized into one of the following three statuses based on th
 
 The status of a runtime can be checked in the function list, function details, and the function creation/modification screen. For details on behavior, see the console user guide.
 
-### Trigger
+<a id="trigger"></a>
+### Trigger { #trigger }
 - HTTP Trigger
     - Basic (support GET, POST)
 - Timer Trigger

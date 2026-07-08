@@ -1,17 +1,23 @@
-## Compute > Cloud Functions > 코드 템플릿 가이드 > .NET
+<!-- pre-align:aligned sig=12935a7ff892 -->
+
+<a id="compute-cloud-functions-code-template-guide-net"></a>
+## Compute > Cloud Functions > 코드 템플릿 가이드 > .NET { #compute-cloud-functions-code-template-guide-net }
 
 이 문서는 NHN Cloud의 Cloud Functions 서비스에서 .NET을 사용하여 함수를 개발하는 방법을 상세히 설명합니다.
 
-## 템플릿 정보
+<a id="template-information"></a>
+## 템플릿 정보 { #template-information }
 | 항목              | 값       |
 |-----------------|---------|
 | 지원 버전       | 8       |
 | 파일명         | func.cs |
 | Entry Point | func    |
 
-## 기본 템플릿
+<a id="basic-template"></a>
+## 기본 템플릿 { #basic-template }
 
-### Hello World 예시
+<a id="hello-world-example"></a>
+### Hello World 예시 { #hello-world-example }
 가장 기본적인 함수 형태입니다. `Nhn.DotNetCore.Api` 네임스페이스의 `NhnContext`를 사용하여 로거 및 요청 정보에 접근합니다.
 
 ```csharp
@@ -50,7 +56,8 @@ public class NhnFunction
 }
 ```
 
-### Context 객체
+<a id="context-object"></a>
+### Context 객체 { #context-object }
 `NhnContext` 객체로 로거, 요청(Request), 응답(Response) 객체에 접근할 수 있습니다.
 
 ```csharp
@@ -95,14 +102,17 @@ public class NhnFunction
 }
 ```
 
-## 템플릿 파일 다운로드 및 활용
+<a id="download-and-use-template-file"></a>
+## 템플릿 파일 다운로드 및 활용 { #download-and-use-template-file }
 
-### 템플릿 다운로드
+<a id="template-download"></a>
+### 템플릿 다운로드 { #template-download }
 Cloud Functions에서 제공하는 .NET 템플릿을 다운로드하여 로컬 환경에서 개발할 수 있습니다.
 
 템플릿 다운로드 링크: [dotnet.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/dotnet/dotnet.zip)
 
-### 템플릿 파일 구조
+<a id="template-file-structure"></a>
+### 템플릿 파일 구조 { #template-file-structure }
 다운로드한 템플릿 파일의 구조는 다음과 같습니다.
 
 ```
@@ -112,8 +122,10 @@ dotnet.zip
 └── nuget.txt     # 의존성 관리 파일
 ```
 
-### 로컬 개발 과정
+<a id="local-development-process"></a>
+### 로컬 개발 과정 { #local-development-process }
 
+<a id="local-development-process-unzip"></a>
 #### 1. 압축 해제
 ```bash
 # 압축 해제
@@ -123,6 +135,7 @@ unzip dotnet.zip -d my-function
 cd my-function
 ```
 
+<a id="local-development-process-modify-function-codes"></a>
 #### 2. 함수 코드 수정
 `func.cs` 파일을 원하는 로직으로 수정합니다.
 
@@ -178,6 +191,7 @@ public class NhnFunction
 }
 ```
 
+<a id="local-development-process-compress-into-a-zip-file"></a>
 #### 3. ZIP 파일로 압축
 수정된 소스 코드를 다시 ZIP 파일로 압축합니다. `func.cs`와 `nuget.txt`가 최상위에 포함되도록 압축해야 합니다.
 
@@ -185,13 +199,16 @@ public class NhnFunction
 zip my-function.zip func.cs nuget.txt
 ```
 
-### Cloud Functions 콘솔에서 업로드
+<a id="upload-from-cloud-functions-console"></a>
+### Cloud Functions 콘솔에서 업로드 { #upload-from-cloud-functions-console }
 - 함수 생성 또는 수정 시, **사용자 로컬 환경** 방식을 선택합니다.
 - **파일 선택**을 클릭하여 생성한 `my-function.zip` 파일을 업로드합니다.
 
-## HTTP 메서드별 처리
+<a id="process-by-http-method"></a>
+## HTTP 메서드별 처리 { #process-by-http-method }
 
-### GET 요청 처리
+<a id="process-get-request"></a>
+### GET 요청 처리 { #process-get-request }
 ```csharp
 using System;
 using Nhn.DotNetCore.Api;
@@ -220,7 +237,8 @@ public class NhnFunction
 }
 ```
 
-### POST 요청 처리
+<a id="process-post-request"></a>
+### POST 요청 처리 { #process-post-request }
 ```csharp
 using System;
 using System.IO;
@@ -272,7 +290,8 @@ public class NhnFunction
 }
 ```
 
-## 패키지 관리(`nuget.txt`)
+<a id="manage-package-nugettxt"></a>
+## 패키지 관리(`nuget.txt`) { #manage-package-nugettxt }
 
 의존성(NuGet 패키지)을 관리하려면 `nuget.txt` 파일을 사용합니다. 필요한 패키지를 한 줄에 하나씩 작성합니다.
 
@@ -281,7 +300,8 @@ public class NhnFunction
 Microsoft.Extensions.Configuration:8.0.0
 ```
 
-### 설정 관리 예시
+<a id="example-of-configuration-management"></a>
+### 설정 관리 예시 { #example-of-configuration-management }
 ```csharp
 using System;
 using System.Collections.Generic;
@@ -362,7 +382,8 @@ public class NhnFunction
 }
 ```
 
-## 환경 변수 사용
+<a id="use-environment-variables"></a>
+## 환경 변수 사용 { #use-environment-variables }
 함수에 등록한 환경 변수는 `Environment.GetEnvironmentVariable`로 접근할 수 있습니다. 환경 변수는 함수 생성 및 수정의 코드 작성 단계에서 등록합니다. 자세한 내용은 콘솔 사용 가이드를 참고하세요.
 
 ```csharp
@@ -412,7 +433,8 @@ public class NhnFunction
     - `DOTNET_STARTUP_HOOKS`, `DOTNET_ADDITIONAL_DEPS`, `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`
     - 접두사 `CORECLR_`, `COMPLUS_`, `DOTNET_`, `ASPNETCORE_`
 
-## Entry Point 설정
+<a id="configure-entry-point"></a>
+## Entry Point 설정 { #configure-entry-point }
 
 Entry Point는 파일명입니다(확장자 제외).
 
@@ -423,6 +445,7 @@ Entry Point는 파일명입니다(확장자 제외).
     클래스 이름은 `NhnFunction`이어야 하며, 함수 역할을 하는 메서드는 `public string Execute(NhnContext context)` 시그니처를 가져야 합니다.
     
 
-### 주의사항
+<a id="caution"></a>
+### 주의사항 { #caution }
 - 패키지 버전: `nuget.txt`에서 패키지 버전을 명시할 수 있습니다(예: `Newtonsoft.Json:9.0.1`).
 - 타입 충돌: 의존성 추가 시 타입 충돌이 발생할 수 있으므로, 가능하면 .NET 기본 라이브러리를 사용하거나 호환되는 버전의 패키지를 사용하는 것을 권장합니다.

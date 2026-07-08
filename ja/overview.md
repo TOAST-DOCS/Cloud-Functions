@@ -1,7 +1,11 @@
-## Compute > Cloud Functions > 概要
+<!-- pre-align:aligned sig=1cb57d0b02b5 -->
+
+<a id="compute-cloud-functions-overview"></a>
+## Compute > Cloud Functions > 概要 { #compute-cloud-functions-overview }
 ユーザーは関数単位でコードを作成でき、特定のイベントが発生した際に定義された関数が自動で実行され、必要な処理を行います。サーバー管理やインフラ設定を行うことなく、アプリケーションロジックに専念することができます。
 
-### 特徴
+<a id="features"></a>
+### 特徴 { #features }
 - コスト効率性
     - 使用した分だけ課金するため、コストを削減できます。
     - 必要な時にのみリソースを割り当てるため、管理コストを削減できます。
@@ -13,15 +17,18 @@
     - 様々な言語とランタイムをサポートします。
     - イベントベースのアーキテクチャにより、多様な活用が可能です。
 
-### 主な機能
+<a id="main-features"></a>
+### 主な機能 { #main-features }
 - 様々な言語(環境)を提供します。
 - **コードエディタ**を使用して、簡単な関数単位コードを作成できます。
 - 関数を実行できるHTTPSエンドポイントを標準で提供します。
 - 関数を一定間隔で繰り返し実行できます。
 
-### 2つのモードを提供
+<a id="two-modes-available"></a>
+### 2つのモードを提供 { #two-modes-available }
 - Pool Manager
 - New Deployment
+<a id="two-modes-available-pool-manager"></a>
 #### Pool Manager
 - 関数が実行される際にのみインスタンスが作成され、リソースを使用します。
 - 一定期間関数が実行されない場合、インスタンスは消滅し、リソース使用量は0になります。
@@ -29,6 +36,7 @@
 
 ![overview-01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-08-26/NHN%20Cloud_Guide%20overview_CloudFunctions_1_ja.png)
 
+<a id="two-modes-available-new-deployment"></a>
 #### New Deployment
 - 関数を作成すると、すぐにインスタンスが作成され、一定量のリソースを継続して使用します。
 - 高速な応答のためにインスタンス作成を維持します。
@@ -36,7 +44,8 @@
 
 ![overview-02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-08-26/NHN%20Cloud_Guide%20overview_CloudFunctions_2_ja.png)
 
-### サポート言語
+<a id="supported-languages"></a>
+### サポート言語 { #supported-languages }
 
 | 言語     | バージョン                | サポート終了日   | 利用終了日   |
 |--------|-------------------|------------|------------|
@@ -57,6 +66,7 @@
 | .NET   | 8                 | 2026-11-10 | 2027-11-10 |
 |        | 7(利用停止)         | 2024-05-14 | 2025-05-14 |
 
+<a id="supported-languages-runtime-support-status"></a>
 #### ランタイムのサポート状態
 各ランタイムはEOL(end of life)ポリシーに従い、以下の3つの状態に分類されます。
 
@@ -71,7 +81,8 @@
 
 ランタイムの状態は関数一覧と詳細情報、関数の作成/修正画面で確認できます。詳細な動作については、コンソール使用ガイドをご参照ください。
 
-### Trigger
+<a id="trigger"></a>
+### Trigger { #trigger }
 - HTTP Trigger
     - 基本提供(GET、POSTサポート)
 - Timer Trigger

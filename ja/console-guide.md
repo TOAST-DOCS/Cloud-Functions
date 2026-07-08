@@ -1,15 +1,21 @@
-## Compute > Cloud Functions > コンソール使用ガイド
+<!-- pre-align:aligned sig=1dc54302160b -->
+
+<a id="compute-cloud-functions-console-user-guide"></a>
+## Compute > Cloud Functions > コンソール使用ガイド { #compute-cloud-functions-console-user-guide }
 この文書では、NHN Cloud Functionsコンソールで関数を作成し、管理する方法について説明します。
 
-## 関数管理
+<a id="manage-functions"></a>
+## 関数管理 { #manage-functions }
 関数を作成、修正、削除、コピーできます。
 
-### 関数作成
+<a id="create-functions"></a>
+### 関数作成 { #create-functions }
 関数設定を行いコードを作成してビルドした後、**作成**ボタンをクリックすると、最後にビルドしたパッケージで関数が作成されます。
 
 ![console-guide-07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-jp-01.png)
 ![console-guide-08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-jp-02.png)
 
+<a id="create-functions-function-settings"></a>
 #### 関数設定
 <table class="it">
     <tr>
@@ -87,6 +93,7 @@
 <br>
 
 
+<a id="create-functions-code-writing"></a>
 #### コード作成
 
 ![console-guide-16](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-jp-16.png)
@@ -159,6 +166,7 @@
 > 「本ランタイムは2026年4月30日にサポートが終了しており、2026年10月31日に使用中止となる予定です。使用中止後は既存の関数の修正が不可能となるため、安定的な運用のために最新のランタイムを使用することを推奨します。」<br>
 > 使用中止となったランタイムはリストから除外され、新しい関数の作成時に選択できません。ランタイムの状態に関する詳細については、概要の「ランタイムサポート状態」をご参照ください。
 
+<a id="create-functions-environment-variable"></a>
 #### 環境変数
 関数が外部サービスの連携に必要な認証情報(APIキー、DB接続情報など)を、コードにハードコーディングせずに環境変数として分離して管理できます。
 
@@ -194,17 +202,21 @@
 > - 言語/ランタイム: `PYTHONPATH`(Python)、`NODE_OPTIONS`(Node.js)、`JAVA_TOOL_OPTIONS`・`CLASSPATH`(Java)<br>
 > - プレフィックス `LD_`、`DYLD_`、`KUBERNETES_`、`FISSION_`で始まるキーは全てブロックされます。
 
-### 関数修正
+<a id="modify-functions"></a>
+### 関数修正 { #modify-functions }
 既存の関数の設定とコードを修正するために、**修正**ボタンを クリックして 関数を修正します。
 
+<a id="modify-functions-non-modifiable-item"></a>
 #### 修正不可項目
 - 名前、ランタイム環境
     - 該当項目を除く全ての項目を修正できます。
     
+<a id="modify-functions-source-code"></a>
 #### ソースコード
 - コードエディタを使用する場合既存コードが読み込まれます。
 - ユーザーローカル環境のZIPファイルをアップロードして関数を生成した場合、コードエディタに変更するとZIPファイルを表示せず、基本テンプレートコードが読み込まれます。
 
+<a id="modify-functions-modify-function-restrictions-for-discontinued-runtimes"></a>
 #### 使用中止ランタイムにおける関数修正の制限
 - 使用中止となったランタイムを使用する関数は修正できません。
 - 関数一覧で使用中止ランタイムを使用する関数を1件選択すると、**修正**ボタンが無効になり、関数の修正画面に進むことができません。
@@ -212,30 +224,36 @@
     - 「使用中止されたランタイムで関数を修正することはできません。最新のランタイムで関数を新しく作成してください。」
 - サポート終了(使用中止前)のランタイムを使用する関数は修正可能であり、関数の作成時と同様に案内のコールアウトが表示されます。
 
-### 関数削除
+<a id="delete-a-function"></a>
+### 関数削除 { #delete-a-function }
 ![console-guide-14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-jp-06.png)
 既存の関数を選択して削除します。一度に複数の関数を削除可能です。
 
-### 関数コピー
+<a id="copy-a-function"></a>
+### 関数コピー { #copy-a-function }
 ![console-guide-13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-jp-07.png)
 既存の関数と同一の関数をコピーします。名前は重複不可のため、コピー前に新しい名前を指定できます。
 - トリガーはコピーされません。(HTTPトリガーはデフォルトで提供)
 - バージョンは現在適用されているバージョンのみコピーされます。
 - 元の関数に登録された環境変数はそのままコピーされます。
 
-## 関数情報
-### 関数リスト
+<a id="about-functions"></a>
+## 関数情報 { #about-functions }
+<a id="list-of-functions"></a>
+### 関数リスト { #list-of-functions }
 ![console-guide-01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-jp-08.png)
 - ユーザーが作成した関数リストを確認できます。
 - ビルドの状態は 現在のバージョンのビルド状態を表示します。
 - ランタイム情報の右側に、ランタイムのサポート状態(サポート終了/使用中止)のバッジが表示されます。
 
-### 関数基本情報
+<a id="basic-information-of-functions"></a>
+### 関数基本情報 { #basic-information-of-functions }
 ![console-guide-19](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-jp-19.png)
 - 関数の基本情報を確認できます。
 - ログ管理項目で **Log & Crash Search** ボタンをクリックし、Log & Crash Searchサービスへ移動してログを確認できます。
 
-### 関数の環境変数
+<a id="function-environment-variables"></a>
+### 関数の環境変数 { #function-environment-variables }
 関数の詳細情報の環境変数タブで、該当する関数に登録された環境変数の一覧を確認できます。
 
 ![console-guide-20](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-jp-20.png)
@@ -260,17 +278,20 @@
 
 - 環境変数の登録/修正/削除は、関数の作成及び修正のコード作成段階で行うことができます。詳細については、関数の作成 > 環境変数をご参照ください。
 
-### 関数バージョン管理
+<a id="function-versioning"></a>
+### 関数バージョン管理 { #function-versioning }
 ![console-guide-15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2026-01-27/console-guide-jp-15.png)
 - 関数のバージョンを管理できます。
 - 作成された全てのバージョンの履歴を確認し、以前のバージョンにロールバックできます。
 
+<a id="function-versioning-versioning-overview"></a>
 #### バージョン管理の概要
 関数作成/修正画面で **ビルド** ボタンをクリックし、コードをビルドするとパッケージが作成されます。
 - 関数の作成/修正時に最後にビルドしたパッケージが関数バージョンとして連携されます。
 - 各バージョンは独立して管理され、テストしたバージョンをそのまま関数に適用できます。
 - 関数作成時、少なくとも1回以上ビルドを実行する必要があります。
 
+<a id="function-versioning-version-information"></a>
 #### バージョン情報
 <table class="it">
     <tr>
@@ -300,6 +321,7 @@
     </tr>
 </table>
 
+<a id="function-versioning-deploy-versions"></a>
 #### バージョン配布
 - バージョンリストから配布するバージョンを選択し、**バージョン配布**ボタンをクリックすると、該当バージョンで関数が更新されます。
 - 現在適用されているバージョンは選択できません。
@@ -308,6 +330,7 @@
 
 > **[参考]**
 > <br>バージョン配布時に確認ポップアップが表示され、成功するとバージョンリストが自動的に更新されます。
+<a id="function-versioning-delete-versions"></a>
 #### バージョン削除
 - バージョンリストから削除するバージョンを選択し、**バージョン削除**ボタンをクリックすると、該当バージョンが削除されます。
 - 現在適用されているバージョンは削除できません。
@@ -316,13 +339,15 @@
 
 > **[参考]**
 > <br>バージョン削除時に確認ポップアップが表示され、削除されたバージョンは復元できません。
+<a id="function-versioning-constraints"></a>
 #### 制約事項
 - 関数作成/修正画面でビルドしたパッケージは、関数の作成/修正をキャンセルすると関数バージョンとして連携されません。
 - 関数削除時、該当関数と連携された全てのバージョンも一緒に削除されます。
 - 関数コピー時、元の関数の現在適用されているバージョンのみコピーされ、全てのバージョン履歴はコピーされません。
 - 関数作成時には複数のランタイムでビルドできますが、関数修正時には作成時に選択したランタイムでのみビルドできます。
 
-### 関数トリガー管理
+<a id="manage-function-triggers"></a>
+### 関数トリガー管理 { #manage-function-triggers }
 - 関数を実行できるトリガーを管理できます。
 - HTTPトリガーは関数の作成時にデフォルトで提供されます。
     - 有効化/無効化により、使用するかどうかを設定できます。
@@ -333,16 +358,19 @@
     - 例: `https://{userdomain}/{関数名}`
     - Method : GET, POST
 
+<a id="manage-function-triggers-createedit-triggers"></a>
 #### トリガー作成/修正
 - Timer
     - Value: Cron文字列で周期を入力します。
 - API Gateway
     - API Gatewayサービスを利用してHTTPエンドポイントを追加できます。
         
+<a id="manage-function-triggers-delete-triggers"></a>
 #### トリガー削除
 - 複数のトリガーを選択して削除できます。デフォルトのトリガーであるHTTPトリガーは削除できません。
 
-### 関数モニタリング
+<a id="monitor-functions"></a>
+### 関数モニタリング { #monitor-functions }
 ![console-guide-06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-jp-11.png)
 - 関数の使用量を確認できます。
 - 関数呼び出し回数、呼び出し拒否数、エラー発生回数、成功率、関数実行時間指標を提供します。
