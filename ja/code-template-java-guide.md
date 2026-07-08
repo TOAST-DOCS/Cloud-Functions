@@ -307,11 +307,11 @@ public class StringUtilsHandler {
 }
 ```
 
-## 환경 변수 사용
-함수에 등록한 환경 변수는 `System.getProperty`로 접근할 수 있습니다. 환경 변수는 함수 생성 및 수정의 코드 작성 단계에서 등록합니다. 자세한 내용은 콘솔 사용 가이드를 참고하세요.
+## 環境変数の使用
+関数に登録した環境変数は、`System.getProperty`でアクセスできます。環境変数は、関数の作成及び修正のコード作成段階で登録します。詳細については、コンソール使用ガイドをご参照ください。
 
-!!! tip "참고"
-    Java 런타임에서는 환경 변수가 OS 환경 변수가 아닌 JVM 시스템 프로퍼티로 주입됩니다. 따라서 `System.getenv`가 아닌 `System.getProperty`로 읽어야 하며, `System.getenv`를 사용하면 값이 조회되지 않습니다.
+!!! tip "ポイント"
+    Javaランタイムでは、環境変数がOSの環境変数ではなくJVMのシステムプロパティとして設定されます。そのため、`System.getenv`ではなく`System.getProperty`で読み込む必要があり、`System.getenv`を使用すると値を取得できません。
 
 ```java
 package example;
@@ -324,7 +324,7 @@ import java.util.Map;
 public class HelloWorld {
 
     public ResponseEntity<?> call(RequestEntity<?> req) {
-        // 환경 변수 읽기(Java는 시스템 프로퍼티로 주입되므로 getProperty 사용)
+        // 環境変数の読み込み(Javaはシステムプロパティとして設定されるためgetPropertyを使用)
         String dbHost = System.getProperty("DB_HOST");
         String apiKey = System.getProperty("API_KEY");
 
@@ -341,18 +341,18 @@ public class HelloWorld {
 }
 ```
 
-!!! tip "참고"
-    보안상 다음 키·접두사는 환경 변수로 등록할 수 없습니다.
+!!! tip "ポイント"
+    セキュリティ上、以下のキー・プレフィックスは環境変数として登録できません。
 
-    공통(모든 런타임)
+    共通(全てのランタイム)
 
-    - 셸/subprocess: `PATH`, `IFS`, `HOME`, `BASH_ENV`, `ENV`, `SHELLOPTS`
-    - 로더/라이브러리: `LD_PRELOAD`, `LD_LIBRARY_PATH`, `LD_AUDIT`
-    - glibc 동적 로딩: `GCONV_PATH`, `LOCPATH`, `HOSTALIASES`
-    - 프록시: `HTTP_PROXY`, `HTTPS_PROXY`, `ALL_PROXY`(소문자 포함)
-    - TLS 신뢰 저장소: `SSL_CERT_FILE`, `SSL_CERT_DIR`, `REQUESTS_CA_BUNDLE`, `CURL_CA_BUNDLE`
-    - 플랫폼 내부: `RUNTIME_PORT`, `USERFUNCVOL`, `WSGI_FRAMEWORK`, `SENTRY_DSN`, `SENTRY_RELEASE`, `TIMEOUT`, `BODY_PARSER_LIMIT`
-    - 접두사: `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_`
+    - シェル/subprocess: `PATH`、`IFS`、`HOME`、`BASH_ENV`、`ENV`、`SHELLOPTS`
+    - ローダー/ライブラリ: `LD_PRELOAD`、`LD_LIBRARY_PATH`、`LD_AUDIT`
+    - glibc動的ローディング: `GCONV_PATH`、`LOCPATH`、`HOSTALIASES`
+    - プロキシ: `HTTP_PROXY`、`HTTPS_PROXY`、`ALL_PROXY`(小文字を含む)
+    - TLSトラストストア: `SSL_CERT_FILE`、`SSL_CERT_DIR`、`REQUESTS_CA_BUNDLE`、`CURL_CA_BUNDLE`
+    - プラットフォーム内部: `RUNTIME_PORT`、`USERFUNCVOL`、`WSGI_FRAMEWORK`、`SENTRY_DSN`、`SENTRY_RELEASE`、`TIMEOUT`、`BODY_PARSER_LIMIT`
+    - プレフィックス: `LD_`、`DYLD_`、`KUBERNETES_`、`FISSION_`
 
     Java
 
