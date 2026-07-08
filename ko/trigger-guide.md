@@ -1,18 +1,17 @@
 <!-- pre-align:aligned sig=02be28f736c7 -->
 
-## Compute > Cloud Functions > 트리거 가이드
+<a id="compute-cloud-functions-trigger-guide"></a>
+## Compute > Cloud Functions > 트리거 가이드 { #compute-cloud-functions-trigger-guide }
 
 이 문서는 Cloud Functions에서 제공하는 트리거 유형과 설정 방법을 설명합니다.
 
 <a id="trigger-overview"></a>
-
-## 트리거 개요
+## 트리거 개요 { #trigger-overview }
 
 트리거는 함수를 실행시키는 이벤트 소스입니다. Cloud Functions는 다양한 유형의 트리거를 제공하여 여러 방식으로 함수를 호출할 수 있습니다.
 
 <a id="supported-triggers"></a>
-
-### 지원 트리거 유형
+### 지원 트리거 유형 { #supported-triggers }
 
 | 트리거 유형      | 설명                     | 기본 제공 |
 |-------------|------------------------|-------|
@@ -21,33 +20,28 @@
 | API Gateway | API Gateway를 통해 함수 실행  | X     |
 
 <a id="http-trigger"></a>
-
-## HTTP 트리거
+## HTTP 트리거 { #http-trigger }
 
 HTTP 트리거는 함수 생성 시 기본으로 제공되며, HTTP 요청을 통해 함수를 실행할 수 있습니다.
 
 <a id="features"></a>
-
-### 특징
+### 특징 { #features }
 
 - 함수 생성 시 자동으로 생성됩니다.
 - 삭제할 수 없으며, 활성화/비활성화만 가능합니다.
 - GET, POST 메서드를 지원합니다.
 
 <a id="url-format-of-http-trigger"></a>
-
-### HTTP 트리거 URL 형식
+### HTTP 트리거 URL 형식 { #url-format-of-http-trigger }
 
 ```
 https://{userdomain}/{함수명}
 ```
 
 <a id="examples"></a>
-
-### 사용 예시
+### 사용 예시 { #examples }
 
 <a id="request-get"></a>
-
 #### GET 요청
 
 ```bash
@@ -55,7 +49,6 @@ curl -X GET "https://{userdomain}/{함수명}?param1=value1&param2=value2"
 ```
 
 <a id="request-post"></a>
-
 #### POST 요청
 
 ```bash
@@ -65,8 +58,7 @@ curl -X POST "https://{userdomain}/{함수명}" \
 ```
 
 <a id="enabledisable-http-trigger"></a>
-
-### HTTP 트리거 활성화/비활성화
+### HTTP 트리거 활성화/비활성화 { #enabledisable-http-trigger }
 
 1. Cloud Functions 콘솔에서 함수를 선택합니다.
 2. **트리거** 탭으로 이동합니다.
@@ -76,14 +68,12 @@ curl -X POST "https://{userdomain}/{함수명}" \
 > <br>비활성화된 HTTP 트리거로 요청을 보내면 함수가 실행되지 않습니다.
 
 <a id="timer-trigger"></a>
-
-## Timer 트리거
+## Timer 트리거 { #timer-trigger }
 
 Timer 트리거는 지정된 시간 또는 주기에 따라 자동으로 함수를 실행합니다. Cron 표현식을 사용하여 실행 주기를 설정할 수 있습니다.
 
 <a id="create-timer-trigger"></a>
-
-### Timer 트리거 생성
+### Timer 트리거 생성 { #create-timer-trigger }
 
 ![trigger-guide-05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-01.png)
 
@@ -95,8 +85,7 @@ Timer 트리거는 지정된 시간 또는 주기에 따라 자동으로 함수�
 6. **생성**을 클릭합니다.
 
 <a id="cron-expression-format"></a>
-
-### Cron 표현식 형식
+### Cron 표현식 형식 { #cron-expression-format }
 
 Cron 표현식은 다음과 같은 형식을 따릅니다.
 
@@ -112,7 +101,6 @@ Cron 표현식은 다음과 같은 형식을 따릅니다.
 ```
 
 <a id="cron-expression-field"></a>
-
 #### Cron 표현식 필드
 
 | 필드              | 필수  | 허용 값            | 허용 특수 문자  |
@@ -125,7 +113,6 @@ Cron 표현식은 다음과 같은 형식을 따릅니다.
 | 요일(Day of week) | Yes | 0-6 또는 SUN-SAT  | * / , - ? |
 
 <a id="special-characters-details"></a>
-
 #### 특수 문자 설명
 
 `*`
@@ -149,8 +136,7 @@ Cron 표현식은 다음과 같은 형식을 따릅니다.
 일(Day of month) 또는 요일(Day of week) 필드를 비워두기 위해 `*` 대신 사용할 수 있습니다.
 
 <a id="example-of-cron-expression"></a>
-
-### Cron 표현식 예시
+### Cron 표현식 예시 { #example-of-cron-expression }
 
 | Cron 표현식               | 설명                              |
 |------------------------|---------------------------------|
@@ -165,8 +151,7 @@ Cron 표현식은 다음과 같은 형식을 따릅니다.
 | `0 0 0 1 JAN *`        | 매년 1월 1일 자정에 실행                 |
 
 <a id="modify-timer-trigger"></a>
-
-### Timer 트리거 수정
+### Timer 트리거 수정 { #modify-timer-trigger }
 
 ![trigger-guide-02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-02.png)
 
@@ -181,21 +166,18 @@ Cron 표현식은 다음과 같은 형식을 따릅니다.
 > <br>월(Month)과 요일(Day of week) 필드 값은 대소문자를 구분하지 않습니다. "SUN", "Sun", "sun"은 모두 동일하게 인식됩니다.
 
 <a id="api-gateway-trigger"></a>
-
-## API Gateway 트리거
+## API Gateway 트리거 { #api-gateway-trigger }
 
 API Gateway 트리거는 동일 프로젝트의 API Gateway 서비스를 활용하여 함수를 실행할 수 있습니다. API Gateway를 통해 더욱 세밀한 API 관리와 제어가 가능합니다.
 
 <a id="prerequisites"></a>
-
-### 사전 요구사항
+### 사전 요구사항 { #prerequisites }
 
 - 동일 프로젝트에 API Gateway 서비스가 활성화되어 있어야 합니다.
   - 활성화되어 있지 않는 경우 트리거 생성 시 활성화 가능합니다.
 
 <a id="create-api-gateway-trigger"></a>
-
-### API Gateway 트리거 생성
+### API Gateway 트리거 생성 { #create-api-gateway-trigger }
 
 ![trigger-guide-04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-04.png)
 
@@ -208,19 +190,16 @@ API Gateway 트리거는 동일 프로젝트의 API Gateway 서비스를 활용�
 6. **생성**을 클릭합니다.
 
 <a id="api-gateway-trigger-url-format"></a>
-
-### API Gateway 트리거 URL 형식
+### API Gateway 트리거 URL 형식 { #api-gateway-trigger-url-format }
 
 ```
 https://{stageurl}/{경로}
 ```
 
 <a id="api-gateway-trigger-examples"></a>
-
-### 사용 예시
+### 사용 예시 { #api-gateway-trigger-examples }
 
 <a id="api-gateway-trigger-examples-request-get"></a>
-
 #### GET 요청
 
 ```bash
@@ -228,7 +207,6 @@ curl -X GET "https://{stageurl}/{경로}?param1=value1&param2=value2"
 ```
 
 <a id="api-gateway-trigger-examples-request-post"></a>
-
 #### POST 요청
 
 ```bash
@@ -238,8 +216,7 @@ curl -X POST "https://{stageurl}/{경로}" \
 ```
 
 <a id="features-of-api-gateway-trigger"></a>
-
-### API Gateway 트리거 특징
+### API Gateway 트리거 특징 { #features-of-api-gateway-trigger }
 
 - API Gateway의 다양한 기능을 활용할 수 있습니다.
   - 인증 및 권한 관리
@@ -251,8 +228,7 @@ curl -X POST "https://{stageurl}/{경로}" \
 - HTTP 트리거와 동일하게 GET, POST 메서드를 지원합니다.
 
 <a id="modify-api-gateway-trigger"></a>
-
-### API Gateway 트리거 수정
+### API Gateway 트리거 수정 { #modify-api-gateway-trigger }
 
 ![trigger-guide-05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-05.png)
 
@@ -269,20 +245,17 @@ curl -X POST "https://{stageurl}/{경로}" \
 > <br>플러그인이 적용된 리소스 경로를 변경하려면 수정 대신 새로운 트리거를 추가하는 것을 권장합니다.
 
 <a id="use-with-api-gateway"></a>
-
-### API Gateway와 함께 사용하기
+### API Gateway와 함께 사용하기 { #use-with-api-gateway }
 
 API Gateway 트리거를 생성하면 API Gateway 콘솔에서 추가 설정을 할 수 있습니다.
 
 자세한 내용은 [API Gateway 가이드](https://docs.nhncloud.com/ko/Application%20Service/API%20Gateway/ko/overview/)를 참고하세요.
 
 <a id="delete-trigger"></a>
-
-## 트리거 삭제
+## 트리거 삭제 { #delete-trigger }
 
 <a id="how-to-delete-trigger"></a>
-
-### 트리거 삭제 방법
+### 트리거 삭제 방법 { #how-to-delete-trigger }
 
 ![trigger-guide-03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-03.png)
 
@@ -293,20 +266,17 @@ API Gateway 트리거를 생성하면 API Gateway 콘솔에서 추가 설정을 
 5. **트리거 삭제** 모달 창에서 **삭제**를 클릭합니다.
 
 <a id="cautions"></a>
-
-### 주의사항
+### 주의사항 { #cautions }
 
 - HTTP 트리거는 삭제할 수 없습니다. HTTP 트리거는 기본 트리거로 제공되며, 활성화/비활성화만 가능합니다.
 - 트리거를 삭제하면 해당 이벤트를 통해 함수를 실행할 수 없습니다.
 - 삭제된 트리거는 복구할 수 없습니다.
 
 <a id="restrictions"></a>
-
-## 트리거 제한사항
+## 트리거 제한사항 { #restrictions }
 
 <a id="restrictions-for-api-gateway-trigger"></a>
-
-### API Gateway 트리거 제한사항
+### API Gateway 트리거 제한사항 { #restrictions-for-api-gateway-trigger }
 
 - 동일 프로젝트 내의 API Gateway만 연결할 수 있습니다.
 - 하나의 API Gateway Resource는 하나의 함수만 연결할 수 있습니다.

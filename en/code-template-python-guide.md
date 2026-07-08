@@ -1,12 +1,12 @@
 <!-- pre-align:aligned sig=577d9bcb43c9 -->
 
-## Compute > Cloud Functions > Code Template Guide > Python
+<a id="compute-cloud-functions-code-template-guide-python"></a>
+## Compute > Cloud Functions > Code Template Guide > Python { #compute-cloud-functions-code-template-guide-python }
 
 This document details how to develop functions by using Python from NHN Cloud's Cloud Functions service.
 
 <a id="template-information"></a>
-
-## Template information
+## Template information { #template-information }
 | Item              | Value                  |
 |-----------------|------------------|
 | **Supported version**       | 3.11, 3.12, 3.13 |
@@ -14,12 +14,10 @@ This document details how to develop functions by using Python from NHN Cloud's 
 | **Entry Point** | user.main        |
 
 <a id="basic-template"></a>
-
-## Basic template
+## Basic template { #basic-template }
 
 <a id="hello-world-example"></a>
-
-### Hello World example
+### Hello World example { #hello-world-example }
 A basic form of function.
 
 ```python
@@ -38,8 +36,7 @@ def main():
 ```
 
 <a id="context-object"></a>
-
-### Context object
+### Context object { #context-object }
 Python functions can access HTTP request information through Flask's request object.
 
 ```python
@@ -68,19 +65,16 @@ def main():
 ```
 
 <a id="download-and-use-template-file"></a>
-
-## Download and use template file
+## Download and use template file { #download-and-use-template-file }
 
 <a id="template-download"></a>
-
-### Template download
+### Template download { #template-download }
 You can download the Python template provided by Cloud Functions to develop a local environment.
 
 **Template download link**: [python.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/python/python.zip)
 
 <a id="template-file-structure"></a>
-
-### Template file structure
+### Template file structure { #template-file-structure }
 The structure of the downloaded template file is as follows:
 
 ```
@@ -90,7 +84,6 @@ python.zip
 ```
 
 <a id="userpy"></a>
-
 #### user.py
 Include basic YAML processing functions.
 ```python
@@ -109,18 +102,15 @@ def main():
 ```
 
 <a id="requirementstxt"></a>
-
 #### requirements.txt
 ```txt
 pyyaml
 ```
 
 <a id="local-development-process"></a>
-
-### Local development process
+### Local development process { #local-development-process }
 
 <a id="unzip"></a>
-
 #### 1. Unzip
 ```bash
 # Unzip
@@ -131,7 +121,6 @@ cd my-function
 ```
 
 <a id="modify-function-codes"></a>
-
 #### 2. Modify function codes
 Modify `user.py` file with the logic you want.
 
@@ -174,7 +163,6 @@ def main():
 ```
 
 <a id="compress-into-a-zip-file"></a>
-
 #### 3. Compress into a ZIP file
 Compress the modified source code into ZIP file.
 
@@ -193,16 +181,13 @@ zip -r my-function.zip . -x "*.git*" "__pycache__/*" "*.pyc" "test.py"
 ```
 
 <a id="upload-from-cloud-functions-console"></a>
-
-### Upload from Cloud Functions console
+### Upload from Cloud Functions console { #upload-from-cloud-functions-console }
 > Used when uploading files from the user's local environment when creating or modifying a function. (refer to Console Guide)
 
 <a id="cautions-for-upload"></a>
-
-### Cautions for upload
+### Cautions for upload { #cautions-for-upload }
 
 <a id="zip-file-structure"></a>
-
 #### ZIP file structure
 - The `.py` file and `requirements.txt` must be located directly in the root of the ZIP file.
 - We recommend avoiding unnecessary folder structures.
@@ -224,13 +209,11 @@ my-function.zip
 ```
 
 <a id="file-size-limit"></a>
-
 #### File size limit
 - ZIP file size is limited to 100MiB.
 - `__pycache__` file should not be included.
 
 <a id="files-to-exclude"></a>
-
 #### Files to exclude
 ```bash
 # Similar to .gitignore, exclude the following files:
@@ -245,12 +228,10 @@ zip -r my-function.zip . -x \
 ```
 
 <a id="process-by-http-method"></a>
-
-## Process by HTTP method
+## Process by HTTP method { #process-by-http-method }
 
 <a id="process-get-request"></a>
-
-### Process GET request
+### Process GET request { #process-get-request }
 ```python
 from flask import request
 import json
@@ -274,8 +255,7 @@ def main():
 ```
 
 <a id="process-post-request"></a>
-
-### Process POST request
+### Process POST request { #process-post-request }
 ```python
 from flask import request
 import json
@@ -319,12 +299,10 @@ def main():
 ```
 
 <a id="manage-packages"></a>
-
-## Manage packages
+## Manage packages { #manage-packages }
 
 <a id="write-requirementstxt"></a>
-
-### Write requirements.txt
+### Write requirements.txt { #write-requirementstxt }
 Write `requirements.txt` to manage dependencies.
 
 ```txt
@@ -334,8 +312,7 @@ python-dateutil>=2.8.0
 ```
 
 <a id="example-of-external-api-call"></a>
-
-### Example of external API call
+### Example of external API call { #example-of-external-api-call }
 ```python
 from flask import request
 import json
@@ -378,8 +355,7 @@ def main():
 ```
 
 <a id="data-processing-example"></a>
-
-### Data processing example
+### Data processing example { #data-processing-example }
 ```python
 from flask import request
 import json
@@ -434,12 +410,10 @@ def normalize_name(name):
 ```
 
 <a id="configure-entry-point"></a>
-
-## Configure Entry Point
+## Configure Entry Point { #configure-entry-point }
 
 <a id="single-function"></a>
-
-### Single function
+### Single function { #single-function }
 Use `filename.functionname` as the Entry Point.
 
 File name: `user.py`
@@ -447,8 +421,7 @@ Function name: `main`
 Entry Point: `user.main`
 
 <a id="multiple-functions"></a>
-
-### Multiple functions
+### Multiple functions { #multiple-functions }
 You can define multiple functions in a single file.
 
 ```python
@@ -475,12 +448,10 @@ Entry Point Configuration:
 - `handlers.update_user`
 
 <a id="caution"></a>
-
-## Caution
+## Caution { #caution }
 
 <a id="unsupported-packages"></a>
-
-### Unsupported packages
+### Unsupported packages { #unsupported-packages }
 Complex packages with the following features are not currently supported:
 
 **Examples of unsupported packages:**
@@ -495,8 +466,7 @@ Complex packages with the following features are not currently supported:
 - `pillow` (image processing - basic feature)
 
 <a id="considerations-for-memory-and-execution-time"></a>
-
-### Considerations for Memory and execution time
+### Considerations for Memory and execution time { #considerations-for-memory-and-execution-time }
 - Functions must operate within limited memory and execution time.
 - Consider generator and stream processing when handling large-scale data.
 - Split long-running tasks appropriately.

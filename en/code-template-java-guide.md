@@ -1,12 +1,12 @@
 <!-- pre-align:aligned sig=65e9891c8f54 -->
 
-## Compute > Cloud Functions > Code Template Guide > Java
+<a id="compute-cloud-functions-code-template-guide-java"></a>
+## Compute > Cloud Functions > Code Template Guide > Java { #compute-cloud-functions-code-template-guide-java }
 
 This document details how to develop functions by using Java from NHN Cloud's Cloud Functions service.
 
 <a id="template-information"></a>
-
-## Template information
+## Template information { #template-information }
 | Item               | Value                  |
 |-----------------|---------------------|
 | **Supported version**       | 17, 21             |
@@ -14,12 +14,10 @@ This document details how to develop functions by using Java from NHN Cloud's Cl
 | **Entry Point** | example.HelloWorld |
 
 <a id="basic-template"></a>
-
-## Basic template
+## Basic template { #basic-template }
 
 <a id="hello-world-example"></a>
-
-### Hello World example
+### Hello World example { #hello-world-example }
 A basic form of function.
 
 ```java
@@ -38,8 +36,7 @@ public class HelloWorld {
 ```
 
 <a id="context-object-requestentity"></a>
-
-### Context object (RequestEntity)
+### Context object (RequestEntity) { #context-object-requestentity }
 In a Java function, you can access HTTP request information through `RequestEntity`.
 
 ```java
@@ -73,19 +70,16 @@ public class HelloWorld {
 ```
 
 <a id="download-and-use-template-file"></a>
-
-## Download and use template file
+## Download and use template file { #download-and-use-template-file }
 
 <a id="template-download"></a>
-
-### Template download
+### Template download { #template-download }
 You can download the Java template provided by Cloud Functions to develop a local environment.
 
 **Template download link**: [java.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/java/java.zip)
 
 <a id="template-file-structure"></a>
-
-### Template file structure
+### Template file structure { #template-file-structure }
 The structure of the downloaded template file is as follows:
 
 ```
@@ -99,11 +93,9 @@ java.zip
 ```
 
 <a id="local-development-process"></a>
-
-### Local development process
+### Local development process { #local-development-process }
 
 <a id="unzip"></a>
-
 #### 1. Unzip
 ```bash
 # Unzip
@@ -114,7 +106,6 @@ cd my-java-function
 ```
 
 <a id="modify-function-codes"></a>
-
 #### 2. Modify function codes
 Modify `src/main/java/example/HelloWorld.java` file with the logic you want.
 
@@ -167,7 +158,6 @@ public class HelloWorld {
 ```
 
 <a id="compress-into-a-zip-file"></a>
-
 #### 3. Compress into a ZIP file
 Compress the modified source code into ZIP file. You must compress it so that `pom.xml` and `src` are included at the top level.
 
@@ -186,26 +176,22 @@ zip -r my-function.zip . -x "*.git*" "target/*" "*.log"
 ```
 
 <a id="upload-from-cloud-functions-console"></a>
-
-### Upload from Cloud Functions console
+### Upload from Cloud Functions console { #upload-from-cloud-functions-console }
 - When creating or modifying a function, select the **User Local Environment** method.
 - Click **Select File** to upload the `my-function.zip` file you created.
 
 <a id="cautions-for-upload"></a>
-
-### Cautions for upload
+### Cautions for upload { #cautions-for-upload }
 - **Upload File**: Upload **ZIP file** which includes source code and `pom.xml`.
 - **ZIP File Structure**: The `pom.xml` and `src` directory must be located directly in the root of the ZIP file.
 - **File to Exclude**: Do not include unnecessary files such as the `target` directory, `.git` directory, etc.
 - **File Size**: ZIP file size is limited to 100 MiB.
 
 <a id="process-by-http-method"></a>
-
-## Process by HTTP method
+## Process by HTTP method { #process-by-http-method }
 
 <a id="process-get-request"></a>
-
-### Process GET request
+### Process GET request { #process-get-request }
 ```java
 package example;
 
@@ -242,8 +228,7 @@ public class GetHandler {
 ```
 
 <a id="process-post-request"></a>
-
-### Process POST request
+### Process POST request { #process-post-request }
 ```java
 package example;
 
@@ -285,8 +270,7 @@ public class PostHandler {
 ```
 
 <a id="manage-package-pomxml"></a>
-
-## Manage package (`pom.xml`)
+## Manage package (`pom.xml`) { #manage-package-pomxml }
 
 Use the `pom.xml` file to manage dependencies. When you add required libraries to the `dependencies` section, Cloud Functions automatically downloads the dependencies and includes them in the build when you upload your function.
 
@@ -310,8 +294,7 @@ Use the `pom.xml` file to manage dependencies. When you add required libraries t
 ```
 
 <a id="example-of-using-external-libraries"></a>
-
-### Example of using external libraries
+### Example of using external libraries { #example-of-using-external-libraries }
 ```java
 package example;
 
@@ -346,12 +329,10 @@ public class StringUtilsHandler {
 ```
 
 <a id="entry-point-configuration"></a>
-
-## Entry Point configuration
+## Entry Point configuration { #entry-point-configuration }
 
 <a id="single-class"></a>
-
-### Single class
+### Single class { #single-class }
 Use `packagename.classname` as an Entry Point.
 
 - Package name: `example`
@@ -360,7 +341,6 @@ Use `packagename.classname` as an Entry Point.
 - **Important**: Methods that act as functions must have the signature `public ResponseEntity<?> call(RequestEntity<?> req)`.
 
 <a id="caution"></a>
-
-### Caution
+### Caution { #caution }
 - **Project structure**: You must maintain the `src/main/java` directory structure.
 - **Memory and execution time**: Functions must operate within limited resources, so avoid heavy workloads and optimize the code.

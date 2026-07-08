@@ -1,12 +1,12 @@
 <!-- pre-align:aligned sig=ce91cd7cb2f1 -->
 
-## Compute > Cloud Functions > コードテンプレートガイド > Node.js
+<a id="compute-cloud-functions-code-template-guide-nodejs"></a>
+## Compute > Cloud Functions > コードテンプレートガイド > Node.js { #compute-cloud-functions-code-template-guide-nodejs }
 
 このドキュメントでは、NHN CloudのCloud FunctionsサービスでNode.jsを使用して関数を開発する方法を詳しく説明します。
 
 <a id="template-information"></a>
-
-## テンプレート情報
+## テンプレート情報 { #template-information }
 | 項目       | 値                |
 |-----------------|-----------------|
 | **サポートバージョン** | 20.16.0, 22.5.0   |
@@ -14,11 +14,9 @@
 | **Entry Point** | hello            |
 
 <a id="basic-template"></a>
-
-## 基本テンプレート
+## 基本テンプレート { #basic-template }
 <a id="hello-world-example"></a>
-
-### Hello Worldの例
+### Hello Worldの例 { #hello-world-example }
 最も基本的な関数の形式です。
 
 ```javascript
@@ -31,8 +29,7 @@ module.exports = async (context) => {
 ```
 
 <a id="context-object"></a>
-
-### Contextオブジェクト
+### Contextオブジェクト { #context-object }
 関数に渡される`context`オブジェクトには、以下の情報が含まれます。
 
 ```javascript
@@ -53,19 +50,16 @@ module.exports = async (context) => {
 ```
 
 <a id="download-and-use-template-file"></a>
-
-## テンプレートファイルのダウンロードと活用
+## テンプレートファイルのダウンロードと活用 { #download-and-use-template-file }
 
 <a id="template-download"></a>
-
-### テンプレートのダウンロード
+### テンプレートのダウンロード { #template-download }
 Cloud Functionsが提供するNode.jsテンプレートをダウンロードし、ローカル環境で開発できます。
 
 **テンプレートのダウンロードリンク**: [nodejs.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/nodejs/nodejs.zip)
 
 <a id="template-file-structure"></a>
-
-### テンプレートのファイル構造
+### テンプレートのファイル構造 { #template-file-structure }
 ダウンロードしたテンプレートファイルの構造は次のとおりです。
 
 ```
@@ -75,7 +69,6 @@ nodejs.zip
 ```
 
 <a id="hellojs"></a>
-
 #### hello.js
 基本的なHello World関数が含まれています。
 ```javascript
@@ -88,18 +81,15 @@ module.exports = async (context) => {
 ```
 
 <a id="packagejson"></a>
-
 #### package.json
 ```json
 {}
 ```
 
 <a id="local-development-process"></a>
-
-### ローカルでの開発プロセス
+### ローカルでの開発プロセス { #local-development-process }
 
 <a id="unzip"></a>
-
 #### 1. 解凍
 ```bash
 # 解凍
@@ -110,7 +100,6 @@ cd my-function
 ```
 
 <a id="modify-function-codes"></a>
-
 #### 2. 関数コードの修正
 `hello.js`ファイルを、目的のロジックに合わせて修正します。
 
@@ -154,7 +143,6 @@ module.exports = async (context) => {
 ```
 
 <a id="compress-into-a-zip-file"></a>
-
 #### 3. ZIPファイルへ圧縮
 修正したコードを、再度ZIPファイルへ圧縮します。
 
@@ -173,16 +161,13 @@ zip -r my-function.zip . -x "*.git*" "node_modules/*" "test.js"
 ```
 
 <a id="upload-from-cloud-functions-console"></a>
-
-### Cloud Functionsコンソールでのアップロード
+### Cloud Functionsコンソールでのアップロード { #upload-from-cloud-functions-console }
 > 関数を作成または修正する際に、ユーザーのローカル環境にあるファイルをアップロードする場合に使用します。(コンソール利用ガイド参照)
 
 <a id="cautions-for-upload"></a>
-
-### アップロード時の注意事項
+### アップロード時の注意事項 { #cautions-for-upload }
 
 <a id="zip-file-structure"></a>
-
 #### ZIPファイルの構造
 - ZIPファイルのルートに、直接`.js`ファイルと`package.json`を配置する必要があります。
 - 不要なフォルダ構造は避けることを推奨します。
@@ -204,13 +189,11 @@ my-function.zip
 ```
 
 <a id="file-size-limit"></a>
-
 #### ファイルサイズの制限
 - ZIPファイルのサイズは100MiB以下に制限されます。
 - `node_modules`フォルダは含めないでください。(依存関係は`package.json`で管理)
 
 <a id="files-to-exclude"></a>
-
 #### 除外するファイル
 ```bash
 # .gitignoreと同様に、以下のファイルは除外
@@ -224,12 +207,10 @@ zip -r my-function.zip . -x \
 ```
 
 <a id="process-by-http-method"></a>
-
-## HTTPメソッド別の処理
+## HTTPメソッド別の処理 { #process-by-http-method }
 
 <a id="process-get-request"></a>
-
-### GETリクエストの処理
+### GETリクエストの処理 { #process-get-request }
 ```javascript
 module.exports = async (context) => {
     if (context.request.method !== 'GET') {
@@ -256,8 +237,7 @@ module.exports = async (context) => {
 ```
 
 <a id="process-post-request"></a>
-
-### POSTリクエストの処理
+### POSTリクエストの処理 { #process-post-request }
 ```javascript
 module.exports = async (context) => {
     if (context.request.method !== 'POST') {
@@ -303,12 +283,10 @@ module.exports = async (context) => {
 ```
 
 <a id="manage-packages"></a>
-
-## パッケージ管理
+## パッケージ管理 { #manage-packages }
 
 <a id="write-packagejson"></a>
-
-### package.jsonの作成
+### package.jsonの作成 { #write-packagejson }
 依存関係の管理には、`package.json`ファイルを作成します。
 
 ```json
@@ -327,8 +305,7 @@ module.exports = async (context) => {
 ```
 
 <a id="example-of-external-api-call"></a>
-
-### 外部API呼び出しの例
+### 外部API呼び出しの例 { #example-of-external-api-call }
 ```javascript
 const axios = require('axios');
 
@@ -379,8 +356,7 @@ module.exports = async (context) => {
 ```
 
 <a id="data-processing-example"></a>
-
-### データ処理の例
+### データ処理の例 { #data-processing-example }
 ```javascript
 const _ = require('lodash');
 const moment = require('moment');
@@ -435,20 +411,17 @@ module.exports = async (context) => {
 ```
 
 <a id="configure-entry-point"></a>
-
-## エントリーポイントの設定
+## エントリーポイントの設定 { #configure-entry-point }
 
 <a id="single-function"></a>
-
-### 単一関数
+### 単一関数 { #single-function }
 ファイル名をエントリーポイントとして使用します。
 
 ファイル名: `hello.js`
 Entry Point: `hello`
 
 <a id="multiple-functions"></a>
-
-### 複数関数
+### 複数関数 { #multiple-functions }
 1つのファイルで複数の関数をエクスポートできます。
 
 ```javascript
@@ -484,8 +457,7 @@ module.exports.updateUser = async (context) => {
 - `users.updateUser`
 
 <a id="entry-point-restriction"></a>
-
-### エントリーポイントの制限事項
+### エントリーポイントの制限事項 { #entry-point-restriction }
 - **サブディレクトリの指定不可**:ルートディレクトリのサブディレクトリにあるファイルは、エントリーポイントとして指定できません。
 
 **正しいエントリーポイント:**
@@ -504,12 +476,10 @@ modules/auth.js → modules.auth ❌
 全ての関数ファイルは、ZIPファイルのルートレベルに配置する必要があります。
 
 <a id="caution"></a>
-
-## 注意事項
+## 注意事項 { #caution }
 
 <a id="commonjs-vs-es-modules"></a>
-
-### CommonJS vs ES Modules
+### CommonJS vs ES Modules { #commonjs-vs-es-modules }
 現在、Cloud FunctionsはCommonJS方式のみをサポートしています。
 
 **使用可能(CommonJS):**
@@ -529,8 +499,7 @@ export default async (context) => { // ❌サポートしていません
 ```
 
 <a id="considerations-for-memory-and-execution-time"></a>
-
-### メモリ及び実行時間に関する考慮事項
+### メモリ及び実行時間に関する考慮事項 { #considerations-for-memory-and-execution-time }
 - 関数は、限られたメモリと実行時間内で動作する必要があります。
 - 大容量データを処理する際は、ストリーム処理を検討してください。
 - 長時間実行されるタスクは、適切に分割してください。

@@ -1,12 +1,12 @@
 <!-- pre-align:aligned sig=9b45d499c0b7 -->
 
-## Compute > Cloud Functions > コードテンプレートガイド > Go
+<a id="compute-cloud-functions-code-template-guide-go"></a>
+## Compute > Cloud Functions > コードテンプレートガイド > Go { #compute-cloud-functions-code-template-guide-go }
 
 このドキュメントでは、NHN CloudのCloud FunctionsサービスでGoを使用して関数を開発する方法を詳しく説明します。
 
 <a id="template-information"></a>
-
-## テンプレート情報
+## テンプレート情報 { #template-information }
 | 項目             | 値                                       |
 |-----------------|------------------------------------------|
 | **サポートバージョン**       | 1.22, 1.23, 1.24, 1.25 |
@@ -14,12 +14,10 @@
 | **Entry Point** | Handler                                  |
 
 <a id="basic-template"></a>
-
-## 基本テンプレート
+## 基本テンプレート { #basic-template }
 
 <a id="hello-world-example"></a>
-
-### Hello Worldの例
+### Hello Worldの例 { #hello-world-example }
 最も基本的な関数の形式です。
 
 ```go
@@ -47,8 +45,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 ```
 
 <a id="context-object"></a>
-
-### Contextオブジェクト
+### Contextオブジェクト { #context-object }
 Goの関数では、`http.ResponseWriter`と`*http.Request`を通じてHTTPのリクエストとレスポンスを処理します。
 
 ```go
@@ -85,19 +82,16 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 ```
 
 <a id="download-and-use-template-file"></a>
-
-## テンプレートファイルのダウンロードと活用
+## テンプレートファイルのダウンロードと活用 { #download-and-use-template-file }
 
 <a id="template-download"></a>
-
-### テンプレートのダウンロード
+### テンプレートのダウンロード { #template-download }
 Cloud Functionsが提供するGoテンプレートをダウンロードし、ローカル環境で開発できます。
 
 **テンプレートのダウンロードリンク**: [go.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/go/go.zip)
 
 <a id="template-file-structure"></a>
-
-### テンプレートのファイル構造
+### テンプレートのファイル構造 { #template-file-structure }
 ダウンロードしたテンプレートファイルの構造は次のとおりです。
 
 ```
@@ -107,7 +101,6 @@ go.zip
 ```
 
 <a id="functionsgo"></a>
-
 #### functions.go
 基本的なfakeデータ生成関数が含まれています。
 ```go
@@ -135,7 +128,6 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 ```
 
 <a id="gomod"></a>
-
 #### go.mod
 ```go
 module example.com/ncf
@@ -146,11 +138,9 @@ require github.com/brianvoe/gofakeit/v6 v6.28.0
 ```
 
 <a id="local-development-process"></a>
-
-### ローカルでの開発プロセス
+### ローカルでの開発プロセス { #local-development-process }
 
 <a id="unzip"></a>
-
 #### 1. 解凍
 ```bash
 # 解凍
@@ -161,7 +151,6 @@ cd my-function
 ```
 
 <a id="modify-function-codes"></a>
-
 #### 2. 関数コードの修正
 `functions.go`ファイルを、目的のロジックに合わせて修正します。
 
@@ -212,7 +201,6 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 ```
 
 <a id="compress-into-a-zip-file"></a>
-
 #### 3. ZIPファイルへ圧縮
 修正したコードを、再度ZIPファイルへ圧縮します。
 
@@ -231,16 +219,13 @@ zip -r my-function.zip . -x "*.git*" "go.sum" "test.go"
 ```
 
 <a id="upload-from-cloud-functions-console"></a>
-
-### Cloud Functionsコンソールでのアップロード
+### Cloud Functionsコンソールでのアップロード { #upload-from-cloud-functions-console }
 > 関数を作成または修正する際に、ユーザーのローカル環境にあるファイルをアップロードする場合に使用します。(コンソール利用ガイド参照)
 
 <a id="cautions-for-upload"></a>
-
-### アップロード時の注意事項
+### アップロード時の注意事項 { #cautions-for-upload }
 
 <a id="zip-file-structure"></a>
-
 #### ZIPファイルの構造
 - ZIPファイルのルートに、直接`.go`ファイルと`go.mod`を配置する必要があります。
 - 不要なフォルダ構造は避けることを推奨します。
@@ -262,13 +247,11 @@ my-function.zip
 ```
 
 <a id="file-size-limit"></a>
-
 #### ファイルサイズの制限
 - ZIPファイルのサイズは100MiB以下に制限されます。
 - `go.sum`ファイルは含めないでください。
 
 <a id="files-to-exclude"></a>
-
 #### 除外するファイル
 ```bash
 # .gitignoreと同様に、以下のファイルは除外
@@ -282,12 +265,10 @@ zip -r my-function.zip . -x \
 ```
 
 <a id="process-by-http-method"></a>
-
-## HTTPメソッド別の処理
+## HTTPメソッド別の処理 { #process-by-http-method }
 
 <a id="process-get-request"></a>
-
-### GETリクエストの処理
+### GETリクエストの処理 { #process-get-request }
 ```go
 package main
 
@@ -326,8 +307,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 ```
 
 <a id="process-post-request"></a>
-
-### POSTリクエストの処理
+### POSTリクエストの処理 { #process-post-request }
 ```go
 package main
 
@@ -399,12 +379,10 @@ func getOrDefault(value, defaultValue string) string {
 ```
 
 <a id="manage-packages"></a>
-
-## パッケージ管理
+## パッケージ管理 { #manage-packages }
 
 <a id="write-gomod"></a>
-
-### go.modの作成
+### go.modの作成 { #write-gomod }
 依存関係の管理には、`go.mod`ファイルを作成します。
 
 ```go
@@ -419,8 +397,7 @@ require (
 ```
 
 <a id="example-of-external-api-call"></a>
-
-### 外部API呼び出しの例
+### 外部API呼び出しの例 { #example-of-external-api-call }
 ```go
 package main
 
@@ -474,8 +451,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 ```
 
 <a id="data-processing-example"></a>
-
-### データ処理の例
+### データ処理の例 { #data-processing-example }
 ```go
 package main
 
@@ -569,20 +545,17 @@ func normalizeName(name string) string {
 ```
 
 <a id="configure-entry-point"></a>
-
-## エントリーポイントの設定
+## エントリーポイントの設定 { #configure-entry-point }
 
 <a id="single-function"></a>
-
-### 単一関数
+### 単一関数 { #single-function }
 関数名をエントリーポイントとして使用します。
 
 関数名: `Handler`
 Entry Point: `Handler`
 
 <a id="multiple-functions"></a>
-
-### 複数関数
+### 複数関数 { #multiple-functions }
 1つのファイルで複数の関数を定義できます。
 
 ```go
@@ -623,12 +596,10 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 - `UpdateUser`
 
 <a id="caution"></a>
-
-## 注意事項
+## 注意事項 { #caution }
 
 <a id="go-version"></a>
-
-### Goのバージョン
+### Goのバージョン { #go-version }
 | バージョン | サポート終了日 | 利用終了日 |
 |-----|-----------|-----------|
 | 1.25 | - | - |
@@ -637,7 +608,6 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 | 1.22 | 2026-01-28 | 2026-07-28 |
 
 <a id="go-version-support-policy"></a>
-
 #### Goバージョンサポートポリシー
 Cloud Functionsは、Goの公式リリース方針に従います。Goは年2回(1月、7月)新しいメジャーバージョンをリリースしており、各バージョンは最新の2つのメジャーバージョンまでサポートされます。
 

@@ -1,18 +1,17 @@
 <!-- pre-align:aligned sig=02be28f736c7 -->
 
-## Compute > Cloud Functions > トリガーガイド
+<a id="compute-cloud-functions-trigger-guide"></a>
+## Compute > Cloud Functions > トリガーガイド { #compute-cloud-functions-trigger-guide }
 
 このドキュメントでは、Cloud Functionsで提供するトリガーの種類と設定方法について説明します。
 
 <a id="trigger-overview"></a>
-
-## トリガーの概要
+## トリガーの概要 { #trigger-overview }
 
 トリガーは関数を実行させるイベントソースです。Cloud Functionsは様々な種類のトリガーを提供しており、複数の方法で関数を呼び出すことができます。
 
 <a id="supported-triggers"></a>
-
-### サポートするトリガーの種類
+### サポートするトリガーの種類 { #supported-triggers }
 
 | トリガーの種類      | 説明                      | デフォルト提供 |
 |-------------|------------------------|-------|
@@ -21,33 +20,28 @@
 | API Gateway | API Gatewayを通じて関数を実行  | X      |
 
 <a id="http-trigger"></a>
-
-## HTTPトリガー
+## HTTPトリガー { #http-trigger }
 
 HTTPトリガーは関数の作成時にデフォルトで提供され、HTTPリクエストを通じて関数を実行できます。
 
 <a id="features"></a>
-
-### 特徴
+### 特徴 { #features }
 
 - 関数の作成時に自動的に生成されます。
 - 削除することはできず、有効化/無効化のみ可能です。
 - GET, POSTメソッドをサポートします。
 
 <a id="url-format-of-http-trigger"></a>
-
-### HTTPトリガーURL形式
+### HTTPトリガーURL形式 { #url-format-of-http-trigger }
 
 ```
 https://{userdomain}/{関数名}
 ```
 
 <a id="examples"></a>
-
-### 使用例
+### 使用例 { #examples }
 
 <a id="request-get"></a>
-
 #### GETリクエスト
 
 ```bash
@@ -55,7 +49,6 @@ curl -X GET "https://{userdomain}/{関数名}?param1=value1&param2=value2"
 ```
 
 <a id="request-post"></a>
-
 #### POSTリクエスト
 
 ```bash
@@ -65,8 +58,7 @@ curl -X POST "https://{userdomain}/{関数名}" \
 ```
 
 <a id="enabledisable-http-trigger"></a>
-
-### HTTPトリガーの有効化/無効化
+### HTTPトリガーの有効化/無効化 { #enabledisable-http-trigger }
 
 1. Cloud Functionsコンソールで関数を選択します。
 2. **トリガー**タブに移動します。
@@ -76,14 +68,12 @@ curl -X POST "https://{userdomain}/{関数名}" \
 > <br>無効化されたHTTPトリガーにリクエストを送信しても、関数は実行されません。
 
 <a id="timer-trigger"></a>
-
-## Timerトリガー
+## Timerトリガー { #timer-trigger }
 
 Timerトリガーは、指定された時間または周期に従って自動的に関数を実行します。Cron式を使用して実行周期を設定できます。
 
 <a id="create-timer-trigger"></a>
-
-### Timerトリガーの作成
+### Timerトリガーの作成 { #create-timer-trigger }
 
 ![trigger-guide-05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-01.png)
 
@@ -95,8 +85,7 @@ Timerトリガーは、指定された時間または周期に従って自動的
 6. **作成**をクリックします。
 
 <a id="cron-expression-format"></a>
-
-### Cron式の形式
+### Cron式の形式 { #cron-expression-format }
 
 Cron式は次のような形式に従います。
 
@@ -112,7 +101,6 @@ Cron式は次のような形式に従います。
 ```
 
 <a id="cron-expression-field"></a>
-
 #### Cron式のフィールド
 
 | フィールド              | 必須  | 許容値             | 許容される記号  |
@@ -125,7 +113,6 @@ Cron式は次のような形式に従います。
 | 曜日(Day of week) | Yes | 0-6 または SUN-SAT  | * / , - ? |
 
 <a id="special-characters-details"></a>
-
 #### 記号の説明
 
 `*`
@@ -149,8 +136,7 @@ Cron式は次のような形式に従います。
 日(Day of month)または曜日(Day of week)フィールドを空けておくために、`*`の代わりに使用できます。
 
 <a id="example-of-cron-expression"></a>
-
-### Cron式の例
+### Cron式の例 { #example-of-cron-expression }
 
 | Cron式              | 説明                             |
 |------------------------|---------------------------------|
@@ -165,8 +151,7 @@ Cron式は次のような形式に従います。
 | `0 0 0 1 JAN *`        | 毎年1月1日の午前0時に実行                  |
 
 <a id="modify-timer-trigger"></a>
-
-### Timerトリガーの修正
+### Timerトリガーの修正 { #modify-timer-trigger }
 
 ![trigger-guide-02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-02.png)
 
@@ -181,21 +166,18 @@ Cron式は次のような形式に従います。
 > <br>月(Month)と曜日(Day of week)フィールドの値は、大文字と小文字を区別しません。"SUN"、"Sun"、"sun"は全て同じものとして認識されます。
 
 <a id="api-gateway-trigger"></a>
-
-## API Gatewayトリガー
+## API Gatewayトリガー { #api-gateway-trigger }
 
 API Gatewayトリガーは、同一プロジェクトのAPI Gatewayサービスを活用して関数を実行できます。API Gatewayを通じて、よりきめ細かいAPI管理と制御が可能になります。
 
 <a id="prerequisites"></a>
-
-### 事前要件
+### 事前要件 { #prerequisites }
 
 - 同一プロジェクトでAPI Gatewayサービスが有効になっている必要があります。
   - 有効になっていない場合、トリガー作成時に有効化できます。
 
 <a id="create-api-gateway-trigger"></a>
-
-### API Gatewayトリガーの作成
+### API Gatewayトリガーの作成 { #create-api-gateway-trigger }
 
 ![trigger-guide-04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-04.png)
 
@@ -208,19 +190,16 @@ API Gatewayトリガーは、同一プロジェクトのAPI Gatewayサービス�
 6. **作成**をクリックします。
 
 <a id="api-gateway-trigger-url-format"></a>
-
-### API GatewayトリガーURL形式
+### API GatewayトリガーURL形式 { #api-gateway-trigger-url-format }
 
 ```
 https://{stageurl}/{パス}
 ```
 
 <a id="api-gateway-trigger-examples"></a>
-
-### 使用例
+### 使用例 { #api-gateway-trigger-examples }
 
 <a id="api-gateway-trigger-examples-request-get"></a>
-
 #### GETリクエスト
 
 ```bash
@@ -228,7 +207,6 @@ curl -X GET "https://{stageurl}/{パス}?param1=value1&param2=value2"
 ```
 
 <a id="api-gateway-trigger-examples-request-post"></a>
-
 #### POSTリクエスト
 
 ```bash
@@ -238,8 +216,7 @@ curl -X POST "https://{stageurl}/{パス}" \
 ```
 
 <a id="features-of-api-gateway-trigger"></a>
-
-### API Gatewayトリガーの特徴
+### API Gatewayトリガーの特徴 { #features-of-api-gateway-trigger }
 
 - API Gatewayの様々な機能を活用できます。
   - 認証及び権限管理
@@ -251,8 +228,7 @@ curl -X POST "https://{stageurl}/{パス}" \
 - HTTPトリガーと同様にGET,POSTメソッドをサポートします。
 
 <a id="modify-api-gateway-trigger"></a>
-
-### API Gatewayトリガーの修正
+### API Gatewayトリガーの修正 { #modify-api-gateway-trigger }
 
 ![trigger-guide-05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-05.png)
 
@@ -269,20 +245,17 @@ curl -X POST "https://{stageurl}/{パス}" \
 > <br>プラグインが適用されたリソースパスを変更する場合は、修正の代わりに新しいトリガーを追加することを推奨します。
 
 <a id="use-with-api-gateway"></a>
-
-### API Gatewayと併用する
+### API Gatewayと併用する { #use-with-api-gateway }
 
 API Gatewayトリガーを作成すると、API Gatewayコンソールで追加設定を行えます。
 
 詳細は[API Gatewayガイド](https://docs.nhncloud.com/ko/Application%20Service/API%20Gateway/ko/overview/)を参照してください。
 
 <a id="delete-trigger"></a>
-
-## トリガーの削除
+## トリガーの削除 { #delete-trigger }
 
 <a id="how-to-delete-trigger"></a>
-
-### トリガーの削除方法
+### トリガーの削除方法 { #how-to-delete-trigger }
 
 ![trigger-guide-03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-03.png)
 
@@ -293,20 +266,17 @@ API Gatewayトリガーを作成すると、API Gatewayコンソールで追加�
 5. **トリガー削除**モーダルウィンドウで**削除**をクリックします。
 
 <a id="cautions"></a>
-
-### 注意事項
+### 注意事項 { #cautions }
 
 - HTTPトリガーは削除できません。HTTPトリガーは基本トリガーとして提供され、有効化/無効化のみ可能です。
 - トリガーを削除すると、そのイベントを通じて関数を実行できなくなります。
 - 削除されたトリガーは復元できません。
 
 <a id="restrictions"></a>
-
-## トリガーの制限事項
+## トリガーの制限事項 { #restrictions }
 
 <a id="restrictions-for-api-gateway-trigger"></a>
-
-### API Gatewayトリガーの制限事項
+### API Gatewayトリガーの制限事項 { #restrictions-for-api-gateway-trigger }
 
 - 同一プロジェクト内のAPI Gatewayのみ接続できます。
 - 1つのAPI Gatewayリソースには、1つの関数のみ接続できます。

@@ -1,12 +1,12 @@
 <!-- pre-align:aligned sig=3c324618eb1e -->
 
-## Compute > Cloud Functions > Code Template Guide > .NET
+<a id="compute-cloud-functions-code-template-guide-net"></a>
+## Compute > Cloud Functions > Code Template Guide > .NET { #compute-cloud-functions-code-template-guide-net }
 
 This document details how to develop functions by using .NET from NHN Cloud's Cloud Functions service.
 
 <a id="template-information"></a>
-
-## Template information
+## Template information { #template-information }
 | Item              | Value                  |
 |-----------------|---------|
 | **Supported version**       | 8       |
@@ -14,12 +14,10 @@ This document details how to develop functions by using .NET from NHN Cloud's Cl
 | **Entry point** | func             |
 
 <a id="basic-template"></a>
-
-## Basic template
+## Basic template { #basic-template }
 
 <a id="hello-world-example"></a>
-
-### Hello World example
+### Hello World example { #hello-world-example }
 A basic form of function. Use `NhnContext` of `Nhn.DotNetCore.Api` namespace to access the logger and request information.
 
 ```csharp
@@ -59,8 +57,7 @@ public class NhnFunction
 ```
 
 <a id="context-object"></a>
-
-### Context object
+### Context object { #context-object }
 With the `NhnContext` object, you can access the logger, request, and response.
 
 ```csharp
@@ -106,19 +103,16 @@ public class NhnFunction
 ```
 
 <a id="download-and-use-template-file"></a>
-
-## Download and use template file
+## Download and use template file { #download-and-use-template-file }
 
 <a id="template-download"></a>
-
-### Template download
+### Template download { #template-download }
 You can download the .NET template provided by Cloud Functions to develop a local environment.
 
 **Template download link**: [dotnet.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/dotnet/dotnet.zip)
 
 <a id="template-file-structure"></a>
-
-### Template file structure
+### Template file structure { #template-file-structure }
 The structure of the downloaded template file is as follows:
 
 ```
@@ -129,11 +123,9 @@ dotnet.zip
 ```
 
 <a id="local-development-process"></a>
-
-### Local development process
+### Local development process { #local-development-process }
 
 <a id="unzip"></a>
-
 #### 1. Unzip
 ```bash
 # Unzip
@@ -144,7 +136,6 @@ cd my-function
 ```
 
 <a id="modify-function-codes"></a>
-
 #### 2. Modify function codes
 Modify `func.cs` file with the logic you want.
 
@@ -201,7 +192,6 @@ public class NhnFunction
 ```
 
 <a id="compress-into-a-zip-file"></a>
-
 #### 3. Compress into a ZIP file
 Compress the modified source code into ZIP file. You must compress it so that `func.cs` and `nuget.txt` are included at the top level.
 
@@ -210,18 +200,15 @@ zip my-function.zip func.cs nuget.txt
 ```
 
 <a id="upload-from-cloud-functions-console"></a>
-
-### Upload from Cloud Functions console
+### Upload from Cloud Functions console { #upload-from-cloud-functions-console }
 - When creating or modifying a function, select the **User Local Environment** method.
 - Click **Select File** to upload the `my-function.zip` file you created.
 
 <a id="process-by-http-method"></a>
-
-## Process by HTTP method
+## Process by HTTP method { #process-by-http-method }
 
 <a id="process-get-request"></a>
-
-### Process GET request
+### Process GET request { #process-get-request }
 ```csharp
 using System;
 using Nhn.DotNetCore.Api;
@@ -251,8 +238,7 @@ public class NhnFunction
 ```
 
 <a id="process-post-request"></a>
-
-### Process POST request
+### Process POST request { #process-post-request }
 ```csharp
 using System;
 using System.IO;
@@ -305,8 +291,7 @@ public class NhnFunction
 ```
 
 <a id="manage-package-nugettxt"></a>
-
-## Manage package (`nuget.txt`)
+## Manage package (`nuget.txt`) { #manage-package-nugettxt }
 
 Use the `nuget.txt` file to manage dependencies (NuGet packages). Write the required packages one per line.
 
@@ -316,8 +301,7 @@ Microsoft.Extensions.Configuration:8.0.0
 ```
 
 <a id="example-of-configuration-management"></a>
-
-### Example of configuration management
+### Example of configuration management { #example-of-configuration-management }
 ```csharp
 using System;
 using System.Collections.Generic;
@@ -399,8 +383,7 @@ public class NhnFunction
 ```
 
 <a id="configure-entry-point"></a>
-
-## Configure Entry Point
+## Configure Entry Point { #configure-entry-point }
 
 Entry Point is **file name**. (excluding extention)
 
@@ -410,7 +393,6 @@ Entry Point is **file name**. (excluding extention)
 **Important**: The class name must be `NhnFunction`, and the method acting as a function must have the signature `public string Execute(NhnContext context)`.
 
 <a id="caution"></a>
-
-### Caution
+### Caution { #caution }
 - **Package version**: You can specify the package version in `nuget.txt`. (example: `Newtonsoft.Json:9.0.1`)
 - **Type conflict**: Since type conflicts can occur when adding dependencies, we recommend using the .NET native library whenever possible or using a compatible version of the package.

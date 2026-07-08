@@ -1,16 +1,15 @@
 <!-- pre-align:aligned sig=f22611a38cd5 -->
 
-## Cloud Functions API v1.0 ガイド
+<a id="cloud-functions-api-v10-guide"></a>
+## Cloud Functions API v1.0 ガイド { #cloud-functions-api-v10-guide }
 
 **Compute > Cloud Functions > API ガイド > API v1.0 ガイド**
 
 <a id="cloud-functions-api-v10-common-information"></a>
-
-## Cloud Functions API v1.0 共通情報
+## Cloud Functions API v1.0 共通情報 { #cloud-functions-api-v10-common-information }
 
 <a id="api-endpoint"></a>
-
-### API エンドポイント
+### API エンドポイント { #api-endpoint }
 
 Cloud Functions APIを呼び出すためのリージョン別エンドポイントは以下のとおりです。
 
@@ -19,16 +18,14 @@ Cloud Functions APIを呼び出すためのリージョン別エンドポイン�
 | 韓国(パンギョ)リージョン | https://kr1-cloud-functions.api.nhncloudservice.com |
 
 <a id="authentication-and-authorization"></a>
-
-### 認証及び権限
+### 認証及び権限 { #authentication-and-authorization }
 
 Cloud Functionsは、API呼び出し時の認証/認可にUser Access Keyトークンを使用します。
 User Access Keyトークンは、User Access Keyをもとに発行されるBearerタイプの一時的なアクセストークンです。
 User Access Keyトークンの発行手順や使用方法の詳細は、[User Access Keyトークン](/nhncloud/ko/public-api/user-access-key-token)をご参照ください。
 
 <a id="response-common-information"></a>
-
-### レスポンス共通情報
+### レスポンス共通情報 { #response-common-information }
 
 全てのAPIレスポンスは以下の共通形式に従います。
 
@@ -77,22 +74,19 @@ User Access Keyトークンの発行手順や使用方法の詳細は、[User Ac
 ---
 
 <a id="list-environments"></a>
-
-## 環境一覧
+## 環境一覧 { #list-environments }
 
 使用可能なランタイム環境一覧を照会します。
 
 <a id="request"></a>
-
-### リクエスト
+### リクエスト { #request }
 
 ```
 GET /v1.0/env/list
 ```
 
 <a id="request-parameter"></a>
-
-### リクエストパラメータ
+### リクエストパラメータ { #request-parameter }
 
 | 名前 | 区分 | タイプ | 必須 | 説明 |
 | --- | --- | --- | --- | --- |
@@ -100,14 +94,12 @@ GET /v1.0/env/list
 | X-NHN-authorization | Header | String | Y | ユーザートークン(Bearer {token}) |
 
 <a id="request-body"></a>
-
-### リクエストボディ
+### リクエストボディ { #request-body }
 
 このAPIはリクエストボディを必要としません。
 
 <a id="response"></a>
-
-### レスポンス
+### レスポンス { #response }
 
 <details>
   <summary><strong>サンプルコード</strong></summary>
@@ -149,22 +141,19 @@ GET /v1.0/env/list
 ---
 
 <a id="list-functions"></a>
-
-## 関数一覧
+## 関数一覧 { #list-functions }
 
 関数一覧を照会します。
 
 <a id="list-functions-request"></a>
-
-### リクエスト
+### リクエスト { #list-functions-request }
 
 ```
 GET /v1.0/functions
 ```
 
 <a id="list-functions-request-parameter"></a>
-
-### リクエストパラメータ
+### リクエストパラメータ { #list-functions-request-parameter }
 
 | 名前 | 区分 | タイプ | 必須 | 説明 |
 | --- | --- | --- | --- | --- |
@@ -174,14 +163,12 @@ GET /v1.0/functions
 | pageSize | Query | Integer | N | 1ページに表示する件数(デフォルト値: 5000) |
 
 <a id="list-functions-request-body"></a>
-
-### リクエストボディ
+### リクエストボディ { #list-functions-request-body }
 
 このAPIはリクエストボディを必要としません。
 
 <a id="list-functions-response"></a>
-
-### レスポンス
+### レスポンス { #list-functions-response }
 
 <details>
   <summary><strong>サンプルコード</strong></summary>
@@ -231,22 +218,19 @@ GET /v1.0/functions
 ---
 
 <a id="get-function"></a>
-
-## 関数詳細照会
+## 関数詳細照会 { #get-function }
 
 関数の詳細情報とビルドログを同時に照会します。
 
 <a id="get-function-request"></a>
-
-### リクエスト
+### リクエスト { #get-function-request }
 
 ```
 GET /v1.0/functions/{functionName}
 ```
 
 <a id="get-function-request-parameter"></a>
-
-### リクエストパラメータ
+### リクエストパラメータ { #get-function-request-parameter }
 
 | 名前 | 区分 | タイプ | 必須 | 説明 |
 | --- | --- | --- | --- | --- |
@@ -255,14 +239,12 @@ GET /v1.0/functions/{functionName}
 | functionName | URL | String | Y | 関数名 |
 
 <a id="get-function-request-body"></a>
-
-### リクエストボディ
+### リクエストボディ { #get-function-request-body }
 
 このAPIはリクエストボディを必要としません。
 
 <a id="get-function-response"></a>
-
-### レスポンス
+### レスポンス { #get-function-response }
 
 <details>
   <summary><strong>サンプルコード</strong></summary>
@@ -321,8 +303,7 @@ GET /v1.0/functions/{functionName}
 ---
 
 <a id="create-function"></a>
-
-## 関数作成
+## 関数作成 { #create-function }
 
 新しい関数を作成します。multipart/form-dataでソースファイルをアップロードします。
 runtimeは`{environment}-{version}`形式で入力する必要があります(例: NodeJS-22.5.0)。使用可能なランタイムは環境一覧照会APIで確認できます。
@@ -330,16 +311,14 @@ runtimeは`{environment}-{version}`形式で入力する必要があります(�
 executorTypeによって必須パラメータが異なります。poolManagerの場合はrequestPerPodが、newDeploymentの場合はminInstanceとmaxInstanceが必須です。
 
 <a id="create-function-request"></a>
-
-### リクエスト
+### リクエスト { #create-function-request }
 
 ```
 POST /v1.0/functions
 ```
 
 <a id="create-function-request-parameter"></a>
-
-### リクエストパラメータ
+### リクエストパラメータ { #create-function-request-parameter }
 
 | 名前 | 区分 | タイプ | 必須 | 説明 |
 | --- | --- | --- | --- | --- |
@@ -347,8 +326,7 @@ POST /v1.0/functions
 | X-NHN-authorization | Header | String | Y | ユーザートークン(Bearer {token}) |
 
 <a id="create-function-request-body"></a>
-
-### リクエストボディ
+### リクエストボディ { #create-function-request-body }
 
 Content-Type: multipart/form-data
 
@@ -368,8 +346,7 @@ Content-Type: multipart/form-data
 | sourceFile | Binary | Y | ソースコードファイル(ZIP) |
 
 <a id="create-function-response"></a>
-
-### レスポンス
+### レスポンス { #create-function-response }
 
 <details>
   <summary><strong>サンプルコード</strong></summary>
@@ -390,24 +367,21 @@ Content-Type: multipart/form-data
 ---
 
 <a id="modify-function"></a>
-
-## 関数修正
+## 関数修正 { #modify-function }
 
 関数を修正します。multipart/form-dataでソースファイルをアップロードできます。
 
 ソースファイル(sourceFile)は任意項目です。ソースファイルを指定しない場合、既存のソースコードが維持されます。
 
 <a id="modify-function-request"></a>
-
-### リクエスト
+### リクエスト { #modify-function-request }
 
 ```
 PUT /v1.0/functions/{functionName}
 ```
 
 <a id="modify-function-request-parameter"></a>
-
-### リクエストパラメータ
+### リクエストパラメータ { #modify-function-request-parameter }
 
 | 名前 | 区分 | タイプ | 必須 | 説明 |
 | --- | --- | --- | --- | --- |
@@ -416,8 +390,7 @@ PUT /v1.0/functions/{functionName}
 | functionName | URL | String | Y | 修正する関数名 |
 
 <a id="modify-function-request-body"></a>
-
-### リクエストボディ
+### リクエストボディ { #modify-function-request-body }
 
 Content-Type: multipart/form-data
 
@@ -436,8 +409,7 @@ Content-Type: multipart/form-data
 | sourceFile | Binary | N | ソースコードファイル(ZIP) |
 
 <a id="modify-function-response"></a>
-
-### レスポンス
+### レスポンス { #modify-function-response }
 
 <details>
   <summary><strong>サンプルコード</strong></summary>
@@ -458,22 +430,19 @@ Content-Type: multipart/form-data
 ---
 
 <a id="delete-functions"></a>
-
-## 関数削除
+## 関数削除 { #delete-functions }
 
 関数を一括削除します。
 
 <a id="delete-functions-request"></a>
-
-### リクエスト
+### リクエスト { #delete-functions-request }
 
 ```
 DELETE /v1.0/functions
 ```
 
 <a id="delete-functions-request-parameter"></a>
-
-### リクエストパラメータ
+### リクエストパラメータ { #delete-functions-request-parameter }
 
 | 名前 | 区分 | タイプ | 必須 | 説明 |
 | --- | --- | --- | --- | --- |
@@ -481,8 +450,7 @@ DELETE /v1.0/functions
 | X-NHN-authorization | Header | String | Y | ユーザートークン(Bearer {token}) |
 
 <a id="delete-functions-request-body"></a>
-
-### リクエストボディ
+### リクエストボディ { #delete-functions-request-body }
 
 <details>
   <summary><strong>サンプルコード</strong></summary>
@@ -500,8 +468,7 @@ DELETE /v1.0/functions
 | names | Array | Y | 削除する関数名一覧 |
 
 <a id="delete-functions-response"></a>
-
-### レスポンス
+### レスポンス { #delete-functions-response }
 
 <details>
   <summary><strong>サンプルコード</strong></summary>
@@ -522,22 +489,19 @@ DELETE /v1.0/functions
 ---
 
 <a id="execute-function-get"></a>
-
-## 関数実行(GET)
+## 関数実行(GET) { #execute-function-get }
 
 GETメソッドで関数を実行します。
 
 <a id="execute-function-get-request"></a>
-
-### リクエスト
+### リクエスト { #execute-function-get-request }
 
 ```
 GET /v1.0/functions/{functionName}/invoke
 ```
 
 <a id="execute-function-get-request-parameter"></a>
-
-### リクエストパラメータ
+### リクエストパラメータ { #execute-function-get-request-parameter }
 
 | 名前 | 区分 | タイプ | 必須 | 説明 |
 | --- | --- | --- | --- | --- |
@@ -546,14 +510,12 @@ GET /v1.0/functions/{functionName}/invoke
 | functionName | URL | String | Y | 実行する関数名 |
 
 <a id="execute-function-get-request-body"></a>
-
-### リクエストボディ
+### リクエストボディ { #execute-function-get-request-body }
 
 このAPIはリクエストボディを必要としません。
 
 <a id="execute-function-get-response"></a>
-
-### レスポンス
+### レスポンス { #execute-function-get-response }
 
 <details>
   <summary><strong>サンプルコード</strong></summary>
@@ -578,22 +540,19 @@ GET /v1.0/functions/{functionName}/invoke
 ---
 
 <a id="execute-function-post"></a>
-
-## 関数実行(POST)
+## 関数実行(POST) { #execute-function-post }
 
 POSTメソッドで関数を実行します。bodyを送信できます。
 
 <a id="execute-function-post-request"></a>
-
-### リクエスト
+### リクエスト { #execute-function-post-request }
 
 ```
 POST /v1.0/functions/{functionName}/invoke
 ```
 
 <a id="execute-function-post-request-parameter"></a>
-
-### リクエストパラメータ
+### リクエストパラメータ { #execute-function-post-request-parameter }
 
 | 名前 | 区分 | タイプ | 必須 | 説明 |
 | --- | --- | --- | --- | --- |
@@ -602,8 +561,7 @@ POST /v1.0/functions/{functionName}/invoke
 | functionName | URL | String | Y | 実行する関数名 |
 
 <a id="execute-function-post-request-body"></a>
-
-### リクエストボディ
+### リクエストボディ { #execute-function-post-request-body }
 
 <details>
   <summary><strong>サンプルコード</strong></summary>
@@ -621,8 +579,7 @@ POST /v1.0/functions/{functionName}/invoke
 | body | JSON | N | 関数に渡すbody |
 
 <a id="execute-function-post-response"></a>
-
-### レスポンス
+### レスポンス { #execute-function-post-response }
 
 <details>
   <summary><strong>サンプルコード</strong></summary>
@@ -647,22 +604,19 @@ POST /v1.0/functions/{functionName}/invoke
 ---
 
 <a id="list-versions"></a>
-
-## バージョン一覧
+## バージョン一覧 { #list-versions }
 
 関数のバージョン(パッケージ)一覧を照会します。
 
 <a id="list-versions-request"></a>
-
-### リクエスト
+### リクエスト { #list-versions-request }
 
 ```
 GET /v1.0/functions/{functionName}/versions
 ```
 
 <a id="list-versions-request-parameter"></a>
-
-### リクエストパラメータ
+### リクエストパラメータ { #list-versions-request-parameter }
 
 | 名前 | 区分 | タイプ | 必須 | 説明 |
 | --- | --- | --- | --- | --- |
@@ -671,14 +625,12 @@ GET /v1.0/functions/{functionName}/versions
 | functionName | URL | String | Y | 関数名 |
 
 <a id="list-versions-request-body"></a>
-
-### リクエストボディ
+### リクエストボディ { #list-versions-request-body }
 
 このAPIはリクエストボディを必要としません。
 
 <a id="list-versions-response"></a>
-
-### レスポンス
+### レスポンス { #list-versions-response }
 
 <details>
   <summary><strong>サンプルコード</strong></summary>
@@ -726,22 +678,19 @@ GET /v1.0/functions/{functionName}/versions
 ---
 
 <a id="switch-version"></a>
-
-## バージョン切り替え
+## バージョン切り替え { #switch-version }
 
 関数の現在のアクティブバージョンを変更します。
 
 <a id="switch-version-request"></a>
-
-### リクエスト
+### リクエスト { #switch-version-request }
 
 ```
 PUT /v1.0/functions/{functionName}/versions
 ```
 
 <a id="switch-version-request-parameter"></a>
-
-### リクエストパラメータ
+### リクエストパラメータ { #switch-version-request-parameter }
 
 | 名前 | 区分 | タイプ | 必須 | 説明 |
 | --- | --- | --- | --- | --- |
@@ -750,8 +699,7 @@ PUT /v1.0/functions/{functionName}/versions
 | functionName | URL | String | Y | 関数名 |
 
 <a id="switch-version-request-body"></a>
-
-### リクエストボディ
+### リクエストボディ { #switch-version-request-body }
 
 <details>
   <summary><strong>サンプルコード</strong></summary>
@@ -769,8 +717,7 @@ PUT /v1.0/functions/{functionName}/versions
 | versionId | Integer | Y | 切り替えるバージョンID |
 
 <a id="switch-version-response"></a>
-
-### レスポンス
+### レスポンス { #switch-version-response }
 
 <details>
   <summary><strong>サンプルコード</strong></summary>
@@ -791,24 +738,21 @@ PUT /v1.0/functions/{functionName}/versions
 ---
 
 <a id="delete-versions"></a>
-
-## バージョン削除
+## バージョン削除 { #delete-versions }
 
 関数のバージョンを一括削除します。
 
 現在のアクティブバージョンは削除できません。
 
 <a id="delete-versions-request"></a>
-
-### リクエスト
+### リクエスト { #delete-versions-request }
 
 ```
 DELETE /v1.0/functions/{functionName}/versions
 ```
 
 <a id="delete-versions-request-parameter"></a>
-
-### リクエストパラメータ
+### リクエストパラメータ { #delete-versions-request-parameter }
 
 | 名前 | 区分 | タイプ | 必須 | 説明 |
 | --- | --- | --- | --- | --- |
@@ -817,8 +761,7 @@ DELETE /v1.0/functions/{functionName}/versions
 | functionName | URL | String | Y | 関数名 |
 
 <a id="delete-versions-request-body"></a>
-
-### リクエストボディ
+### リクエストボディ { #delete-versions-request-body }
 
 <details>
   <summary><strong>サンプルコード</strong></summary>
@@ -836,8 +779,7 @@ DELETE /v1.0/functions/{functionName}/versions
 | versionIds | Array | Y | 削除するバージョンID一覧 |
 
 <a id="delete-versions-response"></a>
-
-### レスポンス
+### レスポンス { #delete-versions-response }
 
 <details>
   <summary><strong>サンプルコード</strong></summary>
@@ -858,22 +800,19 @@ DELETE /v1.0/functions/{functionName}/versions
 ---
 
 <a id="list-triggers"></a>
-
-## トリガー一覧
+## トリガー一覧 { #list-triggers }
 
 関数のトリガー一覧を照会します。
 
 <a id="list-triggers-request"></a>
-
-### リクエスト
+### リクエスト { #list-triggers-request }
 
 ```
 GET /v1.0/triggers/{functionName}
 ```
 
 <a id="list-triggers-request-parameter"></a>
-
-### リクエストパラメータ
+### リクエストパラメータ { #list-triggers-request-parameter }
 
 | 名前 | 区分 | タイプ | 必須 | 説明 |
 | --- | --- | --- | --- | --- |
@@ -882,14 +821,12 @@ GET /v1.0/triggers/{functionName}
 | functionName | URL | String | Y | 関数名 |
 
 <a id="list-triggers-request-body"></a>
-
-### リクエストボディ
+### リクエストボディ { #list-triggers-request-body }
 
 このAPIはリクエストボディを必要としません。
 
 <a id="list-triggers-response"></a>
-
-### レスポンス
+### レスポンス { #list-triggers-response }
 
 <details>
   <summary><strong>サンプルコード</strong></summary>
@@ -931,22 +868,19 @@ GET /v1.0/triggers/{functionName}
 ---
 
 <a id="create-time-trigger"></a>
-
-## タイムトリガー作成
+## タイムトリガー作成 { #create-time-trigger }
 
 関数にタイムトリガーを作成します。
 
 <a id="create-time-trigger-request"></a>
-
-### リクエスト
+### リクエスト { #create-time-trigger-request }
 
 ```
 POST /v1.0/triggers/{functionName}/time
 ```
 
 <a id="create-time-trigger-request-parameter"></a>
-
-### リクエストパラメータ
+### リクエストパラメータ { #create-time-trigger-request-parameter }
 
 | 名前 | 区分 | タイプ | 必須 | 説明 |
 | --- | --- | --- | --- | --- |
@@ -955,8 +889,7 @@ POST /v1.0/triggers/{functionName}/time
 | functionName | URL | String | Y | 関数名 |
 
 <a id="create-time-trigger-request-body"></a>
-
-### リクエストボディ
+### リクエストボディ { #create-time-trigger-request-body }
 
 <details>
   <summary><strong>サンプルコード</strong></summary>
@@ -974,8 +907,7 @@ POST /v1.0/triggers/{functionName}/time
 | cron | String | Y | cron式 |
 
 <a id="create-time-trigger-response"></a>
-
-### レスポンス
+### レスポンス { #create-time-trigger-response }
 
 <details>
   <summary><strong>サンプルコード</strong></summary>
@@ -996,22 +928,19 @@ POST /v1.0/triggers/{functionName}/time
 ---
 
 <a id="modify-time-trigger"></a>
-
-## タイムトリガー修正
+## タイムトリガー修正 { #modify-time-trigger }
 
 タイムトリガーのcron式を修正します。
 
 <a id="modify-time-trigger-request"></a>
-
-### リクエスト
+### リクエスト { #modify-time-trigger-request }
 
 ```
 PUT /v1.0/triggers/{functionName}/time
 ```
 
 <a id="modify-time-trigger-request-parameter"></a>
-
-### リクエストパラメータ
+### リクエストパラメータ { #modify-time-trigger-request-parameter }
 
 | 名前 | 区分 | タイプ | 必須 | 説明 |
 | --- | --- | --- | --- | --- |
@@ -1020,8 +949,7 @@ PUT /v1.0/triggers/{functionName}/time
 | functionName | URL | String | Y | 関数名 |
 
 <a id="modify-time-trigger-request-body"></a>
-
-### リクエストボディ
+### リクエストボディ { #modify-time-trigger-request-body }
 
 <details>
   <summary><strong>サンプルコード</strong></summary>
@@ -1041,8 +969,7 @@ PUT /v1.0/triggers/{functionName}/time
 | cron | String | Y | cron式 |
 
 <a id="modify-time-trigger-response"></a>
-
-### レスポンス
+### レスポンス { #modify-time-trigger-response }
 
 <details>
   <summary><strong>サンプルコード</strong></summary>
@@ -1063,22 +990,19 @@ PUT /v1.0/triggers/{functionName}/time
 ---
 
 <a id="delete-time-triggers"></a>
-
-## タイムトリガー削除
+## タイムトリガー削除 { #delete-time-triggers }
 
 タイムトリガーを一括削除します。
 
 <a id="delete-time-triggers-request"></a>
-
-### リクエスト
+### リクエスト { #delete-time-triggers-request }
 
 ```
 DELETE /v1.0/triggers/{functionName}/time
 ```
 
 <a id="delete-time-triggers-request-parameter"></a>
-
-### リクエストパラメータ
+### リクエストパラメータ { #delete-time-triggers-request-parameter }
 
 | 名前 | 区分 | タイプ | 必須 | 説明 |
 | --- | --- | --- | --- | --- |
@@ -1087,8 +1011,7 @@ DELETE /v1.0/triggers/{functionName}/time
 | functionName | URL | String | Y | 関数名 |
 
 <a id="delete-time-triggers-request-body"></a>
-
-### リクエストボディ
+### リクエストボディ { #delete-time-triggers-request-body }
 
 <details>
   <summary><strong>サンプルコード</strong></summary>
@@ -1106,8 +1029,7 @@ DELETE /v1.0/triggers/{functionName}/time
 | names | Array | Y | 削除するトリガー名一覧 |
 
 <a id="delete-time-triggers-response"></a>
-
-### レスポンス
+### レスポンス { #delete-time-triggers-response }
 
 <details>
   <summary><strong>サンプルコード</strong></summary>

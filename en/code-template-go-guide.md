@@ -1,12 +1,12 @@
 <!-- pre-align:aligned sig=9b45d499c0b7 -->
 
-## Compute > Cloud Functions > Code Template Guide > Go
+<a id="compute-cloud-functions-code-template-guide-go"></a>
+## Compute > Cloud Functions > Code Template Guide > Go { #compute-cloud-functions-code-template-guide-go }
 
 This document details how to develop functions by using Go from NHN Cloud's Cloud Functions service.
 
 <a id="template-information"></a>
-
-## Template information
+## Template information { #template-information }
 | Item              | Value                                        |
 |-----------------|------------------------------------------|
 | **Supported version**       | 1.22, 1.23, 1.24, 1.25 |
@@ -14,12 +14,10 @@ This document details how to develop functions by using Go from NHN Cloud's Clou
 | **Entry Point** | Handler                                  |
 
 <a id="basic-template"></a>
-
-## Basic template
+## Basic template { #basic-template }
 
 <a id="hello-world-example"></a>
-
-### Hello World example
+### Hello World example { #hello-world-example }
 A basic form of function.
 
 ```go
@@ -47,8 +45,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 ```
 
 <a id="context-object"></a>
-
-### Context object
+### Context object { #context-object }
 In Go functions, HTTP requests and responses are processed via `http.ResponseWriter` and `*http.Request`.
 
 ```go
@@ -85,19 +82,16 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 ```
 
 <a id="download-and-use-template-file"></a>
-
-## Download and use template file
+## Download and use template file { #download-and-use-template-file }
 
 <a id="template-download"></a>
-
-### Template download
+### Template download { #template-download }
 You can download the Go template provided by Cloud Functions to develop a local environment.
 
 **Template download link**: [go.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/go/go.zip)
 
 <a id="template-file-structure"></a>
-
-### Template file structure
+### Template file structure { #template-file-structure }
 The structure of the downloaded template file is as follows:
 
 ```
@@ -107,7 +101,6 @@ go.zip
 ```
 
 <a id="functionsgo"></a>
-
 #### functions.go
 Include basic fake data generation functions.
 ```go
@@ -135,7 +128,6 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 ```
 
 <a id="gomod"></a>
-
 #### go.mod
 ```go
 module example.com/ncf
@@ -146,11 +138,9 @@ require github.com/brianvoe/gofakeit/v6 v6.28.0
 ```
 
 <a id="local-development-process"></a>
-
-### Local development process
+### Local development process { #local-development-process }
 
 <a id="unzip"></a>
-
 #### 1. Unzip
 ```bash
 # Unzip
@@ -161,7 +151,6 @@ cd my-function
 ```
 
 <a id="modify-function-codes"></a>
-
 #### 2. Modify function codes
 Modify `functions.go` file with the logic you want.
 
@@ -212,7 +201,6 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 ```
 
 <a id="compress-into-a-zip-file"></a>
-
 #### 3. Compress into a ZIP file
 Compress the modified source code into ZIP file.
 
@@ -231,16 +219,13 @@ zip -r my-function.zip . -x "*.git*" "go.sum" "test.go"
 ```
 
 <a id="upload-from-cloud-functions-console"></a>
-
-### Upload from Cloud Functions console
+### Upload from Cloud Functions console { #upload-from-cloud-functions-console }
 > Used when uploading files from the user's local environment when creating or modifying a function. (refer to Console Guide)
 
 <a id="cautions-for-upload"></a>
-
-### Cautions for upload
+### Cautions for upload { #cautions-for-upload }
 
 <a id="zip-file-structure"></a>
-
 #### ZIP file structure
 - The `.go` file and `go.mod` must be located directly in the root of the ZIP file.
 - We recommend avoiding unnecessary folder structures.
@@ -262,13 +247,11 @@ my-function.zip
 ```
 
 <a id="file-size-limit"></a>
-
 #### File size limit
 - ZIP file size is limited to 100MiB.
 - `go.sum` file should not be included.
 
 <a id="files-to-exclude"></a>
-
 #### Files to exclude
 ```bash
 # Similar to .gitignore, exclude the following files:
@@ -282,12 +265,10 @@ zip -r my-function.zip . -x \
 ```
 
 <a id="process-by-http-method"></a>
-
-## Process by HTTP method
+## Process by HTTP method { #process-by-http-method }
 
 <a id="process-get-request"></a>
-
-### Process GET request
+### Process GET request { #process-get-request }
 ```go
 package main
 
@@ -326,8 +307,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 ```
 
 <a id="process-post-request"></a>
-
-### Process POST request
+### Process POST request { #process-post-request }
 ```go
 package main
 
@@ -399,12 +379,10 @@ func getOrDefault(value, defaultValue string) string {
 ```
 
 <a id="manage-packages"></a>
-
-## Manage packages
+## Manage packages { #manage-packages }
 
 <a id="write-gomod"></a>
-
-### Write go.mod
+### Write go.mod { #write-gomod }
 Write `go.mod` to manage dependencies.
 
 ```go
@@ -419,8 +397,7 @@ require (
 ```
 
 <a id="example-of-external-api-call"></a>
-
-### Example of external API call
+### Example of external API call { #example-of-external-api-call }
 ```go
 package main
 
@@ -474,8 +451,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 ```
 
 <a id="data-processing-example"></a>
-
-### Data processing example
+### Data processing example { #data-processing-example }
 ```go
 package main
 
@@ -569,20 +545,17 @@ func normalizeName(name string) string {
 ```
 
 <a id="configure-entry-point"></a>
-
-## Configure Entry Point
+## Configure Entry Point { #configure-entry-point }
 
 <a id="single-function"></a>
-
-### Single function
+### Single function { #single-function }
 Use the function name as the Entry Point.
 
 Function name: `Handler`
 Entry Point: `Handler`
 
 <a id="multiple-functions"></a>
-
-### Multiple functions
+### Multiple functions { #multiple-functions }
 You can define multiple functions in a single file.
 
 ```go
@@ -623,12 +596,10 @@ Entry Point configuration:
 - `UpdateUser`
 
 <a id="caution"></a>
-
-## Caution
+## Caution { #caution }
 
 <a id="go-version"></a>
-
-### Go version
+### Go version { #go-version }
 | Version | End of Support | End of Service |
 |-----|-----------|-----------|
 | 1.25 | - | - |
@@ -637,7 +608,6 @@ Entry Point configuration:
 | 1.22 | 2026-01-28 | 2026-07-28 |
 
 <a id="go-version-support-policy"></a>
-
 #### Go Version Support Policy
 Cloud Functions follows Go's official release policy. Go releases new major versions twice a year (January and July), and each version is supported only up to the latest two major versions.
 

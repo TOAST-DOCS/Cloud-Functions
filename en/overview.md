@@ -1,11 +1,11 @@
 <!-- pre-align:aligned sig=92acb111e0a0 -->
 
-## Compute > Cloud Functions > Overview
+<a id="compute-cloud-functions-overview"></a>
+## Compute > Cloud Functions > Overview { #compute-cloud-functions-overview }
 Users can write codes by function unit. Functions defined on a specific event are automatically executed, processing the required tasks. Without server management or infrastructure configuration, you can focus only on application logic.
 
 <a id="features"></a>
-
-### Features
+### Features { #features }
 - Cost-effectiveness
     - Save money with pay-as-you-go pricing.
     - You can reduce management cost as it allocates resources only when necessary.
@@ -18,20 +18,17 @@ Users can write codes by function unit. Functions defined on a specific event ar
     - The event-based architecture is versatile.
 
 <a id="main-features"></a>
-
-### Main features
+### Main features { #main-features }
 - We offer multiple languages (environments).
 - The **code editor** makes you write simple function unit code.
 - Provide an HTTPS Endpoint as standard to perform the function.
 - Iterate the function at regular cycles.
 
 <a id="two-modes-available"></a>
-
-### Two modes available
+### Two modes available { #two-modes-available }
 - Pool Manager
 - New Deployment
 <a id="pool-manager"></a>
-
 #### Pool Manager
 - Instances are created and use resources only when the function is performed.
 - If the function is not performed for a certain period, instances disappear, and the resource usage becomes 0.
@@ -40,7 +37,6 @@ Users can write codes by function unit. Functions defined on a specific event ar
 ![overview-01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-08-26/NHN%20Cloud_Guide%20overview_CloudFunctions_1_en.png)
 
 <a id="new-deployment"></a>
-
 #### New Deployment
 - Once functions are created, instances are created, keeping a certain amount of resources being used.
 - Instances are kept to reduce response latency.
@@ -49,8 +45,7 @@ Users can write codes by function unit. Functions defined on a specific event ar
 ![overview-02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-08-26/NHN%20Cloud_Guide%20overview_CloudFunctions_2_en.png)
 
 <a id="supported-languages"></a>
-
-### Supported languages
+### Supported languages { #supported-languages }
 | Language     | Version                | End of Support   | End of Service   |
 |--------|-------------------|------------|------------|
 | NodeJS | 22.5.0            | 2027-04-30 | 2027-10-30 |
@@ -71,8 +66,7 @@ Users can write codes by function unit. Functions defined on a specific event ar
 |        | 7 (end of service)         | 2024-05-14 | 2025-05-14 |
 
 <a id="trigger"></a>
-
-### Trigger
+### Trigger { #trigger }
 - HTTP Trigger
     - Basic (support GET, POST)
 - Timer Trigger

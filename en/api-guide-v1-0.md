@@ -1,16 +1,15 @@
 <!-- pre-align:aligned sig=f22611a38cd5 -->
 
-## Cloud Functions API v1.0 Guide
+<a id="cloud-functions-api-v10-guide"></a>
+## Cloud Functions API v1.0 Guide { #cloud-functions-api-v10-guide }
 
 **Compute > Cloud Functions > API Guide > API v1.0 Guide**
 
 <a id="cloud-functions-api-v10-common-information"></a>
-
-## Cloud Functions API v1.0 Common Information
+## Cloud Functions API v1.0 Common Information { #cloud-functions-api-v10-common-information }
 
 <a id="api-endpoint"></a>
-
-### API Endpoint
+### API Endpoint { #api-endpoint }
 
 The endpoints by region for calling the Cloud Functions API are as follows:
 
@@ -19,16 +18,14 @@ The endpoints by region for calling the Cloud Functions API are as follows:
 | Korea (Pangyo) Region | https://kr1-cloud-functions.api.nhncloudservice.com |
 
 <a id="authentication-and-authorization"></a>
-
-### Authentication and Authorization
+### Authentication and Authorization { #authentication-and-authorization }
 
 Cloud Functions uses User Access Key tokens for authentication and authorization when making API calls.
 The User Access Key token is a temporary, Bearer-type access token issued from a User Access Key.
 For more information on issuing and using User Access Key tokens, refer to the [User Access Key Token](/nhncloud/en/public-api/user-access-key-token).
 
 <a id="response-common-information"></a>
-
-### Response Common Information
+### Response Common Information { #response-common-information }
 
 Every API response follows the common format as below:
 
@@ -77,22 +74,19 @@ Every API response follows the common format as below:
 ---
 
 <a id="list-environments"></a>
-
-## List Environments
+## List Environments { #list-environments }
 
 Retrieves a list of available runtime environments.
 
 <a id="request"></a>
-
-### Request
+### Request { #request }
 
 ```
 GET /v1.0/env/list
 ```
 
 <a id="request-parameter"></a>
-
-### Request Parameter
+### Request Parameter { #request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
@@ -100,14 +94,12 @@ GET /v1.0/env/list
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 
 <a id="request-body"></a>
-
-### Request Body
+### Request Body { #request-body }
 
 This API does not require a request body.
 
 <a id="response"></a>
-
-### Response
+### Response { #response }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -149,22 +141,19 @@ This API does not require a request body.
 ---
 
 <a id="list-functions"></a>
-
-## List Functions
+## List Functions { #list-functions }
 
 Retrieves a list of functions.
 
 <a id="list-functions-request"></a>
-
-### Request
+### Request { #list-functions-request }
 
 ```
 GET /v1.0/functions
 ```
 
 <a id="list-functions-request-parameter"></a>
-
-### Request Parameter
+### Request Parameter { #list-functions-request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
@@ -174,14 +163,12 @@ GET /v1.0/functions
 | pageSize | Query | Integer | N | Number of items to display per page (default: 5,000) |
 
 <a id="list-functions-request-body"></a>
-
-### Request Body
+### Request Body { #list-functions-request-body }
 
 This API does not require a request body.
 
 <a id="list-functions-response"></a>
-
-### Response
+### Response { #list-functions-response }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -231,22 +218,19 @@ This API does not require a request body.
 ---
 
 <a id="get-function"></a>
-
-## Get Function
+## Get Function { #get-function }
 
 Retrieves detailed information and build logs for a function.
 
 <a id="get-function-request"></a>
-
-### Request
+### Request { #get-function-request }
 
 ```
 GET /v1.0/functions/{functionName}
 ```
 
 <a id="get-function-request-parameter"></a>
-
-### Request Parameter
+### Request Parameter { #get-function-request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
@@ -255,14 +239,12 @@ GET /v1.0/functions/{functionName}
 | functionName | URL | String | Y | Function name |
 
 <a id="get-function-request-body"></a>
-
-### Request Body
+### Request Body { #get-function-request-body }
 
 This API does not require a request body.
 
 <a id="get-function-response"></a>
-
-### Response
+### Response { #get-function-response }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -321,8 +303,7 @@ This API does not require a request body.
 ---
 
 <a id="create-function"></a>
-
-## Create Function
+## Create Function { #create-function }
 
 Creates a new function. Upload the source file as multipart/form-data.
 The runtime must be entered in the `{environment}-{version}` format (e.g., NodeJS-22.5.0). Available runtimes can be checked using the List Environments API.
@@ -330,16 +311,14 @@ The runtime must be entered in the `{environment}-{version}` format (e.g., NodeJ
 Required parameters vary depending on the executorType. When using poolManager, requestPerPod is required. When using newDeployment, minInstance and maxInstance are required.
 
 <a id="create-function-request"></a>
-
-### Request
+### Request { #create-function-request }
 
 ```
 POST /v1.0/functions
 ```
 
 <a id="create-function-request-parameter"></a>
-
-### Request Parameter
+### Request Parameter { #create-function-request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
@@ -347,8 +326,7 @@ POST /v1.0/functions
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 
 <a id="create-function-request-body"></a>
-
-### Request Body
+### Request Body { #create-function-request-body }
 
 Content-Type: multipart/form-data
 
@@ -368,8 +346,7 @@ Content-Type: multipart/form-data
 | sourceFile | Binary | Y | Source code file (ZIP) |
 
 <a id="create-function-response"></a>
-
-### Response
+### Response { #create-function-response }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -390,24 +367,21 @@ Content-Type: multipart/form-data
 ---
 
 <a id="modify-function"></a>
-
-## Modify Function
+## Modify Function { #modify-function }
 
 Modifies a function. The source file can be uploaded as multipart/form-data.
 
 The source file (sourceFile) is optional. If no source file is included, the existing source code is retained.
 
 <a id="modify-function-request"></a>
-
-### Request
+### Request { #modify-function-request }
 
 ```
 PUT /v1.0/functions/{functionName}
 ```
 
 <a id="modify-function-request-parameter"></a>
-
-### Request Parameter
+### Request Parameter { #modify-function-request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
@@ -416,8 +390,7 @@ PUT /v1.0/functions/{functionName}
 | functionName | URL | String | Y | Name of the function to modify |
 
 <a id="modify-function-request-body"></a>
-
-### Request Body
+### Request Body { #modify-function-request-body }
 
 Content-Type: multipart/form-data
 
@@ -436,8 +409,7 @@ Content-Type: multipart/form-data
 | sourceFile | Binary | N | Source code file (ZIP) |
 
 <a id="modify-function-response"></a>
-
-### Response
+### Response { #modify-function-response }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -458,22 +430,19 @@ Content-Type: multipart/form-data
 ---
 
 <a id="delete-functions"></a>
-
-## Delete Functions
+## Delete Functions { #delete-functions }
 
 Deletes functions in bulk.
 
 <a id="delete-functions-request"></a>
-
-### Request
+### Request { #delete-functions-request }
 
 ```
 DELETE /v1.0/functions
 ```
 
 <a id="delete-functions-request-parameter"></a>
-
-### Request Parameter
+### Request Parameter { #delete-functions-request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
@@ -481,8 +450,7 @@ DELETE /v1.0/functions
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 
 <a id="delete-functions-request-body"></a>
-
-### Request Body
+### Request Body { #delete-functions-request-body }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -500,8 +468,7 @@ DELETE /v1.0/functions
 | names | Array | Y | Function name list to delete |
 
 <a id="delete-functions-response"></a>
-
-### Response
+### Response { #delete-functions-response }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -522,22 +489,19 @@ DELETE /v1.0/functions
 ---
 
 <a id="execute-function-get"></a>
-
-## Execute Function (GET)
+## Execute Function (GET) { #execute-function-get }
 
 Executes a function using the GET method.
 
 <a id="execute-function-get-request"></a>
-
-### Request
+### Request { #execute-function-get-request }
 
 ```
 GET /v1.0/functions/{functionName}/invoke
 ```
 
 <a id="execute-function-get-request-parameter"></a>
-
-### Request Parameter
+### Request Parameter { #execute-function-get-request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
@@ -546,14 +510,12 @@ GET /v1.0/functions/{functionName}/invoke
 | functionName | URL | String | Y | Function name to execute |
 
 <a id="execute-function-get-request-body"></a>
-
-### Request Body
+### Request Body { #execute-function-get-request-body }
 
 This API does not require a request body.
 
 <a id="execute-function-get-response"></a>
-
-### Response
+### Response { #execute-function-get-response }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -578,22 +540,19 @@ This API does not require a request body.
 ---
 
 <a id="execute-function-post"></a>
-
-## Execute Function (POST)
+## Execute Function (POST) { #execute-function-post }
 
 Executes a function using the POST method. A request body can be included.
 
 <a id="execute-function-post-request"></a>
-
-### Request
+### Request { #execute-function-post-request }
 
 ```
 POST /v1.0/functions/{functionName}/invoke
 ```
 
 <a id="execute-function-post-request-parameter"></a>
-
-### Request Parameter
+### Request Parameter { #execute-function-post-request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
@@ -602,8 +561,7 @@ POST /v1.0/functions/{functionName}/invoke
 | functionName | URL | String | Y | Function name to execute |
 
 <a id="execute-function-post-request-body"></a>
-
-### Request Body
+### Request Body { #execute-function-post-request-body }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -621,8 +579,7 @@ POST /v1.0/functions/{functionName}/invoke
 | body | JSON | N | Body to send to the function |
 
 <a id="execute-function-post-response"></a>
-
-### Response
+### Response { #execute-function-post-response }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -647,22 +604,19 @@ POST /v1.0/functions/{functionName}/invoke
 ---
 
 <a id="list-versions"></a>
-
-## List Versions
+## List Versions { #list-versions }
 
 Retrieves a list of versions (packages) for a function.
 
 <a id="list-versions-request"></a>
-
-### Request
+### Request { #list-versions-request }
 
 ```
 GET /v1.0/functions/{functionName}/versions
 ```
 
 <a id="list-versions-request-parameter"></a>
-
-### Request Parameter
+### Request Parameter { #list-versions-request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
@@ -671,14 +625,12 @@ GET /v1.0/functions/{functionName}/versions
 | functionName | URL | String | Y | Function name |
 
 <a id="list-versions-request-body"></a>
-
-### Request Body
+### Request Body { #list-versions-request-body }
 
 This API does not require a request body.
 
 <a id="list-versions-response"></a>
-
-### Response
+### Response { #list-versions-response }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -726,22 +678,19 @@ This API does not require a request body.
 ---
 
 <a id="switch-version"></a>
-
-## Switch Version
+## Switch Version { #switch-version }
 
 Changes the currently active version of a function.
 
 <a id="switch-version-request"></a>
-
-### Request
+### Request { #switch-version-request }
 
 ```
 PUT /v1.0/functions/{functionName}/versions
 ```
 
 <a id="switch-version-request-parameter"></a>
-
-### Request Parameter
+### Request Parameter { #switch-version-request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
@@ -750,8 +699,7 @@ PUT /v1.0/functions/{functionName}/versions
 | functionName | URL | String | Y | Function name |
 
 <a id="switch-version-request-body"></a>
-
-### Request Body
+### Request Body { #switch-version-request-body }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -769,8 +717,7 @@ PUT /v1.0/functions/{functionName}/versions
 | versionId | Integer | Y | Version ID to convert |
 
 <a id="switch-version-response"></a>
-
-### Response
+### Response { #switch-version-response }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -791,24 +738,21 @@ PUT /v1.0/functions/{functionName}/versions
 ---
 
 <a id="delete-versions"></a>
-
-## Delete Versions
+## Delete Versions { #delete-versions }
 
 Deletes versions of a function in bulk.
 
 The currently active version cannot be deleted.
 
 <a id="delete-versions-request"></a>
-
-### Request
+### Request { #delete-versions-request }
 
 ```
 DELETE /v1.0/functions/{functionName}/versions
 ```
 
 <a id="delete-versions-request-parameter"></a>
-
-### Request Parameter
+### Request Parameter { #delete-versions-request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
@@ -817,8 +761,7 @@ DELETE /v1.0/functions/{functionName}/versions
 | functionName | URL | String | Y | Function name |
 
 <a id="delete-versions-request-body"></a>
-
-### Request Body
+### Request Body { #delete-versions-request-body }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -836,8 +779,7 @@ DELETE /v1.0/functions/{functionName}/versions
 | versionIds | Array | Y | Version ID list to delete |
 
 <a id="delete-versions-response"></a>
-
-### Response
+### Response { #delete-versions-response }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -858,22 +800,19 @@ DELETE /v1.0/functions/{functionName}/versions
 ---
 
 <a id="list-triggers"></a>
-
-## List Triggers
+## List Triggers { #list-triggers }
 
 Retrieves a list of triggers for a function.
 
 <a id="list-triggers-request"></a>
-
-### Request
+### Request { #list-triggers-request }
 
 ```
 GET /v1.0/triggers/{functionName}
 ```
 
 <a id="list-triggers-request-parameter"></a>
-
-### Request Parameter
+### Request Parameter { #list-triggers-request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
@@ -882,14 +821,12 @@ GET /v1.0/triggers/{functionName}
 | functionName | URL | String | Y | Function name |
 
 <a id="list-triggers-request-body"></a>
-
-### Request Body
+### Request Body { #list-triggers-request-body }
 
 This API does not require a request body.
 
 <a id="list-triggers-response"></a>
-
-### Response
+### Response { #list-triggers-response }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -931,22 +868,19 @@ This API does not require a request body.
 ---
 
 <a id="create-time-trigger"></a>
-
-## Create Time Trigger
+## Create Time Trigger { #create-time-trigger }
 
 Creates a time trigger for a function.
 
 <a id="create-time-trigger-request"></a>
-
-### Request
+### Request { #create-time-trigger-request }
 
 ```
 POST /v1.0/triggers/{functionName}/time
 ```
 
 <a id="create-time-trigger-request-parameter"></a>
-
-### Request Parameter
+### Request Parameter { #create-time-trigger-request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
@@ -955,8 +889,7 @@ POST /v1.0/triggers/{functionName}/time
 | functionName | URL | String | Y | Function name |
 
 <a id="create-time-trigger-request-body"></a>
-
-### Request Body
+### Request Body { #create-time-trigger-request-body }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -974,8 +907,7 @@ POST /v1.0/triggers/{functionName}/time
 | cron | String | Y | cron expression |
 
 <a id="create-time-trigger-response"></a>
-
-### Response
+### Response { #create-time-trigger-response }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -996,22 +928,19 @@ POST /v1.0/triggers/{functionName}/time
 ---
 
 <a id="modify-time-trigger"></a>
-
-## Modify Time Trigger
+## Modify Time Trigger { #modify-time-trigger }
 
 Modifies the cron expression of a time trigger.
 
 <a id="modify-time-trigger-request"></a>
-
-### Request
+### Request { #modify-time-trigger-request }
 
 ```
 PUT /v1.0/triggers/{functionName}/time
 ```
 
 <a id="modify-time-trigger-request-parameter"></a>
-
-### Request Parameter
+### Request Parameter { #modify-time-trigger-request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
@@ -1020,8 +949,7 @@ PUT /v1.0/triggers/{functionName}/time
 | functionName | URL | String | Y | Function name |
 
 <a id="modify-time-trigger-request-body"></a>
-
-### Request Body
+### Request Body { #modify-time-trigger-request-body }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -1041,8 +969,7 @@ PUT /v1.0/triggers/{functionName}/time
 | cron | String | Y | cron expression |
 
 <a id="modify-time-trigger-response"></a>
-
-### Response
+### Response { #modify-time-trigger-response }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -1063,22 +990,19 @@ PUT /v1.0/triggers/{functionName}/time
 ---
 
 <a id="delete-time-triggers"></a>
-
-## Delete Time Triggers
+## Delete Time Triggers { #delete-time-triggers }
 
 Deletes time triggers in bulk.
 
 <a id="delete-time-triggers-request"></a>
-
-### Request
+### Request { #delete-time-triggers-request }
 
 ```
 DELETE /v1.0/triggers/{functionName}/time
 ```
 
 <a id="delete-time-triggers-request-parameter"></a>
-
-### Request Parameter
+### Request Parameter { #delete-time-triggers-request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
@@ -1087,8 +1011,7 @@ DELETE /v1.0/triggers/{functionName}/time
 | functionName | URL | String | Y | Function name |
 
 <a id="delete-time-triggers-request-body"></a>
-
-### Request Body
+### Request Body { #delete-time-triggers-request-body }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -1106,8 +1029,7 @@ DELETE /v1.0/triggers/{functionName}/time
 | names | Array | Y | List of trigger names to delete |
 
 <a id="delete-time-triggers-response"></a>
-
-### Response
+### Response { #delete-time-triggers-response }
 
 <details>
   <summary><strong>Example code</strong></summary>

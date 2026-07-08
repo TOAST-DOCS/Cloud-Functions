@@ -1,12 +1,12 @@
 <!-- pre-align:aligned sig=65e9891c8f54 -->
 
-## Compute > Cloud Functions > コードテンプレートガイド > Java
+<a id="compute-cloud-functions-code-template-guide-java"></a>
+## Compute > Cloud Functions > コードテンプレートガイド > Java { #compute-cloud-functions-code-template-guide-java }
 
 このドキュメントでは、NHN CloudのCloud FunctionsサービスでJavaを使用して関数を開発する方法を詳しく説明します。
 
 <a id="template-information"></a>
-
-## テンプレート情報
+## テンプレート情報 { #template-information }
 | 項目       | 値                |
 |-----------------|--------------------|
 | **サポートバージョン** | 17, 21             |
@@ -14,12 +14,10 @@
 | **Entry Point** | example.HelloWorld |
 
 <a id="basic-template"></a>
-
-## 基本テンプレート
+## 基本テンプレート { #basic-template }
 
 <a id="hello-world-example"></a>
-
-### Hello Worldの例
+### Hello Worldの例 { #hello-world-example }
 最も基本的な関数の形式です。
 
 ```java
@@ -38,8 +36,7 @@ public class HelloWorld {
 ```
 
 <a id="context-object-requestentity"></a>
-
-### Contextオブジェクト(RequestEntity)
+### Contextオブジェクト(RequestEntity) { #context-object-requestentity }
 Javaの関数では、Springの`RequestEntity`を通じてHTTPリクエスト情報にアクセスできます。
 
 ```java
@@ -73,19 +70,16 @@ public class HelloWorld {
 ```
 
 <a id="download-and-use-template-file"></a>
-
-## テンプレートファイルのダウンロードと活用
+## テンプレートファイルのダウンロードと活用 { #download-and-use-template-file }
 
 <a id="template-download"></a>
-
-### テンプレートのダウンロード
+### テンプレートのダウンロード { #template-download }
 Cloud Functionsが提供するJavaテンプレートをダウンロードし、ローカル環境で開発できます。
 
 **テンプレートのダウンロードリンク**: [java.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/java/java.zip)
 
 <a id="template-file-structure"></a>
-
-### テンプレートのファイル構造
+### テンプレートのファイル構造 { #template-file-structure }
 ダウンロードしたテンプレートは、Mavenのプロジェクト構造に従っています。
 
 ```
@@ -99,11 +93,9 @@ java.zip
 ```
 
 <a id="local-development-process"></a>
-
-### ローカルでの開発プロセス
+### ローカルでの開発プロセス { #local-development-process }
 
 <a id="unzip"></a>
-
 #### 1. 解凍
 ```bash
 # 解凍
@@ -114,7 +106,6 @@ cd my-java-function
 ```
 
 <a id="modify-function-codes"></a>
-
 #### 2. 関数コードの修正
 `src/main/java/example/HelloWorld.java`ファイルを、目的のロジックに合わせて修正します。
 
@@ -167,7 +158,6 @@ public class HelloWorld {
 ```
 
 <a id="compress-into-a-zip-file"></a>
-
 #### 3. ZIPファイルへ圧縮
 修正したソースコードを、再度ZIPファイルへ圧縮します。`pom.xml`ファイルと`src`ディレクトリがルートディレクトリに含まれるように圧縮する必要があります。
 
@@ -186,26 +176,22 @@ zip -r my-function.zip . -x "*.git*" "target/*" "*.log"
 ```
 
 <a id="upload-from-cloud-functions-console"></a>
-
-### Cloud Functionsコンソールでのアップロード
+### Cloud Functionsコンソールでのアップロード { #upload-from-cloud-functions-console }
 - 関数を作成または修正する際に、**ユーザーローカル環境**方式を選択します。
 - **ファイルを選択**をクリックし、作成した`my-function.zip`ファイルをアップロードします。
 
 <a id="cautions-for-upload"></a>
-
-### アップロード時の注意事項
+### アップロード時の注意事項 { #cautions-for-upload }
 - **アップロードファイル**:ソースコードと`pom.xml`が含まれた**ZIPファイル**をアップロードする必要があります。
 - **ZIPファイルの構造**: ZIPファイルのルートに`pom.xml`と`src`ディレクトリを配置する必要があります。
 - **除外するファイル**: `target`ディレクトリや`.git`ディレクトリなど、不要なファイルは含めないでください。
 - **ファイルサイズ**: ZIPファイルのサイズは100MiB以下に制限されます。
 
 <a id="process-by-http-method"></a>
-
-## HTTPメソッド別の処理
+## HTTPメソッド別の処理 { #process-by-http-method }
 
 <a id="process-get-request"></a>
-
-### GETリクエストの処理
+### GETリクエストの処理 { #process-get-request }
 ```java
 package example;
 
@@ -242,8 +228,7 @@ public class GetHandler {
 ```
 
 <a id="process-post-request"></a>
-
-### POSTリクエストの処理
+### POSTリクエストの処理 { #process-post-request }
 ```java
 package example;
 
@@ -285,8 +270,7 @@ public class PostHandler {
 ```
 
 <a id="manage-package-pomxml"></a>
-
-## パッケージ管理(`pom.xml`)
+## パッケージ管理(`pom.xml`) { #manage-package-pomxml }
 
 依存関係の管理には、`pom.xml`ファイルを修正します。`dependencies`セクションに必要なライブラリを追加すると、関数のアップロード時にCloud Functionsが自動で依存関係をダウンロードし、ビルドに含めます。
 
@@ -310,8 +294,7 @@ public class PostHandler {
 ```
 
 <a id="example-of-using-external-libraries"></a>
-
-### 外部ライブラリの活用例
+### 外部ライブラリの活用例 { #example-of-using-external-libraries }
 ```java
 package example;
 
@@ -346,12 +329,10 @@ public class StringUtilsHandler {
 ```
 
 <a id="entry-point-configuration"></a>
-
-## エントリーポイントの設定
+## エントリーポイントの設定 { #entry-point-configuration }
 
 <a id="single-class"></a>
-
-### 単一クラス
+### 単一クラス { #single-class }
 `パッケージ名。クラス名`をエントリーポイントとして使用します。
 
 - パッケージ名: `example`
@@ -360,7 +341,6 @@ public class StringUtilsHandler {
 - **重要**:関数として機能するメソッドは、`public ResponseEntity<?> call(RequestEntity<?> req)`というシグネチャを持つ必要があります。
 
 <a id="caution"></a>
-
-### 注意事項
+### 注意事項 { #caution }
 - **プロジェクト構造**: `src/main/java`のディレクトリ構造を維持する必要があります。
 - **メモリと実行時間**:関数は限られたリソース内で動作する必要があるため、重い処理は避け、コードを最適化してください。

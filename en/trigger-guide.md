@@ -1,18 +1,17 @@
 <!-- pre-align:aligned sig=02be28f736c7 -->
 
-## Compute > Cloud Functions > Trigger Guide
+<a id="compute-cloud-functions-trigger-guide"></a>
+## Compute > Cloud Functions > Trigger Guide { #compute-cloud-functions-trigger-guide }
 
 This document describes the trigger types available in Cloud Functions and how to set them up.
 
 <a id="trigger-overview"></a>
-
-## Trigger Overview
+## Trigger Overview { #trigger-overview }
 
 Trigger is an event source to execute functions. Cloud Functions provide various triggers to allow you to call functions in multiple ways.
 
 <a id="supported-triggers"></a>
-
-### Supported Triggers
+### Supported Triggers { #supported-triggers }
 
 | Types | Descriptions | Built-in |
 |-------------|------------------------|-------|
@@ -21,33 +20,28 @@ Trigger is an event source to execute functions. Cloud Functions provide various
 | API Gateway | Execute a function via API Gateway | No |
 
 <a id="http-trigger"></a>
-
-## HTTP Trigger
+## HTTP Trigger { #http-trigger }
 
 HTTP trigger is built-in when creating a function, and you can execute the function with an HTTP request.
 
 <a id="features"></a>
-
-### Features
+### Features { #features }
 
 - When creating a function, it will be automatically created.
 - It cannot be deleted but only enabled or disabled.
 - GET, POST methods are supported.
 
 <a id="url-format-of-http-trigger"></a>
-
-### URL Format of HTTP Trigger
+### URL Format of HTTP Trigger { #url-format-of-http-trigger }
 
 ```
 https://{userdomain}/{function name}
 ```
 
 <a id="examples"></a>
-
-### Examples
+### Examples { #examples }
 
 <a id="request-get"></a>
-
 #### Request GET
 
 ```bash
@@ -55,7 +49,6 @@ curl -X GET "https://{userdomain}/{function name}?param1=value1&param2=value2"
 ```
 
 <a id="request-post"></a>
-
 #### Request POST
 
 ```bash
@@ -65,8 +58,7 @@ curl -X POST "https://{userdomain}/{function name}" \
 ```
 
 <a id="enabledisable-http-trigger"></a>
-
-### Enable/disable HTTP Trigger
+### Enable/disable HTTP Trigger { #enabledisable-http-trigger }
 
 1. Select a function from the Cloud Functions console.
 2. Go to **Trigger** tab.
@@ -76,14 +68,12 @@ curl -X POST "https://{userdomain}/{function name}" \
 > <br>If you send a request with a disabled HTTP trigger, the function will not execute.
 
 <a id="timer-trigger"></a>
-
-## Timer Trigger
+## Timer Trigger { #timer-trigger }
 
 Timer trigger executes a function automatically at the specified time or cycle. You can set up the cycle by using the Cron expression.
 
 <a id="create-timer-trigger"></a>
-
-### Create Timer Trigger
+### Create Timer Trigger { #create-timer-trigger }
 
 ![trigger-guide-05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-01.png)
 
@@ -95,8 +85,7 @@ Timer trigger executes a function automatically at the specified time or cycle. 
 6. Click **Create**.
 
 <a id="cron-expression-format"></a>
-
-### Cron Expression Format
+### Cron Expression Format { #cron-expression-format }
 
 Cron expression follows the format as below:
 
@@ -112,7 +101,6 @@ Cron expression follows the format as below:
 ```
 
 <a id="cron-expression-field"></a>
-
 #### Cron Expression Field
 
 | Field | Required | Allowed vale | Allowed special character |
@@ -125,7 +113,6 @@ Cron expression follows the format as below:
 | Day of week | Yes | 0-6 or SUN-SAT | * / , - ? |
 
 <a id="special-characters-details"></a>
-
 #### Special Characters Details
 
 `*`
@@ -149,8 +136,7 @@ Used to define scope. For example, using `9-17` in the third field (hours) means
 You can use * instead of leaving the Day of month or Day of week field blank.
 
 <a id="example-of-cron-expression"></a>
-
-### Example of Cron Expression
+### Example of Cron Expression { #example-of-cron-expression }
 
 | Cron Expression | Description |
 |------------------------|---------------------------------|
@@ -165,8 +151,7 @@ You can use * instead of leaving the Day of month or Day of week field blank.
 | `0 0 0 1 JAN *` | Execute every January 1st at midnight |
 
 <a id="modify-timer-trigger"></a>
-
-### Modify Timer Trigger
+### Modify Timer Trigger { #modify-timer-trigger }
 
 ![trigger-guide-02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-02.png)
 
@@ -181,21 +166,18 @@ You can use * instead of leaving the Day of month or Day of week field blank.
 > <br>The Month and Day of week field values ​​are case-insensitive. "SUN", "Sun", "sun" are all recognized equally.
 
 <a id="api-gateway-trigger"></a>
-
-## API Gateway Trigger
+## API Gateway Trigger { #api-gateway-trigger }
 
 API Gateway triggers can execute functions by leveraging the API Gateway service in the same project. API Gateway enables more detailed API management and control.
 
 <a id="prerequisites"></a>
-
-### Prerequisites
+### Prerequisites { #prerequisites }
 
 - The API Gateway service must be enabled in the same project.
   - If it isn't enabled, you can enable it when creating a trigger.
 
 <a id="create-api-gateway-trigger"></a>
-
-### Create API Gateway Trigger
+### Create API Gateway Trigger { #create-api-gateway-trigger }
 
 ![trigger-guide-04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-04.png)
 
@@ -208,19 +190,16 @@ API Gateway triggers can execute functions by leveraging the API Gateway service
 6. Click **Create**.
 
 <a id="api-gateway-trigger-url-format"></a>
-
-### API Gateway Trigger URL Format
+### API Gateway Trigger URL Format { #api-gateway-trigger-url-format }
 
 ```
 https://{stageurl}/{path}
 ```
 
 <a id="api-gateway-trigger-examples"></a>
-
-### Examples
+### Examples { #api-gateway-trigger-examples }
 
 <a id="api-gateway-trigger-examples-request-get"></a>
-
 #### Request GET
 
 ```bash
@@ -228,7 +207,6 @@ curl -X GET "https://{stageurl}/{path}?param1=value1&param2=value2"
 ```
 
 <a id="api-gateway-trigger-examples-request-post"></a>
-
 #### Request POST
 
 ```bash
@@ -238,8 +216,7 @@ curl -X POST "https://{stageurl}/{path}" \
 ```
 
 <a id="features-of-api-gateway-trigger"></a>
-
-### Features of API Gateway Trigger
+### Features of API Gateway Trigger { #features-of-api-gateway-trigger }
 
 - You can leverage various features of API Gateway.
   - Manage authentication and permission
@@ -251,8 +228,7 @@ curl -X POST "https://{stageurl}/{path}" \
 - The service supports GET and POST methods, same as HTTP triggers.
 
 <a id="modify-api-gateway-trigger"></a>
-
-### Modify API Gateway Trigger
+### Modify API Gateway Trigger { #modify-api-gateway-trigger }
 
 ![trigger-guide-05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-05.png)
 
@@ -269,20 +245,17 @@ curl -X POST "https://{stageurl}/{path}" \
 > <br>If you want to change the resource path to which the plugin is applied, we recommend adding a new trigger instead of modifying it.
 
 <a id="use-with-api-gateway"></a>
-
-### Use with API Gateway
+### Use with API Gateway { #use-with-api-gateway }
 
 Once you create an API Gateway trigger, you can configure additional settings in the API Gateway console.
 
 For more details, please refer to the [API Gateway Guide](https://docs.nhncloud.com/ko/Application%20Service/API%20Gateway/ko/overview/).
 
 <a id="delete-trigger"></a>
-
-## Delete Trigger
+## Delete Trigger { #delete-trigger }
 
 <a id="how-to-delete-trigger"></a>
-
-### How to Delete Trigger
+### How to Delete Trigger { #how-to-delete-trigger }
 
 ![trigger-guide-03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-03.png)
 
@@ -293,20 +266,17 @@ For more details, please refer to the [API Gateway Guide](https://docs.nhncloud.
 5. Click **Delete** from the modal window of **Delete Trigger**.
 
 <a id="cautions"></a>
-
-### Cautions
+### Cautions { #cautions }
 
 - You cannot delete HTTP trigger. HTTP trigger is built-in, only being enabled or disabled.
 - If deleting the trigger, you cannot execute the function through the event.
 - Deleted triggers cannot be recovered.
 
 <a id="restrictions"></a>
-
-## Restrictions
+## Restrictions { #restrictions }
 
 <a id="restrictions-for-api-gateway-trigger"></a>
-
-### Restrictions for API Gateway Trigger
+### Restrictions for API Gateway Trigger { #restrictions-for-api-gateway-trigger }
 
 - You can only connect API Gateways within the same project.
 - A single API Gateway resource can only be connected with one function. A single function can register multiple API Gateway triggers.

@@ -1,12 +1,12 @@
 <!-- pre-align:aligned sig=1d5361d8d187 -->
 
-## Compute > Cloud Functions > コードテンプレートガイド > Ruby
+<a id="compute-cloud-functions-code-template-guide-ruby"></a>
+## Compute > Cloud Functions > コードテンプレートガイド > Ruby { #compute-cloud-functions-code-template-guide-ruby }
 
 このドキュメントでは、NHN CloudのCloud FunctionsサービスでRubyを使用して関数を開発する方法を詳しく説明します。
 
 <a id="template-information"></a>
-
-## テンプレート情報
+## テンプレート情報 { #template-information }
 | 項目             | 値       |
 |-----------------|----------|
 | **サポートバージョン**       | 3.4.5    |
@@ -14,12 +14,10 @@
 | **Entry Point** | handler  |
 
 <a id="basic-template"></a>
-
-## 基本テンプレート
+## 基本テンプレート { #basic-template }
 
 <a id="hello-world-example"></a>
-
-### Hello Worldの例
+### Hello Worldの例 { #hello-world-example }
 最も基本的な関数の形式です。
 
 ```ruby
@@ -39,8 +37,7 @@ end
 ```
 
 <a id="context-object"></a>
-
-### Contextオブジェクト
+### Contextオブジェクト { #context-object }
 関数に渡される`context`オブジェクトを通じて、ロガーやリクエスト情報にアクセスできます。
 
 ```ruby
@@ -75,19 +72,16 @@ end
 ```
 
 <a id="download-and-use-template-file"></a>
-
-## テンプレートファイルのダウンロードと活用
+## テンプレートファイルのダウンロードと活用 { #download-and-use-template-file }
 
 <a id="template-download"></a>
-
-### テンプレートのダウンロード
+### テンプレートのダウンロード { #template-download }
 Cloud Functionsが提供するRubyテンプレートをダウンロードし、ローカル環境で開発できます。
 
 **テンプレートのダウンロードリンク**: [ruby.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/ruby/ruby.zip)
 
 <a id="template-file-structure"></a>
-
-### テンプレートのファイル構造
+### テンプレートのファイル構造 { #template-file-structure }
 ダウンロードしたテンプレートファイルの構造は次のとおりです。
 
 ```
@@ -97,11 +91,9 @@ ruby.zip
 ```
 
 <a id="local-development-process"></a>
-
-### ローカルでの開発プロセス
+### ローカルでの開発プロセス { #local-development-process }
 
 <a id="unzip"></a>
-
 #### 1. 解凍
 ```bash
 # 解凍
@@ -112,7 +104,6 @@ cd my-function
 ```
 
 <a id="modify-function-codes"></a>
-
 #### 2. 関数コードの修正
 `parse.rb`ファイルを、目的のロジックに合わせて修正します。
 
@@ -158,7 +149,6 @@ end
 ```
 
 <a id="compress-into-a-zip-file"></a>
-
 #### 3. ZIPファイルへ圧縮
 修正したソースコードを、再度ZIPファイルへ圧縮します。`parse.rb`と`Gemfile`がルートディレクトリに含まれるように圧縮する必要があります。
 
@@ -168,26 +158,22 @@ zip my-function.zip parse.rb Gemfile Gemfile.lock
 **参考**: `Gemfile.lock`ファイルはデプロイ段階で自動的に生成されますが、依存関係の正確なバージョンを事前に確認または固定したい場合は、ローカルで`bundle install`を実行して直接生成した後、一緒に圧縮できます。`Gemfile.lock`ファイルが含まれている場合、そのファイルに明記されたバージョンを使用してビルドされます。
 
 <a id="upload-from-cloud-functions-console"></a>
-
-### Cloud Functionsコンソールでのアップロード
+### Cloud Functionsコンソールでのアップロード { #upload-from-cloud-functions-console }
 - 関数を作成または修正する際に、**ユーザーローカル環境**方式を選択します。
 - **ファイルを選択**をクリックし、作成した`my-function.zip`ファイルをアップロードします。
 
 <a id="cautions-for-upload"></a>
-
-### アップロード時の注意事項
+### アップロード時の注意事項 { #cautions-for-upload }
 - **アップロードファイル**: `*.rb`、`Gemfile`が含まれた**ZIPファイル**をアップロードする必要があります。
   - `Gemfile.lock`ファイルは任意です。含まれている場合はそのファイルに明記されたバージョンでビルドされ、ない場合はデプロイ段階で自動的に生成されます。
 - **ZIPファイルの構造**: ZIPファイルのルートに各ファイルを配置する必要があります。
 - **ファイルサイズ**: ZIPファイルのサイズは100MiB以下に制限されます。
 
 <a id="process-post-request"></a>
-
-## HTTPメソッド別の処理
+## HTTPメソッド別の処理 { #process-post-request }
 
 <a id="process-get-request"></a>
-
-### GETリクエストの処理
+### GETリクエストの処理 { #process-get-request }
 ```ruby
 # frozen_string_literal: true
 
@@ -212,8 +198,7 @@ end
 ```
 
 <a id="process-post-request-2"></a>
-
-### POSTリクエストの処理
+### POSTリクエストの処理 { #process-post-request-2 }
 ```ruby
 # frozen_string_literal: true
 
@@ -249,8 +234,7 @@ end
 ```
 
 <a id="manage-package-gemfile"></a>
-
-## パッケージ管理(`Gemfile`)
+## パッケージ管理(`Gemfile`) { #manage-package-gemfile }
 
 依存関係(Gem)の管理には`Gemfile`を使用します。必要なGemを追加し、`bundle install`を実行して`Gemfile.lock`を生成します。
 
@@ -265,8 +249,7 @@ gem "httparty", "~> 0.23" # HTTPクライアント
 ```
 
 <a id="example-of-external-api-call"></a>
-
-### 外部API呼び出しの例
+### 外部API呼び出しの例 { #example-of-external-api-call }
 ```ruby
 # frozen_string_literal: true
 
@@ -307,8 +290,7 @@ end
 ```
 
 <a id="configure-entry-point"></a>
-
-## エントリーポイントの設定
+## エントリーポイントの設定 { #configure-entry-point }
 
 エントリーポイントには関数名を使用します。
 
@@ -317,7 +299,6 @@ end
 - Entry Point: `handler`
 
 <a id="caution"></a>
-
-### 注意事項
+### 注意事項 { #caution }
 - **Bundlerのバージョン**: `Gemfile.lock`を作成する際には、Bundler 2.6.2以上のバージョンの使用を推奨します。
 - **ActiveSupportなど一部のGemの互換性**: `ActiveSupport`のようにC拡張(C extension)に依存したり、内部構造が複雑だったりする一部のGemは、現在のCloud Functions環境と互換性の問題が発生する可能性があります。`activesupport` Gemは内部で`zeitwerk` Gemに依存しており、このGemがファイルシステムを探索する方法が実行環境と競合し、正常に動作しない場合があります。そのため、できるだけ標準ライブラリや外部依存の少ないGemを使用することを推奨します。

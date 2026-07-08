@@ -1,12 +1,12 @@
 <!-- pre-align:aligned sig=3c324618eb1e -->
 
-## Compute > Cloud Functions > コードテンプレートガイド > .NET
+<a id="compute-cloud-functions-code-template-guide-net"></a>
+## Compute > Cloud Functions > コードテンプレートガイド > .NET { #compute-cloud-functions-code-template-guide-net }
 
 このドキュメントでは、NHN CloudのCloud Functionsサービスで.NETを使用して関数を開発する方法を詳しく説明します。
 
 <a id="template-information"></a>
-
-## テンプレート情報
+## テンプレート情報 { #template-information }
 | 項目       | 値                |
 |-----------------|---------|
 | **サポートバージョン** | 8                  |
@@ -14,12 +14,10 @@
 | **Entry Point** | func             |
 
 <a id="basic-template"></a>
-
-## 基本テンプレート
+## 基本テンプレート { #basic-template }
 
 <a id="hello-world-example"></a>
-
-### Hello Worldの例
+### Hello Worldの例 { #hello-world-example }
 最も基本的な関数の形式です。`Nhn.DotNetCore.Api`名前空間の`NhnContext`を使用して、ロガーやリクエスト情報にアクセスします。
 
 ```csharp
@@ -59,8 +57,7 @@ public class NhnFunction
 ```
 
 <a id="context-object"></a>
-
-### Contextオブジェクト
+### Contextオブジェクト { #context-object }
 `NhnContext`オブジェクトを通じて、ロガー、リクエスト(Request)、レスポンス(Response)オブジェクトにアクセスできます。
 
 ```csharp
@@ -106,19 +103,16 @@ public class NhnFunction
 ```
 
 <a id="download-and-use-template-file"></a>
-
-## テンプレートファイルのダウンロードと活用
+## テンプレートファイルのダウンロードと活用 { #download-and-use-template-file }
 
 <a id="template-download"></a>
-
-### テンプレートのダウンロード
+### テンプレートのダウンロード { #template-download }
 Cloud Functionsが提供する.NETテンプレートをダウンロードし、ローカル環境で開発できます。
 
 **テンプレートのダウンロードリンク**: [dotnet.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/dotnet/dotnet.zip)
 
 <a id="template-file-structure"></a>
-
-### テンプレートのファイル構造
+### テンプレートのファイル構造 { #template-file-structure }
 ダウンロードしたテンプレートファイルの構造は次のとおりです。
 
 ```
@@ -129,11 +123,9 @@ dotnet.zip
 ```
 
 <a id="local-development-process"></a>
-
-### ローカルでの開発プロセス
+### ローカルでの開発プロセス { #local-development-process }
 
 <a id="unzip"></a>
-
 #### 1. 解凍
 ```bash
 # 解凍
@@ -144,7 +136,6 @@ cd my-function
 ```
 
 <a id="modify-function-codes"></a>
-
 #### 2. 関数コードの修正
 `func.cs`ファイルを、目的のロジックに合わせて修正します。
 
@@ -201,7 +192,6 @@ public class NhnFunction
 ```
 
 <a id="compress-into-a-zip-file"></a>
-
 #### 3. ZIPファイルへ圧縮
 修正したソースコードを、再度ZIPファイルへ圧縮します。`func.cs`と`nuget.txt`がルートディレクトリに含まれるように圧縮する必要があります。
 
@@ -210,18 +200,15 @@ zip my-function.zip func.cs nuget.txt
 ```
 
 <a id="upload-from-cloud-functions-console"></a>
-
-### Cloud Functionsコンソールでのアップロード
+### Cloud Functionsコンソールでのアップロード { #upload-from-cloud-functions-console }
 - 関数を作成または修正する際に、**ユーザーローカル環境**方式を選択します。
 - **ファイルを選択**をクリックし、作成した`my-function.zip`ファイルをアップロードします。
 
 <a id="process-by-http-method"></a>
-
-## HTTPメソッド別の処理
+## HTTPメソッド別の処理 { #process-by-http-method }
 
 <a id="process-get-request"></a>
-
-### GETリクエストの処理
+### GETリクエストの処理 { #process-get-request }
 ```csharp
 using System;
 using Nhn.DotNetCore.Api;
@@ -251,8 +238,7 @@ public class NhnFunction
 ```
 
 <a id="process-post-request"></a>
-
-### POSTリクエストの処理
+### POSTリクエストの処理 { #process-post-request }
 ```csharp
 using System;
 using System.IO;
@@ -305,8 +291,7 @@ public class NhnFunction
 ```
 
 <a id="manage-package-nugettxt"></a>
-
-## パッケージ管理(`nuget.txt`)
+## パッケージ管理(`nuget.txt`) { #manage-package-nugettxt }
 
 依存関係(NuGetパッケージ)の管理には、`nuget.txt`ファイルを使用します。必要なパッケージを1行に1つずつ記述してください。
 
@@ -316,8 +301,7 @@ Microsoft.Extensions.Configuration:8.0.0
 ```
 
 <a id="example-of-configuration-management"></a>
-
-### 設定管理の例
+### 設定管理の例 { #example-of-configuration-management }
 ```csharp
 using System;
 using System.Collections.Generic;
@@ -399,8 +383,7 @@ public class NhnFunction
 ```
 
 <a id="configure-entry-point"></a>
-
-## エントリーポイントの設定
+## エントリーポイントの設定 { #configure-entry-point }
 
 エントリーポイントは**ファイル名**です。(拡張子を除く)
 
@@ -410,7 +393,6 @@ public class NhnFunction
 **重要**:クラス名は`NhnFunction`である必要があり、関数として機能するメソッドは`public string Execute(NhnContext context)`というシグネチャを持つ必要があります。
 
 <a id="caution"></a>
-
-### 注意事項
+### 注意事項 { #caution }
 - **パッケージバージョン**: `nuget.txt`でパッケージのバージョンを明記できます。(例: `Newtonsoft.Json:9.0.1`)
 - **タイプの競合**:依存関係を追加する際にタイプの競合が発生する可能性があるため、可能な限り.NETの基本ライブラリを使用するか、互換性のあるバージョンのパッケージを使用することを推奨します。
