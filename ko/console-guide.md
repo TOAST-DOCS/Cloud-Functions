@@ -1,15 +1,21 @@
-## Compute > Cloud Functions > 콘솔 사용 가이드
+<!-- pre-align:aligned sig=1dc54302160b -->
+
+<a id="compute-cloud-functions-console-user-guide"></a>
+## Compute > Cloud Functions > 콘솔 사용 가이드 { #compute-cloud-functions-console-user-guide }
 이 문서는 Cloud Functions 콘솔에서 함수를 생성하고 관리하는 방법을 설명합니다.
 
-## 함수 관리
+<a id="manage-functions"></a>
+## 함수 관리 { #manage-functions }
 함수를 생성, 수정, 삭제, 복사할 수 있습니다.
 
-### 함수 생성
+<a id="create-functions"></a>
+### 함수 생성 { #create-functions }
 함수 설정을 하고 코드를 작성하여 빌드한 뒤 **생성** 버튼을 클릭하면 마지막 빌드한 패키지로 함수가 생성됩니다.
 
 ![console-guide-07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-07.png)
 ![console-guide-08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-08.png)
 
+<a id="create-functions-function-settings"></a>
 #### 함수 설정
 <table class="it">
     <tr>
@@ -87,6 +93,7 @@
 <br>
 
 
+<a id="create-functions-code-writing"></a>
 #### 코드 작성
 
 ![console-guide-16](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-16.png)
@@ -159,6 +166,7 @@
 > "본 런타임은 2026년 4월 30일에 지원이 중단되었으며, 2026년 10월 31일에 사용 중단될 예정입니다. 사용 중단 이후에는 기존 함수의 수정이 불가하므로, 안정적인 운영을 위해 최신 런타임 사용을 권장합니다."<br>
 > 사용 중단된 런타임은 목록에서 제외되어 새 함수 생성 시 선택할 수 없습니다. 런타임 상태에 대한 자세한 내용은 개요의 '런타임 지원 상태'를 참고하세요.
 
+<a id="create-functions-environment-variable"></a>
 #### 환경 변수
 함수가 외부 서비스 연동에 필요한 인증 정보(API 키, DB 접속 정보 등)를 코드에 하드코딩하지 않고 환경 변수로 분리하여 관리할 수 있습니다.
 
@@ -194,15 +202,19 @@
 > - 언어/런타임: `PYTHONPATH`(Python), `NODE_OPTIONS`(Node.js), `JAVA_TOOL_OPTIONS`·`CLASSPATH`(Java)<br>
 > - 접두사 `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_`로 시작하는 키는 모두 차단됩니다.
 
-### 함수 수정
+<a id="modify-functions"></a>
+### 함수 수정 { #modify-functions }
 기존 함수의 함수 설정 및 코드를 수정하려면 **수정** 버튼을 클릭합니다.
+<a id="modify-functions-non-modifiable-item"></a>
 #### 수정 불가 항목
 - 이름, 런타임 환경
     - 해당 항목을 제외한 모든 항목을 수정할 수 있습니다.
+<a id="modify-functions-source-code"></a>
 #### 소스 코드
 - 코드 에디터를 사용하는 경우 기존 코드가 로드됩니다.
 - 사용자 로컬 환경의 ZIP 파일을 업로드하여 함수를 생성했을 경우, 코드 에디터로 변경하면 ZIP 파일을 보여주지 않고 기본 템플릿 코드를 로드합니다.
 
+<a id="modify-functions-modify-function-restrictions-for-discontinued-runtimes"></a>
 #### 사용 중단 런타임 함수 수정 제한
 - 사용 중단된 런타임을 사용하는 함수는 수정할 수 없습니다.
 - 함수 목록에서 사용 중단 런타임을 사용하는 함수를 단건 선택하면 **수정** 버튼이 비활성화되어 함수 수정 화면으로 진입할 수 없습니다.
@@ -210,30 +222,36 @@
     - "사용 중단된 런타임으로 함수를 수정할 수 없습니다. 최신 런타임으로 함수를 새로 생성해주세요."
 - 지원 중단(사용 중단 전) 런타임을 사용하는 함수는 수정할 수 있으며, 함수 생성과 동일하게 안내 콜아웃이 표시됩니다.
 
-### 함수 삭제
+<a id="delete-a-function"></a>
+### 함수 삭제 { #delete-a-function }
 ![console-guide-14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-14.png)
 기존 함수를 선택하여 삭제합니다. 한 번에 여러 함수 삭제가 가능합니다.
 
-### 함수 복사
+<a id="copy-a-function"></a>
+### 함수 복사 { #copy-a-function }
 ![console-guide-13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-13.png)
 기존 함수와 동일한 함수를 복사합니다. 이름은 중복이 불가능하여 복사 전에 이름을 새롭게 작성할 수 있습니다.
 - 트리거는 복사되지 않습니다. (HTTP 트리거는 기본 제공)
 - 버전은 현재 적용된 버전만 복사됩니다.
 - 원본 함수에 등록된 환경 변수는 그대로 복사됩니다.
 
-## 함수 정보
-### 함수 목록
+<a id="about-functions"></a>
+## 함수 정보 { #about-functions }
+<a id="list-of-functions"></a>
+### 함수 목록 { #list-of-functions }
 ![console-guide-01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-01.png)
 - 사용자가 생성한 함수 목록을 확인할 수 있습니다.
 - 빌드 상태는 현재 버전의 빌드 상태를 표시합니다.
 - 런타임 정보 우측에 런타임의 지원 상태(지원 중단/사용 중단) 배지가 표시됩니다.
 
-### 함수 기본 정보
+<a id="basic-information-of-functions"></a>
+### 함수 기본 정보 { #basic-information-of-functions }
 ![console-guide-19](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-19.png)
 - 함수의 기본 정보를 확인할 수 있습니다.
 - 로그 관리 항목에서 **Log & Crash Search** 버튼을 클릭해 Log & Crash Search 서비스로 이동하여 로그를 확인할 수 있습니다.
 
-### 함수 환경 변수
+<a id="function-environment-variables"></a>
+### 함수 환경 변수 { #function-environment-variables }
 함수 상세 정보의 환경 변수 탭에서 해당 함수에 등록된 환경 변수 목록을 확인할 수 있습니다.
 
 ![console-guide-20](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-20.png)
@@ -258,17 +276,20 @@
 
 - 환경 변수의 등록/수정/삭제는 함수 생성 및 수정의 코드 작성 단계에서 할 수 있습니다. 자세한 내용은 함수 생성 > 환경 변수를 참고하세요.
 
-### 함수 버전 관리
+<a id="function-versioning"></a>
+### 함수 버전 관리 { #function-versioning }
 ![console-guide-15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2026-01-27/console-guide-15.png)
 - 함수의 버전을 관리할 수 있습니다.
 - 생성된 모든 버전의 이력을 확인하고, 이전 버전으로 롤백할 수 있습니다.
 
+<a id="function-versioning-versioning-overview"></a>
 #### 버전 관리 개요
 함수 생성/수정 화면에서 **빌드** 버튼을 클릭해 코드를 빌드하면 패키지가 생성됩니다.
 - 함수 생성/수정 시 마지막 빌드한 패키지가 함수 버전으로 연동됩니다.
 - 각 버전은 독립적으로 관리되며, 테스트한 버전을 그대로 함수에 적용할 수 있습니다.
 - 함수 생성 시 최소 1회 이상 빌드를 진행해야 함수 생성이 가능합니다.
 
+<a id="function-versioning-version-information"></a>
 #### 버전 정보
 <table class="it">
     <tr>
@@ -298,6 +319,7 @@
     </tr>
 </table>
 
+<a id="function-versioning-deploy-versions"></a>
 #### 버전 배포
 - 버전 목록에서 배포할 버전을 선택하고 **버전 배포** 버튼을 클릭하면 해당 버전으로 함수가 업데이트됩니다.
 - 현재 적용된 버전은 선택할 수 없습니다.
@@ -307,6 +329,7 @@
 > [참고]
 > <br>버전 배포 시 확인 팝업이 표시되며, 성공 시 버전 목록이 자동으로 갱신됩니다.
 
+<a id="function-versioning-delete-versions"></a>
 #### 버전 삭제
 - 버전 목록에서 삭제할 버전을 선택하고 **버전 삭제** 버튼을 클릭하면 해당 버전이 삭제됩니다.
 - 현재 적용된 버전은 삭제할 수 없습니다.
@@ -316,13 +339,15 @@
 > [참고]
 > <br>버전 삭제 시 확인 팝업이 표시되며, 삭제된 버전은 복구할 수 없습니다.
 
+<a id="function-versioning-constraints"></a>
 #### 제약 사항
 - 함수 생성/수정 화면에서 빌드한 패키지는 함수 생성/수정을 취소하면 함수 버전으로 연동되지 않습니다.
 - 함수 삭제 시 해당 함수와 연동된 모든 버전도 함께 삭제됩니다.
 - 함수 복사 시 원본 함수의 현재 적용된 버전만 복사되며, 모든 버전 이력이 복사되지는 않습니다.
 - 함수 생성 시 여러 런타임으로 빌드할 수 있으나, 함수 수정 시에는 생성 당시 선택한 런타임으로만 빌드할 수 있습니다.
 
-### 함수 트리거 관리
+<a id="manage-function-triggers"></a>
+### 함수 트리거 관리 { #manage-function-triggers }
 - 함수를 실행할 수 있는 트리거를 관리할 수 있습니다.
 - HTTP 트리거는 함수 생성 시 기본으로 제공됩니다.
     - 활성화/비활성화로 사용 여부를 설정할 수 있습니다.
@@ -333,16 +358,19 @@
     - 예: `https://{userdomain}/{함수명}`
     - Method: GET, POST
 
+<a id="manage-function-triggers-createedit-triggers"></a>
 #### 트리거 생성/수정
 - Timer
     - Value: Cron 문자열로 주기를 입력합니다.
 - API Gateway
     - API Gateway 서비스를 이용하여 HTTP Endpoint를 추가할 수 있습니다.
 
+<a id="manage-function-triggers-delete-triggers"></a>
 #### 트리거 삭제
 - 여러 건의 트리거를 선택하여 삭제할 수 있습니다. 기본 트리거인 HTTP 트리거는 삭제할 수 없습니다.
 
-### 함수 모니터링
+<a id="monitor-functions"></a>
+### 함수 모니터링 { #monitor-functions }
 ![console-guide-06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-06.png)
 - 함수의 사용량을 확인할 수 있습니다.
 - 함수 호출 횟수, 호출 거부 수, 오류 발생 횟수, 성공률, 함수 실행 시간 지표를 제공합니다.

@@ -1,17 +1,23 @@
-## Compute > Cloud Functions > 코드 템플릿 가이드 > Python
+<!-- pre-align:aligned sig=253528824169 -->
+
+<a id="compute-cloud-functions-code-template-guide-python"></a>
+## Compute > Cloud Functions > 코드 템플릿 가이드 > Python { #compute-cloud-functions-code-template-guide-python }
 
 이 문서는 NHN Cloud의 Cloud Functions 서비스에서 Python을 사용하여 함수를 개발하는 방법을 상세히 설명합니다.
 
-## 템플릿 정보
+<a id="template-information"></a>
+## 템플릿 정보 { #template-information }
 | 항목              | 값                |
 |-----------------|------------------|
 | 지원 버전       | 3.11, 3.12, 3.13 |
 | 파일명         | user.py          |
 | Entry Point | user.main        |
 
-## 기본 템플릿
+<a id="basic-template"></a>
+## 기본 템플릿 { #basic-template }
 
-### Hello World 예시
+<a id="hello-world-example"></a>
+### Hello World 예시 { #hello-world-example }
 가장 기본적인 함수 형태입니다.
 
 ```python
@@ -29,7 +35,8 @@ def main():
     return yaml.dump(yaml.safe_load(document))
 ```
 
-### Context 객체
+<a id="context-object"></a>
+### Context 객체 { #context-object }
 Python 함수에서는 Flask의 request 객체로 HTTP 요청 정보에 접근할 수 있습니다.
 
 ```python
@@ -57,14 +64,17 @@ def main():
     }
 ```
 
-## 템플릿 파일 다운로드 및 활용
+<a id="download-and-use-template-file"></a>
+## 템플릿 파일 다운로드 및 활용 { #download-and-use-template-file }
 
-### 템플릿 다운로드
+<a id="template-download"></a>
+### 템플릿 다운로드 { #template-download }
 Cloud Functions에서 제공하는 Python 템플릿을 다운로드하여 로컬 환경에서 개발할 수 있습니다.
 
 템플릿 다운로드 링크: [python.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/python/python.zip)
 
-### 템플릿 파일 구조
+<a id="template-file-structure"></a>
+### 템플릿 파일 구조 { #template-file-structure }
 다운로드한 템플릿 파일의 구조는 다음과 같습니다.
 
 ```
@@ -73,6 +83,7 @@ python.zip
 └── requirements.txt # 의존성 관리 파일
 ```
 
+<a id="template-file-structure-userpy"></a>
 #### user.py
 기본 YAML 처리 함수가 포함되어 있습니다.
 ```python
@@ -90,13 +101,16 @@ def main():
     return yaml.dump(yaml.safe_load(document))
 ```
 
+<a id="template-file-structure-requirementstxt"></a>
 #### requirements.txt
 ```txt
 pyyaml
 ```
 
-### 로컬 개발 과정
+<a id="local-development-process"></a>
+### 로컬 개발 과정 { #local-development-process }
 
+<a id="local-development-process-unzip"></a>
 #### 1. 압축 해제
 ```bash
 # 압축 해제
@@ -106,6 +120,7 @@ unzip python.zip -d my-function
 cd my-function
 ```
 
+<a id="local-development-process-modify-function-codes"></a>
 #### 2. 함수 코드 수정
 `user.py` 파일을 원하는 로직으로 수정합니다.
 
@@ -147,6 +162,7 @@ def main():
         }, ensure_ascii=False)
 ```
 
+<a id="local-development-process-compress-into-a-zip-file"></a>
 #### 3. ZIP 파일로 압축
 수정된 코드를 다시 ZIP 파일로 압축합니다.
 
@@ -164,11 +180,14 @@ zip my-function.zip user.py requirements.txt
 zip -r my-function.zip . -x "*.git*" "__pycache__/*" "*.pyc" "test.py"
 ```
 
-### Cloud Functions 콘솔에서 업로드
+<a id="upload-from-cloud-functions-console"></a>
+### Cloud Functions 콘솔에서 업로드 { #upload-from-cloud-functions-console }
 함수를 생성하거나 수정할 때 사용자 로컬 환경의 파일을 업로드하는 경우에 사용합니다. 자세한 내용은 콘솔 사용 가이드를 참고하세요.
 
-### 업로드 시 주의사항
+<a id="cautions-for-upload"></a>
+### 업로드 시 주의사항 { #cautions-for-upload }
 
+<a id="cautions-for-upload-zip-file-structure"></a>
 #### ZIP 파일 구조
 - ZIP 파일의 루트에 직접 `.py` 파일과 `requirements.txt`가 위치해야 합니다.
 - 불필요한 폴더 구조는 피할 것을 권장합니다.
@@ -189,10 +208,12 @@ my-function.zip
     └── requirements.txt
 ```
 
+<a id="cautions-for-upload-file-size-limit"></a>
 #### 파일 크기 제한
 - ZIP 파일 크기는 100MiB 이하로 제한됩니다.
 - `__pycache__` 폴더는 포함하지 마세요.
 
+<a id="cautions-for-upload-files-to-exclude"></a>
 #### 제외할 파일들
 ```bash
 # .gitignore와 유사하게 다음 파일들은 제외
@@ -206,9 +227,11 @@ zip -r my-function.zip . -x \
   "*.zip"
 ```
 
-## HTTP 메서드별 처리
+<a id="process-by-http-method"></a>
+## HTTP 메서드별 처리 { #process-by-http-method }
 
-### GET 요청 처리
+<a id="process-get-request"></a>
+### GET 요청 처리 { #process-get-request }
 ```python
 from flask import request
 import json
@@ -231,7 +254,8 @@ def main():
     return json.dumps(result, ensure_ascii=False)
 ```
 
-### POST 요청 처리
+<a id="process-post-request"></a>
+### POST 요청 처리 { #process-post-request }
 ```python
 from flask import request
 import json
@@ -274,9 +298,11 @@ def main():
         }, ensure_ascii=False), 400
 ```
 
-## 패키지 관리
+<a id="manage-packages"></a>
+## 패키지 관리 { #manage-packages }
 
-### requirements.txt 작성
+<a id="write-requirementstxt"></a>
+### requirements.txt 작성 { #write-requirementstxt }
 의존성 관리를 위해 `requirements.txt` 파일을 작성합니다.
 
 ```txt
@@ -285,7 +311,8 @@ requests>=2.28.0
 python-dateutil>=2.8.0
 ```
 
-### 외부 API 호출 예시
+<a id="example-of-external-api-call"></a>
+### 외부 API 호출 예시 { #example-of-external-api-call }
 ```python
 from flask import request
 import json
@@ -327,7 +354,8 @@ def main():
         }, ensure_ascii=False), 500
 ```
 
-### 데이터 처리 예시
+<a id="data-processing-example"></a>
+### 데이터 처리 예시 { #data-processing-example }
 ```python
 from flask import request
 import json
@@ -381,7 +409,8 @@ def normalize_name(name):
     return name.strip().title()
 ```
 
-## 환경 변수 사용
+<a id="use-environment-variables"></a>
+## 환경 변수 사용 { #use-environment-variables }
 함수에 등록한 환경 변수는 `os.environ`(또는 `os.getenv`)으로 접근할 수 있습니다. 환경 변수는 함수 생성 및 수정의 코드 작성 단계에서 등록합니다. 자세한 내용은 콘솔 사용 가이드를 참고하세요.
 
 ```python
@@ -418,16 +447,19 @@ def main():
     - `PYTHONPATH`, `PYTHONSTARTUP`, `PYTHONHOME`, `PYTHONEXECUTABLE`
     - 접두사 `PYTHON`
 
-## Entry Point 설정
+<a id="configure-entry-point"></a>
+## Entry Point 설정 { #configure-entry-point }
 
-### 단일 함수
+<a id="single-function"></a>
+### 단일 함수 { #single-function }
 `파일명.함수명`을 Entry Point로 사용합니다.
 
 파일명: `user.py`
 함수명: `main`
 Entry Point: `user.main`
 
-### 다중 함수
+<a id="multiple-functions"></a>
+### 다중 함수 { #multiple-functions }
 하나의 파일에서 여러 함수를 정의할 수 있습니다.
 
 ```python
@@ -453,9 +485,11 @@ Entry Point 설정:
 - `handlers.create_user`
 - `handlers.update_user`
 
-## 주의사항
+<a id="caution"></a>
+## 주의사항 { #caution }
 
-### 지원하지 않는 패키지
+<a id="unsupported-packages"></a>
+### 지원하지 않는 패키지 { #unsupported-packages }
 현재 아래 특징이 있는 복잡한 패키지는 지원하지 않습니다.
 
 지원하지 않는 패키지 예시:
@@ -469,7 +503,8 @@ Entry Point 설정:
 - `python-dateutil` (날짜/시간 처리)
 - `pillow` (이미지 처리 - 기본 기능)
 
-### 메모리 및 실행 시간 고려사항
+<a id="considerations-for-memory-and-execution-time"></a>
+### 메모리 및 실행 시간 고려사항 { #considerations-for-memory-and-execution-time }
 - 함수는 제한된 메모리와 실행 시간 내에서 동작해야 합니다.
 - 대용량 데이터 처리 시 제너레이터나 스트림 처리를 고려하세요.
 - 장시간 실행되는 작업은 적절히 분할하세요.

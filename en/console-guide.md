@@ -1,15 +1,21 @@
-## Compute > Cloud Functions > Console User Guide
+<!-- pre-align:aligned sig=1dc54302160b -->
+
+<a id="compute-cloud-functions-console-user-guide"></a>
+## Compute > Cloud Functions > Console User Guide { #compute-cloud-functions-console-user-guide }
 This document describes how to create and manage functions in Cloud Functions console.
 
-## Manage functions
+<a id="manage-functions"></a>
+## Manage functions { #manage-functions }
 You can create, edit, delete, and copy functions.
 
-### Create functions
+<a id="create-functions"></a>
+### Create functions { #create-functions }
 Configure the function, write your code, and build it. Then, click **Create** to deploy the function using the latest built package.
 
 ![console-guide-07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-en-01.png)
 ![console-guide-08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-en-02.png)
 
+<a id="create-functions-function-settings"></a>
 #### Function settings
 <table class="it">
     <tr>
@@ -87,6 +93,7 @@ Configure the function, write your code, and build it. Then, click **Create** to
 <br>
 
 
+<a id="create-functions-code-writing"></a>
 #### Code writing
 
 ![console-guide-16](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-en-16.png)
@@ -159,6 +166,7 @@ Configure the function, write your code, and build it. Then, click **Create** to
 > "This runtime was deprecated on April 30, 2026, and is scheduled to be discontinued on October 31, 2026. Modification of existing functions will not be possible after discontinuation, so the use of the latest runtime is recommended for stable operation."<br>
 > Discontinued runtimes are excluded from the list and cannot be selected when creating a new function. For more information on runtime status, see "Runtime Support Status" in the overview.
 
+<a id="create-functions-environment-variable"></a>
 #### Environment Variable
 Credentials required for integration with external services (API keys, DB connection information, etc.) can be managed separately as environment variables without hardcoding them in the code.
 
@@ -194,15 +202,19 @@ Credentials required for integration with external services (API keys, DB connec
 > - Language/runtime: `PYTHONPATH` (Python), `NODE_OPTIONS` (Node.js), `JAVA_TOOL_OPTIONS`·`CLASSPATH` (Java)<br>
 > - Keys starting with the prefixes `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_` are all blocked.
 
-### Modify functions
+<a id="modify-functions"></a>
+### Modify functions { #modify-functions }
 To modify the function settings and code of an existing function, click **Modify** button to modify the function.
+<a id="modify-functions-non-modifiable-item"></a>
 #### Non-modifiable item
 - Name, runtime environment
     - You can edit everything except the item.
+<a id="modify-functions-source-code"></a>
 #### Source code
 - If you're using the code editor, the existing code is loaded.
 - If you created a function by uploading a ZIP file from the local environment, when you switch to the code editor, it loads the default template code without showing the ZIP file.
 
+<a id="modify-functions-modify-function-restrictions-for-discontinued-runtimes"></a>
 #### Modify Function Restrictions for Discontinued Runtimes
 - Functions using a discontinued runtime cannot be modified.
 - When a single function using a discontinued runtime is selected in the function list, the **Modify** button is disabled and the function modification screen cannot be accessed.
@@ -210,30 +222,36 @@ To modify the function settings and code of an existing function, click **Modify
     - "Functions cannot be modified using a discontinued runtime. Please create a new function with the latest runtime."
 - Functions using a deprecated (pre-discontinuation) runtime can be modified, and a guidance callout is displayed in the same way as when creating a function.
 
-### Delete a function
+<a id="delete-a-function"></a>
+### Delete a function { #delete-a-function }
 ![console-guide-14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-en-06.png)
 Select an existing function to delete it. You can delete multiple functions at once.
 
-### Copy a function
+<a id="copy-a-function"></a>
+### Copy a function { #copy-a-function }
 ![console-guide-13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-en-07.png)
 Copy a function that is identical to an existing function. The name cannot be duplicated, so you can rewrite the name before copying.
 - Triggers are not copied. (HTTP triggers are provided by default).
 - Only the currently applied version will be copied.
 - Environment variables registered in the original function are copied as-is.
 
-## About functions
-### List of functions
+<a id="about-functions"></a>
+## About functions { #about-functions }
+<a id="list-of-functions"></a>
+### List of functions { #list-of-functions }
 ![console-guide-01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-en-08.png)
 - You can see a list of functions that users have created.
 - Build status shows the build status of the current version.
 - A runtime support status badge (deprecated/discontinued) is displayed to the right of the runtime information.
 
-### Basic information of functions
+<a id="basic-information-of-functions"></a>
+### Basic information of functions { #basic-information-of-functions }
 ![console-guide-19](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-en-19.png)
 - You can see basic information about the function.
 - Click Log & Crash Search in the Log Management section to view your logs in the Log & Crash Search service.
 
-### Function Environment Variables
+<a id="function-environment-variables"></a>
+### Function Environment Variables { #function-environment-variables }
 You can check the list of environment variables registered for a function in the environment variable tab of the function details.
 
 ![console-guide-20](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-en-20.png)
@@ -258,17 +276,20 @@ You can check the list of environment variables registered for a function in the
 
 - Environment variables can be registered, modified, or deleted during the code writing step of function creation and modification. For more information, see Function Creation > Environment Variable.
 
-### Function versioning
+<a id="function-versioning"></a>
+### Function versioning { #function-versioning }
 ![console-guide-15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2026-01-27/console-guide-en-15.png)
 - You can manage function versions.
 - You can view version history and rollback to any previous version.
 
+<a id="function-versioning-versioning-overview"></a>
 #### Versioning overview
 Build your code by clicking **Build** in the function creation or modification screen to generate a package.
 - When you create or update a function, the latest built package is integrated into the function version.
 - Each version is managed independently, allowing you to apply a tested version directly to your function.
 - At least one build is required to enable function creation.
 
+<a id="function-versioning-version-information"></a>
 #### Version information
 <table class="it">
     <tr>
@@ -298,6 +319,7 @@ Build your code by clicking **Build** in the function creation or modification s
     </tr>
 </table>
 
+<a id="function-versioning-deploy-versions"></a>
 #### Deploy versions
 - Select a version from the list and click **Deploy Version** to update the function to the version.
 - The currently applied version cannot be selected for deployment.
@@ -307,6 +329,7 @@ Build your code by clicking **Build** in the function creation or modification s
 > **[Note]**
 > <br>A confirmation popup will appear upon deployment. Once the deployment is successful, the version list will refresh automatically.
 
+<a id="function-versioning-delete-versions"></a>
 #### Delete versions
 - To delete a version, select it from the list and click **Delete Version**.
 - The currently applied version cannot be deleted.
@@ -316,13 +339,15 @@ Build your code by clicking **Build** in the function creation or modification s
 > **[Note]**
 > <br>A confirmation popup will appear when deleting a version. Please note that deleted versions cannot be recovered.
 
+<a id="function-versioning-constraints"></a>
 #### Constraints
 - Canceling function creation or modification will prevent the built package from being integrated into a function version.
 - Deleting a function will permanently remove all integrated versions.
 - When copying a function, only the currently active version is copied. The full version history will not be copied.
 - While multiple runtimes are available during function creation, you can only build using the initially selected runtime when modifying the function.
 
-### Manage function triggers
+<a id="manage-function-triggers"></a>
+### Manage function triggers { #manage-function-triggers }
 You can manage triggers that can perform functions.
 - HTTP triggers are built-in when creating a function.
     - You can set whether to use through the Enable/Disable features.
@@ -333,16 +358,19 @@ You can manage triggers that can perform functions.
     - Example: `https://{userdomain}/{function name}`
     - Method : GET, POST
 
+<a id="manage-function-triggers-createedit-triggers"></a>
 #### Create/edit triggers
 - Timer
     - Value: Enter the cycle as a Cron string.
     - API Gateway
     - You can add HTTP Endpoint by using the API Gateway service.
 
+<a id="manage-function-triggers-delete-triggers"></a>
 #### Delete triggers
 - You can select multiple triggers to delete. You can't delete the HTTP trigger, which is the default trigger.
 
-### Monitor functions
+<a id="monitor-functions"></a>
+### Monitor functions { #monitor-functions }
 ![console-guide-06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-en-11.png)
 - You can check the usage of a function.
 - Provide metrics for the number of function calls, number of call rejections, number of errors, success rate, and function execution time.
