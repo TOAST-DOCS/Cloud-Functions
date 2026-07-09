@@ -587,12 +587,11 @@ func Handler(w http.ResponseWriter, r *http.Request) {
     - 프록시: `HTTP_PROXY`, `HTTPS_PROXY`, `ALL_PROXY`(소문자 포함)
     - TLS 신뢰 저장소: `SSL_CERT_FILE`, `SSL_CERT_DIR`, `REQUESTS_CA_BUNDLE`, `CURL_CA_BUNDLE`
     - 플랫폼 내부: `RUNTIME_PORT`, `USERFUNCVOL`, `WSGI_FRAMEWORK`, `SENTRY_DSN`, `SENTRY_RELEASE`, `TIMEOUT`, `BODY_PARSER_LIMIT`
-    - 접두사: `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_`
+    - 접두사: `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_`, `CORECLR_`, `COMPLUS_`, `DOTNET_`, `ASPNETCORE_`, `PYTHON`, `NODE_`, `RUBY`
 
     Go
 
     - `GODEBUG`
-    - Go는 일반 사용자 변수와 충돌하지 않도록 접두사 차단이 없습니다.
 
 <a id="configure-entry-point"></a>
 ## Entry Point 설정 { #configure-entry-point }

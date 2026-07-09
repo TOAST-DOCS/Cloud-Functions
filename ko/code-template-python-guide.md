@@ -440,12 +440,11 @@ def main():
     - 프록시: `HTTP_PROXY`, `HTTPS_PROXY`, `ALL_PROXY`(소문자 포함)
     - TLS 신뢰 저장소: `SSL_CERT_FILE`, `SSL_CERT_DIR`, `REQUESTS_CA_BUNDLE`, `CURL_CA_BUNDLE`
     - 플랫폼 내부: `RUNTIME_PORT`, `USERFUNCVOL`, `WSGI_FRAMEWORK`, `SENTRY_DSN`, `SENTRY_RELEASE`, `TIMEOUT`, `BODY_PARSER_LIMIT`
-    - 접두사: `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_`
+    - 접두사: `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_`, `CORECLR_`, `COMPLUS_`, `DOTNET_`, `ASPNETCORE_`, `PYTHON`, `NODE_`, `RUBY`
 
     Python
 
     - `PYTHONPATH`, `PYTHONSTARTUP`, `PYTHONHOME`, `PYTHONEXECUTABLE`
-    - 접두사 `PYTHON`
 
 <a id="configure-entry-point"></a>
 ## Entry Point 설정 { #configure-entry-point }

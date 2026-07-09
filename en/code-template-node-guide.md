@@ -446,12 +446,11 @@ module.exports = async (context) => {
     - Proxy: `HTTP_PROXY`, `HTTPS_PROXY`, `ALL_PROXY` (including lowercase)
     - TLS trust store: `SSL_CERT_FILE`, `SSL_CERT_DIR`, `REQUESTS_CA_BUNDLE`, `CURL_CA_BUNDLE`
     - Platform internal: `RUNTIME_PORT`, `USERFUNCVOL`, `WSGI_FRAMEWORK`, `SENTRY_DSN`, `SENTRY_RELEASE`, `TIMEOUT`, `BODY_PARSER_LIMIT`
-    - Prefixes: `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_`
+    - Prefixes: `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_`, `CORECLR_`, `COMPLUS_`, `DOTNET_`, `ASPNETCORE_`, `PYTHON`, `NODE_`, `RUBY`
 
     Node.js
 
     - `NODE_PATH`, `NODE_OPTIONS`, `NODE_EXTRA_CA_CERTS`
-    - Prefix `NODE_`
 
 <a id="configure-entry-point"></a>
 ## Configure Entry Point { #configure-entry-point }

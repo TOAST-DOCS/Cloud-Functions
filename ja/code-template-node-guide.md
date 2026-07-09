@@ -446,12 +446,11 @@ module.exports = async (context) => {
     - プロキシ: `HTTP_PROXY`、`HTTPS_PROXY`、`ALL_PROXY`(小文字を含む)
     - TLSトラストストア: `SSL_CERT_FILE`、`SSL_CERT_DIR`、`REQUESTS_CA_BUNDLE`、`CURL_CA_BUNDLE`
     - プラットフォーム内部: `RUNTIME_PORT`、`USERFUNCVOL`、`WSGI_FRAMEWORK`、`SENTRY_DSN`、`SENTRY_RELEASE`、`TIMEOUT`、`BODY_PARSER_LIMIT`
-    - プレフィックス: `LD_`、`DYLD_`、`KUBERNETES_`、`FISSION_`
+    - プレフィックス: `LD_`、`DYLD_`、`KUBERNETES_`、`FISSION_`、`CORECLR_`、`COMPLUS_`、`DOTNET_`、`ASPNETCORE_`、`PYTHON`、`NODE_`、`RUBY`
 
     Node.js
 
     - `NODE_PATH`, `NODE_OPTIONS`, `NODE_EXTRA_CA_CERTS`
-    - プレフィックス `NODE_`
 
 <a id="configure-entry-point"></a>
 ## エントリーポイントの設定 { #configure-entry-point }
