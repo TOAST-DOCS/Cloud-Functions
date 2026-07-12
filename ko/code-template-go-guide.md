@@ -1,17 +1,23 @@
-## Compute > Cloud Functions > 코드 템플릿 가이드 > Go
+<!-- pre-align:aligned sig=03a04e4bdda0 -->
+
+<a id="compute-cloud-functions-code-template-guide-go"></a>
+## Compute > Cloud Functions > 코드 템플릿 가이드 > Go { #compute-cloud-functions-code-template-guide-go }
 
 이 문서는 NHN Cloud의 Cloud Functions 서비스에서 Go를 사용하여 함수를 개발하는 방법을 상세히 설명합니다.
 
-## 템플릿 정보
+<a id="template-information"></a>
+## 템플릿 정보 { #template-information }
 | 항목              | 값                                        |
 |-----------------|------------------------------------------|
-| **지원 버전**       | 1.22, 1.23, 1.24, 1.25 |
-| **파일명**         | functions.go                             |
-| **Entry Point** | Handler                                  |
+| 지원 버전       | 1.22, 1.23, 1.24, 1.25 |
+| 파일명         | functions.go                             |
+| Entry Point | Handler                                  |
 
-## 기본 템플릿
+<a id="basic-template"></a>
+## 기본 템플릿 { #basic-template }
 
-### Hello World 예시
+<a id="hello-world-example"></a>
+### Hello World 예시 { #hello-world-example }
 가장 기본적인 함수 형태입니다.
 
 ```go
@@ -38,8 +44,9 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-### Context 객체
-Go 함수에서는 `http.ResponseWriter`와 `*http.Request`를 통해 HTTP 요청과 응답을 처리합니다.
+<a id="context-object"></a>
+### Context 객체 { #context-object }
+Go 함수에서는 `http.ResponseWriter`와 `*http.Request`로 HTTP 요청과 응답을 처리합니다.
 
 ```go
 package main
@@ -74,14 +81,17 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-## 템플릿 파일 다운로드 및 활용
+<a id="download-and-use-template-file"></a>
+## 템플릿 파일 다운로드 및 활용 { #download-and-use-template-file }
 
-### 템플릿 다운로드
+<a id="template-download"></a>
+### 템플릿 다운로드 { #template-download }
 Cloud Functions에서 제공하는 Go 템플릿을 다운로드하여 로컬 환경에서 개발할 수 있습니다.
 
-**템플릿 다운로드 링크**: [go.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/go/go.zip)
+템플릿 다운로드 링크: [go.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/go/go.zip)
 
-### 템플릿 파일 구조
+<a id="template-file-structure"></a>
+### 템플릿 파일 구조 { #template-file-structure }
 다운로드한 템플릿 파일의 구조는 다음과 같습니다.
 
 ```
@@ -90,6 +100,7 @@ go.zip
 └── go.mod          # 의존성 관리 파일
 ```
 
+<a id="template-file-structure-functionsgo"></a>
 #### functions.go
 기본 fake 데이터 생성 함수가 포함되어 있습니다.
 ```go
@@ -116,6 +127,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
+<a id="template-file-structure-gomod"></a>
 #### go.mod
 ```go
 module example.com/ncf
@@ -125,8 +137,10 @@ go 1.22
 require github.com/brianvoe/gofakeit/v6 v6.28.0
 ```
 
-### 로컬 개발 과정
+<a id="local-development-process"></a>
+### 로컬 개발 과정 { #local-development-process }
 
+<a id="local-development-process-unzip"></a>
 #### 1. 압축 해제
 ```bash
 # 압축 해제
@@ -136,6 +150,7 @@ unzip go.zip -d my-function
 cd my-function
 ```
 
+<a id="local-development-process-modify-function-codes"></a>
 #### 2. 함수 코드 수정
 `functions.go` 파일을 원하는 로직으로 수정합니다.
 
@@ -185,6 +200,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
+<a id="local-development-process-compress-into-a-zip-file"></a>
 #### 3. ZIP 파일로 압축
 수정된 코드를 다시 ZIP 파일로 압축합니다.
 
@@ -202,16 +218,19 @@ zip my-function.zip functions.go go.mod
 zip -r my-function.zip . -x "*.git*" "go.sum" "test.go"
 ```
 
-### Cloud Functions 콘솔에서 업로드
-> 함수를 생성하거나 수정할 때 사용자 로컬 환경의 파일을 업로드 시 사용. (콘솔 사용 가이드 참고)
+<a id="upload-from-cloud-functions-console"></a>
+### Cloud Functions 콘솔에서 업로드 { #upload-from-cloud-functions-console }
+함수를 생성하거나 수정할 때 사용자 로컬 환경의 파일을 업로드하는 경우에 사용합니다. 자세한 내용은 콘솔 사용 가이드를 참고하세요.
 
-### 업로드 시 주의사항
+<a id="cautions-for-upload"></a>
+### 업로드 시 주의사항 { #cautions-for-upload }
 
+<a id="cautions-for-upload-zip-file-structure"></a>
 #### ZIP 파일 구조
 - ZIP 파일의 루트에 직접 `.go` 파일과 `go.mod`가 위치해야 합니다.
 - 불필요한 폴더 구조는 피할 것을 권장합니다.
 
-**올바른 구조:**
+올바른 구조:
 ```
 my-function.zip
 ├── functions.go
@@ -219,7 +238,7 @@ my-function.zip
 └── utils.go (추가 파일이 있는 경우)
 ```
 
-**잘못된 구조:**
+잘못된 구조:
 ```
 my-function.zip
 └── my-function/
@@ -227,10 +246,12 @@ my-function.zip
     └── go.mod
 ```
 
+<a id="cautions-for-upload-file-size-limit"></a>
 #### 파일 크기 제한
 - ZIP 파일 크기는 100MiB 이하로 제한됩니다.
 - `go.sum` 파일은 포함하지 마세요.
 
+<a id="cautions-for-upload-files-to-exclude"></a>
 #### 제외할 파일들
 ```bash
 # .gitignore와 유사하게 다음 파일들은 제외
@@ -243,9 +264,11 @@ zip -r my-function.zip . -x \
   "*.zip"
 ```
 
-## HTTP 메서드별 처리
+<a id="process-by-http-method"></a>
+## HTTP 메서드별 처리 { #process-by-http-method }
 
-### GET 요청 처리
+<a id="process-get-request"></a>
+### GET 요청 처리 { #process-get-request }
 ```go
 package main
 
@@ -283,7 +306,8 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-### POST 요청 처리
+<a id="process-post-request"></a>
+### POST 요청 처리 { #process-post-request }
 ```go
 package main
 
@@ -354,9 +378,11 @@ func getOrDefault(value, defaultValue string) string {
 }
 ```
 
-## 패키지 관리
+<a id="manage-packages"></a>
+## 패키지 관리 { #manage-packages }
 
-### go.mod 작성
+<a id="write-gomod"></a>
+### go.mod 작성 { #write-gomod }
 의존성 관리를 위해 `go.mod` 파일을 작성합니다.
 
 ```go
@@ -370,7 +396,8 @@ require (
 )
 ```
 
-### 외부 API 호출 예시
+<a id="example-of-external-api-call"></a>
+### 외부 API 호출 예시 { #example-of-external-api-call }
 ```go
 package main
 
@@ -423,7 +450,8 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-### 데이터 처리 예시
+<a id="data-processing-example"></a>
+### 데이터 처리 예시 { #data-processing-example }
 ```go
 package main
 
@@ -516,15 +544,67 @@ func normalizeName(name string) string {
 }
 ```
 
-## Entry Point 설정
+<a id="use-environment-variables"></a>
+## 환경 변수 사용 { #use-environment-variables }
+함수에 등록한 환경 변수는 `os.Getenv`로 접근할 수 있습니다. 환경 변수는 함수 생성 및 수정의 코드 작성 단계에서 등록합니다. 자세한 내용은 콘솔 사용 가이드를 참고하세요.
 
-### 단일 함수
+```go
+package main
+
+import (
+	"encoding/json"
+	"net/http"
+	"os"
+)
+
+func Handler(w http.ResponseWriter, r *http.Request) {
+	// 환경 변수 읽기
+	dbHost := os.Getenv("DB_HOST")
+	apiKey := os.Getenv("API_KEY")
+
+	if apiKey == "" {
+		http.Error(w, "API_KEY is not set", http.StatusInternalServerError)
+		return
+	}
+
+	response := map[string]interface{}{
+		"db_host": dbHost,
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(response)
+}
+```
+
+!!! tip "참고"
+    보안상 다음 키·접두사는 환경 변수로 등록할 수 없습니다.
+
+    공통(모든 런타임)
+
+    - 셸/subprocess: `PATH`, `IFS`, `HOME`, `BASH_ENV`, `ENV`, `SHELLOPTS`
+    - 로더/라이브러리: `LD_PRELOAD`, `LD_LIBRARY_PATH`, `LD_AUDIT`
+    - glibc 동적 로딩: `GCONV_PATH`, `LOCPATH`, `HOSTALIASES`
+    - 프록시: `HTTP_PROXY`, `HTTPS_PROXY`, `ALL_PROXY`(소문자 포함)
+    - TLS 신뢰 저장소: `SSL_CERT_FILE`, `SSL_CERT_DIR`, `REQUESTS_CA_BUNDLE`, `CURL_CA_BUNDLE`
+    - 플랫폼 내부: `RUNTIME_PORT`, `USERFUNCVOL`, `WSGI_FRAMEWORK`, `SENTRY_DSN`, `SENTRY_RELEASE`, `TIMEOUT`, `BODY_PARSER_LIMIT`
+    - 접두사: `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_`, `CORECLR_`, `COMPLUS_`, `DOTNET_`, `ASPNETCORE_`, `PYTHON`, `NODE_`, `RUBY`
+
+    Go
+
+    - `GODEBUG`
+
+<a id="configure-entry-point"></a>
+## Entry Point 설정 { #configure-entry-point }
+
+<a id="single-function"></a>
+### 단일 함수 { #single-function }
 함수명을 Entry Point로 사용합니다.
 
 함수명: `Handler`
 Entry Point: `Handler`
 
-### 다중 함수
+<a id="multiple-functions"></a>
+### 다중 함수 { #multiple-functions }
 하나의 파일에서 여러 함수를 정의할 수 있습니다.
 
 ```go
@@ -564,9 +644,11 @@ Entry Point 설정:
 - `CreateUser`
 - `UpdateUser`
 
-## 주의사항
+<a id="caution"></a>
+## 주의사항 { #caution }
 
-### Go 버전
+<a id="go-version"></a>
+### Go 버전 { #go-version }
 | 버전 | 지원 중단일 | 사용 중단일 |
 |-----|-----------|-----------|
 | 1.25 | - | - |
@@ -574,7 +656,8 @@ Entry Point 설정:
 | 1.23 | 2026-02-21 | 2026-08-21 |
 | 1.22 | 2026-01-28 | 2026-07-28 |
 
+<a id="go-version-support-policy"></a>
 #### Go 버전 지원 정책
-Cloud Functions는 Go의 공식 릴리즈 정책을 따릅니다. Go는 연 2회(1월, 7월) 새로운 메이저 버전을 릴리즈하며, 각 버전은 최신 2개 메이저 버전까지만 지원됩니다.
+Cloud Functions는 Go의 공식 릴리스 정책을 따릅니다. Go는 연 2회(1월, 7월) 새로운 메이저 버전을 릴리스하며, 각 버전은 최신 2개 메이저 버전까지만 지원됩니다.
 
-**권장사항**: 최신 지원 버전(1.24 또는 1.25)을 사용하여 보안 패치와 버그 수정을 계속 받을 수 있도록 합니다.
+권장사항: 최신 지원 버전(1.24 또는 1.25)을 사용하여 보안 패치와 버그 수정을 계속 받을 수 있도록 합니다.

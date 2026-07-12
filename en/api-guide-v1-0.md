@@ -1,10 +1,15 @@
-## Cloud Functions API v1.0 Guide
+<!-- pre-align:aligned sig=fb47c311eeaa -->
+
+<a id="cloud-functions-api-v10-guide"></a>
+## Cloud Functions API v1.0 Guide { #cloud-functions-api-v10-guide }
 
 **Compute > Cloud Functions > API Guide > API v1.0 Guide**
 
-## Cloud Functions API v1.0 Common Information
+<a id="cloud-functions-api-v10-common-information"></a>
+## Cloud Functions API v1.0 Common Information { #cloud-functions-api-v10-common-information }
 
-### API Endpoint
+<a id="api-endpoint"></a>
+### API Endpoint { #api-endpoint }
 
 The endpoints by region for calling the Cloud Functions API are as follows:
 
@@ -12,13 +17,15 @@ The endpoints by region for calling the Cloud Functions API are as follows:
 | --- |-----------------------------------------------------|
 | Korea (Pangyo) Region | https://kr1-cloud-functions.api.nhncloudservice.com |
 
-### Authentication and Authorization
+<a id="authentication-and-authorization"></a>
+### Authentication and Authorization { #authentication-and-authorization }
 
 Cloud Functions uses User Access Key tokens for authentication and authorization when making API calls.
 The User Access Key token is a temporary, Bearer-type access token issued from a User Access Key.
 For more information on issuing and using User Access Key tokens, refer to the [User Access Key Token](/nhncloud/en/public-api/user-access-key-token).
 
-### Response Common Information
+<a id="response-common-information"></a>
+### Response Common Information { #response-common-information }
 
 Every API response follows the common format as below:
 
@@ -64,30 +71,49 @@ Every API response follows the common format as below:
 | header.resultMessage | String | Result message |
 | data | Object | Response data (varies by API) |
 
+<a id="runtime-eol-status-common-fields"></a>
+### Runtime EOL Status Common Fields { #runtime-eol-status-common-fields }
+
+The response for function and environment list retrieval includes EOL (end of life) status information for the runtime.
+
+| Name | Type | Description |
+| --- | --- | --- |
+| runtimeStatus | String | Runtime status: `NORMAL` (active) / `DEPRECATED` (deprecated) / `DISCONTINUED` (discontinued) |
+| deprecatedAt | String | Deprecation date (ISO 8601, Asia/Seoul). Null if not set. |
+| discontinuedAt | String | Discontinuation date (ISO 8601, Asia/Seoul). Null if not set. |
+
+- Status determination: If `discontinuedAt` is before the current time, the status is `DISCONTINUED`. If `deprecatedAt` is before the current time, the status is `DEPRECATED`. Otherwise, the status is `NORMAL`.
+- `DISCONTINUED` runtimes are excluded from the environment list retrieval, and functions using the runtime cannot be modified.
+
 ---
 
-## List Environments
+<a id="list-environments"></a>
+## List Environments { #list-environments }
 
 Retrieves a list of available runtime environments.
 
-### Request
+<a id="request"></a>
+### Request { #request }
 
 ```
 GET /v1.0/env/list
 ```
 
-### Request Parameter
+<a id="request-parameter"></a>
+### Request Parameter { #request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
 | X-NHN-appkey | Header | String | Y | Appkey |
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 
-### Request Body
+<a id="request-body"></a>
+### Request Body { #request-body }
 
 This API does not require a request body.
 
-### Response
+<a id="response"></a>
+### Response { #response }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -104,13 +130,19 @@ This API does not require a request body.
             "id": 1,
             "environment": "NodeJS",
             "version": "22.5.0",
-            "entryPoint": "index.handler"
+            "entryPoint": "index.handler",
+            "runtimeStatus": "NORMAL",
+            "deprecatedAt": "2027-04-30T00:00:00",
+            "discontinuedAt": "2027-10-30T00:00:00"
         },
         {
             "id": 2,
-            "environment": "Python",
-            "version": "3.9",
-            "entryPoint": "main.handler"
+            "environment": "NodeJS",
+            "version": "20.16.0",
+            "entryPoint": "index.handler",
+            "runtimeStatus": "DEPRECATED",
+            "deprecatedAt": "2026-04-30T00:00:00",
+            "discontinuedAt": "2026-10-30T00:00:00"
         }
     ]
 }
@@ -125,20 +157,26 @@ This API does not require a request body.
 | data[].environment | String | Runtime environment (e.g., NodeJS) |
 | data[].version | String | Runtime version (e.g., 22.5.0) |
 | data[].entryPoint | String | Default entry point |
+| data[].runtimeStatus | String | Runtime EOL status (`NORMAL`, `DEPRECATED`). Runtimes with a discontinued (`DISCONTINUED`) status are excluded from the list. |
+| data[].deprecatedAt | String | Deprecation date (ISO 8601). Null if not set. |
+| data[].discontinuedAt | String | Discontinuation date (ISO 8601). Null if not set. |
 
 ---
 
-## List Functions
+<a id="list-functions"></a>
+## List Functions { #list-functions }
 
 Retrieves a list of functions.
 
-### Request
+<a id="list-functions-request"></a>
+### Request { #list-functions-request }
 
 ```
 GET /v1.0/functions
 ```
 
-### Request Parameter
+<a id="list-functions-request-parameter"></a>
+### Request Parameter { #list-functions-request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
@@ -147,11 +185,13 @@ GET /v1.0/functions
 | page | Query | Integer | N | Current page (default: 0) |
 | pageSize | Query | Integer | N | Number of items to display per page (default: 5,000) |
 
-### Request Body
+<a id="list-functions-request-body"></a>
+### Request Body { #list-functions-request-body }
 
 This API does not require a request body.
 
-### Response
+<a id="list-functions-response"></a>
+### Response { #list-functions-response }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -175,7 +215,10 @@ This API does not require a request body.
                 "timeout": 60,
                 "buildStatus": "SUCCEEDED",
                 "createdAt": "1700000000",
-                "updatedAt": "2026-03-09T14:59:44Z"
+                "updatedAt": "2026-03-09T14:59:44Z",
+                "runtimeStatus": "NORMAL",
+                "deprecatedAt": "2027-04-30T00:00:00",
+                "discontinuedAt": "2027-10-30T00:00:00"
             }
         ]
     }
@@ -197,20 +240,26 @@ This API does not require a request body.
 | data.functions[].buildStatus | String | Build status (PENDING, RUNNING, SUCCEEDED, FAILED) |
 | data.functions[].createdAt | String | Creation time (epoch seconds) |
 | data.functions[].updatedAt | String | Last modified time (ISO 8601, e.g., 2026-03-09T14:59:44Z) |
+| data.functions[].runtimeStatus | String | Runtime EOL status (`NORMAL`, `DEPRECATED`, `DISCONTINUED`) |
+| data.functions[].deprecatedAt | String | Deprecation date (ISO 8601). Null if not set. |
+| data.functions[].discontinuedAt | String | Discontinuation date (ISO 8601). Null if not set. |
 
 ---
 
-## Get Function
+<a id="get-function"></a>
+## Get Function { #get-function }
 
 Retrieves detailed information and build logs for a function.
 
-### Request
+<a id="get-function-request"></a>
+### Request { #get-function-request }
 
 ```
 GET /v1.0/functions/{functionName}
 ```
 
-### Request Parameter
+<a id="get-function-request-parameter"></a>
+### Request Parameter { #get-function-request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
@@ -218,11 +267,13 @@ GET /v1.0/functions/{functionName}
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 | functionName | URL | String | Y | Function name |
 
-### Request Body
+<a id="get-function-request-body"></a>
+### Request Body { #get-function-request-body }
 
 This API does not require a request body.
 
-### Response
+<a id="get-function-response"></a>
+### Response { #get-function-response }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -251,7 +302,14 @@ This API does not require a request body.
         "buildLog": "Build succeeded...",
         "currentVersionName": "v1",
         "sourceFileName": "source.zip",
-        "lncsAppkey": null
+        "lncsAppkey": null,
+        "runtimeStatus": "NORMAL",
+        "deprecatedAt": "2027-04-30T00:00:00",
+        "discontinuedAt": "2027-10-30T00:00:00",
+        "envVars": {
+            "DB_HOST": "10.0.0.1",
+            "LOG_LEVEL": "info"
+        }
     }
 }
 ```
@@ -277,30 +335,40 @@ This API does not require a request body.
 | data.currentVersionName | String | Current version name |
 | data.sourceFileName | String | Source file name |
 | data.lncsAppkey | String | LnCS Appkey |
+| data.runtimeStatus | String | Runtime EOL status (`NORMAL`, `DEPRECATED`, `DISCONTINUED`) |
+| data.deprecatedAt | String | Deprecation date (ISO 8601). Null if not set. |
+| data.discontinuedAt | String | Discontinuation date (ISO 8601). Null if not set. |
+| data.envVars | Object | Environment variables set for the function (key-value pairs). Provided only in single-item retrieval. Null if no environment variables are set. |
 
 ---
 
-## Create Function
+<a id="create-function"></a>
+## Create Function { #create-function }
 
 Creates a new function. Upload the source file as multipart/form-data.
 The runtime must be entered in the `{environment}-{version}` format (e.g., NodeJS-22.5.0). Available runtimes can be checked using the List Environments API.
 
 Required parameters vary depending on the executorType. When using poolManager, requestPerPod is required. When using newDeployment, minInstance and maxInstance are required.
 
-### Request
+Environment variables are passed as a JSON string in the `envVars` field. Up to 100 variables are allowed per function, keys must match `^[A-Za-z_][A-Za-z0-9_]*$` (maximum 128 characters, no duplicates), values can be up to 4,096 characters, and reserved keys cannot be registered for security reasons. An invalid JSON will return a failure response.
+
+<a id="create-function-request"></a>
+### Request { #create-function-request }
 
 ```
 POST /v1.0/functions
 ```
 
-### Request Parameter
+<a id="create-function-request-parameter"></a>
+### Request Parameter { #create-function-request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
 | X-NHN-appkey | Header | String | Y | Appkey |
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 
-### Request Body
+<a id="create-function-request-body"></a>
+### Request Body { #create-function-request-body }
 
 Content-Type: multipart/form-data
 
@@ -317,9 +385,11 @@ Content-Type: multipart/form-data
 | minInstance | Integer | Conditional | Minimum number of instances (required when using newDeployment, 1–100, must be less than or equal to maxInstance) |
 | maxInstance | Integer | Conditional | Maximum number of instances (required when using newDeployment, 1–100) |
 | lncsAppkey | String | N | LnCS Appkey |
+| envVars | String | N          | Environment variables (JSON string, e.g., `{"DB_HOST":"10.0.0.1"}`). If not specified, no environment variables are set. An invalid JSON will return a failure response. |
 | sourceFile | Binary | Y | Source code file (ZIP) |
 
-### Response
+<a id="create-function-response"></a>
+### Response { #create-function-response }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -339,19 +409,26 @@ Content-Type: multipart/form-data
 
 ---
 
-## Modify Function
+<a id="modify-function"></a>
+## Modify Function { #modify-function }
 
 Modifies a function. The source file can be uploaded as multipart/form-data.
 
 The source file (sourceFile) is optional. If no source file is included, the existing source code is retained.
 
-### Request
+Environment variables are passed as a JSON string in the `envVars` field. If not specified, the existing environment variables are retained. If set to `"{}"`, all environment variables are deleted. If a value is provided, all environment variables are replaced. Constraints are the same as for function creation.
+
+Functions using a discontinued (`DISCONTINUED`) runtime cannot be modified. When requested, a failure response is returned with `header.isSuccessful` set to `false`, along with the message "Functions cannot be modified using a discontinued runtime. Please create a new function with the latest runtime."
+
+<a id="modify-function-request"></a>
+### Request { #modify-function-request }
 
 ```
 PUT /v1.0/functions/{functionName}
 ```
 
-### Request Parameter
+<a id="modify-function-request-parameter"></a>
+### Request Parameter { #modify-function-request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
@@ -359,7 +436,8 @@ PUT /v1.0/functions/{functionName}
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 | functionName | URL | String | Y | Name of the function to modify |
 
-### Request Body
+<a id="modify-function-request-body"></a>
+### Request Body { #modify-function-request-body }
 
 Content-Type: multipart/form-data
 
@@ -375,9 +453,11 @@ Content-Type: multipart/form-data
 | minInstance | Integer | Conditional | Minimum number of instances (required when using newDeployment, 1–100, must be less than or equal to maxInstance) |
 | maxInstance | Integer | Conditional | Maximum number of instances (required when using newDeployment, 1–100) |
 | lncsAppkey | String | N | LnCS Appkey |
+| envVars | String | N          | Environment variables (JSON string). If not specified, the existing environment variables are retained. If set to `"{}"`, all environment variables are deleted. If a value is provided, all environment variables are replaced. An invalid JSON will return a failure response. |
 | sourceFile | Binary | N | Source code file (ZIP) |
 
-### Response
+<a id="modify-function-response"></a>
+### Response { #modify-function-response }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -397,24 +477,28 @@ Content-Type: multipart/form-data
 
 ---
 
-## Delete Functions
+<a id="delete-functions"></a>
+## Delete Functions { #delete-functions }
 
 Deletes functions in bulk.
 
-### Request
+<a id="delete-functions-request"></a>
+### Request { #delete-functions-request }
 
 ```
 DELETE /v1.0/functions
 ```
 
-### Request Parameter
+<a id="delete-functions-request-parameter"></a>
+### Request Parameter { #delete-functions-request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
 | X-NHN-appkey | Header | String | Y | Appkey |
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 
-### Request Body
+<a id="delete-functions-request-body"></a>
+### Request Body { #delete-functions-request-body }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -431,7 +515,8 @@ DELETE /v1.0/functions
 | --- | --- | --- | --- |
 | names | Array | Y | Function name list to delete |
 
-### Response
+<a id="delete-functions-response"></a>
+### Response { #delete-functions-response }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -451,17 +536,20 @@ DELETE /v1.0/functions
 
 ---
 
-## Execute Function (GET)
+<a id="execute-function-get"></a>
+## Execute Function (GET) { #execute-function-get }
 
 Executes a function using the GET method.
 
-### Request
+<a id="execute-function-get-request"></a>
+### Request { #execute-function-get-request }
 
 ```
 GET /v1.0/functions/{functionName}/invoke
 ```
 
-### Request Parameter
+<a id="execute-function-get-request-parameter"></a>
+### Request Parameter { #execute-function-get-request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
@@ -469,11 +557,13 @@ GET /v1.0/functions/{functionName}/invoke
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 | functionName | URL | String | Y | Function name to execute |
 
-### Request Body
+<a id="execute-function-get-request-body"></a>
+### Request Body { #execute-function-get-request-body }
 
 This API does not require a request body.
 
-### Response
+<a id="execute-function-get-response"></a>
+### Response { #execute-function-get-response }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -497,17 +587,20 @@ This API does not require a request body.
 
 ---
 
-## Execute Function (POST)
+<a id="execute-function-post"></a>
+## Execute Function (POST) { #execute-function-post }
 
 Executes a function using the POST method. A request body can be included.
 
-### Request
+<a id="execute-function-post-request"></a>
+### Request { #execute-function-post-request }
 
 ```
 POST /v1.0/functions/{functionName}/invoke
 ```
 
-### Request Parameter
+<a id="execute-function-post-request-parameter"></a>
+### Request Parameter { #execute-function-post-request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
@@ -515,7 +608,8 @@ POST /v1.0/functions/{functionName}/invoke
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 | functionName | URL | String | Y | Function name to execute |
 
-### Request Body
+<a id="execute-function-post-request-body"></a>
+### Request Body { #execute-function-post-request-body }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -532,7 +626,8 @@ POST /v1.0/functions/{functionName}/invoke
 | --- |------| --- | --- |
 | body | JSON | N | Body to send to the function |
 
-### Response
+<a id="execute-function-post-response"></a>
+### Response { #execute-function-post-response }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -556,17 +651,20 @@ POST /v1.0/functions/{functionName}/invoke
 
 ---
 
-## List Versions
+<a id="list-versions"></a>
+## List Versions { #list-versions }
 
 Retrieves a list of versions (packages) for a function.
 
-### Request
+<a id="list-versions-request"></a>
+### Request { #list-versions-request }
 
 ```
 GET /v1.0/functions/{functionName}/versions
 ```
 
-### Request Parameter
+<a id="list-versions-request-parameter"></a>
+### Request Parameter { #list-versions-request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
@@ -574,11 +672,13 @@ GET /v1.0/functions/{functionName}/versions
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 | functionName | URL | String | Y | Function name |
 
-### Request Body
+<a id="list-versions-request-body"></a>
+### Request Body { #list-versions-request-body }
 
 This API does not require a request body.
 
-### Response
+<a id="list-versions-response"></a>
+### Response { #list-versions-response }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -625,17 +725,20 @@ This API does not require a request body.
 
 ---
 
-## Switch Version
+<a id="switch-version"></a>
+## Switch Version { #switch-version }
 
 Changes the currently active version of a function.
 
-### Request
+<a id="switch-version-request"></a>
+### Request { #switch-version-request }
 
 ```
 PUT /v1.0/functions/{functionName}/versions
 ```
 
-### Request Parameter
+<a id="switch-version-request-parameter"></a>
+### Request Parameter { #switch-version-request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
@@ -643,7 +746,8 @@ PUT /v1.0/functions/{functionName}/versions
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 | functionName | URL | String | Y | Function name |
 
-### Request Body
+<a id="switch-version-request-body"></a>
+### Request Body { #switch-version-request-body }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -660,7 +764,8 @@ PUT /v1.0/functions/{functionName}/versions
 | --- | --- | --- | --- |
 | versionId | Integer | Y | Version ID to convert |
 
-### Response
+<a id="switch-version-response"></a>
+### Response { #switch-version-response }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -680,19 +785,22 @@ PUT /v1.0/functions/{functionName}/versions
 
 ---
 
-## Delete Versions
+<a id="delete-versions"></a>
+## Delete Versions { #delete-versions }
 
 Deletes versions of a function in bulk.
 
 The currently active version cannot be deleted.
 
-### Request
+<a id="delete-versions-request"></a>
+### Request { #delete-versions-request }
 
 ```
 DELETE /v1.0/functions/{functionName}/versions
 ```
 
-### Request Parameter
+<a id="delete-versions-request-parameter"></a>
+### Request Parameter { #delete-versions-request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
@@ -700,7 +808,8 @@ DELETE /v1.0/functions/{functionName}/versions
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 | functionName | URL | String | Y | Function name |
 
-### Request Body
+<a id="delete-versions-request-body"></a>
+### Request Body { #delete-versions-request-body }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -717,7 +826,8 @@ DELETE /v1.0/functions/{functionName}/versions
 | --- | --- | --- | --- |
 | versionIds | Array | Y | Version ID list to delete |
 
-### Response
+<a id="delete-versions-response"></a>
+### Response { #delete-versions-response }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -737,17 +847,20 @@ DELETE /v1.0/functions/{functionName}/versions
 
 ---
 
-## List Triggers
+<a id="list-triggers"></a>
+## List Triggers { #list-triggers }
 
 Retrieves a list of triggers for a function.
 
-### Request
+<a id="list-triggers-request"></a>
+### Request { #list-triggers-request }
 
 ```
 GET /v1.0/triggers/{functionName}
 ```
 
-### Request Parameter
+<a id="list-triggers-request-parameter"></a>
+### Request Parameter { #list-triggers-request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
@@ -755,11 +868,13 @@ GET /v1.0/triggers/{functionName}
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 | functionName | URL | String | Y | Function name |
 
-### Request Body
+<a id="list-triggers-request-body"></a>
+### Request Body { #list-triggers-request-body }
 
 This API does not require a request body.
 
-### Response
+<a id="list-triggers-response"></a>
+### Response { #list-triggers-response }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -800,17 +915,20 @@ This API does not require a request body.
 
 ---
 
-## Create Time Trigger
+<a id="create-time-trigger"></a>
+## Create Time Trigger { #create-time-trigger }
 
 Creates a time trigger for a function.
 
-### Request
+<a id="create-time-trigger-request"></a>
+### Request { #create-time-trigger-request }
 
 ```
 POST /v1.0/triggers/{functionName}/time
 ```
 
-### Request Parameter
+<a id="create-time-trigger-request-parameter"></a>
+### Request Parameter { #create-time-trigger-request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
@@ -818,7 +936,8 @@ POST /v1.0/triggers/{functionName}/time
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 | functionName | URL | String | Y | Function name |
 
-### Request Body
+<a id="create-time-trigger-request-body"></a>
+### Request Body { #create-time-trigger-request-body }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -835,7 +954,8 @@ POST /v1.0/triggers/{functionName}/time
 | --- | --- | --- | --- |
 | cron | String | Y | cron expression |
 
-### Response
+<a id="create-time-trigger-response"></a>
+### Response { #create-time-trigger-response }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -855,17 +975,20 @@ POST /v1.0/triggers/{functionName}/time
 
 ---
 
-## Modify Time Trigger
+<a id="modify-time-trigger"></a>
+## Modify Time Trigger { #modify-time-trigger }
 
 Modifies the cron expression of a time trigger.
 
-### Request
+<a id="modify-time-trigger-request"></a>
+### Request { #modify-time-trigger-request }
 
 ```
 PUT /v1.0/triggers/{functionName}/time
 ```
 
-### Request Parameter
+<a id="modify-time-trigger-request-parameter"></a>
+### Request Parameter { #modify-time-trigger-request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
@@ -873,7 +996,8 @@ PUT /v1.0/triggers/{functionName}/time
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 | functionName | URL | String | Y | Function name |
 
-### Request Body
+<a id="modify-time-trigger-request-body"></a>
+### Request Body { #modify-time-trigger-request-body }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -892,7 +1016,8 @@ PUT /v1.0/triggers/{functionName}/time
 | name | String | Y | Trigger name |
 | cron | String | Y | cron expression |
 
-### Response
+<a id="modify-time-trigger-response"></a>
+### Response { #modify-time-trigger-response }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -912,17 +1037,20 @@ PUT /v1.0/triggers/{functionName}/time
 
 ---
 
-## Delete Time Triggers
+<a id="delete-time-triggers"></a>
+## Delete Time Triggers { #delete-time-triggers }
 
 Deletes time triggers in bulk.
 
-### Request
+<a id="delete-time-triggers-request"></a>
+### Request { #delete-time-triggers-request }
 
 ```
 DELETE /v1.0/triggers/{functionName}/time
 ```
 
-### Request Parameter
+<a id="delete-time-triggers-request-parameter"></a>
+### Request Parameter { #delete-time-triggers-request-parameter }
 
 | Name | Category | Type | Required | Description |
 | --- | --- | --- | --- | --- |
@@ -930,7 +1058,8 @@ DELETE /v1.0/triggers/{functionName}/time
 | X-NHN-authorization | Header | String | Y | User token (Bearer {token}) |
 | functionName | URL | String | Y | Function name |
 
-### Request Body
+<a id="delete-time-triggers-request-body"></a>
+### Request Body { #delete-time-triggers-request-body }
 
 <details>
   <summary><strong>Example code</strong></summary>
@@ -947,7 +1076,8 @@ DELETE /v1.0/triggers/{functionName}/time
 | --- | --- | --- | --- |
 | names | Array | Y | List of trigger names to delete |
 
-### Response
+<a id="delete-time-triggers-response"></a>
+### Response { #delete-time-triggers-response }
 
 <details>
   <summary><strong>Example code</strong></summary>

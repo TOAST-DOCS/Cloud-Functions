@@ -1,17 +1,23 @@
-## Compute > Cloud Functions > コードテンプレートガイド > .NET
+<!-- pre-align:aligned sig=12935a7ff892 -->
+
+<a id="compute-cloud-functions-code-template-guide-net"></a>
+## Compute > Cloud Functions > コードテンプレートガイド > .NET { #compute-cloud-functions-code-template-guide-net }
 
 このドキュメントでは、NHN CloudのCloud Functionsサービスで.NETを使用して関数を開発する方法を詳しく説明します。
 
-## テンプレート情報
+<a id="template-information"></a>
+## テンプレート情報 { #template-information }
 | 項目       | 値                |
 |-----------------|---------|
 | **サポートバージョン** | 8                  |
 | **ファイル名**    | func.cs            |
 | **Entry Point** | func             |
 
-## 基本テンプレート
+<a id="basic-template"></a>
+## 基本テンプレート { #basic-template }
 
-### Hello Worldの例
+<a id="hello-world-example"></a>
+### Hello Worldの例 { #hello-world-example }
 最も基本的な関数の形式です。`Nhn.DotNetCore.Api`名前空間の`NhnContext`を使用して、ロガーやリクエスト情報にアクセスします。
 
 ```csharp
@@ -50,7 +56,8 @@ public class NhnFunction
 }
 ```
 
-### Contextオブジェクト
+<a id="context-object"></a>
+### Contextオブジェクト { #context-object }
 `NhnContext`オブジェクトを通じて、ロガー、リクエスト(Request)、レスポンス(Response)オブジェクトにアクセスできます。
 
 ```csharp
@@ -95,14 +102,17 @@ public class NhnFunction
 }
 ```
 
-## テンプレートファイルのダウンロードと活用
+<a id="download-and-use-template-file"></a>
+## テンプレートファイルのダウンロードと活用 { #download-and-use-template-file }
 
-### テンプレートのダウンロード
+<a id="template-download"></a>
+### テンプレートのダウンロード { #template-download }
 Cloud Functionsが提供する.NETテンプレートをダウンロードし、ローカル環境で開発できます。
 
 **テンプレートのダウンロードリンク**: [dotnet.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/dotnet/dotnet.zip)
 
-### テンプレートのファイル構造
+<a id="template-file-structure"></a>
+### テンプレートのファイル構造 { #template-file-structure }
 ダウンロードしたテンプレートファイルの構造は次のとおりです。
 
 ```
@@ -112,8 +122,10 @@ dotnet.zip
 └── nuget.txt     # 依存関係管理ファイル
 ```
 
-### ローカルでの開発プロセス
+<a id="local-development-process"></a>
+### ローカルでの開発プロセス { #local-development-process }
 
+<a id="local-development-process-unzip"></a>
 #### 1. 解凍
 ```bash
 # 解凍
@@ -123,6 +135,7 @@ unzip dotnet.zip -d my-function
 cd my-function
 ```
 
+<a id="local-development-process-modify-function-codes"></a>
 #### 2. 関数コードの修正
 `func.cs`ファイルを、目的のロジックに合わせて修正します。
 
@@ -178,6 +191,7 @@ public class NhnFunction
 }
 ```
 
+<a id="local-development-process-compress-into-a-zip-file"></a>
 #### 3. ZIPファイルへ圧縮
 修正したソースコードを、再度ZIPファイルへ圧縮します。`func.cs`と`nuget.txt`がルートディレクトリに含まれるように圧縮する必要があります。
 
@@ -185,13 +199,16 @@ public class NhnFunction
 zip my-function.zip func.cs nuget.txt
 ```
 
-### Cloud Functionsコンソールでのアップロード
+<a id="upload-from-cloud-functions-console"></a>
+### Cloud Functionsコンソールでのアップロード { #upload-from-cloud-functions-console }
 - 関数を作成または修正する際に、**ユーザーローカル環境**方式を選択します。
 - **ファイルを選択**をクリックし、作成した`my-function.zip`ファイルをアップロードします。
 
-## HTTPメソッド別の処理
+<a id="process-by-http-method"></a>
+## HTTPメソッド別の処理 { #process-by-http-method }
 
-### GETリクエストの処理
+<a id="process-get-request"></a>
+### GETリクエストの処理 { #process-get-request }
 ```csharp
 using System;
 using Nhn.DotNetCore.Api;
@@ -220,7 +237,8 @@ public class NhnFunction
 }
 ```
 
-### POSTリクエストの処理
+<a id="process-post-request"></a>
+### POSTリクエストの処理 { #process-post-request }
 ```csharp
 using System;
 using System.IO;
@@ -272,7 +290,8 @@ public class NhnFunction
 }
 ```
 
-## パッケージ管理(`nuget.txt`)
+<a id="manage-package-nugettxt"></a>
+## パッケージ管理(`nuget.txt`) { #manage-package-nugettxt }
 
 依存関係(NuGetパッケージ)の管理には、`nuget.txt`ファイルを使用します。必要なパッケージを1行に1つずつ記述してください。
 
@@ -281,7 +300,8 @@ public class NhnFunction
 Microsoft.Extensions.Configuration:8.0.0
 ```
 
-### 設定管理の例
+<a id="example-of-configuration-management"></a>
+### 設定管理の例 { #example-of-configuration-management }
 ```csharp
 using System;
 using System.Collections.Generic;
@@ -362,7 +382,58 @@ public class NhnFunction
 }
 ```
 
-## エントリーポイントの設定
+<a id="use-environment-variables"></a>
+## 環境変数の使用 { #use-environment-variables }
+関数に登録した環境変数は、`Environment.GetEnvironmentVariable`でアクセスできます。環境変数は、関数の作成及び修正のコード作成段階で登録します。詳細については、コンソール使用ガイドをご参照ください。
+
+```csharp
+using System;
+using System.Collections.Generic;
+using Nhn.DotNetCore.Api;
+using Newtonsoft.Json;
+
+public class NhnFunction
+{
+    public string Execute(NhnContext context)
+    {
+        // 環境変数の読み込み
+        string dbHost = Environment.GetEnvironmentVariable("DB_HOST");
+        string apiKey = Environment.GetEnvironmentVariable("API_KEY");
+
+        if (string.IsNullOrEmpty(apiKey))
+        {
+            return "{ \"error\": \"API_KEY is not set\" }";
+        }
+
+        var responseData = new Dictionary<string, object>
+        {
+            { "dbHost", dbHost }
+        };
+
+        return JsonConvert.SerializeObject(responseData);
+    }
+}
+```
+
+!!! tip "ポイント"
+    セキュリティ上、以下のキー・プレフィックスは環境変数として登録できません。
+
+    共通(全てのランタイム)
+
+    - シェル/subprocess: `PATH`、`IFS`、`HOME`、`BASH_ENV`、`ENV`、`SHELLOPTS`
+    - ローダー/ライブラリ: `LD_PRELOAD`、`LD_LIBRARY_PATH`、`LD_AUDIT`
+    - glibc動的ローディング: `GCONV_PATH`、`LOCPATH`、`HOSTALIASES`
+    - プロキシ: `HTTP_PROXY`、`HTTPS_PROXY`、`ALL_PROXY`(小文字を含む)
+    - TLSトラストストア: `SSL_CERT_FILE`、`SSL_CERT_DIR`、`REQUESTS_CA_BUNDLE`、`CURL_CA_BUNDLE`
+    - プラットフォーム内部: `RUNTIME_PORT`、`USERFUNCVOL`、`WSGI_FRAMEWORK`、`SENTRY_DSN`、`SENTRY_RELEASE`、`TIMEOUT`、`BODY_PARSER_LIMIT`
+    - プレフィックス: `LD_`、`DYLD_`、`KUBERNETES_`、`FISSION_`、`CORECLR_`、`COMPLUS_`、`DOTNET_`、`ASPNETCORE_`、`PYTHON`、`NODE_`、`RUBY`
+
+    .NET
+
+    - `DOTNET_STARTUP_HOOKS`, `DOTNET_ADDITIONAL_DEPS`, `ASPNETCORE_HOSTINGSTARTUPASSEMBLIES`
+
+<a id="configure-entry-point"></a>
+## エントリーポイントの設定 { #configure-entry-point }
 
 エントリーポイントは**ファイル名**です。(拡張子を除く)
 
@@ -371,6 +442,7 @@ public class NhnFunction
 
 **重要**:クラス名は`NhnFunction`である必要があり、関数として機能するメソッドは`public string Execute(NhnContext context)`というシグネチャを持つ必要があります。
 
-### 注意事項
+<a id="caution"></a>
+### 注意事項 { #caution }
 - **パッケージバージョン**: `nuget.txt`でパッケージのバージョンを明記できます。(例: `Newtonsoft.Json:9.0.1`)
 - **タイプの競合**:依存関係を追加する際にタイプの競合が発生する可能性があるため、可能な限り.NETの基本ライブラリを使用するか、互換性のあるバージョンのパッケージを使用することを推奨します。

@@ -1,16 +1,22 @@
-## Compute > Cloud Functions > Code Template Guide > Node.js
+<!-- pre-align:aligned sig=9f2d38073162 -->
+
+<a id="compute-cloud-functions-code-template-guide-nodejs"></a>
+## Compute > Cloud Functions > Code Template Guide > Node.js { #compute-cloud-functions-code-template-guide-nodejs }
 
 This document details how to develop functions by using Node.js from NHN Cloud's Cloud Functions service.
 
-## Template information
+<a id="template-information"></a>
+## Template information { #template-information }
 | Item           | Value                  |
 |-----------------|-----------------|
 | **Supported version**       | 20.16.0, 22.5.0 |
 | **File name**         | hello.js        |
 | **Entry Point** | hello           |
 
-## Basic template
-### Hello World example
+<a id="basic-template"></a>
+## Basic template { #basic-template }
+<a id="hello-world-example"></a>
+### Hello World example { #hello-world-example }
 A basic form of function.
 
 ```javascript
@@ -22,7 +28,8 @@ module.exports = async (context) => {
 }
 ```
 
-### Context object
+<a id="context-object"></a>
+### Context object { #context-object }
 'context' object sent to functions include:
 
 ```javascript
@@ -42,14 +49,17 @@ module.exports = async (context) => {
 }
 ```
 
-## Download and use template file
+<a id="download-and-use-template-file"></a>
+## Download and use template file { #download-and-use-template-file }
 
-### Template download
+<a id="template-download"></a>
+### Template download { #template-download }
 You can download the Node.js template provided by Cloud Functions to develop a local environment.
 
 **Template download link**: [nodejs.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/nodejs/nodejs.zip)
 
-### Template file structure
+<a id="template-file-structure"></a>
+### Template file structure { #template-file-structure }
 The structure of the downloaded template file is as follows:
 
 ```
@@ -58,6 +68,7 @@ nodejs.zip
 └── package.json      # Dependency management file
 ```
 
+<a id="template-file-structure-hellojs"></a>
 #### hello.js
 Basic Hello World function is included.
 ```javascript
@@ -69,13 +80,16 @@ module.exports = async (context) => {
 }
 ```
 
+<a id="template-file-structure-packagejson"></a>
 #### package.json
 ```json
 {}
 ```
 
-### Local development process
+<a id="local-development-process"></a>
+### Local development process { #local-development-process }
 
+<a id="local-development-process-unzip"></a>
 #### 1. Unzip
 ```bash
 # Unzip
@@ -85,6 +99,7 @@ unzip nodejs.zip -d my-function
 cd my-function
 ```
 
+<a id="local-development-process-modify-function-codes"></a>
 #### 2. Modify function codes
 Modify `hello.js` file with the logic you want.
 
@@ -127,6 +142,7 @@ module.exports = async (context) => {
 }
 ```
 
+<a id="local-development-process-compress-into-a-zip-file"></a>
 #### 3. Compress into a ZIP file
 Compress the modified source code into ZIP file.
 
@@ -144,11 +160,14 @@ zip my-function.zip hello.js package.json
 zip -r my-function.zip . -x "*.git*" "node_modules/*" "test.js"
 ```
 
-### Upload from Cloud Functions console
+<a id="upload-from-cloud-functions-console"></a>
+### Upload from Cloud Functions console { #upload-from-cloud-functions-console }
 > Used when uploading files from the user's local environment when creating or modifying a function. (refer to Console Guide)
 
-### Cautions for upload
+<a id="cautions-for-upload"></a>
+### Cautions for upload { #cautions-for-upload }
 
+<a id="cautions-for-upload-zip-file-structure"></a>
 #### ZIP file structure
 - The `.js` file and `package.json` must be located directly in the root of the ZIP file.
 - We recommend avoiding unnecessary folder structures.
@@ -169,10 +188,12 @@ my-function.zip
     └── package.json
 ```
 
+<a id="cautions-for-upload-file-size-limit"></a>
 #### File size limit
 - ZIP file size is limited to 100MiB.
 - `node_modules` file should not be included. (for dependencies, manageed as `package.json`)
 
+<a id="cautions-for-upload-files-to-exclude"></a>
 #### Files to exclude
 ```bash
 # Similar to .gitignore, exclude the following files:
@@ -185,9 +206,11 @@ zip -r my-function.zip . -x \
   "*.zip"
 ```
 
-## Process by HTTP method
+<a id="process-by-http-method"></a>
+## Process by HTTP method { #process-by-http-method }
 
-### Process GET request
+<a id="process-get-request"></a>
+### Process GET request { #process-get-request }
 ```javascript
 module.exports = async (context) => {
     if (context.request.method !== 'GET') {
@@ -213,7 +236,8 @@ module.exports = async (context) => {
 }
 ```
 
-### Process POST request
+<a id="process-post-request"></a>
+### Process POST request { #process-post-request }
 ```javascript
 module.exports = async (context) => {
     if (context.request.method !== 'POST') {
@@ -258,9 +282,11 @@ module.exports = async (context) => {
 }
 ```
 
-## Manage packages
+<a id="manage-packages"></a>
+## Manage packages { #manage-packages }
 
-### Write package.json
+<a id="write-packagejson"></a>
+### Write package.json { #write-packagejson }
 Write `package.json` to manage dependencies.
 
 ```json
@@ -278,7 +304,8 @@ Write `package.json` to manage dependencies.
 }
 ```
 
-### Example of external API call
+<a id="example-of-external-api-call"></a>
+### Example of external API call { #example-of-external-api-call }
 ```javascript
 const axios = require('axios');
 
@@ -328,7 +355,8 @@ module.exports = async (context) => {
 }
 ```
 
-### Data processing example
+<a id="data-processing-example"></a>
+### Data processing example { #data-processing-example }
 ```javascript
 const _ = require('lodash');
 const moment = require('moment');
@@ -382,15 +410,60 @@ module.exports = async (context) => {
 }
 ```
 
-## Configure Entry Point
+<a id="use-environment-variables"></a>
+## Use Environment Variables { #use-environment-variables }
+Environment variables registered for a function can be accessed via `process.env`. Environment variables are registered during the code writing step of function creation and modification. For more information, see the console user guide.
 
-### Single function
+```javascript
+module.exports = async (context) => {
+    // Read environmet variables
+    const dbHost = process.env.DB_HOST;
+    const apiKey = process.env.API_KEY;
+
+    if (!apiKey) {
+        return {
+            status: 500,
+            body: JSON.stringify({ error: 'API_KEY is not set' })
+        };
+    }
+
+    return {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ dbHost })
+    };
+}
+```
+
+!!! tip "Note"
+    For security reasons, the following keys and prefixes cannot be registered as environment variables:
+
+    Common (all runtimes)
+
+    - Shell/subprocess: `PATH`, `IFS`, `HOME`, `BASH_ENV`, `ENV`, `SHELLOPTS`
+    - Loader/library: `LD_PRELOAD`, `LD_LIBRARY_PATH`, `LD_AUDIT`
+    - glibc dynamic loading: `GCONV_PATH`, `LOCPATH`, `HOSTALIASES`
+    - Proxy: `HTTP_PROXY`, `HTTPS_PROXY`, `ALL_PROXY` (including lowercase)
+    - TLS trust store: `SSL_CERT_FILE`, `SSL_CERT_DIR`, `REQUESTS_CA_BUNDLE`, `CURL_CA_BUNDLE`
+    - Platform internal: `RUNTIME_PORT`, `USERFUNCVOL`, `WSGI_FRAMEWORK`, `SENTRY_DSN`, `SENTRY_RELEASE`, `TIMEOUT`, `BODY_PARSER_LIMIT`
+    - Prefixes: `LD_`, `DYLD_`, `KUBERNETES_`, `FISSION_`, `CORECLR_`, `COMPLUS_`, `DOTNET_`, `ASPNETCORE_`, `PYTHON`, `NODE_`, `RUBY`
+
+    Node.js
+
+    - `NODE_PATH`, `NODE_OPTIONS`, `NODE_EXTRA_CA_CERTS`
+
+<a id="configure-entry-point"></a>
+## Configure Entry Point { #configure-entry-point }
+
+<a id="single-function"></a>
+### Single function { #single-function }
 Use the function name as the Entry Point.
 
 File name: `hello.js`
 Entry Point: `hello`
 
-### Multiple functions
+<a id="multiple-functions"></a>
+### Multiple functions { #multiple-functions }
 You can define multiple functions in a single file.
 
 ```javascript
@@ -425,7 +498,8 @@ Entry Point Configuration:
 - `users.createUser`
 - `users.updateUser`
 
-### Entry Point restriction
+<a id="entry-point-restriction"></a>
+### Entry Point restriction { #entry-point-restriction }
 - **Subdirectory specification unavailable**: Files in subdirectories of the root directory cannot be specified as Entry Points.
 
 **Right Entry Point:**
@@ -443,9 +517,11 @@ modules/auth.js → modules.auth ❌
 
 All function files must be located at the root level of the ZIP file.
 
-## Caution
+<a id="caution"></a>
+## Caution { #caution }
 
-### CommonJS vs ES Modules
+<a id="commonjs-vs-es-modules"></a>
+### CommonJS vs ES Modules { #commonjs-vs-es-modules }
 Cloud Functions currently only supports CommonJS method.
 
 **Available (CommonJS):**
@@ -464,7 +540,8 @@ export default async (context) => {  // ❌ Not supported
 };
 ```
 
-### Considerations for Memory and execution time
+<a id="considerations-for-memory-and-execution-time"></a>
+### Considerations for Memory and execution time { #considerations-for-memory-and-execution-time }
 - Functions must operate within limited memory and execution time.
 - Consider stream processing when handling large-scale data.
 - Split long-running tasks appropriately.

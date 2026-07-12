@@ -1,17 +1,23 @@
-## Compute > Cloud Functions > コードテンプレートガイド > Java
+<!-- pre-align:aligned sig=fe65e841fbc2 -->
+
+<a id="compute-cloud-functions-code-template-guide-java"></a>
+## Compute > Cloud Functions > コードテンプレートガイド > Java { #compute-cloud-functions-code-template-guide-java }
 
 このドキュメントでは、NHN CloudのCloud FunctionsサービスでJavaを使用して関数を開発する方法を詳しく説明します。
 
-## テンプレート情報
+<a id="template-information"></a>
+## テンプレート情報 { #template-information }
 | 項目       | 値                |
 |-----------------|--------------------|
 | **サポートバージョン** | 17, 21             |
 | **ファイル名**    | HelloWorld.java    |
 | **Entry Point** | example.HelloWorld |
 
-## 基本テンプレート
+<a id="basic-template"></a>
+## 基本テンプレート { #basic-template }
 
-### Hello Worldの例
+<a id="hello-world-example"></a>
+### Hello Worldの例 { #hello-world-example }
 最も基本的な関数の形式です。
 
 ```java
@@ -29,7 +35,8 @@ public class HelloWorld {
 }
 ```
 
-### Contextオブジェクト(RequestEntity)
+<a id="context-object-requestentity"></a>
+### Contextオブジェクト(RequestEntity) { #context-object-requestentity }
 Javaの関数では、Springの`RequestEntity`を通じてHTTPリクエスト情報にアクセスできます。
 
 ```java
@@ -62,14 +69,17 @@ public class HelloWorld {
 }
 ```
 
-## テンプレートファイルのダウンロードと活用
+<a id="download-and-use-template-file"></a>
+## テンプレートファイルのダウンロードと活用 { #download-and-use-template-file }
 
-### テンプレートのダウンロード
+<a id="template-download"></a>
+### テンプレートのダウンロード { #template-download }
 Cloud Functionsが提供するJavaテンプレートをダウンロードし、ローカル環境で開発できます。
 
 **テンプレートのダウンロードリンク**: [java.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/java/java.zip)
 
-### テンプレートのファイル構造
+<a id="template-file-structure"></a>
+### テンプレートのファイル構造 { #template-file-structure }
 ダウンロードしたテンプレートは、Mavenのプロジェクト構造に従っています。
 
 ```
@@ -82,8 +92,10 @@ java.zip
                 └── HelloWorld.java
 ```
 
-### ローカルでの開発プロセス
+<a id="local-development-process"></a>
+### ローカルでの開発プロセス { #local-development-process }
 
+<a id="local-development-process-unzip"></a>
 #### 1. 解凍
 ```bash
 # 解凍
@@ -93,6 +105,7 @@ unzip java.zip -d my-java-function
 cd my-java-function
 ```
 
+<a id="local-development-process-modify-function-codes"></a>
 #### 2. 関数コードの修正
 `src/main/java/example/HelloWorld.java`ファイルを、目的のロジックに合わせて修正します。
 
@@ -144,6 +157,7 @@ public class HelloWorld {
 }
 ```
 
+<a id="local-development-process-compress-into-a-zip-file"></a>
 #### 3. ZIPファイルへ圧縮
 修正したソースコードを、再度ZIPファイルへ圧縮します。`pom.xml`ファイルと`src`ディレクトリがルートディレクトリに含まれるように圧縮する必要があります。
 
@@ -161,19 +175,23 @@ zip -r my-function.zip pom.xml src
 zip -r my-function.zip . -x "*.git*" "target/*" "*.log"
 ```
 
-### Cloud Functionsコンソールでのアップロード
+<a id="upload-from-cloud-functions-console"></a>
+### Cloud Functionsコンソールでのアップロード { #upload-from-cloud-functions-console }
 - 関数を作成または修正する際に、**ユーザーローカル環境**方式を選択します。
 - **ファイルを選択**をクリックし、作成した`my-function.zip`ファイルをアップロードします。
 
-### アップロード時の注意事項
+<a id="cautions-for-upload"></a>
+### アップロード時の注意事項 { #cautions-for-upload }
 - **アップロードファイル**:ソースコードと`pom.xml`が含まれた**ZIPファイル**をアップロードする必要があります。
 - **ZIPファイルの構造**: ZIPファイルのルートに`pom.xml`と`src`ディレクトリを配置する必要があります。
 - **除外するファイル**: `target`ディレクトリや`.git`ディレクトリなど、不要なファイルは含めないでください。
 - **ファイルサイズ**: ZIPファイルのサイズは100MiB以下に制限されます。
 
-## HTTPメソッド別の処理
+<a id="process-by-http-method"></a>
+## HTTPメソッド別の処理 { #process-by-http-method }
 
-### GETリクエストの処理
+<a id="process-get-request"></a>
+### GETリクエストの処理 { #process-get-request }
 ```java
 package example;
 
@@ -209,7 +227,8 @@ public class GetHandler {
 }
 ```
 
-### POSTリクエストの処理
+<a id="process-post-request"></a>
+### POSTリクエストの処理 { #process-post-request }
 ```java
 package example;
 
@@ -250,7 +269,8 @@ public class PostHandler {
 }
 ```
 
-## パッケージ管理(`pom.xml`)
+<a id="manage-package-pomxml"></a>
+## パッケージ管理(`pom.xml`) { #manage-package-pomxml }
 
 依存関係の管理には、`pom.xml`ファイルを修正します。`dependencies`セクションに必要なライブラリを追加すると、関数のアップロード時にCloud Functionsが自動で依存関係をダウンロードし、ビルドに含めます。
 
@@ -273,7 +293,8 @@ public class PostHandler {
 </dependencies>
 ```
 
-### 外部ライブラリの活用例
+<a id="example-of-using-external-libraries"></a>
+### 外部ライブラリの活用例 { #example-of-using-external-libraries }
 ```java
 package example;
 
@@ -307,9 +328,63 @@ public class StringUtilsHandler {
 }
 ```
 
-## エントリーポイントの設定
+<a id="use-environment-variables"></a>
+## 環境変数の使用 { #use-environment-variables }
+関数に登録した環境変数は、`System.getProperty`でアクセスできます。環境変数は、関数の作成及び修正のコード作成段階で登録します。詳細については、コンソール使用ガイドをご参照ください。
 
-### 単一クラス
+!!! tip "ポイント"
+    Javaランタイムでは、環境変数がOSの環境変数ではなくJVMのシステムプロパティとして設定されます。そのため、`System.getenv`ではなく`System.getProperty`で読み込む必要があり、`System.getenv`を使用すると値を取得できません。
+
+```java
+package example;
+
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
+import java.util.HashMap;
+import java.util.Map;
+
+public class HelloWorld {
+
+    public ResponseEntity<?> call(RequestEntity<?> req) {
+        // 環境変数の読み込み(Javaはシステムプロパティとして設定されるためgetPropertyを使用)
+        String dbHost = System.getProperty("DB_HOST");
+        String apiKey = System.getProperty("API_KEY");
+
+        if (apiKey == null || apiKey.isEmpty()) {
+            Map<String, String> error = new HashMap<>();
+            error.put("error", "API_KEY is not set");
+            return ResponseEntity.status(500).body(error);
+        }
+
+        Map<String, String> response = new HashMap<>();
+        response.put("dbHost", dbHost);
+        return ResponseEntity.ok(response);
+    }
+}
+```
+
+!!! tip "ポイント"
+    セキュリティ上、以下のキー・プレフィックスは環境変数として登録できません。
+
+    共通(全てのランタイム)
+
+    - シェル/subprocess: `PATH`、`IFS`、`HOME`、`BASH_ENV`、`ENV`、`SHELLOPTS`
+    - ローダー/ライブラリ: `LD_PRELOAD`、`LD_LIBRARY_PATH`、`LD_AUDIT`
+    - glibc動的ローディング: `GCONV_PATH`、`LOCPATH`、`HOSTALIASES`
+    - プロキシ: `HTTP_PROXY`、`HTTPS_PROXY`、`ALL_PROXY`(小文字を含む)
+    - TLSトラストストア: `SSL_CERT_FILE`、`SSL_CERT_DIR`、`REQUESTS_CA_BUNDLE`、`CURL_CA_BUNDLE`
+    - プラットフォーム内部: `RUNTIME_PORT`、`USERFUNCVOL`、`WSGI_FRAMEWORK`、`SENTRY_DSN`、`SENTRY_RELEASE`、`TIMEOUT`、`BODY_PARSER_LIMIT`
+    - プレフィックス: `LD_`、`DYLD_`、`KUBERNETES_`、`FISSION_`、`CORECLR_`、`COMPLUS_`、`DOTNET_`、`ASPNETCORE_`、`PYTHON`、`NODE_`、`RUBY`
+
+    Java
+
+    - `JAVA_TOOL_OPTIONS`, `_JAVA_OPTIONS`, `JDK_JAVA_OPTIONS`, `CLASSPATH`
+
+<a id="entry-point-configuration"></a>
+## エントリーポイントの設定 { #entry-point-configuration }
+
+<a id="single-class"></a>
+### 単一クラス { #single-class }
 `パッケージ名。クラス名`をエントリーポイントとして使用します。
 
 - パッケージ名: `example`
@@ -317,6 +392,7 @@ public class StringUtilsHandler {
 - Entry Point: `example.HelloWorld`
 - **重要**:関数として機能するメソッドは、`public ResponseEntity<?> call(RequestEntity<?> req)`というシグネチャを持つ必要があります。
 
-### 注意事項
+<a id="caution"></a>
+### 注意事項 { #caution }
 - **プロジェクト構造**: `src/main/java`のディレクトリ構造を維持する必要があります。
 - **メモリと実行時間**:関数は限られたリソース内で動作する必要があるため、重い処理は避け、コードを最適化してください。

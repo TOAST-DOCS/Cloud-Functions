@@ -1,17 +1,23 @@
-## Compute > Cloud Functions > コードテンプレートガイド > Python
+<!-- pre-align:aligned sig=253528824169 -->
+
+<a id="compute-cloud-functions-code-template-guide-python"></a>
+## Compute > Cloud Functions > コードテンプレートガイド > Python { #compute-cloud-functions-code-template-guide-python }
 
 このドキュメントでは、NHN CloudのCloud FunctionsサービスでPythonを使用して関数を開発する方法を詳しく説明します。
 
-## テンプレート情報
+<a id="template-information"></a>
+## テンプレート情報 { #template-information }
 | 項目             | 値               |
 |-----------------|------------------|
 | **サポートバージョン**       | 3.11, 3.12, 3.13 |
 | **ファイル名**         | user.py          |
 | **Entry Point** | user.main        |
 
-## 基本テンプレート
+<a id="basic-template"></a>
+## 基本テンプレート { #basic-template }
 
-### Hello Worldの例
+<a id="hello-world-example"></a>
+### Hello Worldの例 { #hello-world-example }
 最も基本的な関数の形式です。
 
 ```python
@@ -29,7 +35,8 @@ def main():
     return yaml.dump(yaml.safe_load(document))
 ```
 
-### Contextオブジェクト
+<a id="context-object"></a>
+### Contextオブジェクト { #context-object }
 Pythonの関数では、Flaskのrequestオブジェクトを通じてHTTPリクエスト情報にアクセスできます。
 
 ```python
@@ -57,14 +64,17 @@ def main():
     }
 ```
 
-## テンプレートファイルのダウンロードと活用
+<a id="download-and-use-template-file"></a>
+## テンプレートファイルのダウンロードと活用 { #download-and-use-template-file }
 
-### テンプレートのダウンロード
+<a id="template-download"></a>
+### テンプレートのダウンロード { #template-download }
 Cloud Functionsが提供するPythonテンプレートをダウンロードし、ローカル環境で開発できます。
 
 **テンプレートのダウンロードリンク**: [python.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/python/python.zip)
 
-### テンプレートのファイル構造
+<a id="template-file-structure"></a>
+### テンプレートのファイル構造 { #template-file-structure }
 ダウンロードしたテンプレートファイルの構造は以下の通りです:
 
 ```
@@ -73,6 +83,7 @@ python.zip
 └── requirements.txt # 依存関係管理ファイル
 ```
 
+<a id="template-file-structure-userpy"></a>
 #### user.py
 基本的なYAML処理関数が含まれています。
 ```python
@@ -90,13 +101,16 @@ def main():
     return yaml.dump(yaml.safe_load(document))
 ```
 
+<a id="template-file-structure-requirementstxt"></a>
 #### requirements.txt
 ```txt
 pyyaml
 ```
 
-### ローカルでの開発プロセス
+<a id="local-development-process"></a>
+### ローカルでの開発プロセス { #local-development-process }
 
+<a id="local-development-process-unzip"></a>
 #### 1. 解凍
 ```bash
 # 解凍
@@ -106,6 +120,7 @@ unzip python.zip -d my-function
 cd my-function
 ```
 
+<a id="local-development-process-modify-function-codes"></a>
 #### 2. 関数コードの修正
 `user.py`ファイルを、目的のロジックに合わせて修正します。
 
@@ -147,6 +162,7 @@ def main():
         }, ensure_ascii=False)
 ```
 
+<a id="local-development-process-compress-into-a-zip-file"></a>
 #### 3. ZIPファイルへ圧縮
 修正したコードを、再度ZIPファイルへ圧縮します。
 
@@ -164,11 +180,14 @@ zip my-function.zip user.py requirements.txt
 zip -r my-function.zip . -x "*.git*" "__pycache__/*" "*.pyc" "test.py"
 ```
 
-### Cloud Functionsコンソールでのアップロード
+<a id="upload-from-cloud-functions-console"></a>
+### Cloud Functionsコンソールでのアップロード { #upload-from-cloud-functions-console }
 > 関数を作成または修正する際に、ユーザーのローカル環境にあるファイルをアップロードする場合に使用します。(コンソール利用ガイド参照)
 
-### アップロード時の注意事項
+<a id="cautions-for-upload"></a>
+### アップロード時の注意事項 { #cautions-for-upload }
 
+<a id="cautions-for-upload-zip-file-structure"></a>
 #### ZIPファイルの構造
 - ZIPファイルのルートに、直接`.py`ファイルと`requirements.txt`を配置する必要があります。
 - 不要なフォルダ構造は避けることを推奨します。
@@ -189,10 +208,12 @@ my-function.zip
     └── requirements.txt
 ```
 
+<a id="cautions-for-upload-file-size-limit"></a>
 #### ファイルサイズの制限
 - ZIPファイルのサイズは100MiB以下に制限されます。
 - `__pycache__`フォルダは含めないでください。
 
+<a id="cautions-for-upload-files-to-exclude"></a>
 #### 除外するファイル
 ```bash
 # .gitignoreと同様に、以下のファイルは除外
@@ -206,9 +227,11 @@ zip -r my-function.zip . -x \
   "*.zip"
 ```
 
-## HTTPメソッド別の処理
+<a id="process-by-http-method"></a>
+## HTTPメソッド別の処理 { #process-by-http-method }
 
-### GETリクエストの処理
+<a id="process-get-request"></a>
+### GETリクエストの処理 { #process-get-request }
 ```python
 from flask import request
 import json
@@ -231,7 +254,8 @@ def main():
     return json.dumps(result, ensure_ascii=False)
 ```
 
-### POSTリクエストの処理
+<a id="process-post-request"></a>
+### POSTリクエストの処理 { #process-post-request }
 ```python
 from flask import request
 import json
@@ -274,9 +298,11 @@ def main():
         }, ensure_ascii=False), 400
 ```
 
-## パッケージ管理
+<a id="manage-packages"></a>
+## パッケージ管理 { #manage-packages }
 
-### requirements.txtの作成
+<a id="write-requirementstxt"></a>
+### requirements.txtの作成 { #write-requirementstxt }
 依存関係の管理には、`requirements.txt`ファイルを作成します。
 
 ```txt
@@ -285,7 +311,8 @@ requests>=2.28.0
 python-dateutil>=2.8.0
 ```
 
-### 外部API呼び出しの例
+<a id="example-of-external-api-call"></a>
+### 外部API呼び出しの例 { #example-of-external-api-call }
 ```python
 from flask import request
 import json
@@ -327,7 +354,8 @@ def main():
         }, ensure_ascii=False), 500
 ```
 
-### データ処理の例
+<a id="data-processing-example"></a>
+### データ処理の例 { #data-processing-example }
 ```python
 from flask import request
 import json
@@ -381,16 +409,56 @@ def normalize_name(name):
     return name.strip().title()
 ```
 
-## エントリーポイントの設定
+<a id="use-environment-variables"></a>
+## 環境変数の使用 { #use-environment-variables }
+関数に登録した環境変数は、`os.environ`(または`os.getenv`)でアクセスできます。環境変数は、関数の作成及び修正のコード作成段階で登録します。詳細については、コンソール使用ガイドをご参照ください。
 
-### 単一関数
+```python
+from flask import request
+import os
+import json
+
+def main():
+    # 環境変数の読み込み
+    db_host = os.environ.get('DB_HOST')
+    api_key = os.getenv('API_KEY')
+
+    if not api_key:
+        return json.dumps({'error': 'API_KEY is not set'}, ensure_ascii=False), 500
+
+    return json.dumps({'db_host': db_host}, ensure_ascii=False)
+```
+
+!!! tip "ポイント"
+    セキュリティ上、以下のキー・プレフィックスは環境変数として登録できません。
+
+    共通(全てのランタイム)
+
+    - シェル/subprocess: `PATH`、`IFS`、`HOME`、`BASH_ENV`、`ENV`、`SHELLOPTS`
+    - ローダー/ライブラリ: `LD_PRELOAD`、`LD_LIBRARY_PATH`、`LD_AUDIT`
+    - glibc動的ローディング: `GCONV_PATH`、`LOCPATH`、`HOSTALIASES`
+    - プロキシ: `HTTP_PROXY`、`HTTPS_PROXY`、`ALL_PROXY`(小文字を含む)
+    - TLSトラストストア: `SSL_CERT_FILE`、`SSL_CERT_DIR`、`REQUESTS_CA_BUNDLE`、`CURL_CA_BUNDLE`
+    - プラットフォーム内部: `RUNTIME_PORT`、`USERFUNCVOL`、`WSGI_FRAMEWORK`、`SENTRY_DSN`、`SENTRY_RELEASE`、`TIMEOUT`、`BODY_PARSER_LIMIT`
+    - プレフィックス: `LD_`、`DYLD_`、`KUBERNETES_`、`FISSION_`、`CORECLR_`、`COMPLUS_`、`DOTNET_`、`ASPNETCORE_`、`PYTHON`、`NODE_`、`RUBY`
+
+    Python
+
+    - `PYTHONPATH`, `PYTHONSTARTUP`, `PYTHONHOME`, `PYTHONEXECUTABLE`
+
+<a id="configure-entry-point"></a>
+## エントリーポイントの設定 { #configure-entry-point }
+
+<a id="single-function"></a>
+### 単一関数 { #single-function }
 `ファイル名.関数名`をエントリーポイントとして使用します。
 
 ファイル名: `user.py`
 関数名: `main`
 Entry Point: `user.main`
 
-### 複数関数
+<a id="multiple-functions"></a>
+### 複数関数 { #multiple-functions }
 1つのファイルで複数の関数を定義できます。
 
 ```python
@@ -416,9 +484,11 @@ def update_user():
 - `handlers.create_user`
 - `handlers.update_user`
 
-## 注意事項
+<a id="caution"></a>
+## 注意事項 { #caution }
 
-### サポートしていないパッケージ
+<a id="unsupported-packages"></a>
+### サポートしていないパッケージ { #unsupported-packages }
 現在、以下の特徴を持つ複雑なパッケージはサポートしていません。
 
 **サポートしていないパッケージの例:**
@@ -432,7 +502,8 @@ def update_user():
 - `python-dateutil` (日付・時刻処理)
 - `pillow` (画像処理 - 基本機能)
 
-### メモリ及び実行時間に関する考慮事項
+<a id="considerations-for-memory-and-execution-time"></a>
+### メモリ及び実行時間に関する考慮事項 { #considerations-for-memory-and-execution-time }
 - 関数は、限られたメモリと実行時間内で動作する必要があります。
 - 大容量データを処理する際は、ジェネレータやストリーム処理を検討してください。
 - 長時間実行されるタスクは、適切に分割してください。

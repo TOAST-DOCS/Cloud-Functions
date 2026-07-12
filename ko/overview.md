@@ -1,27 +1,34 @@
-## Compute > Cloud Functions > 개요
+<!-- pre-align:aligned sig=1cb57d0b02b5 -->
+
+<a id="compute-cloud-functions-overview"></a>
+## Compute > Cloud Functions > 개요 { #compute-cloud-functions-overview }
 사용자는 함수 단위로 코드를 작성할 수 있으며, 특정 이벤트 발생 시 정의된 함수가 자동으로 실행되어 필요한 작업을 처리합니다. 서버 관리나 인프라 설정 없이 애플리케이션 로직에만 집중할 수 있습니다.
 
-### 특징
+<a id="features"></a>
+### 특징 { #features }
 - 비용 효율성
     - 사용한 만큼만 과금하여 비용을 절감합니다.
-    - 필요할 때만 리소스를 할당하므로 관리 비용을 감소할 수 있습니다.
+    - 필요할 때만 리소스를 할당하므로 관리 비용을 줄일 수 있습니다.
     - 요청에 따라 자동으로 확장 및 축소하여 효율적으로 운영할 수 있습니다.
 - 빠른 개발 및 배포
     - 핵심 비즈니스 로직에 집중할 수 있습니다.
-    - DevOps 운영 부담 감소로 개발 속도를 향상시킬 수 있습니다.
+    - DevOps 운영 부담 감소로 개발 속도를 향상할 수 있습니다.
 - 유연성과 확장성
     - 다양한 언어 및 런타임을 지원합니다.
     - 이벤트 기반 아키텍처로 다양한 활용이 가능합니다.
 
-### 주요 기능
+<a id="main-features"></a>
+### 주요 기능 { #main-features }
 - 다양한 언어(환경)를 제공합니다.
-- **코드 에디터**를 통해 간단한 함수 단위 코드를 작성할 수 있습니다.
+- 코드 에디터로 간단한 함수 단위 코드를 작성할 수 있습니다.
 - 함수를 수행할 수 있는 HTTPS Endpoint를 기본 제공합니다.
 - 함수를 일정 주기로 반복 수행할 수 있습니다.
 
-### 두 가지 모드 제공
+<a id="two-modes-available"></a>
+### 두 가지 모드 제공 { #two-modes-available }
 - Pool Manager
 - New Deployment
+<a id="two-modes-available-pool-manager"></a>
 #### Pool Manager
 - 함수가 수행될 때만 인스턴스가 생성되어 리소스를 사용합니다.
 - 일정 기간 함수가 수행되지 않으면 인스턴스는 사라지고 리소스 사용량은 0이 됩니다.
@@ -29,6 +36,7 @@
 
 ![overview-01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-08-26/NHN%20Cloud_Guide%20overview_CloudFunctions_1_ko.png)
 
+<a id="two-modes-available-new-deployment"></a>
 #### New Deployment
 - 함수를 생성하면 바로 인스턴스가 생성되어 일정량의 리소스를 계속 사용합니다.
 - 빠른 응답을 위해 인스턴스 생성을 유지합니다.
@@ -36,7 +44,8 @@
 
 ![overview-02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-08-26/NHN%20Cloud_Guide%20overview_CloudFunctions_2_ko.png)
 
-### 지원 언어
+<a id="supported-languages"></a>
+### 지원 언어 { #supported-languages }
 
 | 언어     | 버전                | 지원 중단일   | 사용 중단일   |
 |--------|-------------------|------------|------------|
@@ -57,7 +66,23 @@
 | .NET   | 8                 | 2026-11-10 | 2027-11-10 |
 |        | 7(사용 중단)         | 2024-05-14 | 2025-05-14 |
 
-### Trigger
+<a id="supported-languages-runtime-support-status"></a>
+#### 런타임 지원 상태
+각 런타임은 EOL(end of life) 정책에 따라 다음 세 가지 상태로 구분됩니다.
+
+| 상태 | 의미 | 함수 생성 | 함수 수정 |
+| --- | --- | --- | --- |
+| 정상 | 정상적으로 지원되는 상태 | 가능 | 가능 |
+| 지원 중단 | 지원 중단일이 지나 런타임 커뮤니티 지원이 종료된 상태. 사용에는 제한이 없으나 최신 런타임으로 이전을 권고하는 기간 | 가능 | 가능 |
+| 사용 중단 | 사용 중단일이 지난 상태. 함수 실행을 강제로 중단하지는 않으나 정상 동작을 보장하지 않으며, 신규 생성 및 수정이 제한됨 | 불가(목록에서 제외) | 불가(수정 버튼 비활성화) |
+
+- 지원 중단일: 해당 일자부터 런타임이 '지원 중단' 상태가 됩니다.
+- 사용 중단일: 해당 일자부터 런타임이 '사용 중단' 상태가 됩니다.
+
+런타임의 상태는 함수 목록과 상세 정보, 함수 생성/수정 화면에서 확인할 수 있습니다. 자세한 동작은 콘솔 사용 가이드를 참고하세요.
+
+<a id="trigger"></a>
+### Trigger { #trigger }
 - HTTP Trigger
     - 기본 제공(GET, POST 지원)
 - Timer Trigger
