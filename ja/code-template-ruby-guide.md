@@ -78,7 +78,7 @@ end
 ### テンプレートのダウンロード { #template-download }
 Cloud Functionsが提供するRubyテンプレートをダウンロードし、ローカル環境で開発できます。
 
-**テンプレートのダウンロードリンク**: [ruby.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/ruby/ruby.zip)
+**テンプレートのダウンロードリンク**: [ruby.zip](../static/etc/ruby.zip)
 
 <a id="template-file-structure"></a>
 ### テンプレートのファイル構造 { #template-file-structure }

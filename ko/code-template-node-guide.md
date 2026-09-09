@@ -56,7 +56,7 @@ module.exports = async (context) => {
 ### 템플릿 다운로드 { #template-download }
 Cloud Functions에서 제공하는 Node.js 템플릿을 다운로드하여 로컬 환경에서 개발할 수 있습니다.
 
-템플릿 다운로드 링크: [nodejs.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/nodejs/nodejs.zip)
+템플릿 다운로드 링크: [nodejs.zip](../static/etc/nodejs.zip)
 
 <a id="template-file-structure"></a>
 ### 템플릿 파일 구조 { #template-file-structure }

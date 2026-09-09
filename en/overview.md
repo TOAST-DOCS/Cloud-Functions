@@ -34,7 +34,7 @@ Users can write codes by function unit. Functions defined on a specific event ar
 - If the function is not performed for a certain period, instances disappear, and the resource usage becomes 0.
 - Use it only when the number of requests is small to perform the function and event occurs.
 
-![overview-01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-08-26/NHN%20Cloud_Guide%20overview_CloudFunctions_1_en.png)
+![overview-01](../static/images/2025-08-26/NHN-Cloud_Guide-overview_CloudFunctions_1_en.png)
 
 <a id="two-modes-available-new-deployment"></a>
 #### New Deployment
@@ -42,7 +42,7 @@ Users can write codes by function unit. Functions defined on a specific event ar
 - Instances are kept to reduce response latency.
 - Use it when the number of requests is large to perform the function and a quick response is needed.
 
-![overview-02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-08-26/NHN%20Cloud_Guide%20overview_CloudFunctions_2_en.png)
+![overview-02](../static/images/2025-08-26/NHN-Cloud_Guide-overview_CloudFunctions_2_en.png)
 
 <a id="supported-languages"></a>
 ### Supported Languages { #supported-languages }

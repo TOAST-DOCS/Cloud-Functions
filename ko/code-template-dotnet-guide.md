@@ -109,7 +109,7 @@ public class NhnFunction
 ### 템플릿 다운로드 { #template-download }
 Cloud Functions에서 제공하는 .NET 템플릿을 다운로드하여 로컬 환경에서 개발할 수 있습니다.
 
-템플릿 다운로드 링크: [dotnet.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/dotnet/dotnet.zip)
+템플릿 다운로드 링크: [dotnet.zip](../static/etc/dotnet.zip)
 
 <a id="template-file-structure"></a>
 ### 템플릿 파일 구조 { #template-file-structure }

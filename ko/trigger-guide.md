@@ -75,7 +75,7 @@ Timer 트리거는 지정된 시간 또는 주기에 따라 자동으로 함수�
 <a id="create-timer-trigger"></a>
 ### Timer 트리거 생성 { #create-timer-trigger }
 
-![trigger-guide-05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-01.png)
+![trigger-guide-05](../static/images/2025-11-25/trigger-guide-01.png)
 
 1. Cloud Functions 콘솔에서 함수를 선택합니다.
 2. **트리거** 탭으로 이동합니다.
@@ -153,7 +153,7 @@ Cron 표현식은 다음과 같은 형식을 따릅니다.
 <a id="modify-timer-trigger"></a>
 ### Timer 트리거 수정 { #modify-timer-trigger }
 
-![trigger-guide-02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-02.png)
+![trigger-guide-02](../static/images/2025-11-25/trigger-guide-02.png)
 
 1. Cloud Functions 콘솔에서 함수를 선택합니다.
 2. **트리거** 탭으로 이동합니다.
@@ -179,7 +179,7 @@ API Gateway 트리거는 동일 프로젝트의 API Gateway 서비스를 활용�
 <a id="create-api-gateway-trigger"></a>
 ### API Gateway 트리거 생성 { #create-api-gateway-trigger }
 
-![trigger-guide-04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-04.png)
+![trigger-guide-04](../static/images/2025-11-25/trigger-guide-04.png)
 
 1. Cloud Functions 콘솔에서 함수를 선택합니다.
 2. **트리거** 탭으로 이동합니다.
@@ -230,7 +230,7 @@ curl -X POST "https://{stageurl}/{경로}" \
 <a id="modify-api-gateway-trigger"></a>
 ### API Gateway 트리거 수정 { #modify-api-gateway-trigger }
 
-![trigger-guide-05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-05.png)
+![trigger-guide-05](../static/images/2025-11-25/trigger-guide-05.png)
 
 1. Cloud Functions 콘솔에서 함수를 선택합니다.
 2. **트리거** 탭으로 이동합니다.
@@ -257,7 +257,7 @@ API Gateway 트리거를 생성하면 API Gateway 콘솔에서 추가 설정을 
 <a id="how-to-delete-trigger"></a>
 ### 트리거 삭제 방법 { #how-to-delete-trigger }
 
-![trigger-guide-03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-03.png)
+![trigger-guide-03](../static/images/2025-11-25/trigger-guide-03.png)
 
 1. Cloud Functions 콘솔에서 함수를 선택합니다.
 2. **트리거** 탭으로 이동합니다.

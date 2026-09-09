@@ -12,8 +12,8 @@
 ### 関数作成 { #create-functions }
 関数設定を行いコードを作成してビルドした後、**作成**ボタンをクリックすると、最後にビルドしたパッケージで関数が作成されます。
 
-![console-guide-07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-jp-01.png)
-![console-guide-08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-jp-02.png)
+![console-guide-07](../static/images/2025-11-25/console-guide-jp-01.png)
+![console-guide-08](../static/images/2025-11-25/console-guide-jp-02.png)
 
 <a id="create-functions-function-settings"></a>
 #### 関数設定
@@ -83,7 +83,7 @@
 > **(Pool Manager)同時実行設定**
 
 
-![console-guide-05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-05.png)
+![console-guide-05](../static/images/2025-07-29/console-guide-05.png)
 
 <br>
 
@@ -96,9 +96,9 @@
 <a id="create-functions-code-writing"></a>
 #### コード作成
 
-![console-guide-16](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-jp-16.png)
-![console-guide-17](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-jp-17.png)
-![console-guide-18](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-jp-18.png)
+![console-guide-16](../static/images/2026-07-14/console-guide-jp-16.png)
+![console-guide-17](../static/images/2026-07-14/console-guide-jp-17.png)
+![console-guide-18](../static/images/2026-07-14/console-guide-jp-18.png)
 
 <table class="it">
     <tr>
@@ -226,12 +226,12 @@
 
 <a id="delete-a-function"></a>
 ### 関数削除 { #delete-a-function }
-![console-guide-14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-jp-06.png)
+![console-guide-14](../static/images/2025-11-25/console-guide-jp-06.png)
 既存の関数を選択して削除します。一度に複数の関数を削除可能です。
 
 <a id="copy-a-function"></a>
 ### 関数コピー { #copy-a-function }
-![console-guide-13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-jp-07.png)
+![console-guide-13](../static/images/2025-11-25/console-guide-jp-07.png)
 既存の関数と同一の関数をコピーします。名前は重複不可のため、コピー前に新しい名前を指定できます。
 - トリガーはコピーされません。(HTTPトリガーはデフォルトで提供)
 - バージョンは現在適用されているバージョンのみコピーされます。
@@ -241,14 +241,14 @@
 ## 関数情報 { #about-functions }
 <a id="list-of-functions"></a>
 ### 関数リスト { #list-of-functions }
-![console-guide-01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-jp-08.png)
+![console-guide-01](../static/images/2025-11-25/console-guide-jp-08.png)
 - ユーザーが作成した関数リストを確認できます。
 - ビルドの状態は 現在のバージョンのビルド状態を表示します。
 - ランタイム情報の右側に、ランタイムのサポート状態(サポート終了/使用中止)のバッジが表示されます。
 
 <a id="basic-information-of-functions"></a>
 ### 関数基本情報 { #basic-information-of-functions }
-![console-guide-19](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-jp-19.png)
+![console-guide-19](../static/images/2026-07-14/console-guide-jp-19.png)
 - 関数の基本情報を確認できます。
 - ログ管理項目で **Log & Crash Search** ボタンをクリックし、Log & Crash Searchサービスへ移動してログを確認できます。
 
@@ -256,7 +256,7 @@
 ### 関数の環境変数 { #function-environment-variables }
 関数の詳細情報の環境変数タブで、該当する関数に登録された環境変数の一覧を確認できます。
 
-![console-guide-20](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-jp-20.png)
+![console-guide-20](../static/images/2026-07-14/console-guide-jp-20.png)
 
 <table class="it">
     <tr>
@@ -280,7 +280,7 @@
 
 <a id="function-versioning"></a>
 ### 関数バージョン管理 { #function-versioning }
-![console-guide-15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2026-01-27/console-guide-jp-15.png)
+![console-guide-15](../static/images/2026-01-27/console-guide-jp-15.png)
 - 関数のバージョンを管理できます。
 - 作成された全てのバージョンの履歴を確認し、以前のバージョンにロールバックできます。
 
@@ -352,7 +352,7 @@
 - HTTPトリガーは関数の作成時にデフォルトで提供されます。
     - 有効化/無効化により、使用するかどうかを設定できます。
     
-![console-guid-12](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-jp-10.png)
+![console-guid-12](../static/images/2025-11-25/console-guide-jp-10.png)
 
 - 指定されたHTTPトリガーを使用して作成した関数を実行できます。
     - 例: `https://{userdomain}/{関数名}`
@@ -371,7 +371,7 @@
 
 <a id="monitor-functions"></a>
 ### 関数モニタリング { #monitor-functions }
-![console-guide-06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-jp-11.png)
+![console-guide-06](../static/images/2025-11-25/console-guide-jp-11.png)
 - 関数の使用量を確認できます。
 - 関数呼び出し回数、呼び出し拒否数、エラー発生回数、成功率、関数実行時間指標を提供します。
 - 設定された時間内の指標を提供します。

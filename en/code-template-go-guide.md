@@ -88,7 +88,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 ### Template download { #template-download }
 You can download the Go template provided by Cloud Functions to develop a local environment.
 
-**Template download link**: [go.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/go/go.zip)
+**Template download link**: [go.zip](../static/etc/go.zip)
 
 <a id="template-file-structure"></a>
 ### Template file structure { #template-file-structure }

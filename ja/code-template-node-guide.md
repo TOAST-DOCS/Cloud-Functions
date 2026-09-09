@@ -56,7 +56,7 @@ module.exports = async (context) => {
 ### テンプレートのダウンロード { #template-download }
 Cloud Functionsが提供するNode.jsテンプレートをダウンロードし、ローカル環境で開発できます。
 
-**テンプレートのダウンロードリンク**: [nodejs.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/nodejs/nodejs.zip)
+**テンプレートのダウンロードリンク**: [nodejs.zip](../static/etc/nodejs.zip)
 
 <a id="template-file-structure"></a>
 ### テンプレートのファイル構造 { #template-file-structure }

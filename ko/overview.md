@@ -34,7 +34,7 @@
 - 일정 기간 함수가 수행되지 않으면 인스턴스는 사라지고 리소스 사용량은 0이 됩니다.
 - 함수 수행 요청량이 많지 않고 이벤트 발생 시에만 수행하고 싶을 때 사용합니다.
 
-![overview-01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-08-26/NHN%20Cloud_Guide%20overview_CloudFunctions_1_ko.png)
+![overview-01](../static/images/2025-08-26/NHN-Cloud_Guide-overview_CloudFunctions_1_ko.png)
 
 <a id="two-modes-available-new-deployment"></a>
 #### New Deployment
@@ -42,7 +42,7 @@
 - 빠른 응답을 위해 인스턴스 생성을 유지합니다.
 - 함수 수행 요청량이 많고 빠른 응답이 필요한 경우 사용합니다.
 
-![overview-02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-08-26/NHN%20Cloud_Guide%20overview_CloudFunctions_2_ko.png)
+![overview-02](../static/images/2025-08-26/NHN-Cloud_Guide-overview_CloudFunctions_2_ko.png)
 
 <a id="supported-languages"></a>
 ### 지원 언어 { #supported-languages }

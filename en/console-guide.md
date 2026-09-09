@@ -12,8 +12,8 @@ You can create, edit, delete, and copy functions.
 ### Create functions { #create-functions }
 Configure the function, write your code, and build it. Then, click **Create** to deploy the function using the latest built package.
 
-![console-guide-07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-en-01.png)
-![console-guide-08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-en-02.png)
+![console-guide-07](../static/images/2025-11-25/console-guide-en-01.png)
+![console-guide-08](../static/images/2025-11-25/console-guide-en-02.png)
 
 <a id="create-functions-function-settings"></a>
 #### Function settings
@@ -83,7 +83,7 @@ Configure the function, write your code, and build it. Then, click **Create** to
 > **(Pool Manager) Concurrent execution settings**
 
 
-![console-guide-05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-05.png)
+![console-guide-05](../static/images/2025-07-29/console-guide-05.png)
 
 <br>
 
@@ -96,9 +96,9 @@ Configure the function, write your code, and build it. Then, click **Create** to
 <a id="create-functions-code-writing"></a>
 #### Code writing
 
-![console-guide-16](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-en-16.png)
-![console-guide-17](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-en-17.png)
-![console-guide-18](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-en-18.png)
+![console-guide-16](../static/images/2026-07-14/console-guide-en-16.png)
+![console-guide-17](../static/images/2026-07-14/console-guide-en-17.png)
+![console-guide-18](../static/images/2026-07-14/console-guide-en-18.png)
 
 <table class="it">
     <tr>
@@ -224,12 +224,12 @@ To modify the function settings and code of an existing function, click **Modify
 
 <a id="delete-a-function"></a>
 ### Delete a function { #delete-a-function }
-![console-guide-14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-en-06.png)
+![console-guide-14](../static/images/2025-11-25/console-guide-en-06.png)
 Select an existing function to delete it. You can delete multiple functions at once.
 
 <a id="copy-a-function"></a>
 ### Copy a function { #copy-a-function }
-![console-guide-13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-en-07.png)
+![console-guide-13](../static/images/2025-11-25/console-guide-en-07.png)
 Copy a function that is identical to an existing function. The name cannot be duplicated, so you can rewrite the name before copying.
 - Triggers are not copied. (HTTP triggers are provided by default).
 - Only the currently applied version will be copied.
@@ -239,14 +239,14 @@ Copy a function that is identical to an existing function. The name cannot be du
 ## About functions { #about-functions }
 <a id="list-of-functions"></a>
 ### List of functions { #list-of-functions }
-![console-guide-01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-en-08.png)
+![console-guide-01](../static/images/2025-11-25/console-guide-en-08.png)
 - You can see a list of functions that users have created.
 - Build status shows the build status of the current version.
 - A runtime support status badge (deprecated/discontinued) is displayed to the right of the runtime information.
 
 <a id="basic-information-of-functions"></a>
 ### Basic information of functions { #basic-information-of-functions }
-![console-guide-19](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-en-19.png)
+![console-guide-19](../static/images/2026-07-14/console-guide-en-19.png)
 - You can see basic information about the function.
 - Click Log & Crash Search in the Log Management section to view your logs in the Log & Crash Search service.
 
@@ -254,7 +254,7 @@ Copy a function that is identical to an existing function. The name cannot be du
 ### Function Environment Variables { #function-environment-variables }
 You can check the list of environment variables registered for a function in the environment variable tab of the function details.
 
-![console-guide-20](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-en-20.png)
+![console-guide-20](../static/images/2026-07-14/console-guide-en-20.png)
 
 <table class="it">
     <tr>
@@ -278,7 +278,7 @@ You can check the list of environment variables registered for a function in the
 
 <a id="function-versioning"></a>
 ### Function versioning { #function-versioning }
-![console-guide-15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2026-01-27/console-guide-en-15.png)
+![console-guide-15](../static/images/2026-01-27/console-guide-en-15.png)
 - You can manage function versions.
 - You can view version history and rollback to any previous version.
 
@@ -352,7 +352,7 @@ You can manage triggers that can perform functions.
 - HTTP triggers are built-in when creating a function.
     - You can set whether to use through the Enable/Disable features.
 
-![console-guid-12](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-en-10.png)
+![console-guid-12](../static/images/2025-11-25/console-guide-en-10.png)
 
 - You can execute the function you created via a given HTTP trigger.
     - Example: `https://{userdomain}/{function name}`
@@ -371,7 +371,7 @@ You can manage triggers that can perform functions.
 
 <a id="monitor-functions"></a>
 ### Monitor functions { #monitor-functions }
-![console-guide-06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/console-guide-en-11.png)
+![console-guide-06](../static/images/2025-11-25/console-guide-en-11.png)
 - You can check the usage of a function.
 - Provide metrics for the number of function calls, number of call rejections, number of errors, success rate, and function execution time.
 - Provide metrics within a set time.
