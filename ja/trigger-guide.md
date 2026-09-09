@@ -75,7 +75,7 @@ Timerトリガーは、指定された時間または周期に従って自動的
 <a id="create-timer-trigger"></a>
 ### Timerトリガーの作成 { #create-timer-trigger }
 
-![trigger-guide-05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-01.png)
+![trigger-guide-05](../static/images/2025-11-25/trigger-guide-01.png)
 
 1. Cloud Functionsコンソールで関数を選択します。
 2. **トリガー**タブに移動します。
@@ -153,7 +153,7 @@ Cron式は次のような形式に従います。
 <a id="modify-timer-trigger"></a>
 ### Timerトリガーの修正 { #modify-timer-trigger }
 
-![trigger-guide-02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-02.png)
+![trigger-guide-02](../static/images/2025-11-25/trigger-guide-02.png)
 
 1. Cloud Functionsコンソールで関数を選択します。
 2. **トリガー**タブに移動します。
@@ -179,7 +179,7 @@ API Gatewayトリガーは、同一プロジェクトのAPI Gatewayサービス�
 <a id="create-api-gateway-trigger"></a>
 ### API Gatewayトリガーの作成 { #create-api-gateway-trigger }
 
-![trigger-guide-04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-04.png)
+![trigger-guide-04](../static/images/2025-11-25/trigger-guide-04.png)
 
 1. Cloud Functionsコンソールで関数を選択します。
 2. **トリガー**タブに移動します。
@@ -230,7 +230,7 @@ curl -X POST "https://{stageurl}/{パス}" \
 <a id="modify-api-gateway-trigger"></a>
 ### API Gatewayトリガーの修正 { #modify-api-gateway-trigger }
 
-![trigger-guide-05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-05.png)
+![trigger-guide-05](../static/images/2025-11-25/trigger-guide-05.png)
 
 1. Cloud Functionsコンソールで関数を選択します。
 2. **トリガー**タブに移動します。
@@ -257,7 +257,7 @@ API Gatewayトリガーを作成すると、API Gatewayコンソールで追加�
 <a id="how-to-delete-trigger"></a>
 ### トリガーの削除方法 { #how-to-delete-trigger }
 
-![trigger-guide-03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-03.png)
+![trigger-guide-03](../static/images/2025-11-25/trigger-guide-03.png)
 
 1. Cloud Functionsコンソールで関数を選択します。
 2. **トリガー**タブに移動します。

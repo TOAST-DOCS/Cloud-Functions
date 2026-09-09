@@ -109,7 +109,7 @@ public class NhnFunction
 ### テンプレートのダウンロード { #template-download }
 Cloud Functionsが提供する.NETテンプレートをダウンロードし、ローカル環境で開発できます。
 
-**テンプレートのダウンロードリンク**: [dotnet.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/dotnet/dotnet.zip)
+**テンプレートのダウンロードリンク**: [dotnet.zip](../static/etc/dotnet.zip)
 
 <a id="template-file-structure"></a>
 ### テンプレートのファイル構造 { #template-file-structure }

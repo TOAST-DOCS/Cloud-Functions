@@ -75,7 +75,7 @@ Timer trigger executes a function automatically at the specified time or cycle. 
 <a id="create-timer-trigger"></a>
 ### Create Timer Trigger { #create-timer-trigger }
 
-![trigger-guide-05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-01.png)
+![trigger-guide-05](../static/images/2025-11-25/trigger-guide-01.png)
 
 1. Select a function from the Cloud Functions console.
 2. Go to **Trigger** tab.
@@ -153,7 +153,7 @@ You can use * instead of leaving the Day of month or Day of week field blank.
 <a id="modify-timer-trigger"></a>
 ### Modify Timer Trigger { #modify-timer-trigger }
 
-![trigger-guide-02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-02.png)
+![trigger-guide-02](../static/images/2025-11-25/trigger-guide-02.png)
 
 1. Select a function from the Cloud Functions console.
 2. Go to **Trigger** tab.
@@ -179,7 +179,7 @@ API Gateway triggers can execute functions by leveraging the API Gateway service
 <a id="create-api-gateway-trigger"></a>
 ### Create API Gateway Trigger { #create-api-gateway-trigger }
 
-![trigger-guide-04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-04.png)
+![trigger-guide-04](../static/images/2025-11-25/trigger-guide-04.png)
 
 1. Select a function from the Cloud Functions console.
 2. Go to **Trigger** tab.
@@ -230,7 +230,7 @@ curl -X POST "https://{stageurl}/{path}" \
 <a id="modify-api-gateway-trigger"></a>
 ### Modify API Gateway Trigger { #modify-api-gateway-trigger }
 
-![trigger-guide-05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-05.png)
+![trigger-guide-05](../static/images/2025-11-25/trigger-guide-05.png)
 
 1. Select a function from the Cloud Functions console.
 2. Go to **Trigger** tab.
@@ -257,7 +257,7 @@ For more details, please refer to the [API Gateway Guide](https://docs.nhncloud.
 <a id="how-to-delete-trigger"></a>
 ### How to Delete Trigger { #how-to-delete-trigger }
 
-![trigger-guide-03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-11-25/trigger-guide-03.png)
+![trigger-guide-03](../static/images/2025-11-25/trigger-guide-03.png)
 
 1. Select a function from the Cloud Functions console.
 2. Go to **Trigger** tab.

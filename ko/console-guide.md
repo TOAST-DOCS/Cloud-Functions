@@ -12,8 +12,8 @@
 ### 함수 생성 { #create-functions }
 함수 설정을 하고 코드를 작성하여 빌드한 뒤 **생성** 버튼을 클릭하면 마지막 빌드한 패키지로 함수가 생성됩니다.
 
-![console-guide-07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-07.png)
-![console-guide-08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-08.png)
+![console-guide-07](../static/images/2025-07-29/console-guide-07.png)
+![console-guide-08](../static/images/2025-07-29/console-guide-08.png)
 
 <a id="create-functions-function-settings"></a>
 #### 함수 설정
@@ -83,7 +83,7 @@
 > (Pool Manager) 동시 실행 설정
 
 
-![console-guide-05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-05.png)
+![console-guide-05](../static/images/2025-07-29/console-guide-05.png)
 
 <br>
 
@@ -96,9 +96,9 @@
 <a id="create-functions-code-writing"></a>
 #### 코드 작성
 
-![console-guide-16](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-16.png)
-![console-guide-17](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-17.png)
-![console-guide-18](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-18.png)
+![console-guide-16](../static/images/2026-07-14/console-guide-16.png)
+![console-guide-17](../static/images/2026-07-14/console-guide-17.png)
+![console-guide-18](../static/images/2026-07-14/console-guide-18.png)
 
 <table class="it">
     <tr>
@@ -224,12 +224,12 @@
 
 <a id="delete-a-function"></a>
 ### 함수 삭제 { #delete-a-function }
-![console-guide-14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-14.png)
+![console-guide-14](../static/images/2025-07-29/console-guide-14.png)
 기존 함수를 선택하여 삭제합니다. 한 번에 여러 함수 삭제가 가능합니다.
 
 <a id="copy-a-function"></a>
 ### 함수 복사 { #copy-a-function }
-![console-guide-13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-13.png)
+![console-guide-13](../static/images/2025-07-29/console-guide-13.png)
 기존 함수와 동일한 함수를 복사합니다. 이름은 중복이 불가능하여 복사 전에 이름을 새롭게 작성할 수 있습니다.
 - 트리거는 복사되지 않습니다. (HTTP 트리거는 기본 제공)
 - 버전은 현재 적용된 버전만 복사됩니다.
@@ -239,14 +239,14 @@
 ## 함수 정보 { #about-functions }
 <a id="list-of-functions"></a>
 ### 함수 목록 { #list-of-functions }
-![console-guide-01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-01.png)
+![console-guide-01](../static/images/2025-07-29/console-guide-01.png)
 - 사용자가 생성한 함수 목록을 확인할 수 있습니다.
 - 빌드 상태는 현재 버전의 빌드 상태를 표시합니다.
 - 런타임 정보 우측에 런타임의 지원 상태(지원 중단/사용 중단) 배지가 표시됩니다.
 
 <a id="basic-information-of-functions"></a>
 ### 함수 기본 정보 { #basic-information-of-functions }
-![console-guide-19](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-19.png)
+![console-guide-19](../static/images/2026-07-14/console-guide-19.png)
 - 함수의 기본 정보를 확인할 수 있습니다.
 - 로그 관리 항목에서 **Log & Crash Search** 버튼을 클릭해 Log & Crash Search 서비스로 이동하여 로그를 확인할 수 있습니다.
 
@@ -254,7 +254,7 @@
 ### 함수 환경 변수 { #function-environment-variables }
 함수 상세 정보의 환경 변수 탭에서 해당 함수에 등록된 환경 변수 목록을 확인할 수 있습니다.
 
-![console-guide-20](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn-origin/prod_cloud_functions/2026-07-14/console-guide-20.png)
+![console-guide-20](../static/images/2026-07-14/console-guide-20.png)
 
 <table class="it">
     <tr>
@@ -278,7 +278,7 @@
 
 <a id="function-versioning"></a>
 ### 함수 버전 관리 { #function-versioning }
-![console-guide-15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2026-01-27/console-guide-15.png)
+![console-guide-15](../static/images/2026-01-27/console-guide-15.png)
 - 함수의 버전을 관리할 수 있습니다.
 - 생성된 모든 버전의 이력을 확인하고, 이전 버전으로 롤백할 수 있습니다.
 
@@ -352,7 +352,7 @@
 - HTTP 트리거는 함수 생성 시 기본으로 제공됩니다.
     - 활성화/비활성화로 사용 여부를 설정할 수 있습니다.
 
-![console-guide-12](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-12.png)
+![console-guide-12](../static/images/2025-07-29/console-guide-12.png)
 
 - 주어진 HTTP 트리거로 생성한 함수를 수행할 수 있습니다.
     - 예: `https://{userdomain}/{함수명}`
@@ -371,7 +371,7 @@
 
 <a id="monitor-functions"></a>
 ### 함수 모니터링 { #monitor-functions }
-![console-guide-06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/2025-07-29/console-guide-06.png)
+![console-guide-06](../static/images/2025-07-29/console-guide-06.png)
 - 함수의 사용량을 확인할 수 있습니다.
 - 함수 호출 횟수, 호출 거부 수, 오류 발생 횟수, 성공률, 함수 실행 시간 지표를 제공합니다.
 - 설정된 시간 내의 지표를 제공합니다.

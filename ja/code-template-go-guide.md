@@ -88,7 +88,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 ### テンプレートのダウンロード { #template-download }
 Cloud Functionsが提供するGoテンプレートをダウンロードし、ローカル環境で開発できます。
 
-**テンプレートのダウンロードリンク**: [go.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/go/go.zip)
+**テンプレートのダウンロードリンク**: [go.zip](../static/etc/go.zip)
 
 <a id="template-file-structure"></a>
 ### テンプレートのファイル構造 { #template-file-structure }

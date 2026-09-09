@@ -76,7 +76,7 @@ public class HelloWorld {
 ### テンプレートのダウンロード { #template-download }
 Cloud Functionsが提供するJavaテンプレートをダウンロードし、ローカル環境で開発できます。
 
-**テンプレートのダウンロードリンク**: [java.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/java/java.zip)
+**テンプレートのダウンロードリンク**: [java.zip](../static/etc/java.zip)
 
 <a id="template-file-structure"></a>
 ### テンプレートのファイル構造 { #template-file-structure }

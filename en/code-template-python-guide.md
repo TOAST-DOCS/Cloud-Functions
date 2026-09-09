@@ -71,7 +71,7 @@ def main():
 ### Template download { #template-download }
 You can download the Python template provided by Cloud Functions to develop a local environment.
 
-**Template download link**: [python.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/python/python.zip)
+**Template download link**: [python.zip](../static/etc/python.zip)
 
 <a id="template-file-structure"></a>
 ### Template file structure { #template-file-structure }
