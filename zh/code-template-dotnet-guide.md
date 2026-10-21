@@ -100,7 +100,7 @@ public class NhnFunction
 ### Template download
 You can download the .NET template provided by Cloud Functions to develop a local environment.
 
-**Template download link**: [dotnet.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/dotnet/dotnet.zip)
+**Template download link**: [dotnet.zip](https://static.toastoven.net/prod_cloud_functions/templates/dotnet/dotnet.zip)
 
 ### Template file structure
 The structure of the downloaded template file is as follows:

@@ -55,6 +55,11 @@ public class NhnFunction
     }
 }
 ```
+```
+# nuget.txt
+Microsoft.Extensions.Configuration:8.0.
+CsvHelper:33.1.0
+```
 
 <a id="context-object"></a>
 ### Context 객체 { #context-object }
@@ -109,7 +114,7 @@ public class NhnFunction
 ### 템플릿 다운로드 { #template-download }
 Cloud Functions에서 제공하는 .NET 템플릿을 다운로드하여 로컬 환경에서 개발할 수 있습니다.
 
-템플릿 다운로드 링크: [dotnet.zip](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_cloud_functions/templates/dotnet/dotnet.zip)
+템플릿 다운로드 링크: [dotnet.zip](https://static.toastoven.net/prod_cloud_functions/templates/dotnet/dotnet.zip)
 
 <a id="template-file-structure"></a>
 ### 템플릿 파일 구조 { #template-file-structure }
@@ -294,6 +299,8 @@ public class NhnFunction
 ## 패키지 관리(`nuget.txt`) { #manage-package-nugettxt }
 
 의존성(NuGet 패키지)을 관리하려면 `nuget.txt` 파일을 사용합니다. 필요한 패키지를 한 줄에 하나씩 작성합니다.
+버전을 지정하지 않으면 NuGet에 등록된 최신 버전을 가져올 수 있습니다. 
+최신 버전이 Cloud Functions의 .NET 런타임을 지원하지 않으면 빌드가 실패할 수 있으므로, 패키지를 추가할 때는 버전을 명시하는 것을 권장합니다.
 
 ```
 # nuget.txt
